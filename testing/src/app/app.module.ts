@@ -1,15 +1,22 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatButtonModule } from '@angular/material/button';
 
 import { NgxUtilsModule } from '@ngx-utils';
 
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
-    declarations: [AppComponent],
-    imports: [BrowserModule, BrowserAnimationsModule, NgxUtilsModule.forRoot()],
+    declarations: [AppComponent, BottomSheetComponent, DialogComponent],
+    imports: [CommonModule, BrowserModule, BrowserAnimationsModule, MatButtonModule, NgxUtilsModule.forRoot()],
     providers: [],
+
     bootstrap: [AppComponent],
 })
 export class AppModule {}

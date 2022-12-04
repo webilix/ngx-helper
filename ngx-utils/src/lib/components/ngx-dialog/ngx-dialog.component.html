@@ -1,0 +1,7 @@
+<header>
+    <div class="title">{{ title || '&nbsp;' }}</div>
+    <mat-icon [fontIcon]="'close'" class="ngx-utils-icon" mat-dialog-close></mat-icon>
+</header>
+<content>
+    <ng-container *ngComponentOutlet="component; injector: injector"></ng-container>
+</content>

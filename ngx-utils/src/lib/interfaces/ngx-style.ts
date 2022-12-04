@@ -1,4 +1,5 @@
 export interface INgxStyle {
+    fontSize: string;
     faFont: string;
     enFont: string;
 
@@ -12,5 +13,5 @@ export interface INgxStyle {
     borderColor: string;
     backgroundColor: string;
 
-    bottomSheetWidth: string;
+    dialogWidth: string;
 }
