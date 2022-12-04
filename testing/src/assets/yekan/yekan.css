@@ -1,0 +1,8 @@
+@font-face {
+    font-family: Yekan;
+    src: url('yekan.eot');
+    src: url('yekan.eot?#iefix') format('yekan-opentype'), url('yekan.woff') format('woff'),
+        url('yekan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

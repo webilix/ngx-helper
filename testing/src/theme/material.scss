@@ -1,0 +1,29 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+@import './palette.scss';
+$primary: mat.define-palette($primary-palette);
+$accent: mat.define-palette($accent-palette);
+$warn: mat.define-palette($warn-palette);
+
+$typography: mat.define-typography-config(
+    $font-family: Yekan,
+    $subtitle-1: mat.define-typography-level(12px, 12px, 400),
+    $body-1: mat.define-typography-level(12px, 12px, 400),
+    $body-2: mat.define-typography-level(12px, 12px, 400),
+    $caption: mat.define-typography-level(9px, 9px, 400),
+    $button: mat.define-typography-level(12px, 12px, 500),
+);
+
+$admin-theme: mat.define-light-theme(
+    (
+        color: (
+            primary: $primary,
+            accent: $accent,
+            warn: $warn,
+        ),
+        typography: $typography,
+    )
+);
+
+@include mat.all-component-themes($admin-theme);
