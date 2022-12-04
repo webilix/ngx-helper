@@ -26,6 +26,70 @@
                     }
                 }
             }
+        },
+        "testing": {
+            "projectType": "application",
+            "schematics": { "@schematics/angular:component": { "style": "scss" } },
+            "root": "testing",
+            "sourceRoot": "testing/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/testing",
+                        "index": "testing/src/index.html",
+                        "main": "testing/src/main.ts",
+                        "polyfills": ["zone.js"],
+                        "tsConfig": "testing/tsconfig.app.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": ["testing/src/favicon.ico", "testing/src/assets"],
+                        "styles": ["testing/src/styles.scss"],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [
+                                { "type": "initial", "maximumWarning": "500kb", "maximumError": "1mb" },
+                                { "type": "anyComponentStyle", "maximumWarning": "2kb", "maximumError": "4kb" }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "configurations": {
+                        "production": { "browserTarget": "testing:build:production" },
+                        "development": { "browserTarget": "testing:build:development" }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": { "browserTarget": "testing:build" }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "polyfills": ["zone.js", "zone.js/testing"],
+                        "tsConfig": "testing/tsconfig.spec.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": ["testing/src/favicon.ico", "testing/src/assets"],
+                        "styles": ["testing/src/styles.scss"],
+                        "scripts": []
+                    }
+                }
+            }
         }
     },
     "cli": { "analytics": false }
