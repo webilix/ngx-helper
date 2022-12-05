@@ -2,21 +2,30 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
-import { INgxStyle } from './interfaces/ngx-style';
+import { INgxUtilsStyle } from './interfaces/ngx-style';
 import { NgxUtilsService } from './ngx-utils.service';
 
 import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
+import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
+import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-pagination.component';
 
 @NgModule({
-    declarations: [NgxUtilsBottomSheetComponent, NgxUtilsDialogComponent],
-    imports: [CommonModule, MatBottomSheetModule, MatDialogModule, MatIconModule],
+    declarations: [
+        NgxUtilsBottomSheetComponent,
+        NgxUtilsConfirmComponent,
+        NgxUtilsDialogComponent,
+        NgxUtilsPaginationComponent,
+    ],
+    imports: [CommonModule, MatBottomSheetModule, MatButtonModule, MatDialogModule, MatIconModule],
+    exports: [NgxUtilsPaginationComponent],
 })
 export class NgxUtilsModule {
-    static forRoot(style?: Partial<INgxStyle>): ModuleWithProviders<NgxUtilsModule> {
+    static forRoot(style?: Partial<INgxUtilsStyle>): ModuleWithProviders<NgxUtilsModule> {
         style = style || {};
         const root: string =
             ':root{' +

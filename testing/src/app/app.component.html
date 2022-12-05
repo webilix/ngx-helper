@@ -3,8 +3,15 @@
     <button mat-flat-button type="button" color="primary" (click)="showDialog()">Dialog</button>
 </div>
 
-<ngx-utils-view-pagination
+<div class="buttons">
+    <button mat-flat-button type="button" color="primary" (click)="confirm('ACTIVE')">ACTIVE</button>
+    <button mat-flat-button type="button" color="warn" (click)="confirm('BLOCK')">BLOCK</button>
+    <button mat-flat-button type="button" color="warn" (click)="confirm('DEACTIVE')">DEACTIVE</button>
+    <button mat-flat-button type="button" color="warn" (click)="confirm('DELETE')">DELETE</button>
+</div>
+
+<ngx-utils-pagination
     [current]="paginationCurrent"
     [total]="paginationTotal"
-    (page)="paginationCurrent = $event"
-></ngx-utils-view-pagination>
+    (page)="log($event); paginationCurrent = $event"
+></ngx-utils-pagination>

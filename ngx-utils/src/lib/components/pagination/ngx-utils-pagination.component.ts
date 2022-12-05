@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 
 @Component({
-    selector: 'ngx-utils-view-pagination',
-    templateUrl: './ngx-utils-view-pagination.component.html',
-    styleUrls: ['./ngx-utils-view-pagination.component.scss'],
+    selector: 'ngx-utils-pagination',
+    templateUrl: './ngx-utils-pagination.component.html',
+    styleUrls: ['./ngx-utils-pagination.component.scss'],
 })
-export class NgxUtilsViewPaginationComponent implements OnChanges {
+export class NgxUtilsPaginationComponent implements OnChanges {
     @Input() current?: number;
     @Input() total?: number;
     @Output() page: EventEmitter<number> = new EventEmitter<number>();

@@ -1,26 +1,42 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
 
-import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatBottomSheet, MatBottomSheetConfig, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+
+import { INgxUtilsConfirm, NgxUtilsConfirm, NgxUtilsConfirmInfo } from './types/ngx-confirm';
 
 import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
+import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
 
 @Injectable()
 export class NgxUtilsService {
     constructor(private readonly bottomSheet: MatBottomSheet, private readonly dialog: MatDialog) {}
 
-    //#region BottomSheet
     private _bottomSheetRef?: MatBottomSheetRef<any>;
+    private _bottomSheetConfig: MatBottomSheetConfig = {
+        autoFocus: false,
+        direction: 'rtl',
+        disableClose: true,
+        panelClass: 'ngx-utils-bottom-sheet-panel',
+    };
 
+    private _dialogRef?: MatDialogRef<any>;
+    private _dialogConfig: MatDialogConfig = {
+        autoFocus: false,
+        width: 'calc(100vw - 4rem)',
+        maxWidth: 'var(--ngxUtilsDialogWidth)',
+        maxHeight: '80vh',
+        direction: 'rtl',
+        disableClose: true,
+    };
+
+    //#region BottomSheet
     openBottomSheet<R>(component: ComponentType<any>, title: string, data?: any): Promise<R> {
         return new Promise<R>((resolve, reject) => {
             this._bottomSheetRef = this.bottomSheet.open(NgxUtilsBottomSheetComponent, {
-                autoFocus: false,
-                direction: 'rtl',
-                disableClose: true,
-                panelClass: 'ngx-utils-bottom-sheet-panel',
+                ...this._bottomSheetConfig,
                 data: { component, title, data },
             });
 
@@ -38,18 +54,33 @@ export class NgxUtilsService {
     }
     //#region
 
-    //#region Dialog
-    private _dialogRef?: MatDialogRef<any>;
+    //#region Confirm
+    confirm(confirm: NgxUtilsConfirm, item: string, title?: string, message?: string): Promise<void>;
+    confirm(confirm: INgxUtilsConfirm, item: string, title?: string, message?: string): Promise<void>;
+    confirm(
+        confirm: NgxUtilsConfirm | INgxUtilsConfirm,
+        item: string,
+        title?: string,
+        message?: string,
+    ): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            const info: INgxUtilsConfirm = typeof confirm === 'string' ? NgxUtilsConfirmInfo[confirm] : confirm;
+            this.bottomSheet
+                .open(NgxUtilsConfirmComponent, {
+                    ...this._bottomSheetConfig,
+                    data: { info, item, title, message },
+                })
+                .afterDismissed()
+                .subscribe((result: boolean) => (result ? resolve() : reject()));
+        });
+    }
+    //#endregion
 
+    //#region Dialog
     openDialog<R>(component: ComponentType<any>, title: string, data?: any): Promise<R> {
         return new Promise<R>((resolve, reject) => {
             this._dialogRef = this.dialog.open(NgxUtilsDialogComponent, {
-                autoFocus: false,
-                width: 'calc(100vw - 4rem)',
-                maxWidth: 'var(--ngxUtilsDialogWidth)',
-                maxHeight: '80vh',
-                direction: 'rtl',
-                disableClose: true,
+                ...this._dialogConfig,
                 data: { component, title, data },
             });
 
