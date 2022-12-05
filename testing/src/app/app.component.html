@@ -4,6 +4,10 @@
 </div>
 
 <div class="buttons">
+    <button mat-flat-button type="button" color="primary" (click)="showPreview()">Preview</button>
+</div>
+
+<div class="buttons">
     <button mat-flat-button type="button" color="primary" (click)="confirm('ACTIVE')">ACTIVE</button>
     <button mat-flat-button type="button" color="warn" (click)="confirm('ARCHIVE')">ARCHIVE</button>
     <button mat-flat-button type="button" color="warn" (click)="confirm('BLOCK')">BLOCK</button>
@@ -20,6 +24,8 @@
 </div>
 
 <ngx-utils-box title="نمایش باکس" icon="home" [component]="boxComponent"></ngx-utils-box>
+
+<ngx-utils-box title="پایپ‌ها" [component]="pipeComponent"></ngx-utils-box>
 
 <ngx-utils-pagination
     [current]="paginationCurrent"

@@ -1,11 +1,12 @@
 import { ComponentType } from '@angular/cdk/portal';
-import { Component } from '@angular/core';
+import { Component, Pipe } from '@angular/core';
 
 import { NgxUtilsMenu, NgxUtilsService } from '@ngx-utils';
 
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { BoxComponent } from './box/box.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { PipeComponent } from './pipe/pipe.component';
 
 @Component({
     selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent {
     public log = console.log;
 
     public boxComponent: ComponentType<BoxComponent> = BoxComponent;
+    public pipeComponent: ComponentType<PipeComponent> = PipeComponent;
 
     public menu: NgxUtilsMenu[] = [
         { title: 'عدم نمایش' },
@@ -49,6 +51,15 @@ export class AppComponent {
         this.ngxUtilsService.openDialog<boolean>(DialogComponent, 'نمایش Dialog', { date: new Date() }).then(
             (result) => this.log(result),
             () => {},
+        );
+    }
+
+    showPreview(): void {
+        this.ngxUtilsService.preview(
+            'https://angular.io/assets/images/logos/angular/logo-nav@2x.png',
+            'شیوه نمایش توضیحات مربوط به تصویر در هنگام استفاده از کامپوننت پیش‌نمایش تصویر' +
+                '\n' +
+                'نمایش در چند خط با کدهای <strong style="color: red;">HTML</strong>',
         );
     }
 

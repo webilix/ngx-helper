@@ -1,3 +1,8 @@
 بررسی نحوه‌ی نمایش اطلاعات کامپوننت‌ها در یک باکس که دارای عنوان مشخصی می‌باشد در داخل یک کامپوننت دیگر (کامپوننت پدر).
 این اطلاعات باید به رنگ سبز نمایش داده شوند.<br /><br />
-برای بررسی بیشتر این خط به انتهای کامپوننت اضافه شده است.
+<div class="loading">
+    <button mat-stroked-button type="button" color="primary" (click)="fixed = !fixed">
+        {{ fixed ? 'ROTATE' : 'FIXED' }}
+    </button>
+    <ngx-utils-loading [color]="color" [fixed]="fixed" (click)="changeColor()"></ngx-utils-loading>
+</div>

@@ -15,8 +15,12 @@ import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-util
 import { NgxUtilsBoxComponent } from './components/box/ngx-utils-box.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
+import { NgxUtilsLoadingComponent } from './components/loading/ngx-utils-loading.component';
 import { NgxUtilsMenuComponent } from './components/menu/ngx-utils-menu.component';
 import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-pagination.component';
+import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
+
+import { NgxUtilsMultiLinePipe } from './pipes/ngx-utils-multi-line.pipe';
 
 @NgModule({
     declarations: [
@@ -24,8 +28,12 @@ import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-p
         NgxUtilsBoxComponent,
         NgxUtilsConfirmComponent,
         NgxUtilsDialogComponent,
+        NgxUtilsLoadingComponent,
         NgxUtilsMenuComponent,
         NgxUtilsPaginationComponent,
+        NgxUtilsPreviewComponent,
+
+        NgxUtilsMultiLinePipe,
     ],
     imports: [
         CommonModule,
@@ -37,7 +45,14 @@ import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-p
         MatIconModule,
         MatMenuModule,
     ],
-    exports: [NgxUtilsBoxComponent, NgxUtilsMenuComponent, NgxUtilsPaginationComponent],
+    exports: [
+        NgxUtilsBoxComponent,
+        NgxUtilsLoadingComponent,
+        NgxUtilsMenuComponent,
+        NgxUtilsPaginationComponent,
+
+        NgxUtilsMultiLinePipe,
+    ],
 })
 export class NgxUtilsModule {
     static forRoot(style?: Partial<INgxUtilsStyle>): ModuleWithProviders<NgxUtilsModule> {
@@ -68,6 +83,9 @@ export class NgxUtilsModule {
             'max-width: 100vw !important;' +
             'min-width: auto !important;' +
             'max-height: 80vh !important;' +
+            '}' +
+            '.ngx-utils-full-dialog .mat-mdc-dialog-container .mat-mdc-dialog-surface {' +
+            'background-color: rgba(0, 0, 0, 0.5) !important;' +
             '}' +
             '.ngx-utils-color-primary {color: var(--ngxUtilsPrimaryColor) !important}' +
             '.ngx-utils-color-accent {color: var(--ngxUtilsAccentColor) !important}' +

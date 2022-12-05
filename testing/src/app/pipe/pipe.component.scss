@@ -1,0 +1,30 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.pipe {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    background-color: lightgray;
+    padding: 1rem 0.5rem;
+    border-radius: 4px;
+
+    .title {
+        width: 125px;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .value {
+        flex: 1;
+    }
+
+    .en {
+        direction: ltr;
+        text-align: left;
+        font-family: Roboto, 'Helvetica Neue', sans-serif;
+    }
+}

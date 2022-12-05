@@ -9,6 +9,7 @@ import { INgxUtilsConfirm, NgxUtilsConfirm, NgxUtilsConfirmInfo } from './types/
 import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
+import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
 
 @Injectable()
 export class NgxUtilsService {
@@ -31,8 +32,17 @@ export class NgxUtilsService {
         direction: 'rtl',
         disableClose: true,
     };
+    private _dialogFullConfig: MatDialogConfig = {
+        autoFocus: false,
+        width: '100vw',
+        maxWidth: 'none',
+        height: '100vh',
+        maxHeight: 'none',
+        direction: 'rtl',
+        hasBackdrop: false,
+        panelClass: 'ngx-utils-full-dialog',
+    };
 
-    //#region BottomSheet
     openBottomSheet<R>(component: ComponentType<any>, title: string, data?: any): Promise<R> {
         return new Promise<R>((resolve, reject) => {
             this._bottomSheetRef = this.bottomSheet.open(NgxUtilsBottomSheetComponent, {
@@ -52,9 +62,7 @@ export class NgxUtilsService {
         this._bottomSheetRef.dismiss(result);
         this._bottomSheetRef = undefined;
     }
-    //#region
 
-    //#region Confirm
     confirm(confirm: NgxUtilsConfirm, item: string, title?: string, message?: string): Promise<void>;
     confirm(confirm: INgxUtilsConfirm, item: string, title?: string, message?: string): Promise<void>;
     confirm(
@@ -74,9 +82,7 @@ export class NgxUtilsService {
                 .subscribe((result: boolean) => (result ? resolve() : reject()));
         });
     }
-    //#endregion
 
-    //#region Dialog
     openDialog<R>(component: ComponentType<any>, title: string, data?: any): Promise<R> {
         return new Promise<R>((resolve, reject) => {
             this._dialogRef = this.dialog.open(NgxUtilsDialogComponent, {
@@ -94,5 +100,11 @@ export class NgxUtilsService {
         this._dialogRef.close(result);
         this._dialogRef = undefined;
     }
-    //#endregion
+
+    preview(image: string, description?: string): void {
+        this.dialog.open(NgxUtilsPreviewComponent, {
+            ...this._dialogFullConfig,
+            data: { image, description },
+        });
+    }
 }
