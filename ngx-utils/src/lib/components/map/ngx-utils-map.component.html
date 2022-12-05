@@ -1,0 +1,24 @@
+<div class="background">
+    <ngx-utils-loading></ngx-utils-loading>
+</div>
+
+<iframe
+    [src]="url | ngxUtilsSafe: 'RESOURCE_URL'"
+    frameborder="0"
+    scrolling="no"
+    marginheight="0"
+    marginwidth="0"
+></iframe>
+
+<footer>
+    <content>
+        <div class="title">Latitude</div>
+        <div class="title">Longitude</div>
+    </content>
+    <content>
+        <div class="position">{{ latitude }}</div>
+        <div class="position">{{ longitude }}</div>
+    </content>
+</footer>
+
+<mat-icon class="ngx-utils-icon" mat-dialog-close>close</mat-icon>

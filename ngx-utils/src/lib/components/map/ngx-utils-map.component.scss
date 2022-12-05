@@ -1,0 +1,81 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1;
+}
+
+iframe {
+    width: calc(100vw - 2rem);
+    height: calc(100vh - 6rem);
+    margin: 1rem auto;
+    z-index: 2;
+}
+
+footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 4rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: var(--ngxUtilsBackgroundColor);
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 50%);
+    z-index: 1;
+
+    content {
+        display: flex;
+        flex-direction: row-reverse;
+        width: var(--ngxUtilsDialogWidth);
+        max-width: calc(100vw - 2rem);
+        margin: 0 auto;
+        padding-right: 4rem;
+
+        div {
+            flex: 1;
+            direction: ltr;
+            text-align: left;
+            font-family: var(--ngxUtilsEnFont);
+            color: var(--ngxUtilsPrimaryColor);
+        }
+
+        .title {
+            font-size: calc(var(--ngxUtilsFontSize) - 2px);
+            font-weight: 500;
+        }
+    }
+}
+
+mat-icon {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--ngxUtilsPrimaryColor);
+    font-size: calc(var(--ngxUtilsIconSize) + 5px);
+    width: 4rem !important;
+    height: 4rem !important;
+    cursor: pointer;
+    z-index: 2;
+}

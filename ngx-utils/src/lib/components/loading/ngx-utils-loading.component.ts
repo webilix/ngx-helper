@@ -1,16 +1,20 @@
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
     selector: 'ngx-utils-loading',
     templateUrl: './ngx-utils-loading.component.html',
     styleUrls: ['./ngx-utils-loading.component.scss'],
 })
-export class NgxUtilsLoadingComponent implements OnChanges, OnDestroy {
+export class NgxUtilsLoadingComponent implements OnInit, OnChanges, OnDestroy {
     @Input() color?: 'primary' | 'accent' | 'warn';
     @Input() fixed: boolean = false;
 
     public rotate: number = 0;
     private interval?: any;
+
+    ngOnInit(): void {
+        if (!this.fixed) this.interval = setInterval(() => (this.rotate = (this.rotate + 10) % 360), 50);
+    }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (!changes['fixed']) return;

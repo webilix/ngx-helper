@@ -16,6 +16,7 @@ import { NgxUtilsBoxComponent } from './components/box/ngx-utils-box.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
 import { NgxUtilsLoadingComponent } from './components/loading/ngx-utils-loading.component';
+import { NgxUtilsMapComponent } from './components/map/ngx-utils-map.component';
 import { NgxUtilsMenuComponent } from './components/menu/ngx-utils-menu.component';
 import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-pagination.component';
 import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
@@ -33,6 +34,7 @@ import { NgxUtilsSafePipe } from './pipes/ngx-utils-safe.pipe';
         NgxUtilsConfirmComponent,
         NgxUtilsDialogComponent,
         NgxUtilsLoadingComponent,
+        NgxUtilsMapComponent,
         NgxUtilsMenuComponent,
         NgxUtilsPaginationComponent,
         NgxUtilsPreviewComponent,
@@ -56,6 +58,7 @@ import { NgxUtilsSafePipe } from './pipes/ngx-utils-safe.pipe';
     exports: [
         NgxUtilsBoxComponent,
         NgxUtilsLoadingComponent,
+        NgxUtilsMapComponent,
         NgxUtilsMenuComponent,
         NgxUtilsPaginationComponent,
 
@@ -80,7 +83,7 @@ export class NgxUtilsModule {
             `--ngxUtilsAccentColor:${style.accentColor || 'rgb(228, 190, 146)'};` +
             `--ngxUtilsWarnColor:${style.warnColor || 'rgb(255, 49, 27)'};` +
             `--ngxUtilsBorderColor:${style.borderColor || 'rgb(187, 206, 213)'};` +
-            `--ngxUtilsBackgroundColor:${style.backgroundColor || 'rgb(212, 219, 221)'};` +
+            `--ngxUtilsBackgroundColor:${style.backgroundColor || 'rgb(232, 239, 241)'};` +
             `--ngxUtilsDialogWidth:${style.dialogWidth || '400px'};` +
             '}' +
             '.ngx-utils-icon {' +

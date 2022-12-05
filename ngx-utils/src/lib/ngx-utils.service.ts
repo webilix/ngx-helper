@@ -4,11 +4,14 @@ import { Injectable } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetConfig, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 
+import { Validator } from '@webilix/validator-library';
+
 import { INgxUtilsConfirm, NgxUtilsConfirm, NgxUtilsConfirmInfo } from './types/ngx-confirm';
 
 import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
+import { NgxUtilsMapComponent } from './components/map/ngx-utils-map.component';
 import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
 
 @Injectable()
@@ -105,6 +108,30 @@ export class NgxUtilsService {
         this.dialog.open(NgxUtilsPreviewComponent, {
             ...this._dialogFullConfig,
             data: { image, description },
+        });
+    }
+
+    map(position: { lat: number; long: number }, zoom?: number): void;
+    map(position: { latitude: number; longitude: number }, zoom?: number): void;
+    map(latitude: number, longitude: number, zoom?: number): void;
+    map(arg1: any, arg2?: any, arg3?: any): void {
+        const zoom: number =
+            arg3 && Validator.VALUE.isNumber(arg3)
+                ? arg3
+                : arg2 && Validator.VALUE.isNumber(arg2) && !Validator.VALUE.isNumber(arg1)
+                ? arg2
+                : 15;
+        const position: { latitude: number; longitude: number } = Validator.VALUE.isNumber(arg1)
+            ? { latitude: arg1, longitude: arg2 }
+            : Validator.VALUE.isNumber(arg1['lat'])
+            ? { latitude: arg1['lat'], longitude: arg1['long'] }
+            : Validator.VALUE.isNumber(arg1['latitude'])
+            ? { latitude: arg1['latitude'], longitude: arg1['longitude'] }
+            : { latitude: 0, longitude: 0 };
+
+        this.dialog.open(NgxUtilsMapComponent, {
+            ...this._dialogFullConfig,
+            data: { zoom, position },
         });
     }
 }

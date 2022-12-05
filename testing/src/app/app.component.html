@@ -4,7 +4,15 @@
 </div>
 
 <div class="buttons">
-    <button mat-flat-button type="button" color="primary" (click)="showPreview()">Preview</button>
+    <button mat-flat-button type="button" color="primary" (click)="showPreview(true)">Preview 1</button>
+    <button mat-flat-button type="button" color="primary" (click)="showPreview(false)">Preview 2</button>
+</div>
+
+<div class="buttons">
+    <button mat-flat-button type="button" color="primary" (click)="showMap(1)">Map 1</button>
+    <button mat-flat-button type="button" color="primary" (click)="showMap(2)">Map 2</button>
+    <button mat-flat-button type="button" color="primary" (click)="showMap(3)">Map 3</button>
+    <button mat-flat-button type="button" color="primary" (click)="showMap(4)">Map 4</button>
 </div>
 
 <div class="buttons">
@@ -13,6 +21,7 @@
     <button mat-flat-button type="button" color="warn" (click)="confirm('BLOCK')">BLOCK</button>
     <button mat-flat-button type="button" color="warn" (click)="confirm('DEACTIVE')">DEACTIVE</button>
     <button mat-flat-button type="button" color="warn" (click)="confirm('DELETE')">DELETE</button>
+    <button mat-flat-button type="button" color="accent" (click)="confirm()">CUSTOM</button>
 </div>
 
 <div class="menu">

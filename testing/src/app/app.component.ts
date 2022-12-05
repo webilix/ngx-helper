@@ -54,26 +54,38 @@ export class AppComponent {
         );
     }
 
-    showPreview(): void {
+    showPreview(description: boolean): void {
         this.ngxUtilsService.preview(
             'https://angular.io/assets/images/logos/angular/logo-nav@2x.png',
-            'شیوه نمایش توضیحات مربوط به تصویر در هنگام استفاده از کامپوننت پیش‌نمایش تصویر' +
-                '\n' +
-                'نمایش در چند خط با کدهای <strong style="color: red;">HTML</strong>',
+            description
+                ? 'شیوه نمایش توضیحات مربوط به تصویر در هنگام استفاده از کامپوننت پیش‌نمایش تصویر' +
+                      '\n' +
+                      'نمایش در چند خط با کدهای <strong style="color: red;">HTML</strong>'
+                : undefined,
         );
     }
 
-    confirm(type: 'ACTIVE' | 'ARCHIVE' | 'BLOCK' | 'DEACTIVE' | 'DELETE'): void {
-        this.ngxUtilsService
-            .confirm(
-                type,
-                'اطلاعات',
-                'عنوان اطلاعات',
-                'این پیام برای تست نحوه نمایش پیام‌های مربوط به تاییدیه، اضافه شده است.',
-            )
-            .then(
-                () => this.log(true),
-                () => {},
-            );
+    showMap(type: number): void {
+        type === 1
+            ? this.ngxUtilsService.map(35.715298, 51.404343)
+            : type === 2
+            ? this.ngxUtilsService.map({ lat: 35.715298, long: 51.404343 })
+            : type === 3
+            ? this.ngxUtilsService.map({ latitude: 35.715298, longitude: 51.404343 })
+            : this.ngxUtilsService.map(35.715298, 51.404343, 11);
+    }
+
+    confirm(type?: 'ACTIVE' | 'ARCHIVE' | 'BLOCK' | 'DEACTIVE' | 'DELETE'): void {
+        const item: string = 'اطلاعات';
+        const title: string = 'عنوان اطلاعات';
+        const message: string = 'این پیام برای تست نحوه نمایش پیام‌های مربوط به تاییدیه، اضافه شده است.';
+
+        (type
+            ? this.ngxUtilsService.confirm(type, item, title, message)
+            : this.ngxUtilsService.confirm({ title: 'سفارشی', icon: 'tune', color: 'accent' }, item, title, message)
+        ).then(
+            () => this.log(true),
+            () => {},
+        );
     }
 }
