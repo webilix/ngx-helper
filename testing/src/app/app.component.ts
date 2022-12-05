@@ -34,7 +34,7 @@ export class AppComponent {
         );
     }
 
-    confirm(type: 'ACTIVE' | 'BLOCK' | 'DEACTIVE' | 'DELETE'): void {
+    confirm(type: 'ACTIVE' | 'ARCHIVE' | 'BLOCK' | 'DEACTIVE' | 'DELETE'): void {
         this.ngxUtilsService
             .confirm(
                 type,
