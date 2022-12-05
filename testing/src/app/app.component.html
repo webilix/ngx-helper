@@ -11,8 +11,11 @@
     <button mat-flat-button type="button" color="warn" (click)="confirm('DELETE')">DELETE</button>
 </div>
 
+<ngx-utils-box title="نمایش باکس" icon="home" [component]="boxComponent"></ngx-utils-box>
+
 <ngx-utils-pagination
     [current]="paginationCurrent"
     [total]="paginationTotal"
+    [margin]="0"
     (page)="log($event); paginationCurrent = $event"
 ></ngx-utils-pagination>

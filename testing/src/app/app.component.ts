@@ -1,8 +1,10 @@
+import { ComponentType } from '@angular/cdk/portal';
 import { Component } from '@angular/core';
 
 import { NgxUtilsService } from '@ngx-utils';
 
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
+import { BoxComponent } from './box/box.component';
 import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
@@ -14,6 +16,8 @@ export class AppComponent {
     constructor(private readonly ngxUtilsService: NgxUtilsService) {}
 
     public log = console.log;
+
+    public boxComponent: ComponentType<BoxComponent> = BoxComponent;
 
     public paginationCurrent: number = 1;
     public paginationTotal: number = 25;

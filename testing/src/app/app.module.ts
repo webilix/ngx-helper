@@ -10,10 +10,11 @@ import { NgxUtilsModule } from '@ngx-utils';
 import { AppComponent } from './app.component';
 
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
+import { BoxComponent } from './box/box.component';
 import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
-    declarations: [AppComponent, BottomSheetComponent, DialogComponent],
+    declarations: [AppComponent, BottomSheetComponent, BoxComponent, DialogComponent],
     imports: [CommonModule, BrowserModule, BrowserAnimationsModule, MatButtonModule, NgxUtilsModule.forRoot()],
     providers: [],
 

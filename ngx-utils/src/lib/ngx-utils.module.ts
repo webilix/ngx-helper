@@ -10,6 +10,7 @@ import { INgxUtilsStyle } from './interfaces/ngx-style';
 import { NgxUtilsService } from './ngx-utils.service';
 
 import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
+import { NgxUtilsBoxComponent } from './components/box/ngx-utils-box.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
 import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-pagination.component';
@@ -17,12 +18,13 @@ import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-p
 @NgModule({
     declarations: [
         NgxUtilsBottomSheetComponent,
+        NgxUtilsBoxComponent,
         NgxUtilsConfirmComponent,
         NgxUtilsDialogComponent,
         NgxUtilsPaginationComponent,
     ],
     imports: [CommonModule, MatBottomSheetModule, MatButtonModule, MatDialogModule, MatIconModule],
-    exports: [NgxUtilsPaginationComponent],
+    exports: [NgxUtilsBoxComponent, NgxUtilsPaginationComponent],
 })
 export class NgxUtilsModule {
     static forRoot(style?: Partial<INgxUtilsStyle>): ModuleWithProviders<NgxUtilsModule> {

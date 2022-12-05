@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 export class NgxUtilsPaginationComponent implements OnChanges {
     @Input() current?: number;
     @Input() total?: number;
+    @Input() margin: number = 1;
     @Output() page: EventEmitter<number> = new EventEmitter<number>();
 
     public list: string[] = [];
