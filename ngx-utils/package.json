@@ -5,6 +5,8 @@
         "@angular/common": "^15.0.0",
         "@angular/core": "^15.0.0",
         "@angular/material": "^15.0.1",
+        "@webilix/helper-library": "^1.1.0",
+        "@webilix/jalali-date-time": "^1.0.0",
         "@webilix/validator-library": "^1.1.0"
     },
     "dependencies": {

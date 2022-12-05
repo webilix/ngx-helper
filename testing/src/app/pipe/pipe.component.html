@@ -1,4 +1,48 @@
 <div class="pipe">
+    <div class="title">ngxUtilsFileSize</div>
+    <div class="value">
+        {{ 100 | ngxUtilsFileSize }}<br />
+        {{ 10000 | ngxUtilsFileSize }}<br />
+        {{ 10000000 | ngxUtilsFileSize }}<br />
+        {{ 10000000000 | ngxUtilsFileSize }}<br />
+        {{ 10000000000000 | ngxUtilsFileSize }}<br />
+        {{ 10000000000000000 | ngxUtilsFileSize }}<br />
+    </div>
+</div>
+
+<div class="pipe">
     <div class="title">ngxUtilsMultiLine</div>
     <div class="value en" [innerHTML]="html | ngxUtilsMultiLine"></div>
+</div>
+
+<div class="pipe">
+    <div class="title">ngxUtilsSafe</div>
+    <div class="value">
+        <div class="en" [innerHTML]="html | ngxUtilsSafe"></div>
+        <div class="en" [style]="style | ngxUtilsSafe: 'STYLE'">STYLE</div>
+    </div>
+</div>
+
+<div class="pipe">
+    <div class="title">ngxUtilsDuration</div>
+    <div class="value en">
+        {{ 123456789 | ngxUtilsDuration }}<br />
+        {{ date | ngxUtilsDuration }}<br />
+        {{ { from: date } | ngxUtilsDuration }}<br />
+        {{ 123456789 | ngxUtilsDuration: 'HOUR' }}<br />
+        {{ 123456789 | ngxUtilsDuration: 'DAY' }}<br />
+    </div>
+</div>
+
+<div class="pipe">
+    <div class="title">ngxUtilsDuration</div>
+    <div class="value">
+        {{ date | ngxUtilsJalali }}<br />
+        {{ date | ngxUtilsJalali: 'FULL' }}<br />
+        {{ date | ngxUtilsJalali: 'DATE' }}<br />
+        {{ date | ngxUtilsJalali: 'TIME' }}<br />
+        {{ date | ngxUtilsJalali: 'd N Y' }}<br />
+        {{ date | ngxUtilsJalali: 'FULL':'Europe/London' }}<br />
+        {{ date | ngxUtilsJalali: 'FULL':'America/Los_Angeles' }}<br />
+    </div>
 </div>

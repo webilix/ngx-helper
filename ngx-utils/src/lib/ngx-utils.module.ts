@@ -20,7 +20,11 @@ import { NgxUtilsMenuComponent } from './components/menu/ngx-utils-menu.componen
 import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-pagination.component';
 import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
 
+import { NgxUtilsDurationPipe } from './pipes/ngx-utils-duration.pipe';
+import { NgxUtilsFileSizePipe } from './pipes/ngx-utils-file-size.pipe';
+import { NgxUtilsJalaliPipe } from './pipes/ngx-utils-jalali.pipe';
 import { NgxUtilsMultiLinePipe } from './pipes/ngx-utils-multi-line.pipe';
+import { NgxUtilsSafePipe } from './pipes/ngx-utils-safe.pipe';
 
 @NgModule({
     declarations: [
@@ -33,7 +37,11 @@ import { NgxUtilsMultiLinePipe } from './pipes/ngx-utils-multi-line.pipe';
         NgxUtilsPaginationComponent,
         NgxUtilsPreviewComponent,
 
+        NgxUtilsDurationPipe,
+        NgxUtilsFileSizePipe,
+        NgxUtilsJalaliPipe,
         NgxUtilsMultiLinePipe,
+        NgxUtilsSafePipe,
     ],
     imports: [
         CommonModule,
@@ -51,7 +59,11 @@ import { NgxUtilsMultiLinePipe } from './pipes/ngx-utils-multi-line.pipe';
         NgxUtilsMenuComponent,
         NgxUtilsPaginationComponent,
 
+        NgxUtilsDurationPipe,
+        NgxUtilsFileSizePipe,
+        NgxUtilsJalaliPipe,
         NgxUtilsMultiLinePipe,
+        NgxUtilsSafePipe,
     ],
 })
 export class NgxUtilsModule {

@@ -2,5 +2,10 @@
     "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
     "dest": "../dist/ngx-utils",
     "lib": { "entryFile": "src/public-api.ts" },
-    "allowedNonPeerDependencies": ["@webilix/validator-library", "tslib"]
+    "allowedNonPeerDependencies": [
+        "@webilix/helper-library",
+        "@webilix/jalali-date-time",
+        "@webilix/validator-library",
+        "tslib"
+    ]
 }

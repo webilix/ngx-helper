@@ -46,7 +46,11 @@
                         "assets": ["testing/src/favicon.ico", "testing/src/assets"],
                         "styles": ["testing/src/theme/material.scss", "testing/src/theme/styles.scss"],
                         "scripts": [],
-                        "allowedCommonJsDependencies": ["@webilix/validator-library"]
+                        "allowedCommonJsDependencies": [
+                            "@webilix/helper-library",
+                            "@webilix/jalali-date-time",
+                            "@webilix/validator-library"
+                        ]
                     },
                     "configurations": {
                         "production": {
