@@ -3,10 +3,10 @@ import { Component, Inject, Injector } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-    templateUrl: './ngx-dialog.component.html',
-    styleUrls: ['./ngx-dialog.component.scss'],
+    templateUrl: './ngx-utils-dialog.component.html',
+    styleUrls: ['./ngx-utils-dialog.component.scss'],
 })
-export class NgxDialogComponent {
+export class NgxUtilsDialogComponent {
     public component: ComponentType<any> = this.data.component;
     public title: string = this.data.title;
     public injector: Injector = Injector.create({

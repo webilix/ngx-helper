@@ -1,0 +1,16 @@
+<div class="pagination" *ngIf="current && total && total > 1">
+    <ng-container *ngFor="let p of list">
+        <div class="space" *ngIf="p === '.'; else showButton"></div>
+        <ng-template #showButton>
+            <button
+                mat-stroked-button
+                type="button"
+                color="primary"
+                [disabled]="current.toString() === p"
+                (click)="page.emit(+p)"
+            >
+                {{ +p | number }}
+            </button>
+        </ng-template>
+    </ng-container>
+</div>

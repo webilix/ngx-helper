@@ -1,0 +1,16 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    column-gap: 0.25rem;
+
+    .space {
+        width: 1rem;
+    }
+
+    button {
+        min-width: auto;
+        padding: 0 1rem;
+        font-size: calc(var(--ngxUtilsFontSize) - 1px);
+        line-height: 28px;
+    }
+}

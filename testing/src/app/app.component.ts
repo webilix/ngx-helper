@@ -13,6 +13,9 @@ import { DialogComponent } from './dialog/dialog.component';
 export class AppComponent {
     constructor(private readonly ngxUtilsService: NgxUtilsService) {}
 
+    public paginationCurrent: number = 1;
+    public paginationTotal: number = 25;
+
     showButtomSheet(): void {
         this.ngxUtilsService
             .openBottomSheet<boolean>(BottomSheetComponent, 'نمایش BottomSheet', { date: new Date() })

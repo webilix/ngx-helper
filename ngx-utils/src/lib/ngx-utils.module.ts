@@ -8,11 +8,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { INgxStyle } from './interfaces/ngx-style';
 import { NgxUtilsService } from './ngx-utils.service';
 
-import { NgxBottomSheetComponent } from './components/ngx-bottom-sheet/ngx-bottom-sheet.component';
-import { NgxDialogComponent } from './components/ngx-dialog/ngx-dialog.component';
+import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
+import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
 
 @NgModule({
-    declarations: [NgxBottomSheetComponent, NgxDialogComponent],
+    declarations: [NgxUtilsBottomSheetComponent, NgxUtilsDialogComponent],
     imports: [CommonModule, MatBottomSheetModule, MatDialogModule, MatIconModule],
 })
 export class NgxUtilsModule {

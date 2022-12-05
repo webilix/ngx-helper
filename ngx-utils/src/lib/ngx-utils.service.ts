@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
-import { NgxBottomSheetComponent } from './components/ngx-bottom-sheet/ngx-bottom-sheet.component';
-import { NgxDialogComponent } from './components/ngx-dialog/ngx-dialog.component';
+import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
+import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
 
 @Injectable()
 export class NgxUtilsService {
@@ -16,11 +16,7 @@ export class NgxUtilsService {
 
     openBottomSheet<R>(component: ComponentType<any>, title: string, data?: any): Promise<R> {
         return new Promise<R>((resolve, reject) => {
-            this._bottomSheetRef = this.bottomSheet.open<
-                NgxBottomSheetComponent,
-                { component: ComponentType<any>; title: string; data?: any },
-                R
-            >(NgxBottomSheetComponent, {
+            this._bottomSheetRef = this.bottomSheet.open(NgxUtilsBottomSheetComponent, {
                 autoFocus: false,
                 direction: 'rtl',
                 disableClose: true,
@@ -47,11 +43,7 @@ export class NgxUtilsService {
 
     openDialog<R>(component: ComponentType<any>, title: string, data?: any): Promise<R> {
         return new Promise<R>((resolve, reject) => {
-            this._dialogRef = this.dialog.open<
-                NgxDialogComponent,
-                { component: ComponentType<any>; title: string; data?: any },
-                R
-            >(NgxDialogComponent, {
+            this._dialogRef = this.dialog.open(NgxUtilsDialogComponent, {
                 autoFocus: false,
                 width: 'calc(100vw - 4rem)',
                 maxWidth: 'var(--ngxUtilsDialogWidth)',

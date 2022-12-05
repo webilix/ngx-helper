@@ -3,10 +3,10 @@ import { Component, Inject, Injector } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
 @Component({
-    templateUrl: './ngx-bottom-sheet.component.html',
-    styleUrls: ['./ngx-bottom-sheet.component.scss'],
+    templateUrl: './ngx-utils-bottom-sheet.component.html',
+    styleUrls: ['./ngx-utils-bottom-sheet.component.scss'],
 })
-export class NgxBottomSheetComponent {
+export class NgxUtilsBottomSheetComponent {
     public component: ComponentType<any> = this.data.component;
     public title: string = this.data.title;
     public injector: Injector = Injector.create({
@@ -16,7 +16,7 @@ export class NgxBottomSheetComponent {
     constructor(
         @Inject(MAT_BOTTOM_SHEET_DATA)
         private readonly data: { component: ComponentType<any>; title: string; data?: any },
-        private readonly bottomSheetRef: MatBottomSheetRef<NgxBottomSheetComponent>,
+        private readonly bottomSheetRef: MatBottomSheetRef<NgxUtilsBottomSheetComponent>,
     ) {}
 
     dismiss(result?: any): void {

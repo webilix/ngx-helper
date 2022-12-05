@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule } from '@angular/material/button';
 
-import { NgxUtilsModule } from '@ngx-utils';
+import { NgxUtilsModule, NgxUtilsViewModule } from '@ngx-utils';
 
 import { AppComponent } from './app.component';
 
@@ -14,7 +14,16 @@ import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
     declarations: [AppComponent, BottomSheetComponent, DialogComponent],
-    imports: [CommonModule, BrowserModule, BrowserAnimationsModule, MatButtonModule, NgxUtilsModule.forRoot()],
+    imports: [
+        CommonModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+
+        MatButtonModule,
+
+        NgxUtilsModule.forRoot(),
+        NgxUtilsViewModule,
+    ],
     providers: [],
 
     bootstrap: [AppComponent],
