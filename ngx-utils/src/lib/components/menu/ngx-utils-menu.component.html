@@ -1,0 +1,29 @@
+<ng-container *ngIf="menu.length !== 0">
+    <button class="ngx-utils-menu" mat-button [color]="color" [matMenuTriggerFor]="ngxUtilsMenu">
+        <div class="label">
+            <mat-icon *ngIf="icon" [fontIcon]="icon" class="ngx-utils-icon"></mat-icon>
+            <div class="title" *ngIf="title">{{ title }}</div>
+        </div>
+    </button>
+    <mat-menu #ngxUtilsMenu="matMenu" class="ngx-utils-menu-panel" xPosition="before">
+        <ng-container *ngFor="let m of menu">
+            <div class="ngx-utils-menu-seperator" *ngIf="m === 'SEPERATOR'"></div>
+            <button
+                mat-menu-item
+                *ngIf="m !== 'SEPERATOR'"
+                (click)="m.action ? m.action() : null"
+                [routerLink]="m.route || null"
+            >
+                <div [ngClass]="['label', 'ngx-utils-color-' + (m.color || 'primary')]">
+                    <mat-icon
+                        *ngIf="m.icon"
+                        [ngClass]="['ngx-utils-icon', 'ngx-utils-color-' + (m.color || 'primary')]"
+                    >
+                        {{ m.icon }}
+                    </mat-icon>
+                    <div class="title">{{ m.title }}</div>
+                </div>
+            </button>
+        </ng-container>
+    </mat-menu>
+</ng-container>

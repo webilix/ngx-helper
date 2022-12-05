@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { INgxUtilsStyle } from './interfaces/ngx-style';
 import { NgxUtilsService } from './ngx-utils.service';
@@ -13,6 +15,7 @@ import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-util
 import { NgxUtilsBoxComponent } from './components/box/ngx-utils-box.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
+import { NgxUtilsMenuComponent } from './components/menu/ngx-utils-menu.component';
 import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-pagination.component';
 
 @NgModule({
@@ -21,10 +24,20 @@ import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-p
         NgxUtilsBoxComponent,
         NgxUtilsConfirmComponent,
         NgxUtilsDialogComponent,
+        NgxUtilsMenuComponent,
         NgxUtilsPaginationComponent,
     ],
-    imports: [CommonModule, MatBottomSheetModule, MatButtonModule, MatDialogModule, MatIconModule],
-    exports: [NgxUtilsBoxComponent, NgxUtilsPaginationComponent],
+    imports: [
+        CommonModule,
+        RouterModule.forRoot([]),
+
+        MatBottomSheetModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatIconModule,
+        MatMenuModule,
+    ],
+    exports: [NgxUtilsBoxComponent, NgxUtilsMenuComponent, NgxUtilsPaginationComponent],
 })
 export class NgxUtilsModule {
     static forRoot(style?: Partial<INgxUtilsStyle>): ModuleWithProviders<NgxUtilsModule> {
@@ -55,7 +68,10 @@ export class NgxUtilsModule {
             'max-width: 100vw !important;' +
             'min-width: auto !important;' +
             'max-height: 80vh !important;' +
-            '}';
+            '}' +
+            '.ngx-utils-color-primary {color: var(--ngxUtilsPrimaryColor) !important}' +
+            '.ngx-utils-color-accent {color: var(--ngxUtilsAccentColor) !important}' +
+            '.ngx-utils-color-warn {color: var(--ngxUtilsWarnColor) !important}';
         const html: HTMLStyleElement = document.createElement('style');
         html.innerHTML = root;
         document.getElementsByTagName('head')[0].appendChild(html);

@@ -11,6 +11,14 @@
     <button mat-flat-button type="button" color="warn" (click)="confirm('DELETE')">DELETE</button>
 </div>
 
+<div class="menu">
+    <ngx-utils-menu [menu]="menu"></ngx-utils-menu>
+    <ngx-utils-menu [menu]="menu" [icon]="'menu'"></ngx-utils-menu>
+    <ngx-utils-menu [menu]="menu" [title]="'منو'"></ngx-utils-menu>
+    <ngx-utils-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'accent'"></ngx-utils-menu>
+    <ngx-utils-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'warn'"></ngx-utils-menu>
+</div>
+
 <ngx-utils-box title="نمایش باکس" icon="home" [component]="boxComponent"></ngx-utils-box>
 
 <ngx-utils-pagination

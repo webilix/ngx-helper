@@ -17,4 +17,11 @@
             flex-grow: 1;
         }
     }
+
+    .menu {
+        display: flex;
+        column-gap: 1rem;
+        flex-direction: row-reverse;
+        justify-content: center;
+    }
 }
