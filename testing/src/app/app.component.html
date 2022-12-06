@@ -5,12 +5,14 @@
 
 <div class="buttons">
     <button mat-flat-button type="button" color="primary" (click)="showPreview(true)">Preview 1</button>
-    <button mat-flat-button type="button" color="primary" (click)="showPreview(false)">Preview 2</button>
+    <button mat-flat-button type="button" color="primary" (click)="showPreview(true, true)">Preview 2</button>
+    <button mat-flat-button type="button" color="primary" (click)="showPreview(false)">Preview 3</button>
 </div>
 
 <div class="buttons">
     <button mat-flat-button type="button" color="primary" (click)="showGallery()">Gallery 1</button>
     <button mat-flat-button type="button" color="primary" (click)="showGallery(1)">Gallery 2</button>
+    <button mat-flat-button type="button" color="primary" (click)="showGallery(2, true)">Gallery 3</button>
 </div>
 
 <div class="buttons">

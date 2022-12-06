@@ -24,8 +24,11 @@ export class NgxUtilsPreviewComponent implements OnInit {
     public loading: boolean = false;
     public image: string = this.data.image;
     public description: string | undefined = this.data.description;
+    public html: boolean = !!this.data.html;
 
-    constructor(@Inject(MAT_DIALOG_DATA) private readonly data: { image: string; description?: string }) {}
+    constructor(
+        @Inject(MAT_DIALOG_DATA) private readonly data: { image: string; description?: string; html?: boolean },
+    ) {}
 
     ngOnInit(): void {
         this.loading = true;

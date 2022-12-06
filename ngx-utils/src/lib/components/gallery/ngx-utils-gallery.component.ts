@@ -25,6 +25,7 @@ export class NgxUtilsGalleryComponent implements OnInit {
 
     public image: string = '';
     public description?: string;
+    public html: boolean = !!this.data.html;
 
     public index: number = 0;
     public images: { image: string; description?: string }[] = this.data.images.map((image) =>
@@ -33,7 +34,11 @@ export class NgxUtilsGalleryComponent implements OnInit {
 
     constructor(
         @Inject(MAT_DIALOG_DATA)
-        private readonly data: { index: number; images: (string | { image: string; description?: string })[] },
+        private readonly data: {
+            index: number;
+            images: (string | { image: string; description?: string })[];
+            html?: boolean;
+        },
     ) {}
 
     ngOnInit(): void {

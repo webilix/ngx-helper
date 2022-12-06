@@ -105,17 +105,21 @@ export class NgxUtilsService {
         this._dialogRef = undefined;
     }
 
-    showPreview(image: string, description?: string): void {
+    showPreview(image: string, description?: string, html: boolean = false): void {
         this.dialog.open(NgxUtilsPreviewComponent, {
             ...this._dialogFullConfig,
-            data: { image, description },
+            data: { image, description, html },
         });
     }
 
-    showGallery(images: (string | { image: string; description?: string })[], index?: number): void {
+    showGallery(
+        images: (string | { image: string; description?: string })[],
+        index?: number,
+        html: boolean = false,
+    ): void {
         this.dialog.open(NgxUtilsGalleryComponent, {
             ...this._dialogFullConfig,
-            data: { index: index && images[index] ? index : 0, images },
+            data: { index: index && images[index] ? index : 0, images, html },
         });
     }
 

@@ -56,7 +56,7 @@ export class AppComponent {
         );
     }
 
-    showPreview(description: boolean): void {
+    showPreview(description: boolean, html: boolean = false): void {
         this.ngxUtilsService.showPreview(
             'https://angular.io/assets/images/logos/angular/logo-nav@2x.png',
             description
@@ -64,10 +64,11 @@ export class AppComponent {
                       '\n' +
                       'نمایش در چند خط با کدهای <strong style="color: red;">HTML</strong>'
                 : undefined,
+            html,
         );
     }
 
-    showGallery(index?: number): void {
+    showGallery(index?: number, html: boolean = false): void {
         const images: (string | { image: string; description?: string })[] = [
             'https://angular.io/assets/images/logos/angular/logo-nav@2x.png',
             { image: 'https://angular.io/assets/images/logos/angular/logo-nav@2x.png' },
@@ -80,7 +81,7 @@ export class AppComponent {
             },
         ];
 
-        this.ngxUtilsService.showGallery(images, index);
+        this.ngxUtilsService.showGallery(images, index, html);
     }
 
     showMap(type: number): void {

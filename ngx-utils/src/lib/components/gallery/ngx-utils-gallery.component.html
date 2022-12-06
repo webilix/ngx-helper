@@ -10,7 +10,7 @@
     <mat-icon class="ngx-utils-icon" (click)="changeIndex(1)">arrow_forward_ios</mat-icon>
 </div>
 
-<div class="ngx-utils-gallery-preview" *ngIf="!loading">
+<div class="ngx-utils-gallery-preview" *ngIf="!loading" mat-dialog-close>
     <img
         [src]="image"
         [@image]
@@ -20,6 +20,6 @@
         }"
     />
     <div *ngIf="description" class="description" [@description]>
-        <div class="description-text" [innerHTML]="description | ngxUtilsMultiLine"></div>
+        <div class="description-text" [innerHTML]="description | ngxUtilsMultiLine: html"></div>
     </div>
 </div>
