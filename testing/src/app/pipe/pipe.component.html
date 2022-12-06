@@ -12,13 +12,17 @@
 
 <div class="pipe">
     <div class="title">ngxUtilsMultiLine</div>
-    <div class="value en" [innerHTML]="html | ngxUtilsMultiLine"></div>
+    <div class="value">
+        <div class="en" [innerHTML]="html | ngxUtilsMultiLine"></div>
+        <br />
+        <div class="en" [innerHTML]="html | ngxUtilsMultiLine: true"></div>
+    </div>
 </div>
 
 <div class="pipe">
     <div class="title">ngxUtilsSafe</div>
     <div class="value">
-        <div class="en" [innerHTML]="html | ngxUtilsSafe"></div>
+        <div class="en" [innerHTML]="html.replace('\n', '<br />') + '<hr /><br />' | ngxUtilsSafe"></div>
         <div class="en" [style]="style | ngxUtilsSafe: 'STYLE'">STYLE</div>
     </div>
 </div>
