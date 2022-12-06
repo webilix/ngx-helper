@@ -1,5 +1,11 @@
 <ng-container *ngIf="menu.length !== 0">
-    <button class="ngx-utils-menu" mat-button [color]="color" [matMenuTriggerFor]="ngxUtilsMenu">
+    <button
+        class="ngx-utils-menu"
+        mat-button
+        [color]="color"
+        [ngStyle]="{ border: border.toString() + 'px solid var(--ngxUtilsBorderColor)' }"
+        [matMenuTriggerFor]="ngxUtilsMenu"
+    >
         <div class="label">
             <mat-icon *ngIf="icon" [fontIcon]="icon" class="ngx-utils-icon"></mat-icon>
             <div class="title" *ngIf="title">{{ title }}</div>

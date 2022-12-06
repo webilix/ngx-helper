@@ -30,12 +30,14 @@
 </div>
 
 <div class="menu">
-    <ngx-utils-menu [menu]="menu"></ngx-utils-menu>
+    <ngx-utils-menu [menu]="menu" [border]="1"></ngx-utils-menu>
     <ngx-utils-menu [menu]="menu" [icon]="'menu'"></ngx-utils-menu>
-    <ngx-utils-menu [menu]="menu" [title]="'منو'"></ngx-utils-menu>
+    <ngx-utils-menu [menu]="menu" [title]="'منو'" [border]="1"></ngx-utils-menu>
     <ngx-utils-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'accent'"></ngx-utils-menu>
-    <ngx-utils-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'warn'"></ngx-utils-menu>
+    <ngx-utils-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'warn'" [border]="1"></ngx-utils-menu>
 </div>
+
+<app-list></app-list>
 
 <ngx-utils-box title="نمایش باکس" icon="home" [component]="boxComponent"></ngx-utils-box>
 

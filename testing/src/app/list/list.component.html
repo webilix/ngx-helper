@@ -1,0 +1,26 @@
+<div class="list">
+    <ngx-utils-list
+        *ngFor="let data of list; let index = index"
+        [id]="data.id"
+        [data]="data"
+        [menu]="index > 2 ? menu : []"
+        [deactive]="data.deactive || false"
+    >
+        <ng-container ngx-utils-list-icon *ngIf="index % 2 === 0">
+            <img
+                src="https://angular.io/assets/images/logos/angular/logo-nav@2x.png"
+                [ngStyle]="{ 'background-color': 'gray', width: (index + 1).toString() + 'rem' }"
+                height="18"
+            />
+        </ng-container>
+
+        <ng-container ngx-utils-list-data>
+            <div class="title">{{ data.title }}</div>
+            <div class="id">ID: {{ data.id }}</div>
+        </ng-container>
+
+        <ng-container ngx-utils-list-extra *ngIf="data.description">
+            <div class="description" [innerHTML]="data.description | ngxUtilsMultiLine"></div>
+        </ng-container>
+    </ngx-utils-list>
+</div>

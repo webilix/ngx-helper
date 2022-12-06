@@ -6,6 +6,7 @@ import { NgxUtilsMenu, NgxUtilsService } from '@ngx-utils';
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { BoxComponent } from './box/box.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { ListComponent } from './list/list.component';
 import { PipeComponent } from './pipe/pipe.component';
 
 @Component({
@@ -19,6 +20,7 @@ export class AppComponent {
     public log = console.log;
 
     public boxComponent: ComponentType<BoxComponent> = BoxComponent;
+    public listComponent: ComponentType<ListComponent> = ListComponent;
     public pipeComponent: ComponentType<PipeComponent> = PipeComponent;
 
     public menu: NgxUtilsMenu[] = [

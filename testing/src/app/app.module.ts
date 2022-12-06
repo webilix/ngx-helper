@@ -12,10 +12,11 @@ import { AppComponent } from './app.component';
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { BoxComponent } from './box/box.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { ListComponent } from './list/list.component';
 import { PipeComponent } from './pipe/pipe.component';
 
 @NgModule({
-    declarations: [AppComponent, BottomSheetComponent, BoxComponent, DialogComponent, PipeComponent],
+    declarations: [AppComponent, BottomSheetComponent, BoxComponent, DialogComponent, ListComponent, PipeComponent],
     imports: [CommonModule, BrowserModule, BrowserAnimationsModule, MatButtonModule, NgxUtilsModule.forRoot()],
     providers: [],
 

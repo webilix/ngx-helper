@@ -11,6 +11,7 @@ export class NgxUtilsMenuComponent implements OnChanges {
     @Input() title?: string;
     @Input() icon?: string;
     @Input() color?: 'primary' | 'accent' | 'warn';
+    @Input() border: number = 0;
     @Input() menu: NgxUtilsMenu[] = [];
 
     ngOnChanges(changes: SimpleChanges): void {

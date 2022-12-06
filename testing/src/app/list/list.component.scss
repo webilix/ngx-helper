@@ -1,0 +1,32 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+    img {
+        padding: 0;
+        margin: 0;
+        font-size: 0;
+        line-height: 0;
+    }
+
+    .title {
+        flex: 1;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .id {
+        direction: ltr;
+        text-align: left;
+        font-family: Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    .description {
+        text-align: justify;
+        font-size: 11px;
+        color: #555;
+    }
+}
