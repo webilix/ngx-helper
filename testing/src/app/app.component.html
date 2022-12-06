@@ -1,3 +1,12 @@
+<div>
+    <div><strong>CONNECTION:</strong> {{ connection }}</div>
+    <div><strong>LOADING:</strong> {{ loading }}</div>
+    <div>
+        <strong>LOCATION:</strong>
+        {{ location === undefined ? '...' : location === false ? 'ERROR' : (location | json) }}
+    </div>
+</div>
+
 <div class="buttons">
     <button mat-flat-button type="button" color="primary" (click)="showButtomSheet()">BottomSheet</button>
     <button mat-flat-button type="button" color="primary" (click)="showDialog()">Dialog</button>

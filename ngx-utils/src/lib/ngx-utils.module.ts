@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -22,6 +23,9 @@ import { NgxUtilsMapComponent } from './components/map/ngx-utils-map.component';
 import { NgxUtilsMenuComponent } from './components/menu/ngx-utils-menu.component';
 import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-pagination.component';
 import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
+
+import { NgxUtilsDateInterceptor } from './interceptors/ngx-utils-date.interceptor';
+import { NgxUtilsLoadingInterceptor } from './interceptors/ngx-utils-loading.interceptor';
 
 import { NgxUtilsBankCardPipe } from './pipes/ngx-utils-bank-card.pipe';
 import { NgxUtilsDurationPipe } from './pipes/ngx-utils-duration.pipe';
@@ -81,6 +85,10 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsMultiLinePipe,
         NgxUtilsSafePipe,
         NgxUtilsValuePipe,
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: NgxUtilsDateInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: NgxUtilsLoadingInterceptor, multi: true },
     ],
 })
 export class NgxUtilsModule {

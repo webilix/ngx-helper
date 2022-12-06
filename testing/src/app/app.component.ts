@@ -1,7 +1,15 @@
 import { ComponentType } from '@angular/cdk/portal';
-import { Component, Pipe } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-import { NgxUtilsMenu, NgxUtilsService } from '@ngx-utils';
+import {
+    INgxUtilsLocation,
+    NgxUtilsConnectionService,
+    NgxUtilsLoadingService,
+    NgxUtilsLocationService,
+    NgxUtilsMenu,
+    NgxUtilsService,
+} from '@ngx-utils';
 
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { BoxComponent } from './box/box.component';
@@ -14,9 +22,7 @@ import { PipeComponent } from './pipe/pipe.component';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-    constructor(private readonly ngxUtilsService: NgxUtilsService) {}
-
+export class AppComponent implements OnInit, OnDestroy {
     public log = console.log;
 
     public boxComponent: ComponentType<BoxComponent> = BoxComponent;
@@ -39,6 +45,46 @@ export class AppComponent {
 
     public paginationCurrent: number = 1;
     public paginationTotal: number = 25;
+
+    public connection: boolean = false;
+    private _onConnectionChanged?: Subscription;
+
+    public loading: boolean = false;
+    private _onLoadingChanged?: Subscription;
+
+    public location?: INgxUtilsLocation | false;
+
+    constructor(
+        private readonly ngxUtilsService: NgxUtilsService,
+        private readonly ngxUtilsConnectionService: NgxUtilsConnectionService,
+        private readonly ngxUtilsLoadingService: NgxUtilsLoadingService,
+        private readonly ngxUtilsLocationService: NgxUtilsLocationService,
+    ) {}
+
+    ngOnInit(): void {
+        this.connection = this.ngxUtilsConnectionService.connection;
+        this._onConnectionChanged = this.ngxUtilsConnectionService.onConnectionChanged.subscribe({
+            next: (connection: boolean) => (this.connection = connection),
+        });
+
+        this.loading = this.ngxUtilsLoadingService.loading;
+        this._onLoadingChanged = this.ngxUtilsLoadingService.onLoadingChanged.subscribe({
+            next: (loading: boolean) => this.log(`LOADING: ${(this.loading = loading)}`),
+        });
+
+        this.ngxUtilsLocationService.getLocation().then(
+            (location: INgxUtilsLocation) => (this.location = location),
+            (error: string) => {
+                console.error(error);
+                this.location = false;
+            },
+        );
+    }
+
+    ngOnDestroy(): void {
+        this._onConnectionChanged?.unsubscribe();
+        this._onLoadingChanged?.unsubscribe();
+    }
 
     showButtomSheet(): void {
         this.ngxUtilsService
