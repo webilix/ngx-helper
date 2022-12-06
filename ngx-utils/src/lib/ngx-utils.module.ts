@@ -23,11 +23,14 @@ import { NgxUtilsMenuComponent } from './components/menu/ngx-utils-menu.componen
 import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-pagination.component';
 import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
 
+import { NgxUtilsBankCardPipe } from './pipes/ngx-utils-bank-card.pipe';
 import { NgxUtilsDurationPipe } from './pipes/ngx-utils-duration.pipe';
 import { NgxUtilsFileSizePipe } from './pipes/ngx-utils-file-size.pipe';
 import { NgxUtilsJalaliPipe } from './pipes/ngx-utils-jalali.pipe';
+import { NgxUtilsMobilePipe } from './pipes/ngx-utils-mobile.pipe';
 import { NgxUtilsMultiLinePipe } from './pipes/ngx-utils-multi-line.pipe';
 import { NgxUtilsSafePipe } from './pipes/ngx-utils-safe.pipe';
+import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
 
 @NgModule({
     declarations: [
@@ -43,11 +46,14 @@ import { NgxUtilsSafePipe } from './pipes/ngx-utils-safe.pipe';
         NgxUtilsPaginationComponent,
         NgxUtilsPreviewComponent,
 
+        NgxUtilsBankCardPipe,
         NgxUtilsDurationPipe,
         NgxUtilsFileSizePipe,
         NgxUtilsJalaliPipe,
+        NgxUtilsMobilePipe,
         NgxUtilsMultiLinePipe,
         NgxUtilsSafePipe,
+        NgxUtilsValuePipe,
     ],
     imports: [
         CommonModule,
@@ -67,11 +73,14 @@ import { NgxUtilsSafePipe } from './pipes/ngx-utils-safe.pipe';
         NgxUtilsMenuComponent,
         NgxUtilsPaginationComponent,
 
+        NgxUtilsBankCardPipe,
         NgxUtilsDurationPipe,
         NgxUtilsFileSizePipe,
         NgxUtilsJalaliPipe,
+        NgxUtilsMobilePipe,
         NgxUtilsMultiLinePipe,
         NgxUtilsSafePipe,
+        NgxUtilsValuePipe,
     ],
 })
 export class NgxUtilsModule {
@@ -106,6 +115,11 @@ export class NgxUtilsModule {
             '}' +
             '.ngx-utils-full-dialog .mat-mdc-dialog-container .mat-mdc-dialog-surface {' +
             'background-color: rgba(0, 0, 0, 0.5) !important;' +
+            '}' +
+            '.ngx-utils-en {' +
+            'font-family: var(--ngxUtilsEnFont);' +
+            'direction: rtl;' +
+            'text-align: left;' +
             '}' +
             '.ngx-utils-color-primary {color: var(--ngxUtilsPrimaryColor) !important}' +
             '.ngx-utils-color-accent {color: var(--ngxUtilsAccentColor) !important}' +

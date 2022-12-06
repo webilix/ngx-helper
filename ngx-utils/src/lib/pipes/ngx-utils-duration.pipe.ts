@@ -18,16 +18,12 @@ export class NgxUtilsDurationPipe implements PipeTransform {
             seconds = Math.floor(Math.abs(value['from'].getTime() - to.getTime()) / 1000);
         }
 
-        if (seconds === 0) return '';
-
         const days: number = Math.floor(seconds / (24 * 60 * 60));
         seconds -= days * (24 * 60 * 60);
         const hours: number = Math.floor(seconds / (60 * 60));
         seconds -= hours * (60 * 60);
         const minutes: number = Math.floor(seconds / 60);
         seconds -= minutes * 60;
-
-        const time: string = [hours, minutes, seconds].map((v: number) => v.toString().padStart(2, '0')).join(':');
 
         switch (view) {
             case 'FULL':
