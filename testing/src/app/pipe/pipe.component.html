@@ -1,12 +1,10 @@
 <div class="pipe">
     <div class="title">ngxUtilsFileSize</div>
     <div class="value">
-        {{ 100 | ngxUtilsFileSize }}<br />
-        {{ 10000 | ngxUtilsFileSize }}<br />
-        {{ 10000000 | ngxUtilsFileSize }}<br />
-        {{ 10000000000 | ngxUtilsFileSize }}<br />
-        {{ 10000000000000 | ngxUtilsFileSize }}<br />
-        {{ 10000000000000000 | ngxUtilsFileSize }}<br />
+        <div class="size" *ngFor="let size of [100, 10000, 10000000, 10000000000, 10000000000000, 10000000000000000]">
+            <div>{{ size | ngxUtilsFileSize }}</div>
+            <div class="en">{{ size | ngxUtilsFileSize: true }}</div>
+        </div>
     </div>
 </div>
 

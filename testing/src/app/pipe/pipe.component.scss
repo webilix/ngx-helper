@@ -27,4 +27,12 @@
         text-align: left;
         font-family: Roboto, 'Helvetica Neue', sans-serif;
     }
+
+    .size {
+        display: flex;
+
+        div {
+            flex: 1;
+        }
+    }
 }
