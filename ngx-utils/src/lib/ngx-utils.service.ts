@@ -11,6 +11,7 @@ import { INgxUtilsConfirm, NgxUtilsConfirm, NgxUtilsConfirmInfo } from './types/
 import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
+import { NgxUtilsGalleryComponent } from './components/gallery/ngx-utils-gallery.component';
 import { NgxUtilsMapComponent } from './components/map/ngx-utils-map.component';
 import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
 
@@ -104,17 +105,24 @@ export class NgxUtilsService {
         this._dialogRef = undefined;
     }
 
-    preview(image: string, description?: string): void {
+    showPreview(image: string, description?: string): void {
         this.dialog.open(NgxUtilsPreviewComponent, {
             ...this._dialogFullConfig,
             data: { image, description },
         });
     }
 
-    map(position: { lat: number; long: number }, zoom?: number): void;
-    map(position: { latitude: number; longitude: number }, zoom?: number): void;
-    map(latitude: number, longitude: number, zoom?: number): void;
-    map(arg1: any, arg2?: any, arg3?: any): void {
+    showGallery(images: (string | { image: string; description?: string })[], index?: number): void {
+        this.dialog.open(NgxUtilsGalleryComponent, {
+            ...this._dialogFullConfig,
+            data: { index: index && images[index] ? index : 0, images },
+        });
+    }
+
+    showMap(position: { lat: number; long: number }, zoom?: number): void;
+    showMap(position: { latitude: number; longitude: number }, zoom?: number): void;
+    showMap(latitude: number, longitude: number, zoom?: number): void;
+    showMap(arg1: any, arg2?: any, arg3?: any): void {
         const zoom: number =
             arg3 && Validator.VALUE.isNumber(arg3)
                 ? arg3

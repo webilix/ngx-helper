@@ -55,7 +55,7 @@ export class AppComponent {
     }
 
     showPreview(description: boolean): void {
-        this.ngxUtilsService.preview(
+        this.ngxUtilsService.showPreview(
             'https://angular.io/assets/images/logos/angular/logo-nav@2x.png',
             description
                 ? 'شیوه نمایش توضیحات مربوط به تصویر در هنگام استفاده از کامپوننت پیش‌نمایش تصویر' +
@@ -65,14 +65,30 @@ export class AppComponent {
         );
     }
 
+    showGallery(index?: number): void {
+        const images: (string | { image: string; description?: string })[] = [
+            'https://angular.io/assets/images/logos/angular/logo-nav@2x.png',
+            { image: 'https://angular.io/assets/images/logos/angular/logo-nav@2x.png' },
+            {
+                image: 'https://angular.io/assets/images/logos/angular/logo-nav@2x.png',
+                description:
+                    'شیوه نمایش توضیحات مربوط به تصویر در هنگام استفاده از کامپوننت پیش‌نمایش تصویر' +
+                    '\n' +
+                    'نمایش در چند خط با کدهای <strong style="color: red;">HTML</strong>',
+            },
+        ];
+
+        this.ngxUtilsService.showGallery(images, index);
+    }
+
     showMap(type: number): void {
         type === 1
-            ? this.ngxUtilsService.map(35.715298, 51.404343)
+            ? this.ngxUtilsService.showMap(35.715298, 51.404343)
             : type === 2
-            ? this.ngxUtilsService.map({ lat: 35.715298, long: 51.404343 })
+            ? this.ngxUtilsService.showMap({ lat: 35.715298, long: 51.404343 })
             : type === 3
-            ? this.ngxUtilsService.map({ latitude: 35.715298, longitude: 51.404343 })
-            : this.ngxUtilsService.map(35.715298, 51.404343, 11);
+            ? this.ngxUtilsService.showMap({ latitude: 35.715298, longitude: 51.404343 })
+            : this.ngxUtilsService.showMap(35.715298, 51.404343, 11);
     }
 
     confirm(type?: 'ACTIVE' | 'ARCHIVE' | 'BLOCK' | 'DEACTIVE' | 'DELETE'): void {

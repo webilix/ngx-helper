@@ -2,7 +2,6 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-    selector: 'lib-ngx-utils-map',
     templateUrl: './ngx-utils-map.component.html',
     styleUrls: ['./ngx-utils-map.component.scss'],
 })

@@ -14,6 +14,7 @@ import { NgxUtilsService } from './ngx-utils.service';
 import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
 import { NgxUtilsBoxComponent } from './components/box/ngx-utils-box.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
+import { NgxUtilsGalleryComponent } from './components/gallery/ngx-utils-gallery.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
 import { NgxUtilsLoadingComponent } from './components/loading/ngx-utils-loading.component';
 import { NgxUtilsMapComponent } from './components/map/ngx-utils-map.component';
@@ -32,6 +33,7 @@ import { NgxUtilsSafePipe } from './pipes/ngx-utils-safe.pipe';
         NgxUtilsBottomSheetComponent,
         NgxUtilsBoxComponent,
         NgxUtilsConfirmComponent,
+        NgxUtilsGalleryComponent,
         NgxUtilsDialogComponent,
         NgxUtilsLoadingComponent,
         NgxUtilsMapComponent,

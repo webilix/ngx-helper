@@ -4,7 +4,7 @@
     align-items: center;
 }
 
-.background {
+.ngx-utils-map-background {
     position: absolute;
     top: 0;
     right: 0;
@@ -37,7 +37,7 @@ footer {
     justify-content: center;
 
     background-color: var(--ngxUtilsBackgroundColor);
-    box-shadow: 0 0 10px 0 rgb(0 0 0 / 50%);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     z-index: 1;
 
     content {

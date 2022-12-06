@@ -1,4 +1,8 @@
-<div class="pagination" *ngIf="current && total && total > 1" [ngStyle]="{ 'margin-top': margin.toString() + 'rem' }">
+<div
+    class="ngx-utils-pagination"
+    *ngIf="current && total && total > 1"
+    [ngStyle]="{ 'margin-top': margin.toString() + 'rem' }"
+>
     <ng-container *ngFor="let p of list">
         <div class="space" *ngIf="p === '.'; else showButton"></div>
         <ng-template #showButton>
