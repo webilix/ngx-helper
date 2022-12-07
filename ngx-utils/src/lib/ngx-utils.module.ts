@@ -61,7 +61,7 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
     ],
     imports: [
         CommonModule,
-        RouterModule.forRoot([]),
+        RouterModule,
 
         MatBottomSheetModule,
         MatButtonModule,
