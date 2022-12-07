@@ -6,7 +6,8 @@
         "start": "ng serve",
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
-        "test": "ng test"
+        "test": "ng test",
+        "publish": "ng build ngx-utils && cd dist/ngx-utils/ && npm publish --access public"
     },
     "private": true,
     "dependencies": {
