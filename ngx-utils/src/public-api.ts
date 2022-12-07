@@ -2,6 +2,7 @@
  * Public API Surface of ngx-utils
  */
 
+export * from './lib/ngx-utils.data';
 export * from './lib/ngx-utils.module';
 export * from './lib/ngx-utils.service';
 

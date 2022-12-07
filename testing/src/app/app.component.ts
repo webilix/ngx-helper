@@ -9,6 +9,7 @@ import {
     NgxUtilsLocationService,
     NgxUtilsMenu,
     NgxUtilsService,
+    NGX_UTILS_LOADING_HEADER,
 } from '@ngx-utils';
 
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
@@ -62,6 +63,8 @@ export class AppComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        this.log(NGX_UTILS_LOADING_HEADER);
+
         this.connection = this.ngxUtilsConnectionService.connection;
         this._onConnectionChanged = this.ngxUtilsConnectionService.onConnectionChanged.subscribe({
             next: (connection: boolean) => (this.connection = connection),
