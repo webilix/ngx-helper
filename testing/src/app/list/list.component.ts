@@ -48,20 +48,20 @@ export class ListComponent {
     public menu: NgxUtilsListMenu<IList>[] = [
         {
             icon: 'check_box',
+            click: ['/active', ':ID'],
             title: 'فعال کردن',
             color: 'accent',
-            route: ['/active', ':ID'],
             hideOn: (data) => !data.deactive,
         },
         {
             icon: 'disabled_by_default',
+            click: ['/deactive', ':ID'],
             title: 'غیرفعال کردن',
             color: 'accent',
-            route: ['/deactive', ':ID'],
             hideOn: (data) => !!data.deactive,
         },
         'SEPERATOR',
-        { icon: 'edit', title: 'ویرایش', action: (id: string) => this.log('UPDATE', id) },
-        { icon: 'delete', title: 'حذف', color: 'warn', action: (id: string) => this.log('DELETE', id) },
+        { icon: 'edit', click: (id: string) => this.log('UPDATE', id), title: 'ویرایش' },
+        { icon: 'delete', click: (id: string) => this.log('DELETE', id), title: 'حذف', color: 'warn' },
     ];
 }

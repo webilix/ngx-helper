@@ -31,17 +31,19 @@ export class AppComponent implements OnInit, OnDestroy {
     public pipeComponent: ComponentType<PipeComponent> = PipeComponent;
 
     public menu: NgxUtilsMenu[] = [
-        { title: 'عدم نمایش' },
+        { title: 'عدم نمایش', click: [], hideOn: () => true },
         'SEPERATOR',
         'SEPERATOR',
-        { title: 'مشاهده', route: ['/view'] },
-        'SEPERATOR',
-        { title: 'تنظیمات', icon: 'settings', color: 'accent', action: () => this.log('setting') },
-        { title: 'ویرایش', icon: 'edit', action: () => this.log('edit') },
-        { title: 'حذف', icon: 'delete', color: 'warn', action: () => this.log('delete') },
+        { title: 'مشاهده', click: ['/view'] },
         'SEPERATOR',
         'SEPERATOR',
-        { title: 'عدم نمایش' },
+        'SEPERATOR',
+        'SEPERATOR',
+        { title: 'تنظیمات', click: () => this.log('setting'), icon: 'settings', color: 'accent' },
+        { title: 'ویرایش', click: () => this.log('edit'), icon: 'edit' },
+        { title: 'حذف', click: () => this.log('delete'), icon: 'delete', color: 'warn' },
+        'SEPERATOR',
+        'SEPERATOR',
     ];
 
     public paginationCurrent: number = 1;

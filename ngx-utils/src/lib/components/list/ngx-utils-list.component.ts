@@ -19,29 +19,24 @@ export class NgxUtilsListComponent<D> implements OnChanges {
     public ngxMenu: NgxUtilsMenu[] = [];
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.ngxMenu = this.menu
-            .filter(
-                (menu: NgxUtilsListMenu<D>) =>
-                    menu === 'SEPERATOR' || !menu.hideOn || !this.data || !menu.hideOn(this.data),
-            )
-            .map((menu: NgxUtilsListMenu<D>) => {
-                if (menu === 'SEPERATOR' || !this.id) return 'SEPERATOR';
-                return {
-                    title: menu.title,
-                    icon: menu.icon,
-                    color: menu.color,
-                    route: this.route(menu.route),
-                    action: menu.action ? () => this.action(menu.action) : undefined,
-                };
-            });
+        this.ngxMenu = this.menu.map((menu: NgxUtilsListMenu<D>) => {
+            if (menu === 'SEPERATOR' || !this.id) return 'SEPERATOR';
+            return {
+                title: menu.title,
+                click: this.click(menu.click),
+                icon: menu.icon,
+                color: menu.color,
+                hideOn: () => (!menu.hideOn || !this.data ? false : menu.hideOn(this.data)),
+            };
+        });
     }
 
-    action(callback?: (id: string) => void): void {
-        if (this.id && callback) callback(this.id);
+    click(click: string[] | ((id: string) => void)): string[] | (() => void) {
+        return Array.isArray(click) ? this.route(click) : () => this.id && click(this.id);
     }
 
-    route(route?: string[]): string[] | undefined {
-        if (!route || !Validator.VALUE.isArray(route) || route.length === 0 || !this.id) return undefined;
+    route(route: string[]): string[] {
+        if (!Validator.VALUE.isArray(route) || route.length === 0 || !this.id) return [];
 
         const id: string = this.id;
         return route.map((r: string) => (r === ':ID' ? id : r));

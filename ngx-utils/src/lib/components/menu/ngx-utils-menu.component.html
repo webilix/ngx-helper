@@ -1,7 +1,7 @@
 <ng-container *ngIf="menu.length !== 0">
     <button
         class="ngx-utils-menu"
-        mat-button
+        mat-button="true"
         [color]="color"
         [ngStyle]="{ border: border.toString() + 'px solid var(--ngxUtilsBorderColor)' }"
         [matMenuTriggerFor]="ngxUtilsMenu"
@@ -12,14 +12,12 @@
         </div>
     </button>
     <mat-menu #ngxUtilsMenu="matMenu" class="ngx-utils-menu-panel" xPosition="before">
-        <ng-container *ngFor="let m of menu">
-            <div class="ngx-utils-menu-seperator" *ngIf="m === 'SEPERATOR'"></div>
-            <button
-                mat-menu-item
-                *ngIf="m !== 'SEPERATOR'"
-                (click)="m.action ? m.action() : null"
-                [routerLink]="m.route || null"
-            >
+        <ng-container *ngFor="let m of menu; let i = index">
+            <div
+                class="ngx-utils-menu-seperator"
+                *ngIf="m === 'SEPERATOR' && (i === 0 || menu[i - 1] !== 'SEPERATOR')"
+            ></div>
+            <button mat-menu-item *ngIf="m !== 'SEPERATOR'" (click)="click(m.click)">
                 <div [ngClass]="['label', 'ngx-utils-color-' + (m.color || 'primary')]">
                     <mat-icon
                         *ngIf="m.icon"
