@@ -1,5 +1,5 @@
 <div *ngIf="id && data" [ngClass]="{ 'ngx-utils-list': true, 'ngx-utils-list-deactive': deactive }">
-    <ngx-utils-menu *ngIf="ngxMenu.length !== 0" [(menu)]="ngxMenu" [border]="0"></ngx-utils-menu>
+    <ngx-utils-menu *ngIf="ngxMenu.length !== 0" [menu]="ngxMenu" [border]="0"></ngx-utils-menu>
     <content>
         <div class="icon" #listIcon><ng-content select="[ngx-utils-list-icon]"></ng-content></div>
         <div class="info">
