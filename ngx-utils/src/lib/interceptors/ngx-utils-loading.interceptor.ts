@@ -3,7 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpHeaders } fro
 import { finalize, Observable } from 'rxjs';
 
 import { NgxUtilsLoadingService } from '../providers/ngx-utils-loading.service';
-import { NGX_UTILS_LOADING_HEADER } from '../ngx-utils.data';
+import { NGX_UTILS_LOADING_HEADER } from '../ngx-utils.values';
 
 @Injectable()
 export class NgxUtilsLoadingInterceptor implements HttpInterceptor {

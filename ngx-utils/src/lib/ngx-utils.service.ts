@@ -1,50 +1,46 @@
 import { ComponentType } from '@angular/cdk/portal';
-import { Injectable } from '@angular/core';
+import { ComponentRef, Inject, Injectable, ViewContainerRef } from '@angular/core';
+import { HttpStatusCode } from '@angular/common/http';
 
 import { MatBottomSheet, MatBottomSheetConfig, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 
 import { Validator } from '@webilix/validator-library';
 
+import { INgxUtilsUpload } from './interfaces/ngx-upload';
 import { INgxUtilsConfirm, NgxUtilsConfirm, NgxUtilsConfirmInfo } from './types/ngx-confirm';
 
 import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
+import { NgxUtilsDownloadComponent } from './components/download/ngx-utils-download.component';
 import { NgxUtilsGalleryComponent } from './components/gallery/ngx-utils-gallery.component';
 import { NgxUtilsMapComponent } from './components/map/ngx-utils-map.component';
 import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
+import { NgxUtilsToastComponent } from './components/toast/ngx-utils-toast.component';
+import { NgxUtilsUploadComponent } from './components/upload/ngx-utils-upload.component';
 
 @Injectable()
 export class NgxUtilsService {
+    public viewContainerRef?: ViewContainerRef;
+
     constructor(private readonly bottomSheet: MatBottomSheet, private readonly dialog: MatDialog) {}
 
+    private domError(): void {
+        const errors: string[] = [
+            'NgxUtilsComponent not addedd to DOM.',
+            'Please add <ngx-utils></ngx-utils> at the end of App Component HTML file / template.',
+        ];
+        console.error(errors.join('\n'));
+    }
+
+    //#region BOTTOM SHEET
     private _bottomSheetRef?: MatBottomSheetRef<any>;
     private _bottomSheetConfig: MatBottomSheetConfig = {
         autoFocus: false,
         direction: 'rtl',
         disableClose: true,
         panelClass: 'ngx-utils-bottom-sheet-panel',
-    };
-
-    private _dialogRef?: MatDialogRef<any>;
-    private _dialogConfig: MatDialogConfig = {
-        autoFocus: false,
-        width: 'calc(100vw - 4rem)',
-        maxWidth: 'var(--ngxUtilsDialogWidth)',
-        maxHeight: '80vh',
-        direction: 'rtl',
-        disableClose: true,
-    };
-    private _dialogFullConfig: MatDialogConfig = {
-        autoFocus: false,
-        width: '100vw',
-        maxWidth: 'none',
-        height: '100vh',
-        maxHeight: 'none',
-        direction: 'rtl',
-        hasBackdrop: false,
-        panelClass: 'ngx-utils-full-dialog',
     };
 
     openBottomSheet<R>(component: ComponentType<any>, title: string, data?: any): Promise<R> {
@@ -66,7 +62,49 @@ export class NgxUtilsService {
         this._bottomSheetRef.dismiss(result);
         this._bottomSheetRef = undefined;
     }
+    //#endregion
 
+    //#region DIALOG
+    private _dialogRef?: MatDialogRef<any>;
+    private _dialogConfig: MatDialogConfig = {
+        autoFocus: false,
+        width: 'calc(100vw - 4rem)',
+        maxWidth: 'var(--ngxUtilsDialogWidth)',
+        maxHeight: '80vh',
+        direction: 'rtl',
+        disableClose: true,
+    };
+    private _dialogFullConfig: MatDialogConfig = {
+        autoFocus: false,
+        width: '100vw',
+        maxWidth: 'none',
+        height: '100vh',
+        maxHeight: 'none',
+        direction: 'rtl',
+        hasBackdrop: false,
+        panelClass: 'ngx-utils-full-dialog',
+    };
+
+    openDialog<R>(component: ComponentType<any>, title: string, data?: any): Promise<R> {
+        return new Promise<R>((resolve, reject) => {
+            this._dialogRef = this.dialog.open(NgxUtilsDialogComponent, {
+                ...this._dialogConfig,
+                data: { component, title, data },
+            });
+
+            this._dialogRef.afterClosed().subscribe({ next: (result: R) => (result ? resolve(result) : reject()) });
+        });
+    }
+
+    closeDialog<R>(result?: R): void {
+        if (!this._dialogRef) return;
+
+        this._dialogRef.close(result);
+        this._dialogRef = undefined;
+    }
+    //#endregion
+
+    //#region CONFIRM
     confirm(confirm: NgxUtilsConfirm, item: string, title?: string, message?: string): Promise<void>;
     confirm(confirm: INgxUtilsConfirm, item: string, title?: string, message?: string): Promise<void>;
     confirm(
@@ -86,25 +124,9 @@ export class NgxUtilsService {
                 .subscribe((result: boolean) => (result ? resolve() : reject()));
         });
     }
+    //#endregion
 
-    openDialog<R>(component: ComponentType<any>, title: string, data?: any): Promise<R> {
-        return new Promise<R>((resolve, reject) => {
-            this._dialogRef = this.dialog.open(NgxUtilsDialogComponent, {
-                ...this._dialogConfig,
-                data: { component, title, data },
-            });
-
-            this._dialogRef.afterClosed().subscribe({ next: (result: R) => (result ? resolve(result) : reject()) });
-        });
-    }
-
-    closeDialog<R>(result?: R): void {
-        if (!this._dialogRef) return;
-
-        this._dialogRef.close(result);
-        this._dialogRef = undefined;
-    }
-
+    //#region IMAGE
     showPreview(image: string, description?: string, html: boolean = false): void {
         this.dialog.open(NgxUtilsPreviewComponent, {
             ...this._dialogFullConfig,
@@ -122,7 +144,9 @@ export class NgxUtilsService {
             data: { index: index && images[index] ? index : 0, images, html },
         });
     }
+    //#endregion
 
+    //#region MAP
     showMap(position: { lat: number; long: number }, zoom?: number): void;
     showMap(position: { latitude: number; longitude: number }, zoom?: number): void;
     showMap(latitude: number, longitude: number, zoom?: number): void;
@@ -146,4 +170,99 @@ export class NgxUtilsService {
             data: { zoom, position },
         });
     }
+    //#endregion
+
+    //#region TOAST
+    private toastIndex: number = 0;
+    private toasts: ComponentRef<NgxUtilsToastComponent>[] = [];
+
+    private updateToastsTop(): void {
+        let top: number = 0;
+        this.toasts.forEach((toast, index: number) => {
+            toast.instance.top = `calc(${index / 2}rem + calc(${top}px + 1rem))`;
+            top += +toast.instance.elementRef.nativeElement.offsetHeight;
+        });
+    }
+
+    toast(type: 'ERROR' | 'INFO' | 'SUCCESS' | 'WARNING', message: string | string[], timeout?: number): void {
+        if (!this.viewContainerRef) return this.domError();
+
+        const toast = this.viewContainerRef.createComponent(NgxUtilsToastComponent);
+        toast.instance.index = ++this.toastIndex;
+        toast.instance.type = type;
+        toast.instance.message = Array.isArray(message) ? message : [message];
+        toast.instance.timeout = timeout === undefined || timeout < 0 ? 5 : timeout;
+
+        toast.instance.close = () => {
+            this.toasts = this.toasts.filter((t) => t.instance.index !== toast.instance.index);
+            this.updateToastsTop();
+            toast.destroy();
+        };
+
+        this.toasts.push(toast);
+        this.updateToastsTop();
+    }
+    //#endregion
+
+    //#region DOWNLOAD and UPLOAD
+    private componentIndex: number = 0;
+    private components: (ComponentRef<NgxUtilsDownloadComponent> | ComponentRef<NgxUtilsUploadComponent<any, any>>)[] =
+        [];
+
+    private updateComponentsBottom(): void {
+        this.components.forEach((component, index: number) => {
+            component.instance.bottom = `calc(${index / 2}rem + calc(${index * 34}px + 1rem))`;
+        });
+    }
+
+    download(name: string, path: string): void {
+        if (!this.viewContainerRef) return this.domError();
+
+        const component = this.viewContainerRef.createComponent(NgxUtilsDownloadComponent);
+        component.instance.index = ++this.componentIndex;
+        component.instance.name = name;
+        component.instance.path = path;
+
+        component.instance.close = () => {
+            this.components = this.components.filter((c) => c.instance.index !== component.instance.index);
+            this.updateComponentsBottom();
+            component.destroy();
+        };
+
+        this.components.push(component);
+        this.updateComponentsBottom();
+    }
+
+    upload<R, E>(file: File, url: string, config?: Partial<INgxUtilsUpload<E>>): Promise<R> {
+        return new Promise<R>((resolve, reject) => {
+            if (!this.viewContainerRef) {
+                reject(null);
+                return this.domError();
+            }
+
+            config = config || {};
+            const component = this.viewContainerRef.createComponent(NgxUtilsUploadComponent<R, E>);
+            component.instance.index = ++this.componentIndex;
+            component.instance.file = file;
+            component.instance.url = url;
+            component.instance.config = {
+                header: config.header || {},
+                body: config.body || {},
+                maxSize: config.maxSize || 0,
+                mimes: config.mimes || [],
+            };
+
+            component.instance.close = (response?: R, error?: { status: HttpStatusCode; error: E }) => {
+                this.components = this.components.filter((c) => c.instance.index !== component.instance.index);
+                this.updateComponentsBottom();
+                component.destroy();
+
+                response ? resolve(response) : reject(error);
+            };
+
+            this.components.push(component);
+            this.updateComponentsBottom();
+        });
+    }
+    //#endregion
 }

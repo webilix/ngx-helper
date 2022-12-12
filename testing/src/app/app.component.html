@@ -8,6 +8,30 @@
 </div>
 
 <div class="buttons">
+    <button mat-flat-button type="button" color="primary" (click)="download(true)">Download OK</button>
+    <button mat-flat-button type="button" color="primary" (click)="download(false)">Download ERROR</button>
+    <input type="file" style="display: none" [multiple]="false" (change)="upload($event)" #fileUpload />
+    <button mat-flat-button type="button" color="primary" (click)="fileUpload.value = ''; fileUpload.click()">
+        Upload
+    </button>
+</div>
+
+<div class="buttons">
+    <button mat-flat-button type="button" color="warn" style="background-color: #bd362f" (click)="toast('ERROR')">
+        ERROR
+    </button>
+    <button mat-flat-button type="button" color="accent" style="background-color: #2f96b4" (click)="toast('INFO')">
+        INFO
+    </button>
+    <button mat-flat-button type="button" color="primary" style="background-color: #51a351" (click)="toast('SUCCESS')">
+        SUCCESS
+    </button>
+    <button mat-flat-button type="button" color="primary" style="background-color: #f89406" (click)="toast('WARNING')">
+        WARNING
+    </button>
+</div>
+
+<div class="buttons">
     <button mat-flat-button type="button" color="primary" (click)="showButtomSheet()">BottomSheet</button>
     <button mat-flat-button type="button" color="primary" (click)="showDialog()">Dialog</button>
 </div>
@@ -60,3 +84,5 @@
     [margin]="0"
     (page)="log($event); paginationCurrent = $event"
 ></ngx-utils-pagination>
+
+<ngx-utils></ngx-utils>

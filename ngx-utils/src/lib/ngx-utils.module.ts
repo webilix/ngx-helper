@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -8,14 +8,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { INgxUtilsStyle } from './interfaces/ngx-style';
+import { NgxUtilsComponent } from './ngx-utils.component';
 import { NgxUtilsService } from './ngx-utils.service';
 
 import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
 import { NgxUtilsBoxComponent } from './components/box/ngx-utils-box.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
+import { NgxUtilsDownloadComponent } from './components/download/ngx-utils-download.component';
 import { NgxUtilsGalleryComponent } from './components/gallery/ngx-utils-gallery.component';
 import { NgxUtilsListComponent } from './components/list/ngx-utils-list.component';
 import { NgxUtilsLoadingComponent } from './components/loading/ngx-utils-loading.component';
@@ -23,6 +26,8 @@ import { NgxUtilsMapComponent } from './components/map/ngx-utils-map.component';
 import { NgxUtilsMenuComponent } from './components/menu/ngx-utils-menu.component';
 import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-pagination.component';
 import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
+import { NgxUtilsToastComponent } from './components/toast/ngx-utils-toast.component';
+import { NgxUtilsUploadComponent } from './components/upload/ngx-utils-upload.component';
 
 import { NgxUtilsDateInterceptor } from './interceptors/ngx-utils-date.interceptor';
 import { NgxUtilsLoadingInterceptor } from './interceptors/ngx-utils-loading.interceptor';
@@ -38,10 +43,13 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
 
 @NgModule({
     declarations: [
+        NgxUtilsComponent,
+
         NgxUtilsBottomSheetComponent,
         NgxUtilsBoxComponent,
         NgxUtilsConfirmComponent,
         NgxUtilsDialogComponent,
+        NgxUtilsDownloadComponent,
         NgxUtilsGalleryComponent,
         NgxUtilsListComponent,
         NgxUtilsLoadingComponent,
@@ -49,6 +57,8 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsMenuComponent,
         NgxUtilsPaginationComponent,
         NgxUtilsPreviewComponent,
+        NgxUtilsToastComponent,
+        NgxUtilsUploadComponent,
 
         NgxUtilsBankCardPipe,
         NgxUtilsDurationPipe,
@@ -62,14 +72,18 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
     imports: [
         CommonModule,
         RouterModule,
+        HttpClientModule,
 
         MatBottomSheetModule,
         MatButtonModule,
         MatDialogModule,
         MatIconModule,
         MatMenuModule,
+        MatProgressBarModule,
     ],
     exports: [
+        NgxUtilsComponent,
+
         NgxUtilsBoxComponent,
         NgxUtilsListComponent,
         NgxUtilsLoadingComponent,

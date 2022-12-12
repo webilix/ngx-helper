@@ -91,6 +91,40 @@ export class AppComponent implements OnInit, OnDestroy {
         this._onLoadingChanged?.unsubscribe();
     }
 
+    download(correct: boolean): void {
+        this.ngxUtilsService.download('localhost.html', correct ? 'http://localhost:4200' : 'http://localhost:14200');
+    }
+
+    upload(event: Event): void {
+        const element: HTMLInputElement = event.target as HTMLInputElement;
+        const files: FileList | null = element.files;
+        if (!files || files.length === 0) return;
+
+        const file: File | null = files.item(0);
+        if (file === null) return;
+
+        const authorization: string =
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjM5MzNjZWM1YzU0YTlkOTViOTRkYzllIiwidXNlciI6IjYzN2Q3OTY2ZmU2MTg2ODNmYzcwNmQ4MyIsImlhdCI6MTY3MDU5Mzc3MiwiZXhwIjoxNjc1Nzc3NzcyfQ.UjdX7Uu2Q88yYlLnNq-6IEmbehrXDDKRK-HCt-_U7E8';
+
+        this.ngxUtilsService
+            .upload<any, any>(file, 'http://localhost:3000/upload', {
+                header: { authorization },
+                body: { type: 'INQUIRY' },
+                maxSize: 1024 * 1024,
+                mimes: ['image/png', 'image/gif', 'image/jpeg'],
+            })
+            .then(
+                (response: any) => this.log('RESPONSE', response),
+                (error: any) => this.log('ERROR', error),
+            );
+    }
+
+    toast(type: 'ERROR' | 'INFO' | 'SUCCESS' | 'WARNING'): void {
+        const index: number = type === 'ERROR' ? 0 : type === 'INFO' ? 1 : type === 'SUCCESS' ? 2 : 3;
+        const message: string[] = Array(index + 1).fill('نمایش تست: شیوه نمایش ' + type);
+        this.ngxUtilsService.toast(type, message, index * 4);
+    }
+
     showButtomSheet(): void {
         this.ngxUtilsService
             .openBottomSheet<boolean>(BottomSheetComponent, 'نمایش BottomSheet', { date: new Date() })

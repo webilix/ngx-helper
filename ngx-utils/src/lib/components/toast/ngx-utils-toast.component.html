@@ -1,0 +1,9 @@
+<content>
+    <ul>
+        <li *ngFor="let m of message" [innerHTML]="m | ngxUtilsMultiLine"></li>
+    </ul>
+    <mat-icon [fontIcon]="icon" class="ngx-utils-icon"></mat-icon>
+</content>
+<div class="timeout" *ngIf="timeout !== 0">
+    <div class="percent" [ngStyle]="{ width: percent.toString() + '%' }"></div>
+</div>
