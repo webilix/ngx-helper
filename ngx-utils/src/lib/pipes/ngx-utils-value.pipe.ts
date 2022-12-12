@@ -5,7 +5,7 @@ import { Helper } from '@webilix/helper-library';
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 import { Validator } from '@webilix/validator-library';
 
-import { NgxUtilsValue } from '../types/ngx-value';
+import { NgxUtilsValue } from '../types/ngx-utils-value';
 
 @Pipe({ name: 'ngxUtilsValue' })
 export class NgxUtilsValuePipe implements PipeTransform {

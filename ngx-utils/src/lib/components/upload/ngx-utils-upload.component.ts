@@ -11,7 +11,7 @@ import {
 
 import { Helper } from '@webilix/helper-library';
 
-import { INgxUtilsUpload } from '../../interfaces/ngx-upload';
+import { INgxUtilsUpload } from '../../interfaces/ngx-utils-upload';
 import { NgxUtilsService } from '../../ngx-utils.service';
 
 @Component({
@@ -33,7 +33,7 @@ export class NgxUtilsUploadComponent<R, E> implements AfterViewInit {
     @Input() index: number = 0;
     @Input() file?: File;
     @Input() url: string = '';
-    @Input() config: INgxUtilsUpload<E> = { header: {}, body: {}, maxSize: 0, mimes: [] };
+    @Input() config: INgxUtilsUpload = { header: {}, body: {}, maxSize: '0B', mimes: [] };
 
     public progress: number = 0;
 
@@ -46,11 +46,9 @@ export class NgxUtilsUploadComponent<R, E> implements AfterViewInit {
     upload(): void {
         if (!this.file) return;
 
-        if (this.config.maxSize && this.file.size > this.config.maxSize) {
-            this.ngxUtilsService.toast(
-                'ERROR',
-                `حداکثر حجم فایل می‌تواند ${Helper.NUMBER.toFileSize(this.config.maxSize)} باشد.`,
-            );
+        const maxSize: number = Helper.STRING.toFileSize(this.config.maxSize || '0B');
+        if (maxSize && this.file.size > maxSize) {
+            this.ngxUtilsService.toast('ERROR', `حداکثر حجم فایل می‌تواند ${Helper.NUMBER.toFileSize(maxSize)} باشد.`);
             this.close(undefined, undefined);
             return;
         }

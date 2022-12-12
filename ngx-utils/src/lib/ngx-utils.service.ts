@@ -7,8 +7,8 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 
 import { Validator } from '@webilix/validator-library';
 
-import { INgxUtilsUpload } from './interfaces/ngx-upload';
-import { INgxUtilsConfirm, NgxUtilsConfirm, NgxUtilsConfirmInfo } from './types/ngx-confirm';
+import { INgxUtilsUpload } from './interfaces/ngx-utils-upload';
+import { INgxUtilsConfirm, NgxUtilsConfirm, NgxUtilsConfirmInfo } from './types/ngx-utils-confirm';
 
 import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
@@ -233,7 +233,7 @@ export class NgxUtilsService {
         this.updateComponentsBottom();
     }
 
-    upload<R, E>(file: File, url: string, config?: Partial<INgxUtilsUpload<E>>): Promise<R> {
+    upload<R, E>(file: File, url: string, config?: Partial<INgxUtilsUpload>): Promise<R> {
         return new Promise<R>((resolve, reject) => {
             if (!this.viewContainerRef) {
                 reject(null);
@@ -248,7 +248,7 @@ export class NgxUtilsService {
             component.instance.config = {
                 header: config.header || {},
                 body: config.body || {},
-                maxSize: config.maxSize || 0,
+                maxSize: config.maxSize || '0B',
                 mimes: config.mimes || [],
             };
 

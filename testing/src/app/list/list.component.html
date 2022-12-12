@@ -3,7 +3,7 @@
         *ngFor="let data of list; let index = index"
         [id]="data.id"
         [data]="data"
-        [menu]="index > 2 ? menu : []"
+        [menu]="index > 2 ? menu : empty"
         [deactive]="data.deactive || false"
     >
         <ng-container ngx-utils-list-icon *ngIf="index % 2 === 0">

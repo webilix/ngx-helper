@@ -1,7 +1,7 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { NgxUtilsMenu } from '../../types/ngx-menu';
+import { NgxUtilsMenu } from '../../types/ngx-utils-menu';
 
 @Component({
     selector: 'ngx-utils-menu',
@@ -14,6 +14,7 @@ export class NgxUtilsMenuComponent implements OnChanges {
     @Input() color?: 'primary' | 'accent' | 'warn';
     @Input() border: number = 0;
     @Input() menu: NgxUtilsMenu[] = [];
+    @Output() menuChange: EventEmitter<NgxUtilsMenu[]> = new EventEmitter<NgxUtilsMenu[]>();
 
     constructor(private readonly router: Router) {}
 
@@ -30,6 +31,8 @@ export class NgxUtilsMenuComponent implements OnChanges {
         while (this.menu.length !== 0 && this.menu[0] === 'SEPERATOR') this.menu = this.menu.slice(1);
         while (this.menu.length !== 0 && this.menu[this.menu.length - 1] === 'SEPERATOR')
             this.menu = this.menu.slice(0, this.menu.length - 1);
+
+        this.menuChange.emit(this.menu);
     }
 
     click(click: string[] | (() => void)): void {

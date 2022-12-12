@@ -2,8 +2,8 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { Validator } from '@webilix/validator-library';
 
-import { NgxUtilsListMenu } from '../../types/ngx-list';
-import { NgxUtilsMenu } from '../../types/ngx-menu';
+import { NgxUtilsListMenu } from '../../types/ngx-utils-list';
+import { NgxUtilsMenu } from '../../types/ngx-utils-menu';
 
 @Component({
     selector: 'ngx-utils-list',

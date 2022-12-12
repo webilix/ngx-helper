@@ -14,7 +14,7 @@ export * from './lib/components/map/ngx-utils-map.component';
 export * from './lib/components/menu/ngx-utils-menu.component';
 export * from './lib/components/pagination/ngx-utils-pagination.component';
 
-export * from './lib/interfaces/ngx-location';
+export * from './lib/interfaces/ngx-utils-location';
 
 export * from './lib/pipes/ngx-utils-bank-card.pipe';
 export * from './lib/pipes/ngx-utils-duration.pipe';
@@ -29,5 +29,5 @@ export * from './lib/providers/ngx-utils-connection.service';
 export * from './lib/providers/ngx-utils-loading.service';
 export * from './lib/providers/ngx-utils-location.service';
 
-export * from './lib/types/ngx-list';
-export * from './lib/types/ngx-menu';
+export * from './lib/types/ngx-utils-list';
+export * from './lib/types/ngx-utils-menu';

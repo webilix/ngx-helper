@@ -110,7 +110,7 @@ export class AppComponent implements OnInit, OnDestroy {
             .upload<any, any>(file, 'http://localhost:3000/upload', {
                 header: { authorization },
                 body: { type: 'INQUIRY' },
-                maxSize: 1024 * 1024,
+                maxSize: '1MB',
                 mimes: ['image/png', 'image/gif', 'image/jpeg'],
             })
             .then(

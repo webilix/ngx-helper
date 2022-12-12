@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-import { INgxUtilsStyle } from './interfaces/ngx-style';
+import { INgxUtilsStyle } from './interfaces/ngx-utils-style';
 import { NgxUtilsComponent } from './ngx-utils.component';
 import { NgxUtilsService } from './ngx-utils.service';
 

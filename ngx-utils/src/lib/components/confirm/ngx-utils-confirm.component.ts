@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
-import { INgxUtilsConfirm } from '../../types/ngx-confirm';
+import { INgxUtilsConfirm } from '../../types/ngx-utils-confirm';
 
 @Component({
     templateUrl: './ngx-utils-confirm.component.html',

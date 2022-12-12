@@ -45,6 +45,17 @@ export class ListComponent {
         },
     ];
 
+    public empty: NgxUtilsListMenu<IList>[] = [
+        'SEPERATOR',
+        {
+            icon: 'check_box',
+            click: ['/active', ':ID'],
+            title: 'فعال کردن',
+            hideOn: () => true,
+        },
+        'SEPERATOR',
+    ];
+
     public menu: NgxUtilsListMenu<IList>[] = [
         {
             icon: 'check_box',

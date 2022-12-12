@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { INgxUtilsLocation } from '../interfaces/ngx-location';
+import { INgxUtilsLocation } from '../interfaces/ngx-utils-location';
 
 @Injectable({ providedIn: 'root' })
 export class NgxUtilsLocationService {
