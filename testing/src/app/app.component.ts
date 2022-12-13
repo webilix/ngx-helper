@@ -179,16 +179,23 @@ export class AppComponent implements OnInit, OnDestroy {
             : this.ngxUtilsService.showMap(35.715298, 51.404343, 11);
     }
 
-    confirm(type?: 'ACTIVE' | 'ARCHIVE' | 'BLOCK' | 'DEACTIVE' | 'DELETE'): void {
-        const item: string = 'اطلاعات';
+    confirm(
+        type?: 'ACTIVE' | 'ARCHIVE' | 'BLOCK' | 'DEACTIVE' | 'DELETE',
+        description: boolean | 'REQUIRED' = false,
+    ): void {
+        const item: string = 'نوع اطلاعات';
         const title: string = 'عنوان اطلاعات';
         const message: string = 'این پیام برای تست نحوه نمایش پیام‌های مربوط به تاییدیه، اضافه شده است.';
 
         (type
-            ? this.ngxUtilsService.confirm(type, item, title, message)
-            : this.ngxUtilsService.confirm({ title: 'سفارشی', icon: 'tune', color: 'accent' }, item, title, message)
+            ? this.ngxUtilsService.confirm(type, item, { title, message, description })
+            : this.ngxUtilsService.confirm({ title: 'سفارشی', icon: 'tune', color: 'accent' }, item, {
+                  title,
+                  message,
+                  description,
+              })
         ).then(
-            () => this.log(true),
+            (response: any) => this.log(response),
             () => {},
         );
     }

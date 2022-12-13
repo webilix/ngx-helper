@@ -8,7 +8,13 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 import { Validator } from '@webilix/validator-library';
 
 import { INgxUtilsUpload } from './interfaces/ngx-utils-upload';
-import { INgxUtilsConfirm, NgxUtilsConfirm, NgxUtilsConfirmInfo } from './types/ngx-utils-confirm';
+import {
+    INgxUtilsConfirm,
+    INgxUtilsConfirmConfig,
+    INgxUtilsConfirmResponse,
+    NgxUtilsConfirm,
+    NgxUtilsConfirmInfo,
+} from './types/ngx-utils-confirm';
 
 import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
@@ -105,23 +111,20 @@ export class NgxUtilsService {
     //#endregion
 
     //#region CONFIRM
-    confirm(confirm: NgxUtilsConfirm, item: string, title?: string, message?: string): Promise<void>;
-    confirm(confirm: INgxUtilsConfirm, item: string, title?: string, message?: string): Promise<void>;
-    confirm(
-        confirm: NgxUtilsConfirm | INgxUtilsConfirm,
-        item: string,
-        title?: string,
-        message?: string,
-    ): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
+    confirm(confirm: NgxUtilsConfirm, item: string, config?: INgxUtilsConfirmConfig): Promise<any>;
+    confirm(confirm: INgxUtilsConfirm, item: string, config?: INgxUtilsConfirmConfig): Promise<any>;
+    confirm(confirm: NgxUtilsConfirm | INgxUtilsConfirm, item: string, config?: INgxUtilsConfirmConfig): Promise<any> {
+        return new Promise<any>((resolve, reject) => {
             const info: INgxUtilsConfirm = typeof confirm === 'string' ? NgxUtilsConfirmInfo[confirm] : confirm;
             this.bottomSheet
                 .open(NgxUtilsConfirmComponent, {
                     ...this._bottomSheetConfig,
-                    data: { info, item, title, message },
+                    data: { info, item, config: config || {} },
                 })
                 .afterDismissed()
-                .subscribe((result: boolean) => (result ? resolve() : reject()));
+                .subscribe((result: INgxUtilsConfirmResponse) =>
+                    result && result.confirmed ? resolve(result.value) : reject(),
+                );
         });
     }
     //#endregion

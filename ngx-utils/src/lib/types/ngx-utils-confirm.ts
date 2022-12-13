@@ -13,3 +13,14 @@ export const NgxUtilsConfirmInfo: { [key in NgxUtilsConfirm]: INgxUtilsConfirm }
     DEACTIVE: { title: 'غیرفعال', icon: 'disabled_by_default', color: 'warn' },
     DELETE: { title: 'حذف', icon: 'delete', color: 'warn' },
 };
+
+export interface INgxUtilsConfirmConfig {
+    title?: string;
+    message?: string;
+    description?: boolean | 'REQUIRED';
+}
+
+export interface INgxUtilsConfirmResponse {
+    confirmed: boolean;
+    value?: any;
+}
