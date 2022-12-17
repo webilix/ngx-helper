@@ -30,6 +30,9 @@ export class AppComponent implements OnInit, OnDestroy {
     public listComponent: ComponentType<ListComponent> = ListComponent;
     public pipeComponent: ComponentType<PipeComponent> = PipeComponent;
 
+    public singleMenu: NgxUtilsMenu[] = [
+        { title: 'حذف', click: () => this.log('DELETE'), icon: 'delete', color: 'warn' },
+    ];
     public menu: NgxUtilsMenu[] = [
         { title: 'عدم نمایش', click: [], hideOn: () => true },
         'SEPERATOR',

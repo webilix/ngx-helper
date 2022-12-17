@@ -1,7 +1,18 @@
-<ng-container *ngIf="menu.length !== 0">
+<button
+    *ngIf="menu.length === 1 && menu[0] !== 'SEPERATOR'"
+    mat-button
+    class="ngx-utils-menu"
+    [ngStyle]="{ border: border.toString() + 'px solid var(--ngxUtilsBorderColor)' }"
+    (click)="click(menu[0].click)"
+>
+    <div [ngClass]="['label', 'ngx-utils-color-' + (menu[0].color || 'primary')]">
+        <mat-icon [fontIcon]="menu[0].icon || icon || 'more_vert'" class="ngx-utils-icon"></mat-icon>
+    </div>
+</button>
+<ng-container *ngIf="menu.length > 1">
     <button
+        mat-button
         class="ngx-utils-menu"
-        mat-button="true"
         [color]="color"
         [ngStyle]="{ border: border.toString() + 'px solid var(--ngxUtilsBorderColor)' }"
         [matMenuTriggerFor]="ngxUtilsMenu"
