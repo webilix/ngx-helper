@@ -1,0 +1,26 @@
+<ngx-utils-menu *ngIf="menu.length > 1" [menu]="menu" [icon]="'expand_more'" [title]="title"></ngx-utils-menu>
+
+<ng-container *ngIf="type === 'DAY' || type === 'WEEK' || type === 'MONTH' || type === 'YEAR'">
+    <div class="title">{{ period }}</div>
+    <mat-icon *ngIf="type === 'DAY'" [fontIcon]="'today'" class="ngx-utils-icon" (click)="getDate()"></mat-icon>
+    <mat-icon *ngIf="type === 'WEEK'" [fontIcon]="'date_range'" class="ngx-utils-icon" (click)="getWeek()"></mat-icon>
+    <mat-icon
+        *ngIf="type === 'MONTH'"
+        [fontIcon]="'calendar_month'"
+        class="ngx-utils-icon"
+        (click)="getMonth()"
+    ></mat-icon>
+    <mat-icon
+        *ngIf="type === 'YEAR'"
+        [fontIcon]="'calendar_today'"
+        class="ngx-utils-icon"
+        (click)="getYear()"
+    ></mat-icon>
+</ng-container>
+
+<ng-container *ngIf="type === 'PERIOD'">
+    <div class="title">{{ period[0] }}</div>
+    <mat-icon [fontIcon]="'today'" class="middle ngx-utils-icon" (click)="getPeriodFrom()"></mat-icon>
+    <div class="title">{{ period[1] }}</div>
+    <mat-icon [fontIcon]="'today'" class="ngx-utils-icon" (click)="getPeriodTo()"></mat-icon>
+</ng-container>

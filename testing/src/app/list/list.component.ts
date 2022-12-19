@@ -73,6 +73,12 @@ export class ListComponent {
         },
         'SEPERATOR',
         { icon: 'edit', click: (id: string) => this.log('UPDATE', id), title: 'ویرایش' },
-        { icon: 'delete', click: (id: string) => this.log('DELETE', id), title: 'حذف', color: 'warn' },
+        {
+            icon: 'delete',
+            click: (id: string) => this.log('DELETE', id),
+            title: 'حذف',
+            color: 'warn',
+            disableOn: (data) => +data.id % 2 === 0,
+        },
     ];
 }

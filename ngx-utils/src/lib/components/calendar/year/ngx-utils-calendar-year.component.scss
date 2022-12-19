@@ -1,0 +1,87 @@
+:host {
+    position: relative;
+
+    mat-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-family: var(--ngxUtilsIconFont) !important;
+        font-size: var(--ngxUtilsIconSize) !important;
+    }
+}
+
+section.header {
+    display: flex;
+    align-items: center;
+    background-color: var(--ngxUtilsBackgroundColor);
+
+    padding: 1rem 1.5rem 1rem 1rem;
+
+    .title {
+        flex: 1;
+        font-weight: 600;
+        color: var(--ngxUtilsPrimaryColor);
+    }
+
+    mat-icon {
+        margin: 0 !important;
+        width: 25px !important;
+        height: 25px !important;
+        color: var(--ngxUtilsPrimaryColor);
+        cursor: pointer;
+    }
+}
+
+section.icons {
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    padding: 0 1rem;
+
+    mat-icon {
+        margin: 0 !important;
+        width: 25px !important;
+        height: 25px !important;
+        cursor: pointer;
+    }
+
+    .year {
+        flex: 1;
+        font-weight: 600;
+        padding-right: 0.5rem;
+        direction: ltr;
+        text-align: right;
+    }
+}
+
+section.years {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    margin: 1rem 0 0.5rem 0;
+
+    .year {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        padding: 0.75rem 0;
+    }
+
+    .today {
+        background-color: var(--ngxUtilsBackgroundColor);
+    }
+
+    .current {
+        color: var(--ngxUtilsPrimaryColor);
+        border-color: var(--ngxUtilsBorderColor);
+        background-color: var(--ngxUtilsBackgroundColor);
+    }
+
+    .disable {
+        opacity: 0.5;
+        cursor: default;
+    }
+}

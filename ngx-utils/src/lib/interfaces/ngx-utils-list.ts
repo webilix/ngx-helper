@@ -4,4 +4,5 @@ export interface INgxUtilsListMenu<D> {
     click: string[] | ((id: string) => void);
     color?: 'primary' | 'accent' | 'warn';
     hideOn?: (data: D) => boolean;
+    disableOn?: (data: D) => boolean;
 }

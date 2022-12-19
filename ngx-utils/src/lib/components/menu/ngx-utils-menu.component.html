@@ -3,12 +3,14 @@
     mat-button
     class="ngx-utils-menu"
     [ngStyle]="{ border: border.toString() + 'px solid var(--ngxUtilsBorderColor)' }"
+    [disabled]="menu[0].disableOn && menu[0].disableOn()"
     (click)="click(menu[0].click)"
 >
     <div [ngClass]="['label', 'ngx-utils-color-' + (menu[0].color || 'primary')]">
         <mat-icon [fontIcon]="menu[0].icon || icon || 'more_vert'" class="ngx-utils-icon"></mat-icon>
     </div>
 </button>
+
 <ng-container *ngIf="menu.length > 1">
     <button
         mat-button
@@ -28,7 +30,12 @@
                 class="ngx-utils-menu-seperator"
                 *ngIf="m === 'SEPERATOR' && (i === 0 || menu[i - 1] !== 'SEPERATOR')"
             ></div>
-            <button mat-menu-item *ngIf="m !== 'SEPERATOR'" (click)="click(m.click)">
+            <button
+                mat-menu-item
+                *ngIf="m !== 'SEPERATOR'"
+                [disabled]="m.disableOn && m.disableOn()"
+                (click)="click(m.click)"
+            >
                 <div [ngClass]="['label', 'ngx-utils-color-' + (m.color || 'primary')]">
                     <mat-icon
                         *ngIf="m.icon"

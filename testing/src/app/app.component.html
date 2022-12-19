@@ -32,6 +32,34 @@
 </div>
 
 <div class="buttons">
+    <button mat-flat-button type="button" color="primary" (click)="getDate(1)">DATE</button>
+    <button mat-flat-button type="button" color="primary" (click)="getDate(2)">DATE</button>
+    <button mat-flat-button type="button" color="primary" (click)="getDate(3)">DATE</button>
+    <button mat-flat-button type="button" color="primary" (click)="getDate(4)">DATE</button>
+</div>
+
+<div class="buttons">
+    <button mat-flat-button type="button" color="primary" (click)="getWeek(1)">WEEK</button>
+    <button mat-flat-button type="button" color="primary" (click)="getWeek(2)">WEEK</button>
+    <button mat-flat-button type="button" color="primary" (click)="getWeek(3)">WEEK</button>
+    <button mat-flat-button type="button" color="primary" (click)="getWeek(4)">WEEK</button>
+</div>
+
+<div class="buttons">
+    <button mat-flat-button type="button" color="primary" (click)="getMonth(1)">MONTH</button>
+    <button mat-flat-button type="button" color="primary" (click)="getMonth(2)">MONTH</button>
+    <button mat-flat-button type="button" color="primary" (click)="getMonth(3)">MONTH</button>
+    <button mat-flat-button type="button" color="primary" (click)="getMonth(4)">MONTH</button>
+</div>
+
+<div class="buttons">
+    <button mat-flat-button type="button" color="primary" (click)="getYear(1)">YEAR</button>
+    <button mat-flat-button type="button" color="primary" (click)="getYear(2)">YEAR</button>
+    <button mat-flat-button type="button" color="primary" (click)="getYear(3)">YEAR</button>
+    <button mat-flat-button type="button" color="primary" (click)="getYear(4)">YEAR</button>
+</div>
+
+<div class="buttons">
     <button mat-flat-button type="button" color="primary" (click)="showButtomSheet()">BottomSheet</button>
     <button mat-flat-button type="button" color="primary" (click)="showDialog()">Dialog</button>
 </div>
@@ -74,6 +102,8 @@
     <ngx-utils-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'accent'"></ngx-utils-menu>
     <ngx-utils-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'warn'" [border]="1"></ngx-utils-menu>
 </div>
+
+<ngx-utils-calendar [minDate]="previousDate" [maxDate]="nextDate" (changed)="log($event)"></ngx-utils-calendar>
 
 <ngx-utils-box title="نمایش باکس" icon="home" [component]="boxComponent"></ngx-utils-box>
 

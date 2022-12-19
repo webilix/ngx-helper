@@ -1,0 +1,63 @@
+<div class="background" *ngIf="showMonth" (click)="showMonth = false"></div>
+
+<section class="header">
+    <div class="title">{{ title }}</div>
+    <mat-icon [fontIcon]="'close'" mat-dialog-close></mat-icon>
+</section>
+
+<section class="icons">
+    <div [ngClass]="{ month: true, 'month-open': showMonth }" (click)="showMonth = !showMonth">
+        {{ calendar.title }}
+        <mat-icon [fontIcon]="showMonth ? 'expand_less' : 'expand_more'"></mat-icon>
+    </div>
+
+    <div class="seperator"></div>
+    <mat-icon [fontIcon]="'keyboard_double_arrow_right'" (click)="changeMonth(-12)"></mat-icon>
+    <mat-icon [fontIcon]="'chevron_right'" (click)="changeMonth(-1)"></mat-icon>
+    <mat-icon [fontIcon]="'radio_button_checked'" (click)="changeMonth(0)"></mat-icon>
+    <mat-icon [fontIcon]="'chevron_left'" (click)="changeMonth(1)"></mat-icon>
+    <mat-icon [fontIcon]="'keyboard_double_arrow_left'" (click)="changeMonth(12)"></mat-icon>
+</section>
+
+<section class="names">
+    <div class="name" *ngFor="let day of ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج']">{{ day }}</div>
+    <div class="month" *ngIf="showMonth">
+        <div class="header">
+            <mat-icon
+                [fontIcon]="'keyboard_double_arrow_right'"
+                (click)="years.value = (+years.value - 10).toString()"
+            ></mat-icon>
+            <mat-icon [fontIcon]="'chevron_right'" (click)="years.value = (+years.value - 1).toString()"></mat-icon>
+            <input type="text" [value]="month.substring(0, 4)" readonly #years />
+            <mat-icon [fontIcon]="'chevron_left'" (click)="years.value = (+years.value + 1).toString()"></mat-icon>
+            <mat-icon
+                [fontIcon]="'keyboard_double_arrow_left'"
+                (click)="years.value = (+years.value + 10).toString()"
+            ></mat-icon>
+        </div>
+        <div class="season" *ngFor="let season of seasons; let s = index">
+            <div
+                class="month-name"
+                *ngFor="let month of season; let m = index"
+                (click)="changeCalendar(+years.value, s * 3 + m + 1)"
+            >
+                {{ month }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="days" *ngFor="let week of calendar.weeks">
+    <div
+        *ngFor="let day of week"
+        [ngClass]="{
+            day: true,
+            today: day.date === today,
+            current: day.date === current,
+            disable: day.month !== month || day.date > maxDate || day.date < minDate
+        }"
+        (click)="setDate(day.month !== month || day.date > maxDate || day.date < minDate ? null : day.date)"
+    >
+        {{ day.day }}
+    </div>
+</section>

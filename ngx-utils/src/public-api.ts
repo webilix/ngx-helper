@@ -8,12 +8,14 @@ export * from './lib/ngx-utils.service';
 export * from './lib/ngx-utils.values';
 
 export * from './lib/components/box/ngx-utils-box.component';
+export * from './lib/components/calendar/ngx-utils-calendar.component';
 export * from './lib/components/list/ngx-utils-list.component';
 export * from './lib/components/loading/ngx-utils-loading.component';
 export * from './lib/components/map/ngx-utils-map.component';
 export * from './lib/components/menu/ngx-utils-menu.component';
 export * from './lib/components/pagination/ngx-utils-pagination.component';
 
+export * from './lib/interfaces/ngx-utils-calendar';
 export * from './lib/interfaces/ngx-utils-location';
 
 export * from './lib/pipes/ngx-utils-bank-card.pipe';

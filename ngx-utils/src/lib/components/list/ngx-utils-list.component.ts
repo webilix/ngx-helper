@@ -28,6 +28,7 @@ export class NgxUtilsListComponent<D> implements OnChanges {
                 click: this.click(menu.click),
                 icon: menu.icon,
                 color: menu.color,
+                disableOn: () => (menu.disableOn && this.data ? menu.disableOn(this.data) : false),
             };
         });
 

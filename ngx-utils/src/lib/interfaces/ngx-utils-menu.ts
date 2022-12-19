@@ -4,4 +4,5 @@ export interface INgxUtilsMenu {
     icon?: string;
     color?: 'primary' | 'accent' | 'warn';
     hideOn?: () => boolean;
+    disableOn?: () => boolean;
 }

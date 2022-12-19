@@ -7,6 +7,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 
 import { Validator } from '@webilix/validator-library';
 
+import { INgxUtilsCalendarConfig, INgxUtilsCalendarPeriod } from './interfaces/ngx-utils-calendar';
 import { INgxUtilsUpload } from './interfaces/ngx-utils-upload';
 import {
     INgxUtilsConfirm,
@@ -17,6 +18,10 @@ import {
 } from './types/ngx-utils-confirm';
 
 import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
+import { NgxUtilsCalendarDateComponent } from './components/calendar/date/ngx-utils-calendar-date.component';
+import { NgxUtilsCalendarMonthComponent } from './components/calendar/month/ngx-utils-calendar-month.component';
+import { NgxUtilsCalendarWeekComponent } from './components/calendar/week/ngx-utils-calendar-week.component';
+import { NgxUtilsCalendarYearComponent } from './components/calendar/year/ngx-utils-calendar-year.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
 import { NgxUtilsDownloadComponent } from './components/download/ngx-utils-download.component';
@@ -265,6 +270,56 @@ export class NgxUtilsService {
 
             this.components.push(component);
             this.updateComponentsBottom();
+        });
+    }
+    //#endregion
+
+    //#region CALENDAR
+    private getCalendarConfig(config?: Partial<INgxUtilsCalendarConfig>): INgxUtilsCalendarConfig {
+        let minDate: Date | null = config?.minDate || null;
+        let maxDate: Date | null = config?.maxDate || null;
+        if (minDate && maxDate && minDate.getTime() >= maxDate.getTime()) {
+            const temp = minDate;
+            minDate = maxDate;
+            maxDate = temp;
+        }
+
+        return { title: config?.title || null, value: config?.value || null, minDate, maxDate };
+    }
+
+    getDate(config?: Partial<INgxUtilsCalendarConfig>): Promise<Date> {
+        return new Promise<Date>((resolve, reject) => {
+            this.dialog
+                .open(NgxUtilsCalendarDateComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
+                .afterClosed()
+                .subscribe((date: Date) => (date ? resolve(date) : reject()));
+        });
+    }
+
+    getWeek(config?: Partial<INgxUtilsCalendarConfig>): Promise<INgxUtilsCalendarPeriod> {
+        return new Promise<INgxUtilsCalendarPeriod>((resolve, reject) => {
+            this.dialog
+                .open(NgxUtilsCalendarWeekComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
+                .afterClosed()
+                .subscribe((week: INgxUtilsCalendarPeriod) => (week ? resolve(week) : reject()));
+        });
+    }
+
+    getMonth(config?: Partial<INgxUtilsCalendarConfig>): Promise<INgxUtilsCalendarPeriod> {
+        return new Promise<INgxUtilsCalendarPeriod>((resolve, reject) => {
+            this.dialog
+                .open(NgxUtilsCalendarMonthComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
+                .afterClosed()
+                .subscribe((month: INgxUtilsCalendarPeriod) => (month ? resolve(month) : reject()));
+        });
+    }
+
+    getYear(config?: Partial<INgxUtilsCalendarConfig>): Promise<INgxUtilsCalendarPeriod> {
+        return new Promise<INgxUtilsCalendarPeriod>((resolve, reject) => {
+            this.dialog
+                .open(NgxUtilsCalendarYearComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
+                .afterClosed()
+                .subscribe((month: INgxUtilsCalendarPeriod) => (month ? resolve(month) : reject()));
         });
     }
     //#endregion

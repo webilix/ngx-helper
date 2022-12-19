@@ -1,0 +1,26 @@
+<section class="header">
+    <div class="title">{{ title }}</div>
+    <mat-icon [fontIcon]="'close'" mat-dialog-close></mat-icon>
+</section>
+
+<section class="icons">
+    <div class="year">{{ years[0] + ' - ' + years[years.length - 1] }}</div>
+    <mat-icon [fontIcon]="'chevron_right'" (click)="changeYear(years[0] - 1)"></mat-icon>
+    <mat-icon [fontIcon]="'radio_button_checked'" (click)="changeYear(+today)"></mat-icon>
+    <mat-icon [fontIcon]="'chevron_left'" (click)="changeYear(years[years.length - 1] + 1)"></mat-icon>
+</section>
+
+<section class="years">
+    <div
+        *ngFor="let year of years"
+        [ngClass]="{
+            year: true,
+            today: +today === year,
+            current: +current === year,
+            disable: (minDate && year < +minDate) || (maxDate && year > +maxDate)
+        }"
+        (click)="setYear(year.toString())"
+    >
+        {{ year }}
+    </div>
+</section>

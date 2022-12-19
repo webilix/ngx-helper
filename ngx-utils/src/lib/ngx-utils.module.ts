@@ -10,12 +10,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
+import { JalaliDateTime } from '@webilix/jalali-date-time';
+
 import { INgxUtilsStyle } from './interfaces/ngx-utils-style';
 import { NgxUtilsComponent } from './ngx-utils.component';
 import { NgxUtilsService } from './ngx-utils.service';
 
 import { NgxUtilsBottomSheetComponent } from './components/bottom-sheet/ngx-utils-bottom-sheet.component';
 import { NgxUtilsBoxComponent } from './components/box/ngx-utils-box.component';
+import { NgxUtilsCalendarComponent } from './components/calendar/ngx-utils-calendar.component';
+import { NgxUtilsCalendarDateComponent } from './components/calendar/date/ngx-utils-calendar-date.component';
+import { NgxUtilsCalendarMonthComponent } from './components/calendar/month/ngx-utils-calendar-month.component';
+import { NgxUtilsCalendarWeekComponent } from './components/calendar/week/ngx-utils-calendar-week.component';
+import { NgxUtilsCalendarYearComponent } from './components/calendar/year/ngx-utils-calendar-year.component';
 import { NgxUtilsConfirmComponent } from './components/confirm/ngx-utils-confirm.component';
 import { NgxUtilsDialogComponent } from './components/dialog/ngx-utils-dialog.component';
 import { NgxUtilsDownloadComponent } from './components/download/ngx-utils-download.component';
@@ -47,6 +54,11 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
 
         NgxUtilsBottomSheetComponent,
         NgxUtilsBoxComponent,
+        NgxUtilsCalendarComponent,
+        NgxUtilsCalendarDateComponent,
+        NgxUtilsCalendarMonthComponent,
+        NgxUtilsCalendarWeekComponent,
+        NgxUtilsCalendarYearComponent,
         NgxUtilsConfirmComponent,
         NgxUtilsDialogComponent,
         NgxUtilsDownloadComponent,
@@ -85,6 +97,7 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsComponent,
 
         NgxUtilsBoxComponent,
+        NgxUtilsCalendarComponent,
         NgxUtilsListComponent,
         NgxUtilsLoadingComponent,
         NgxUtilsMapComponent,
@@ -106,8 +119,13 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
     ],
 })
 export class NgxUtilsModule {
-    static forRoot(style?: Partial<INgxUtilsStyle>): ModuleWithProviders<NgxUtilsModule> {
-        style = style || {};
+    static forRoot(): ModuleWithProviders<NgxUtilsModule>;
+    static forRoot(timezone: string): ModuleWithProviders<NgxUtilsModule>;
+    static forRoot(style: Partial<INgxUtilsStyle>): ModuleWithProviders<NgxUtilsModule>;
+    static forRoot(timezone: string, style: Partial<INgxUtilsStyle>): ModuleWithProviders<NgxUtilsModule>;
+    static forRoot(arg1?: any, arg2?: any): ModuleWithProviders<NgxUtilsModule> {
+        const style: Partial<INgxUtilsStyle> =
+            arg1 && typeof arg1 !== 'string' ? arg1 : arg2 && typeof arg2 !== 'string' ? arg2 : {};
         const root: string =
             ':root{' +
             `--ngxUtilsFontSize:${style.fontSize || '12px'};` +
@@ -150,9 +168,12 @@ export class NgxUtilsModule {
         html.innerHTML = root;
         document.getElementsByTagName('head')[0].appendChild(html);
 
+        let timezone: string = typeof arg1 === 'string' ? arg1 : 'Asia/Tehran';
+        if (!JalaliDateTime().timezones().includes(timezone)) timezone = 'Asia/Tehran';
+
         return {
             ngModule: NgxUtilsModule,
-            providers: [NgxUtilsService],
+            providers: [NgxUtilsService, { provide: 'NGX_UTILS_TIMEZONE', useValue: timezone }],
         };
     }
 }
