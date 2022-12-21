@@ -40,7 +40,7 @@ content {
         align-items: center;
         column-gap: 1rem;
         font-size: 12px;
-        margin: 1rem 0 2rem 0;
+        margin-top: 1rem;
 
         .data-type {
             font-weight: 600;
@@ -64,6 +64,8 @@ content {
         border-radius: 4px;
         border: 1px solid var(--ngxUtilsBorderColor);
         background-color: var(--ngxUtilsBackgroundColor);
+        position: relative;
+        top: 2rem;
     }
 
     textarea::placeholder {
@@ -71,6 +73,7 @@ content {
     }
 
     .buttons {
+        margin-top: 2rem;
         display: flex;
         column-gap: 1rem;
 

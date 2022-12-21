@@ -44,6 +44,7 @@ export class AppComponent implements OnInit, OnDestroy {
         'SEPERATOR',
         'SEPERATOR',
         { title: 'تنظیمات', click: () => this.log('setting'), icon: 'settings', color: 'accent' },
+        { title: 'عدم نمایش', click: [], hideOn: () => true },
         { title: 'ویرایش', click: () => this.log('edit'), icon: 'edit' },
         { title: 'حذف', click: () => this.log('delete'), icon: 'delete', color: 'warn' },
         'SEPERATOR',
@@ -243,7 +244,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     confirm(
-        type?: 'ACTIVE' | 'ARCHIVE' | 'BLOCK' | 'DEACTIVE' | 'DELETE',
+        type?: 'ACTIVE' | 'ARCHIVE' | 'BLOCK' | 'DEACTIVE' | 'DELETE' | 'EMPTY',
         description: boolean | 'REQUIRED' = false,
     ): void {
         const item: string = 'نوع اطلاعات';
@@ -251,7 +252,9 @@ export class AppComponent implements OnInit, OnDestroy {
         const message: string = 'این پیام برای تست نحوه نمایش پیام‌های مربوط به تاییدیه، اضافه شده است.';
 
         (type
-            ? this.ngxUtilsService.confirm(type, item, { title, message, description })
+            ? type === 'EMPTY'
+                ? this.ngxUtilsService.confirm('ACTIVE', item)
+                : this.ngxUtilsService.confirm(type, item, { title, message, description })
             : this.ngxUtilsService.confirm({ title: 'سفارشی', icon: 'tune', color: 'accent' }, item, {
                   title,
                   message,

@@ -73,6 +73,7 @@ export class ListComponent {
         },
         'SEPERATOR',
         { icon: 'edit', click: (id: string) => this.log('UPDATE', id), title: 'ویرایش' },
+        { icon: '', click: [], title: 'عدم نمایش', hideOn: () => true },
         {
             icon: 'delete',
             click: (id: string) => this.log('DELETE', id),

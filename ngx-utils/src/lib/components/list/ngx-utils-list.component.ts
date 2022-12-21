@@ -19,18 +19,22 @@ export class NgxUtilsListComponent<D> implements OnChanges {
     public ngxMenu: NgxUtilsMenu[] = [];
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.ngxMenu = this.menu.map((menu: NgxUtilsListMenu<D>) => {
-            if (menu === 'SEPERATOR' || !this.id) return 'SEPERATOR';
-            if (menu.hideOn && this.data && menu.hideOn(this.data)) return 'SEPERATOR';
+        this.ngxMenu = this.menu
+            .filter(
+                (menu: NgxUtilsListMenu<D>) =>
+                    menu === 'SEPERATOR' || !this.data || !menu.hideOn || !menu.hideOn(this.data),
+            )
+            .map((menu: NgxUtilsListMenu<D>) => {
+                if (menu === 'SEPERATOR' || !this.id) return 'SEPERATOR';
 
-            return {
-                title: menu.title,
-                click: this.click(menu.click),
-                icon: menu.icon,
-                color: menu.color,
-                disableOn: () => (menu.disableOn && this.data ? menu.disableOn(this.data) : false),
-            };
-        });
+                return {
+                    title: menu.title,
+                    click: this.click(menu.click),
+                    icon: menu.icon,
+                    color: menu.color,
+                    disableOn: () => (menu.disableOn && this.data ? menu.disableOn(this.data) : false),
+                };
+            });
 
         while (this.ngxMenu.length !== 0 && this.ngxMenu[0] === 'SEPERATOR') this.ngxMenu = this.ngxMenu.slice(1);
         while (this.ngxMenu.length !== 0 && this.ngxMenu[this.ngxMenu.length - 1] === 'SEPERATOR')
