@@ -73,13 +73,16 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         });
 
         this.params.forEach((param: NgxUtilsParams) => {
-            if (param.type !== 'SELECT' || param.options.length > 15) return;
+            if (param.type !== 'SELECT' || param.options.length > 14) return;
 
-            this.menu[param.name] = param.options.map((o) => ({
-                title: o.title,
-                english: !!param.english,
-                click: () => this.setSelect(param, o.id),
-            }));
+            this.menu[param.name] = [
+                { title: '', click: () => this.setSelect(param, null) },
+                ...param.options.map((o) => ({
+                    title: o.title,
+                    english: !!param.english,
+                    click: () => this.setSelect(param, o.id),
+                })),
+            ];
         });
 
         this.emitValues();
@@ -146,7 +149,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         return param.options.find((o) => o.id === value)?.title || '';
     }
 
-    setSelect(param: INgxUtilsParamsSelect, value: string): void {
+    setSelect(param: INgxUtilsParamsSelect, value: string | null): void {
         this.values[param.name] = param.options.find((o) => o.id === value) ? value : null;
         this.emitValues();
         this.updateRoute();

@@ -17,18 +17,18 @@
             <div class="title">{{ param.title }}</div>
             <div
                 [ngClass]="{ value: true, 'value-en': !!param.english }"
-                (click)="param.options.length > 15 ? getSelect(param) : null"
+                (click)="param.options.length > 14 ? getSelect(param) : null"
             >
                 {{ getSelectTitle(param, values[param.name]) || '&nbsp;' }}
             </div>
             <ngx-utils-menu
-                *ngIf="param.options.length <= 15"
+                *ngIf="param.options.length <= 14"
                 [icon]="param.icon || 'keyboard_double_arrow_down'"
                 [menu]="menu[param.name]"
                 [xPosition]="'before'"
             ></ngx-utils-menu>
             <mat-icon
-                *ngIf="param.options.length > 15"
+                *ngIf="param.options.length > 14"
                 class="ngx-utils-icon"
                 [fontIcon]="values[param.name] ? 'close' : param.icon || 'keyboard_double_arrow_down'"
                 (click)="values[param.name] ? resetSelect(param) : getSelect(param)"
