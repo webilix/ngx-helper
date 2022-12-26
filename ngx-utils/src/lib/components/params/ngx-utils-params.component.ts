@@ -98,6 +98,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             });
             if (Object.keys(values).length === 0) return;
 
+            this.page = 1;
             this.values = { ...this.values, ...values };
             this.updateRoute();
         }
@@ -151,6 +152,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     resetValue(param: NgxUtilsParams): void {
         if (this.values[param.name] === null) return;
 
+        this.page = 1;
         this.values[param.name] = null;
         this.updateRoute();
     }
@@ -158,8 +160,8 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     setSearch(param: INgxUtilsParamsSearch, value: string): void {
         if (this.values[param.name] === (value.trim() || null)) return;
 
-        value = value.trim();
-        this.values[param.name] = value || null;
+        this.page = 1;
+        this.values[param.name] = value.trim() || null;
         this.updateRoute();
     }
 
@@ -170,6 +172,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     setSelect(param: INgxUtilsParamsSelect, value: string | null): void {
         if (this.values[param.name] === value) return;
 
+        this.page = 1;
         this.values[param.name] = param.options.find((o) => o.id === value) ? value : null;
         this.updateRoute();
     }
@@ -180,6 +183,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             (value) => {
                 if (this.values[param.name] === value) return;
 
+                this.page = 1;
                 this.values[param.name] = value;
                 this.updateRoute();
             },
@@ -192,6 +196,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             (date: Date) => {
                 if (this.values[param.name]?.getTime() === date.getTime()) return;
 
+                this.page = 1;
                 this.values[param.name] = date;
                 this.updateRoute();
             },
