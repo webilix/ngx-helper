@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { MenuPositionX, MenuPositionY } from '@angular/material/menu';
 import { Router } from '@angular/router';
 
 import { NgxUtilsMenu } from '../../types/ngx-utils-menu';
@@ -13,6 +14,8 @@ export class NgxUtilsMenuComponent implements OnChanges {
     @Input() icon?: string;
     @Input() color?: 'primary' | 'accent' | 'warn';
     @Input() border: number = 0;
+    @Input() xPosition: MenuPositionX = 'after';
+    @Input() yPosition: MenuPositionY = 'below';
     @Input() menu: NgxUtilsMenu[] = [];
     @Output() menuChange: EventEmitter<NgxUtilsMenu[]> = new EventEmitter<NgxUtilsMenu[]>();
 

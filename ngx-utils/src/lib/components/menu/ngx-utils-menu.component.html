@@ -24,7 +24,7 @@
             <div class="title" *ngIf="title">{{ title }}</div>
         </div>
     </button>
-    <mat-menu #ngxUtilsMenu="matMenu" class="ngx-utils-menu-panel" xPosition="before">
+    <mat-menu #ngxUtilsMenu="matMenu" class="ngx-utils-menu-panel" [xPosition]="xPosition" [yPosition]="yPosition">
         <ng-container *ngFor="let m of menu; let i = index">
             <div
                 class="ngx-utils-menu-seperator"
@@ -36,7 +36,7 @@
                 [disabled]="m.disableOn && m.disableOn()"
                 (click)="click(m.click)"
             >
-                <div [ngClass]="['label', 'ngx-utils-color-' + (m.color || 'primary')]">
+                <div [ngClass]="['label' + (m.english ? '-en' : ''), 'ngx-utils-color-' + (m.color || 'primary')]">
                     <mat-icon
                         *ngIf="m.icon"
                         [ngClass]="['ngx-utils-icon', 'ngx-utils-color-' + (m.color || 'primary')]"

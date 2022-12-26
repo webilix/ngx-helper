@@ -14,6 +14,7 @@ export * from './lib/components/loading/ngx-utils-loading.component';
 export * from './lib/components/map/ngx-utils-map.component';
 export * from './lib/components/menu/ngx-utils-menu.component';
 export * from './lib/components/pagination/ngx-utils-pagination.component';
+export * from './lib/components/params/ngx-utils-params.component';
 
 export * from './lib/interfaces/ngx-utils-calendar';
 export * from './lib/interfaces/ngx-utils-location';
@@ -33,3 +34,4 @@ export * from './lib/providers/ngx-utils-location.service';
 
 export * from './lib/types/ngx-utils-list';
 export * from './lib/types/ngx-utils-menu';
+export * from './lib/types/ngx-utils-params';

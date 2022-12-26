@@ -1,5 +1,5 @@
 import { ComponentType } from '@angular/cdk/portal';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import {
@@ -9,6 +9,7 @@ import {
     NgxUtilsLoadingService,
     NgxUtilsLocationService,
     NgxUtilsMenu,
+    NgxUtilsParams,
     NgxUtilsService,
     NGX_UTILS_LOADING_HEADER,
 } from '@ngx-utils';
@@ -26,6 +27,55 @@ import { PipeComponent } from './pipe/pipe.component';
 })
 export class AppComponent implements OnInit, OnDestroy {
     public log = console.log;
+
+    public params1: NgxUtilsParams[] = [
+        { type: 'SEARCH', name: 'fa_query' },
+        {
+            type: 'SELECT',
+            name: 'fa_select',
+            title: 'گزینه‌ها',
+            options: [
+                { id: 'option-1', title: 'گزینه اول' },
+                { id: 'option-2', title: 'گزینه دوم' },
+                { id: 'option-3', title: 'گزینه سوم' },
+            ],
+        },
+        { type: 'DATE', name: 'fa_date' },
+    ];
+
+    public params2: NgxUtilsParams[] = [
+        { type: 'SEARCH', name: 'en_query', english: true },
+        {
+            type: 'SELECT',
+            name: 'en_select',
+            title: 'گزینه‌ها',
+            options: [
+                { id: 'option-1', title: '1ST Option' },
+                { id: 'option-2', title: '2ND Option' },
+                { id: 'option-3', title: '3RD Option' },
+            ],
+            english: true,
+        },
+    ];
+
+    public paramsPage: number = 1;
+    public params3: NgxUtilsParams[] = [
+        {
+            type: 'SELECT',
+            name: 'fa_select_big',
+            title: 'فارسی',
+            icon: 'keyboard_hide',
+            options: [...Array(100).keys()].map((n: number) => ({ id: (n + 1).toString(), title: (n + 1).toString() })),
+        },
+        {
+            type: 'SELECT',
+            name: 'en_select_big',
+            title: 'انگلیسی',
+            icon: 'keyboard_hide',
+            options: [...Array(100).keys()].map((n: number) => ({ id: (n + 1).toString(), title: (n + 1).toString() })),
+            english: true,
+        },
+    ];
 
     public boxComponent: ComponentType<BoxComponent> = BoxComponent;
     public listComponent: ComponentType<ListComponent> = ListComponent;
@@ -66,6 +116,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public location?: INgxUtilsLocation | false;
 
     constructor(
+        private readonly changeDetectorRef: ChangeDetectorRef,
         private readonly ngxUtilsService: NgxUtilsService,
         private readonly ngxUtilsConnectionService: NgxUtilsConnectionService,
         private readonly ngxUtilsLoadingService: NgxUtilsLoadingService,
@@ -82,7 +133,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
         this.loading = this.ngxUtilsLoadingService.loading;
         this._onLoadingChanged = this.ngxUtilsLoadingService.onLoadingChanged.subscribe({
-            next: (loading: boolean) => this.log(`LOADING: ${(this.loading = loading)}`),
+            next: (loading: boolean) => {
+                this.log(`LOADING: ${(this.loading = loading)}`);
+                this.changeDetectorRef.detectChanges();
+            },
         });
 
         this.ngxUtilsLocationService.getLocation().then(

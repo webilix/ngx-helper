@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,6 +32,8 @@ import { NgxUtilsLoadingComponent } from './components/loading/ngx-utils-loading
 import { NgxUtilsMapComponent } from './components/map/ngx-utils-map.component';
 import { NgxUtilsMenuComponent } from './components/menu/ngx-utils-menu.component';
 import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-pagination.component';
+import { NgxUtilsParamsComponent } from './components/params/ngx-utils-params.component';
+import { NgxUtilsParamsSelectComponent } from './components/params/select/ngx-utils-params-select.component';
 import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
 import { NgxUtilsToastComponent } from './components/toast/ngx-utils-toast.component';
 import { NgxUtilsUploadComponent } from './components/upload/ngx-utils-upload.component';
@@ -68,6 +70,8 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsMapComponent,
         NgxUtilsMenuComponent,
         NgxUtilsPaginationComponent,
+        NgxUtilsParamsComponent,
+        NgxUtilsParamsSelectComponent,
         NgxUtilsPreviewComponent,
         NgxUtilsToastComponent,
         NgxUtilsUploadComponent,
@@ -103,6 +107,7 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsMapComponent,
         NgxUtilsMenuComponent,
         NgxUtilsPaginationComponent,
+        NgxUtilsParamsComponent,
 
         NgxUtilsBankCardPipe,
         NgxUtilsDurationPipe,

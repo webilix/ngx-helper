@@ -24,4 +24,17 @@
         flex-direction: row-reverse;
         justify-content: center;
     }
+
+    .params-page {
+        display: flex;
+        column-gap: 1rem;
+
+        ngx-utils-params {
+            flex: 1;
+        }
+
+        select {
+            outline: none;
+        }
+    }
 }

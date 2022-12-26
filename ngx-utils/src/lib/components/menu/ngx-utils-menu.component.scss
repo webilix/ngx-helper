@@ -29,7 +29,8 @@
             width: 100%;
         }
 
-        .label {
+        .label,
+        .label-en {
             width: 100%;
             display: flex;
             column-gap: 0.5rem;
@@ -46,6 +47,16 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 text-align: right;
+            }
+        }
+
+        .label-en {
+            flex-direction: row-reverse;
+
+            .title {
+                direction: ltr;
+                text-align: left;
+                font-family: var(--ngxUtilsEnFont);
             }
         }
     }
