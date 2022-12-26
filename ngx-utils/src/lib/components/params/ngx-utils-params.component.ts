@@ -1,13 +1,4 @@
-import {
-    ChangeDetectorRef,
-    Component,
-    EventEmitter,
-    Input,
-    OnChanges,
-    OnInit,
-    Output,
-    SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Params, Router } from '@angular/router';
 
 import { JalaliDateTime } from '@webilix/jalali-date-time';
@@ -15,7 +6,7 @@ import { Validator } from '@webilix/validator-library';
 
 import { INgxUtilsParamsDate, INgxUtilsParamsSearch, INgxUtilsParamsSelect } from '../../interfaces/ngx-utils-params';
 import { NgxUtilsMenu } from '../../types/ngx-utils-menu';
-import { INgxUtilsParamsValues, NgxUtilsParams } from '../../types/ngx-utils-params';
+import { INgxUtilsParamsUpdate, INgxUtilsParamsValues, NgxUtilsParams } from '../../types/ngx-utils-params';
 import { NgxUtilsService } from '../../ngx-utils.service';
 
 import { NgxUtilsParamsSelectComponent } from './select/ngx-utils-params-select.component';
@@ -29,6 +20,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     @Input() route: string[] = ['/'];
     @Input() page: number = 1;
     @Input() params: NgxUtilsParams[] = [];
+    @Input() update: INgxUtilsParamsUpdate = {};
     @Output() changed: EventEmitter<INgxUtilsParamsValues> = new EventEmitter<INgxUtilsParamsValues>();
 
     public menu: { [key: string]: NgxUtilsMenu[] } = {};
@@ -36,11 +28,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
 
     private jalali = JalaliDateTime();
 
-    constructor(
-        private readonly changeDetectorRef: ChangeDetectorRef,
-        private readonly router: Router,
-        private readonly ngxUtilsService: NgxUtilsService,
-    ) {}
+    constructor(private readonly router: Router, private readonly ngxUtilsService: NgxUtilsService) {}
 
     ngOnInit(): void {
         const params: URLSearchParams = new URLSearchParams(window.location.search);
@@ -75,27 +63,49 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         this.params.forEach((param: NgxUtilsParams) => {
             if (param.type !== 'SELECT' || param.options.length > 14) return;
 
-            this.menu[param.name] = [
-                { title: '', click: () => this.setSelect(param, null) },
-                ...param.options.map((o) => ({
-                    title: o.title,
-                    english: !!param.english,
-                    click: () => this.setSelect(param, o.id),
-                })),
-            ];
+            this.menu[param.name] = param.options.map((o) => ({
+                title: o.title,
+                english: !!param.english,
+                click: () => this.setSelect(param, o.id),
+            }));
         });
 
-        this.emitValues();
+        this.emitChanges();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (!changes['page'] || changes['page'].firstChange) return;
-        this.emitValues();
-        this.updateRoute();
-        this.changeDetectorRef.detectChanges();
+        console.log(changes);
+
+        if (changes['page'] && !changes['page'].firstChange) {
+            this.updateRoute();
+        }
+
+        if (changes['update'] && !changes['update'].firstChange) {
+            const values: { [key: string]: any } = {};
+            this.params.forEach((param: NgxUtilsParams) => {
+                const value: any = changes['update'].currentValue[param.name];
+                if (value === undefined || this.values[param.name] === value) return;
+
+                switch (param.type) {
+                    case 'SEARCH':
+                        if (Validator.VALUE.isString(value)) values[param.name] = value;
+                        break;
+                    case 'SELECT':
+                        if (param.options.find((o) => o.id === value)) values[param.name] = value;
+                        break;
+                    case 'DATE':
+                        if (Validator.VALUE.isDate(value)) values[param.name] = value;
+                        break;
+                }
+            });
+            if (Object.keys(values).length === 0) return;
+
+            this.values = { ...this.values, ...values };
+            this.updateRoute();
+        }
     }
 
-    emitValues(): void {
+    emitChanges(): void {
         const values: INgxUtilsParamsValues = { page: this.page, params: {} };
         this.params.forEach((param: NgxUtilsParams) => {
             switch (param.type) {
@@ -124,6 +134,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         this.params.forEach((param: NgxUtilsParams) => {
             const value: any = this.values[param.name];
             if (Validator.VALUE.isEmpty(value)) return;
+
             switch (param.type) {
                 case 'SEARCH':
                 case 'SELECT':
@@ -136,12 +147,21 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         });
 
         this.router.navigate(this.route, { queryParams });
+        this.emitChanges();
+    }
+
+    resetValue(param: NgxUtilsParams): void {
+        if (this.values[param.name] === null) return;
+
+        this.values[param.name] = null;
+        this.updateRoute();
     }
 
     setSearch(param: INgxUtilsParamsSearch, value: string): void {
+        if (this.values[param.name] === (value.trim() || null)) return;
+
         value = value.trim();
         this.values[param.name] = value || null;
-        this.emitValues();
         this.updateRoute();
     }
 
@@ -150,8 +170,9 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     }
 
     setSelect(param: INgxUtilsParamsSelect, value: string | null): void {
+        if (this.values[param.name] === value) return;
+
         this.values[param.name] = param.options.find((o) => o.id === value) ? value : null;
-        this.emitValues();
         this.updateRoute();
     }
 
@@ -159,34 +180,24 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         const value: string = this.values[param.name];
         this.ngxUtilsService.openBottomSheet<string>(NgxUtilsParamsSelectComponent, param.title, { param, value }).then(
             (value) => {
+                if (this.values[param.name] === value) return;
+
                 this.values[param.name] = value;
-                this.emitValues();
                 this.updateRoute();
             },
             () => {},
         );
-    }
-
-    resetSelect(param: INgxUtilsParamsSelect): void {
-        this.values[param.name] = null;
-        this.emitValues();
-        this.updateRoute();
     }
 
     setDate(param: INgxUtilsParamsDate): void {
         this.ngxUtilsService.getDate({ title: param.title || 'تاریخ', value: this.values[param.name] }).then(
             (date: Date) => {
+                if (this.values[param.name]?.getTime() === date.getTime()) return;
+
                 this.values[param.name] = date;
-                this.emitValues();
                 this.updateRoute();
             },
             () => {},
         );
-    }
-
-    resetDate(param: INgxUtilsParamsDate): void {
-        this.values[param.name] = null;
-        this.emitValues();
-        this.updateRoute();
     }
 }

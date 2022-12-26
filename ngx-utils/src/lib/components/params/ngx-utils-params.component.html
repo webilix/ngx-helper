@@ -18,6 +18,7 @@
             <div
                 [ngClass]="{ value: true, 'value-en': !!param.english }"
                 (click)="param.options.length > 14 ? getSelect(param) : null"
+                #menuTrigger
             >
                 {{ getSelectTitle(param, values[param.name]) || '&nbsp;' }}
             </div>
@@ -25,13 +26,15 @@
                 *ngIf="param.options.length <= 14"
                 [icon]="param.icon || 'keyboard_double_arrow_down'"
                 [menu]="menu[param.name]"
+                [tigger]="menuTrigger"
                 [xPosition]="'before'"
+                [ngStyle]="{ position: values[param.name] ? 'absolute' : 'static' }"
             ></ngx-utils-menu>
             <mat-icon
-                *ngIf="param.options.length > 14"
+                *ngIf="param.options.length > 14 || values[param.name]"
                 class="ngx-utils-icon"
                 [fontIcon]="values[param.name] ? 'close' : param.icon || 'keyboard_double_arrow_down'"
-                (click)="values[param.name] ? resetSelect(param) : getSelect(param)"
+                (click)="values[param.name] ? resetValue(param) : getSelect(param)"
             ></mat-icon>
         </ng-container>
         <!-- DATE -->
@@ -43,7 +46,7 @@
             <mat-icon
                 class="ngx-utils-icon"
                 [fontIcon]="values[param.name] ? 'close' : 'calendar_month'"
-                (click)="values[param.name] ? resetDate(param) : setDate(param)"
+                (click)="values[param.name] ? resetValue(param) : setDate(param)"
             ></mat-icon>
         </ng-container>
     </div>

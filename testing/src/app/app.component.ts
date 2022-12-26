@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import {
     INgxUtilsCalendarPeriod,
     INgxUtilsLocation,
+    INgxUtilsParamsUpdate,
     NgxUtilsConnectionService,
     NgxUtilsLoadingService,
     NgxUtilsLocationService,
@@ -76,6 +77,7 @@ export class AppComponent implements OnInit, OnDestroy {
             english: true,
         },
     ];
+    public params3Update: INgxUtilsParamsUpdate = {};
 
     public boxComponent: ComponentType<BoxComponent> = BoxComponent;
     public listComponent: ComponentType<ListComponent> = ListComponent;
@@ -151,6 +153,13 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this._onConnectionChanged?.unsubscribe();
         this._onLoadingChanged?.unsubscribe();
+    }
+
+    changeParam(): void {
+        this.params3Update = {
+            fa_select_big: (Math.floor(Math.random() * 99) + 1).toString(),
+            en_select_big: (Math.floor(Math.random() * 99) + 1).toString(),
+        };
     }
 
     download(correct: boolean): void {

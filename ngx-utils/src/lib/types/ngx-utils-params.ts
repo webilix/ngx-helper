@@ -6,3 +6,7 @@ export interface INgxUtilsParamsValues {
     page: number;
     params: { [key: string]: { value: any; param: string } };
 }
+
+export interface INgxUtilsParamsUpdate {
+    [key: string]: any;
+}

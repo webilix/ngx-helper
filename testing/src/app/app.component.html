@@ -10,10 +10,16 @@
 <ngx-utils-params [params]="params1" (changed)="log('PARAMS1', $event)"></ngx-utils-params>
 <ngx-utils-params [params]="params2" (changed)="log('PARAMS2', $event)"></ngx-utils-params>
 <div class="params-page">
-    <ngx-utils-params [params]="params3" [page]="paramsPage" (changed)="log('PARAMS3', $event)"></ngx-utils-params>
+    <ngx-utils-params
+        [params]="params3"
+        [page]="paramsPage"
+        [update]="params3Update"
+        (changed)="log('PARAMS3', $event)"
+    ></ngx-utils-params>
     <select (change)="paramsPage = +paramsPageSelect.value" #paramsPageSelect>
         <option *ngFor="let page of [1, 2, 3, 4, 5, 6, 7, 8, 9]" [value]="page">{{ page }}</option>
     </select>
+    <button mat-flat-button type="button" color="primary" (click)="changeParam()">CHANGE</button>
 </div>
 
 <div class="buttons">

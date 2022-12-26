@@ -78,6 +78,7 @@
             border-radius: 4px 0 0 4px;
             color: var(--ngxUtilsPrimaryColor);
             background-color: var(--ngxUtilsBackgroundColor);
+            z-index: 2;
 
             display: flex;
             align-items: center;
@@ -86,6 +87,9 @@
 
         ngx-utils-menu {
             overflow: hidden;
+            top: 0;
+            left: 0;
+            z-index: 1;
 
             ::ng-deep mat-icon {
                 color: var(--ngxUtilsPrimaryColor);

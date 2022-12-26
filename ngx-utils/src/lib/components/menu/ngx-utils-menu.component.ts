@@ -1,5 +1,15 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { MenuPositionX, MenuPositionY } from '@angular/material/menu';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output,
+    SimpleChanges,
+    ViewChild,
+} from '@angular/core';
+import { MatMenuTrigger, MenuPositionX, MenuPositionY } from '@angular/material/menu';
 import { Router } from '@angular/router';
 
 import { NgxUtilsMenu } from '../../types/ngx-utils-menu';
@@ -9,17 +19,30 @@ import { NgxUtilsMenu } from '../../types/ngx-utils-menu';
     templateUrl: './ngx-utils-menu.component.html',
     styleUrls: ['./ngx-utils-menu.component.scss'],
 })
-export class NgxUtilsMenuComponent implements OnChanges {
+export class NgxUtilsMenuComponent implements OnInit, OnDestroy, OnChanges {
+    @ViewChild(MatMenuTrigger) matMenuTrigger?: MatMenuTrigger;
+
     @Input() title?: string;
     @Input() icon?: string;
     @Input() color?: 'primary' | 'accent' | 'warn';
+    @Input() tigger?: Element;
     @Input() border: number = 0;
     @Input() xPosition: MenuPositionX = 'after';
     @Input() yPosition: MenuPositionY = 'below';
     @Input() menu: NgxUtilsMenu[] = [];
     @Output() menuChange: EventEmitter<NgxUtilsMenu[]> = new EventEmitter<NgxUtilsMenu[]>();
 
+    private clickListener = () => this.matMenuTrigger?.openMenu();
+
     constructor(private readonly router: Router) {}
+
+    ngOnInit(): void {
+        if (this.tigger?.addEventListener) this.tigger?.addEventListener('click', this.clickListener);
+    }
+
+    ngOnDestroy(): void {
+        if (this.tigger?.removeEventListener) this.tigger?.removeEventListener('click', this.clickListener);
+    }
 
     ngOnChanges(changes: SimpleChanges): void {
         if (this.menu.length === 0) return;
