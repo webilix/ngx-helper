@@ -74,8 +74,6 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log(changes);
-
         if (changes['page'] && !changes['page'].firstChange) {
             this.updateRoute();
         }
