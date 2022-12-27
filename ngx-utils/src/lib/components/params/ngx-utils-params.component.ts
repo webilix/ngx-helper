@@ -125,7 +125,10 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                 case 'DATE':
                     values.params[param.name] = {
                         value: this.values[param.name],
-                        param: this.values[param.name] ? (this.values[param.name] as Date).toJSON() : '',
+                        param: this.values[param.name]
+                            ? this.jalali.gregorian(this.jalali.toString(this.values[param.name], { format: 'Y-M-D' }))
+                                  .date
+                            : '',
                     };
                     break;
                 case 'FAVORITE':
