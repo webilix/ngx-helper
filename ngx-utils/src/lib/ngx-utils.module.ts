@@ -3,6 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -37,6 +38,7 @@ import { NgxUtilsParamsSelectComponent } from './components/params/select/ngx-ut
 import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
 import { NgxUtilsToastComponent } from './components/toast/ngx-utils-toast.component';
 import { NgxUtilsUploadComponent } from './components/upload/ngx-utils-upload.component';
+import { NgxUtilsValuesComponent } from './components/values/ngx-utils-values.component';
 
 import { NgxUtilsDateInterceptor } from './interceptors/ngx-utils-date.interceptor';
 import { NgxUtilsLoadingInterceptor } from './interceptors/ngx-utils-loading.interceptor';
@@ -75,6 +77,7 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsPreviewComponent,
         NgxUtilsToastComponent,
         NgxUtilsUploadComponent,
+        NgxUtilsValuesComponent,
 
         NgxUtilsBankCardPipe,
         NgxUtilsDurationPipe,
@@ -90,6 +93,7 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         RouterModule,
         HttpClientModule,
 
+        ClipboardModule,
         MatBottomSheetModule,
         MatButtonModule,
         MatDialogModule,
@@ -108,6 +112,7 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsMenuComponent,
         NgxUtilsPaginationComponent,
         NgxUtilsParamsComponent,
+        NgxUtilsValuesComponent,
 
         NgxUtilsBankCardPipe,
         NgxUtilsDurationPipe,
@@ -119,6 +124,7 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsValuePipe,
     ],
     providers: [
+        NgxUtilsValuePipe,
         { provide: HTTP_INTERCEPTORS, useClass: NgxUtilsDateInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: NgxUtilsLoadingInterceptor, multi: true },
     ],

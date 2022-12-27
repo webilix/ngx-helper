@@ -15,9 +15,18 @@ import { BoxComponent } from './box/box.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ListComponent } from './list/list.component';
 import { PipeComponent } from './pipe/pipe.component';
+import { ValuesComponent } from './values/values.component';
 
 @NgModule({
-    declarations: [AppComponent, BottomSheetComponent, BoxComponent, DialogComponent, ListComponent, PipeComponent],
+    declarations: [
+        AppComponent,
+        BottomSheetComponent,
+        BoxComponent,
+        DialogComponent,
+        ListComponent,
+        PipeComponent,
+        ValuesComponent,
+    ],
     imports: [
         CommonModule,
         BrowserModule,

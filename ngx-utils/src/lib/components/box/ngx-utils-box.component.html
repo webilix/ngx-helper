@@ -1,9 +1,12 @@
-<div class="ngx-utils-box" *ngIf="title && component">
+<div class="ngx-utils-box" *ngIf="title && show">
     <div class="title">
         <span>{{ title }}</span>
         <mat-icon *ngIf="icon" [ngClass]="['ngx-utils-icon']" [fontIcon]="icon"></mat-icon>
     </div>
-    <div class="component">
-        <ng-container *ngComponentOutlet="component"></ng-container>
+    <div class="component" [ngStyle]="{ padding: padding }" #contentView>
+        <ng-container *ngIf="component">
+            <ng-container component *ngComponentOutlet="component"></ng-container>
+        </ng-container>
+        <ng-content></ng-content>
     </div>
 </div>

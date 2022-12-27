@@ -19,7 +19,7 @@ export class NgxUtilsValuePipe implements PipeTransform {
             : `<span${extra}${ltr ? ' style="direction: ltr; display: inline-block;"' : ''}>${html}</span>`;
     }
 
-    private getDate(date: Date, format: string | 'FULL' | 'DATE' | 'TIME', timezone?: string): string {
+    getDate(date: Date, format: string | 'FULL' | 'DATE' | 'TIME' = 'DATE', timezone?: string): string {
         format =
             format === 'FULL'
                 ? 'W، d N Y H:I:S'
@@ -31,7 +31,7 @@ export class NgxUtilsValuePipe implements PipeTransform {
         return JalaliDateTime({ timezone }).toFullText(date, { format });
     }
 
-    getDuration(value: number | Date | { from: Date; to?: Date }, view: 'FULL' | 'DAY' | 'HOUR'): string {
+    getDuration(value: number | Date | { from: Date; to?: Date }, view: 'FULL' | 'DAY' | 'HOUR' = 'FULL'): string {
         let seconds: number = 0;
         if (Validator.VALUE.isNumber(value)) seconds = Math.abs(value as number);
         else if (Validator.VALUE.isDate(value))
@@ -73,8 +73,10 @@ export class NgxUtilsValuePipe implements PipeTransform {
         let html: string = '';
         let english: boolean = false;
         let ltr: boolean = false;
-        if (typeof value === 'string') html = Helper.STRING.escapeHTML(value).replace(/(?:\r\n|\r|\n)/g, ' ');
-        else
+        if (typeof value === 'string') {
+            html = Helper.STRING.escapeHTML(value).replace(/(?:\r\n|\r|\n)/g, ' ');
+            english = !Helper.STRING.hasPersian(value);
+        } else
             switch (value['type']) {
                 case 'BANK-CARD':
                     if (!Validator.STRING.isBankCard(value.value)) return '';
@@ -85,11 +87,11 @@ export class NgxUtilsValuePipe implements PipeTransform {
                     break;
 
                 case 'DATE':
-                    html = this.getDate(value.value, value.format || 'DATE', value.timezone);
+                    html = this.getDate(value.value, value.format, value.timezone);
                     break;
 
                 case 'DURATION':
-                    html = this.getDuration(value.value, value.view || 'FULL');
+                    html = this.getDuration(value.value, value.view);
                     html = !!value.en ? html : Helper.STRING.changeNumbers(html, 'FA');
                     html = !!value.en ? html : html.replace(/,/g, value.en ? ',' : '،');
                     english = !!value.en;
@@ -113,7 +115,7 @@ export class NgxUtilsValuePipe implements PipeTransform {
                 case 'MULTILINE':
                     html = value.html ? value.value : Helper.STRING.escapeHTML(value.value);
                     html = html.replace(/(?:\r\n|\r|\n)/g, '<br />');
-                    english = !!value.en;
+                    english = !!value.en || !Helper.STRING.hasPersian(value.value);
                     break;
 
                 case 'NUMBER':

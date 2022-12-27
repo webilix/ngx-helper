@@ -20,6 +20,7 @@ import { BoxComponent } from './box/box.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { ListComponent } from './list/list.component';
 import { PipeComponent } from './pipe/pipe.component';
+import { ValuesComponent } from './values/values.component';
 
 @Component({
     selector: 'app-root',
@@ -83,6 +84,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public boxComponent: ComponentType<BoxComponent> = BoxComponent;
     public listComponent: ComponentType<ListComponent> = ListComponent;
     public pipeComponent: ComponentType<PipeComponent> = PipeComponent;
+    public valuesComponent: ComponentType<ValuesComponent> = ValuesComponent;
 
     public singleMenu: NgxUtilsMenu[] = [
         { title: 'حذف', click: () => this.log('DELETE'), icon: 'delete', color: 'warn' },

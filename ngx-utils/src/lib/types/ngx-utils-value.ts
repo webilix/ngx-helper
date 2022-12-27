@@ -12,3 +12,10 @@ export type NgxUtilsValue =
     | { type: 'MOBILE'; value: string; en?: true; join?: string }
     | { type: 'MULTILINE'; value: string; en?: boolean; html?: boolean }
     | { type: 'NUMBER'; value: number; en?: boolean };
+
+export interface INgxUtilsValues {
+    title: string;
+    value: NgxUtilsValue;
+    block?: boolean;
+    copy?: boolean;
+}
