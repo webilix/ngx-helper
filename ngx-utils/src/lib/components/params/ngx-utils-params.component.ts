@@ -4,7 +4,12 @@ import { Params, Router } from '@angular/router';
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 import { Validator } from '@webilix/validator-library';
 
-import { INgxUtilsParamsDate, INgxUtilsParamsSearch, INgxUtilsParamsSelect } from '../../interfaces/ngx-utils-params';
+import {
+    INgxUtilsParamDate,
+    INgxUtilsParamFavorite,
+    INgxUtilsParamSearch,
+    INgxUtilsParamSelect,
+} from '../../interfaces/ngx-utils-params';
 import { NgxUtilsMenu } from '../../types/ngx-utils-menu';
 import { INgxUtilsParamsUpdate, INgxUtilsParamsValues, NgxUtilsParams } from '../../types/ngx-utils-params';
 import { NgxUtilsService } from '../../ngx-utils.service';
@@ -47,14 +52,17 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                 if (value === undefined || this.values[param.name] === value) return;
 
                 switch (param.type) {
+                    case 'DATE':
+                        if (Validator.VALUE.isDate(value)) values[param.name] = value;
+                        break;
+                    case 'FAVORITE':
+                        values[param.name] = value === true;
+                        break;
                     case 'SEARCH':
                         if (Validator.VALUE.isString(value)) values[param.name] = value;
                         break;
                     case 'SELECT':
                         if (param.options.find((o) => o.id === value)) values[param.name] = value;
-                        break;
-                    case 'DATE':
-                        if (Validator.VALUE.isDate(value)) values[param.name] = value;
                         break;
                 }
             });
@@ -75,18 +83,21 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                 }
 
                 switch (param.type) {
-                    case 'SEARCH':
-                        this.values[param.name] = value;
-                        break;
-                    case 'SELECT':
-                        this.values[param.name] = param.options.find((o) => o.id === value) ? value : null;
-                        break;
                     case 'DATE':
                         if (value === null || !Validator.STRING.isDate(value)) this.values[param.name] = null;
                         else {
                             const gregorian = this.jalali.gregorian(value).date;
                             this.values[param.name] = new Date(`${gregorian}T00:00:00`);
                         }
+                        break;
+                    case 'FAVORITE':
+                        this.values[param.name] = value === 'TRUE';
+                        break;
+                    case 'SEARCH':
+                        this.values[param.name] = value;
+                        break;
+                    case 'SELECT':
+                        this.values[param.name] = param.options.find((o) => o.id === value) ? value : null;
                         break;
                 }
             });
@@ -109,17 +120,23 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         const values: INgxUtilsParamsValues = { page: this.page, params: {} };
         this.params.forEach((param: NgxUtilsParams) => {
             switch (param.type) {
+                case 'DATE':
+                    values.params[param.name] = {
+                        value: this.values[param.name],
+                        param: this.values[param.name] ? (this.values[param.name] as Date).toJSON() : '',
+                    };
+                    break;
+                case 'FAVORITE':
+                    values.params[param.name] = {
+                        value: this.values[param.name],
+                        param: this.values[param.name] ? 'TRUE' : 'FALSE',
+                    };
+                    break;
                 case 'SEARCH':
                 case 'SELECT':
                     values.params[param.name] = {
                         value: this.values[param.name],
                         param: this.values[param.name] || '',
-                    };
-                    break;
-                case 'DATE':
-                    values.params[param.name] = {
-                        value: this.values[param.name],
-                        param: this.values[param.name] ? (this.values[param.name] as Date).toJSON() : '',
                     };
                     break;
             }
@@ -136,12 +153,15 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             if (Validator.VALUE.isEmpty(value)) return;
 
             switch (param.type) {
+                case 'DATE':
+                    queryParams[param.name] = this.jalali.toString(value, { format: 'Y-M-D' });
+                    break;
+                case 'FAVORITE':
+                    if (value == true) queryParams[param.name] = 'TRUE';
+                    break;
                 case 'SEARCH':
                 case 'SELECT':
                     queryParams[param.name] = value;
-                    break;
-                case 'DATE':
-                    queryParams[param.name] = this.jalali.toString(value, { format: 'Y-M-D' });
                     break;
             }
         });
@@ -158,7 +178,26 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         this.updateRoute();
     }
 
-    setSearch(param: INgxUtilsParamsSearch, value: string): void {
+    setDate(param: INgxUtilsParamDate): void {
+        this.ngxUtilsService.getDate({ title: param.title || 'تاریخ', value: this.values[param.name] }).then(
+            (date: Date) => {
+                if (this.values[param.name]?.getTime() === date.getTime()) return;
+
+                this.page = 1;
+                this.values[param.name] = date;
+                this.updateRoute();
+            },
+            () => {},
+        );
+    }
+
+    setFavorite(param: INgxUtilsParamFavorite): void {
+        this.page = 1;
+        this.values[param.name] = !this.values[param.name];
+        this.updateRoute();
+    }
+
+    setSearch(param: INgxUtilsParamSearch, value: string): void {
         if (this.values[param.name] === (value.trim() || null)) return;
 
         this.page = 1;
@@ -166,11 +205,11 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         this.updateRoute();
     }
 
-    getSelectTitle(param: INgxUtilsParamsSelect, value: string): string {
+    getSelectTitle(param: INgxUtilsParamSelect, value: string): string {
         return param.options.find((o) => o.id === value)?.title || '';
     }
 
-    setSelect(param: INgxUtilsParamsSelect, value: string | null): void {
+    setSelect(param: INgxUtilsParamSelect, value: string | null): void {
         if (this.values[param.name] === value) return;
 
         this.page = 1;
@@ -178,7 +217,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         this.updateRoute();
     }
 
-    getSelect(param: INgxUtilsParamsSelect): void {
+    getSelect(param: INgxUtilsParamSelect): void {
         const value: string = this.values[param.name];
         this.ngxUtilsService.openBottomSheet<string>(NgxUtilsParamsSelectComponent, param.title, { param, value }).then(
             (value) => {
@@ -186,19 +225,6 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
 
                 this.page = 1;
                 this.values[param.name] = value;
-                this.updateRoute();
-            },
-            () => {},
-        );
-    }
-
-    setDate(param: INgxUtilsParamsDate): void {
-        this.ngxUtilsService.getDate({ title: param.title || 'تاریخ', value: this.values[param.name] }).then(
-            (date: Date) => {
-                if (this.values[param.name]?.getTime() === date.getTime()) return;
-
-                this.page = 1;
-                this.values[param.name] = date;
                 this.updateRoute();
             },
             () => {},

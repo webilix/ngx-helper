@@ -45,6 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ];
 
     public params2: NgxUtilsParams[] = [
+        { type: 'FAVORITE', name: 'favorite' },
         { type: 'SEARCH', name: 'en_query', english: true },
         {
             type: 'SELECT',

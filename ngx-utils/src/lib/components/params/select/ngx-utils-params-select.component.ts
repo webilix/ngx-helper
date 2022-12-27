@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
-import { INgxUtilsParamsSelect } from '../../../interfaces/ngx-utils-params';
+import { INgxUtilsParamSelect } from '../../../interfaces/ngx-utils-params';
 import { NgxUtilsService } from '../../../ngx-utils.service';
 
 @Component({
@@ -9,12 +9,12 @@ import { NgxUtilsService } from '../../../ngx-utils.service';
     styleUrls: ['./ngx-utils-params-select.component.scss'],
 })
 export class NgxUtilsParamsSelectComponent {
-    public param: INgxUtilsParamsSelect = this.data.param;
+    public param: INgxUtilsParamSelect = this.data.param;
     public options: { id: string; title: string }[] = this.data.param.options;
     public value: string = this.data.value;
 
     constructor(
-        @Inject(MAT_BOTTOM_SHEET_DATA) private readonly data: { param: INgxUtilsParamsSelect; value: string },
+        @Inject(MAT_BOTTOM_SHEET_DATA) private readonly data: { param: INgxUtilsParamSelect; value: string },
         private readonly ngxUtilsService: NgxUtilsService,
     ) {}
 

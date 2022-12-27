@@ -6,6 +6,26 @@
     align-items: center;
     column-gap: 0.5rem;
 
+    .ngx-utils-favorite {
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        border: 1px solid var(--ngxUtilsBorderColor);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        mat-icon {
+            color: var(--ngxUtilsBorderColor);
+            font-size: calc(var(--ngxUtilsIconSize) + 4px) !important;
+        }
+
+        mat-icon.favorite {
+            color: var(--ngxUtilsAccentColor);
+        }
+    }
+
     .ngx-utils-param {
         flex: 1;
         width: 100%;

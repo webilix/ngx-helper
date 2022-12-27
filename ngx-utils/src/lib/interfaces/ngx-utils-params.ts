@@ -1,21 +1,24 @@
-export interface INgxUtilsParamsDate {
+export interface INgxUtilsParam {
+    name: string;
+    title?: string;
+    english?: boolean;
+}
+
+export interface INgxUtilsParamDate extends Omit<INgxUtilsParam, 'english'> {
     type: 'DATE';
-    name: string;
-    title?: string;
 }
 
-export interface INgxUtilsParamsSearch {
+export interface INgxUtilsParamFavorite extends Omit<INgxUtilsParam, 'title' | 'english'> {
+    type: 'FAVORITE';
+}
+
+export interface INgxUtilsParamSearch extends INgxUtilsParam {
     type: 'SEARCH';
-    name: string;
-    title?: string;
-    english?: boolean;
 }
 
-export interface INgxUtilsParamsSelect {
+export interface INgxUtilsParamSelect extends Omit<INgxUtilsParam, 'title'> {
     type: 'SELECT';
-    name: string;
     title: string;
-    english?: boolean;
     icon?: string;
     options: { id: string; title: string }[];
 }
