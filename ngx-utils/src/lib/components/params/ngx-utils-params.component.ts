@@ -35,48 +35,10 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
 
         const page: string | null = params.get('page');
         this.page = page === null ? 1 : !Validator.STRING.isNumeric(page || '') ? 1 : +page;
-
-        this.params.forEach((param: NgxUtilsParams) => {
-            const value: string | null = params.get(param.name);
-            if (Validator.VALUE.isEmpty(value)) {
-                this.values[param.name] = null;
-                return;
-            }
-
-            switch (param.type) {
-                case 'SEARCH':
-                    this.values[param.name] = value;
-                    break;
-                case 'SELECT':
-                    this.values[param.name] = param.options.find((o) => o.id === value) ? value : null;
-                    break;
-                case 'DATE':
-                    if (value === null || !Validator.STRING.isDate(value)) this.values[param.name] = null;
-                    else {
-                        const gregorian = this.jalali.gregorian(value).date;
-                        this.values[param.name] = new Date(`${gregorian}T00:00:00`);
-                    }
-                    break;
-            }
-        });
-
-        this.params.forEach((param: NgxUtilsParams) => {
-            if (param.type !== 'SELECT' || param.options.length > 14) return;
-
-            this.menu[param.name] = param.options.map((o) => ({
-                title: o.title,
-                english: !!param.english,
-                click: () => this.setSelect(param, o.id),
-            }));
-        });
-
-        this.emitChanges();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['page'] && !changes['page'].firstChange) {
-            this.updateRoute();
-        }
+        if (changes['page'] && !changes['page'].firstChange) this.updateRoute();
 
         if (changes['update'] && !changes['update'].firstChange) {
             const values: { [key: string]: any } = {};
@@ -101,6 +63,45 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             this.page = 1;
             this.values = { ...this.values, ...values };
             this.updateRoute();
+        }
+
+        if (changes['params']) {
+            const params: URLSearchParams = new URLSearchParams(window.location.search);
+            this.params.forEach((param: NgxUtilsParams) => {
+                const value: string | null = params.get(param.name);
+                if (Validator.VALUE.isEmpty(value)) {
+                    this.values[param.name] = null;
+                    return;
+                }
+
+                switch (param.type) {
+                    case 'SEARCH':
+                        this.values[param.name] = value;
+                        break;
+                    case 'SELECT':
+                        this.values[param.name] = param.options.find((o) => o.id === value) ? value : null;
+                        break;
+                    case 'DATE':
+                        if (value === null || !Validator.STRING.isDate(value)) this.values[param.name] = null;
+                        else {
+                            const gregorian = this.jalali.gregorian(value).date;
+                            this.values[param.name] = new Date(`${gregorian}T00:00:00`);
+                        }
+                        break;
+                }
+            });
+
+            this.params.forEach((param: NgxUtilsParams) => {
+                if (param.type !== 'SELECT' || param.options.length > 14) return;
+
+                this.menu[param.name] = param.options.map((o) => ({
+                    title: o.title,
+                    english: !!param.english,
+                    click: () => this.setSelect(param, o.id),
+                }));
+            });
+
+            this.emitChanges();
         }
     }
 

@@ -126,6 +126,24 @@ export class AppComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        setTimeout(() => {
+            this.params1 = [
+                { type: 'SEARCH', name: 'fa_query', title: 'تست تغییر' },
+                {
+                    type: 'SELECT',
+                    name: 'fa_select',
+                    title: 'گزینه‌ها',
+                    options: [
+                        { id: 'option-1', title: 'گزینه اول' },
+                        { id: 'option-2', title: 'گزینه دوم' },
+                        { id: 'option-3', title: 'گزینه سوم' },
+                        { id: 'option-4', title: 'گزینه چهارم' },
+                    ],
+                },
+                { type: 'DATE', name: 'fa_date' },
+            ];
+        }, 2000);
+
         this.log(NGX_UTILS_LOADING_HEADER);
 
         this.connection = this.ngxUtilsConnectionService.connection;
