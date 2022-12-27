@@ -40,6 +40,8 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
 
         const page: string | null = params.get('page');
         this.page = page === null ? 1 : !Validator.STRING.isNumeric(page || '') ? 1 : +page;
+
+        if (this.params.length === 0) this.emitChanges();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
