@@ -169,7 +169,7 @@ export class NgxUtilsModule {
             '}' +
             '.ngx-utils-en {' +
             'font-family: var(--ngxUtilsEnFont);' +
-            'direction: rtl;' +
+            'direction: ltr;' +
             'text-align: left;' +
             '}' +
             '.ngx-utils-color-primary {color: var(--ngxUtilsPrimaryColor) !important}' +
