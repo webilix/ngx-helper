@@ -75,28 +75,28 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             this.updateRoute();
         }
 
+        this.values = {};
         if (changes['params']) {
             const params: URLSearchParams = new URLSearchParams(window.location.search);
             this.params.forEach((param: NgxUtilsParams) => {
-                const value: string | null = params.get(param.name);
-                if (Validator.VALUE.isEmpty(value)) {
-                    this.values[param.name] = null;
-                    return;
-                }
+                this.values[param.name] = null;
+
+                const value: any = params.get(param.name) || param.value;
+                if (Validator.VALUE.isEmpty(value)) return;
 
                 switch (param.type) {
                     case 'DATE':
-                        if (value === null || !Validator.STRING.isDate(value)) this.values[param.name] = null;
-                        else {
+                        if (Validator.VALUE.isDate(value)) this.values[param.name] = value;
+                        else if (Validator.STRING.isDate(value)) {
                             const gregorian = this.jalali.gregorian(value).date;
                             this.values[param.name] = new Date(`${gregorian}T00:00:00`);
                         }
                         break;
                     case 'FAVORITE':
-                        this.values[param.name] = value === 'TRUE';
+                        this.values[param.name] = Validator.VALUE.isBoolean(value) ? value : value === 'TRUE';
                         break;
                     case 'SEARCH':
-                        this.values[param.name] = value;
+                        this.values[param.name] = Validator.VALUE.isString(value) ? value : null;
                         break;
                     case 'SELECT':
                         this.values[param.name] = param.options.find((o) => o.id === value) ? value : null;
@@ -184,16 +184,23 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     }
 
     setDate(param: INgxUtilsParamDate): void {
-        this.ngxUtilsService.getDate({ title: param.title || 'تاریخ', value: this.values[param.name] }).then(
-            (date: Date) => {
-                if (this.values[param.name]?.getTime() === date.getTime()) return;
+        this.ngxUtilsService
+            .getDate({
+                title: param.title || 'تاریخ',
+                value: this.values[param.name],
+                minDate: param.minDate,
+                maxDate: param.maxDate,
+            })
+            .then(
+                (date: Date) => {
+                    if (this.values[param.name]?.getTime() === date.getTime()) return;
 
-                this.page = 1;
-                this.values[param.name] = date;
-                this.updateRoute();
-            },
-            () => {},
-        );
+                    this.page = 1;
+                    this.values[param.name] = date;
+                    this.updateRoute();
+                },
+                () => {},
+            );
     }
 
     setFavorite(param: INgxUtilsParamFavorite): void {

@@ -81,6 +81,33 @@ export class AppComponent implements OnInit, OnDestroy {
     ];
     public params3Update: INgxUtilsParamsUpdate = {};
 
+    public params4: NgxUtilsParams[] = [
+        { type: 'FAVORITE', name: 'value_favorite', value: true },
+        { type: 'SEARCH', name: 'value_query', value: 'متن جستجو' },
+        {
+            type: 'SELECT',
+            name: 'value_select',
+            title: 'گزینه‌ها',
+            options: [
+                { id: 'option-1', title: 'گزینه اول' },
+                { id: 'option-2', title: 'گزینه دوم' },
+                { id: 'option-3', title: 'گزینه سوم' },
+            ],
+            value: 'option-2',
+            required: true,
+        },
+        {
+            type: 'SELECT',
+            name: 'value_select_full',
+            icon: 'keyboard_hide',
+            title: 'گزینه‌ها',
+            options: [...Array(100).keys()].map((n: number) => ({ id: (n + 1).toString(), title: (n + 1).toString() })),
+            value: '2',
+            required: true,
+        },
+        { type: 'DATE', name: 'value_date', value: new Date(), required: true, maxDate: new Date() },
+    ];
+
     public boxComponent: ComponentType<BoxComponent> = BoxComponent;
     public listComponent: ComponentType<ListComponent> = ListComponent;
     public pipeComponent: ComponentType<PipeComponent> = PipeComponent;
