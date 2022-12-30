@@ -1,6 +1,7 @@
 <button
     *ngIf="menu.length === 1 && menu[0] !== 'SEPERATOR'"
     mat-button
+    type="button"
     class="ngx-utils-menu"
     [ngStyle]="{ border: border.toString() + 'px solid var(--ngxUtilsBorderColor)' }"
     [disabled]="menu[0].disableOn && menu[0].disableOn()"
@@ -14,6 +15,7 @@
 <ng-container *ngIf="menu.length > 1">
     <button
         mat-button
+        type="button"
         class="ngx-utils-menu"
         [color]="color"
         [ngStyle]="{ border: border.toString() + 'px solid var(--ngxUtilsBorderColor)' }"
@@ -31,8 +33,9 @@
                 *ngIf="m === 'SEPERATOR' && (i === 0 || menu[i - 1] !== 'SEPERATOR')"
             ></div>
             <button
-                mat-menu-item
                 *ngIf="m !== 'SEPERATOR'"
+                mat-menu-item
+                type="button"
                 [disabled]="m.disableOn && m.disableOn()"
                 (click)="click(m.click)"
             >
