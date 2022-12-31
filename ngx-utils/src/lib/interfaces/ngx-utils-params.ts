@@ -6,6 +6,12 @@ export interface INgxUtilsParam {
     required?: boolean;
 }
 
+export interface INgxUtilsParamComment extends Omit<INgxUtilsParam, 'name' | 'title' | 'value' | 'required'> {
+    type: 'COMMENT';
+    title: string;
+    value: string;
+}
+
 export interface INgxUtilsParamDate extends Omit<INgxUtilsParam, 'english' | 'value'> {
     type: 'DATE';
     value?: Date;

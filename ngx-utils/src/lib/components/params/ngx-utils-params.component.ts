@@ -50,6 +50,8 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         if (changes['update'] && !changes['update'].firstChange) {
             const values: { [key: string]: any } = {};
             this.params.forEach((param: NgxUtilsParams) => {
+                if (param.type === 'COMMENT') return;
+
                 const value: any = changes['update'].currentValue[param.name];
                 if (value === undefined || this.values[param.name] === value) return;
 
@@ -68,11 +70,12 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                         break;
                 }
             });
-            if (Object.keys(values).length === 0) return;
 
-            this.page = 1;
-            this.values = { ...this.values, ...values };
-            this.updateRoute();
+            if (Object.keys(values).length !== 0) {
+                this.page = 1;
+                this.values = { ...this.values, ...values };
+                this.updateRoute();
+            }
         }
 
         if (changes['params']) {
@@ -80,6 +83,8 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
 
             const params: URLSearchParams = new URLSearchParams(window.location.search);
             this.params.forEach((param: NgxUtilsParams) => {
+                if (param.type === 'COMMENT') return;
+
                 this.values[param.name] = null;
 
                 const value: any = params.get(param.name) || param.value;
@@ -115,6 +120,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                 }));
             });
 
+            this.page = 1;
             this.emitChanges();
         }
     }
@@ -155,6 +161,8 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         const queryParams: Params = {};
         if (this.page !== 1) queryParams['page'] = this.page.toString();
         this.params.forEach((param: NgxUtilsParams) => {
+            if (param.type === 'COMMENT') return;
+
             const value: any = this.values[param.name];
             if (Validator.VALUE.isEmpty(value)) return;
 
@@ -177,6 +185,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     }
 
     resetValue(param: NgxUtilsParams): void {
+        if (param.type === 'COMMENT') return;
         if (this.values[param.name] === null) return;
 
         this.page = 1;

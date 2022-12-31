@@ -108,6 +108,11 @@ export class AppComponent implements OnInit, OnDestroy {
         { type: 'DATE', name: 'value_date', value: new Date(), required: true, maxDate: new Date() },
     ];
 
+    public params5: NgxUtilsParams[] = [
+        { type: 'COMMENT', title: 'فارسی', value: 'مقدار فارسی' },
+        { type: 'COMMENT', title: 'انگلیسی', value: 'English value', english: true },
+    ];
+
     public boxComponent: ComponentType<BoxComponent> = BoxComponent;
     public listComponent: ComponentType<ListComponent> = ListComponent;
     public pipeComponent: ComponentType<PipeComponent> = PipeComponent;

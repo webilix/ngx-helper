@@ -10,6 +10,11 @@
         </div>
 
         <div class="ngx-utils-param" *ngIf="param.type !== 'FAVORITE'">
+            <!-- COMMENT -->
+            <ng-container *ngIf="param.type === 'COMMENT'">
+                <div class="title">{{ param.title }}</div>
+                <div [ngClass]="{ value: true, en: !!param.english }">{{ param.value }}</div>
+            </ng-container>
             <!-- DATE -->
             <ng-container *ngIf="param.type === 'DATE'">
                 <div class="title">{{ param.title || 'تاریخ' }}</div>

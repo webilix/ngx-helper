@@ -1,11 +1,19 @@
 import {
+    INgxUtilsParamComment,
     INgxUtilsParamDate,
     INgxUtilsParamFavorite,
     INgxUtilsParamSearch,
     INgxUtilsParamSelect,
 } from '../interfaces/ngx-utils-params';
 
-export type NgxUtilsParams = INgxUtilsParamDate | INgxUtilsParamFavorite | INgxUtilsParamSearch | INgxUtilsParamSelect;
+export type NgxUtilsParams =
+    // VIEW
+    | INgxUtilsParamComment
+    // INPUTS
+    | INgxUtilsParamDate
+    | INgxUtilsParamFavorite
+    | INgxUtilsParamSearch
+    | INgxUtilsParamSelect;
 
 export interface INgxUtilsParamsValues {
     page: number;
