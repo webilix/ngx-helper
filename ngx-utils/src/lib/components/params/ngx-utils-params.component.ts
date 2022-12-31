@@ -75,8 +75,9 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             this.updateRoute();
         }
 
-        this.values = {};
         if (changes['params']) {
+            this.values = {};
+
             const params: URLSearchParams = new URLSearchParams(window.location.search);
             this.params.forEach((param: NgxUtilsParams) => {
                 this.values[param.name] = null;
