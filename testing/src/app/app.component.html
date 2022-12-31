@@ -121,7 +121,12 @@
     <ngx-utils-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'warn'" [border]="1"></ngx-utils-menu>
 </div>
 
-<ngx-utils-calendar [minDate]="previousDate" [maxDate]="nextDate" (changed)="log($event)"></ngx-utils-calendar>
+<ngx-utils-calendar
+    [route]="['/']"
+    [minDate]="previousDate"
+    [maxDate]="nextDate"
+    (changed)="log($event)"
+></ngx-utils-calendar>
 
 <ngx-utils-box title="نمایش باکس" icon="home" [component]="boxComponent"></ngx-utils-box>
 

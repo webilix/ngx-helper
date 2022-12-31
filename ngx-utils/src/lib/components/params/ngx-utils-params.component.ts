@@ -36,9 +36,9 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     constructor(private readonly router: Router, private readonly ngxUtilsService: NgxUtilsService) {}
 
     ngOnInit(): void {
-        const params: URLSearchParams = new URLSearchParams(window.location.search);
+        const params: Params = this.getQueryParams();
 
-        const page: string | null = params.get('page');
+        const page: string | null = params['page'] || null;
         this.page = page === null ? 1 : !Validator.STRING.isNumeric(page || '') ? 1 : +page;
 
         if (this.params.length === 0) this.emitChanges();
@@ -80,14 +80,13 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
 
         if (changes['params']) {
             this.values = {};
-
-            const params: URLSearchParams = new URLSearchParams(window.location.search);
+            const params: Params = this.getQueryParams();
             this.params.forEach((param: NgxUtilsParams) => {
                 if (param.type === 'COMMENT') return;
 
                 this.values[param.name] = null;
 
-                const value: any = params.get(param.name) || param.value;
+                const value: any = params[param.name] || param.value;
                 if (Validator.VALUE.isEmpty(value)) return;
 
                 switch (param.type) {
@@ -125,6 +124,13 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         }
     }
 
+    getQueryParams(): Params {
+        const params: URLSearchParams = new URLSearchParams(window.location.search);
+        const queryParams: Params = {};
+        params.forEach((value: string, key: string) => (queryParams[key] = value));
+        return queryParams;
+    }
+
     emitChanges(): void {
         const values: INgxUtilsParamsValues = { page: this.page, params: {} };
         this.params.forEach((param: NgxUtilsParams) => {
@@ -158,8 +164,8 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     }
 
     updateRoute(): void {
-        const queryParams: Params = {};
-        if (this.page !== 1) queryParams['page'] = this.page.toString();
+        const queryParams: Params = this.getQueryParams();
+        queryParams['page'] = this.page > 1 ? this.page.toString() : undefined;
         this.params.forEach((param: NgxUtilsParams) => {
             if (param.type === 'COMMENT') return;
 
@@ -171,7 +177,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                     queryParams[param.name] = this.jalali.toString(value, { format: 'Y-M-D' });
                     break;
                 case 'FAVORITE':
-                    if (value == true) queryParams[param.name] = 'TRUE';
+                    queryParams[param.name] = value == true ? 'TRUE' : undefined;
                     break;
                 case 'SEARCH':
                 case 'SELECT':

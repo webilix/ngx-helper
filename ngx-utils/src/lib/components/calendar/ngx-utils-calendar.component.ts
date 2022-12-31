@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Params, Router } from '@angular/router';
 
 import { Helper } from '@webilix/helper-library';
 import { JalaliDateTime, JalaliDateTimePeriod } from '@webilix/jalali-date-time';
+import { Validator } from '@webilix/validator-library';
 
 import { INgxUtilsCalendarPeriod } from '../../interfaces/ngx-utils-calendar';
 import { NgxUtilsMenu } from '../../types/ngx-utils-menu';
@@ -14,6 +16,7 @@ import { NgxUtilsService } from '../../ngx-utils.service';
 })
 export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
     @Input() types: ('DAY' | 'WEEK' | 'MONTH' | 'YEAR' | 'PERIOD')[] = [];
+    @Input() route: string[] = [];
     @Input() value?: Date;
     @Input() minDate?: Date;
     @Input() maxDate?: Date;
@@ -45,12 +48,30 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
 
     constructor(
         @Inject('NGX_UTILS_TIMEZONE') public readonly timezone: string,
+        private readonly router: Router,
         private readonly ngxUtilsService: NgxUtilsService,
     ) {}
 
     ngOnInit(): void {
         if (this.types.length === 0) this.types = ['DAY', 'WEEK', 'MONTH', 'YEAR', 'PERIOD'];
-        this.setPeriod(this.types[0]);
+
+        const jalali = JalaliDateTime({ timezone: this.timezone });
+        const queryParams: Params = this.getQueryParams();
+        const type: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR' | 'PERIOD' =
+            this.route.length !== 0 &&
+            ['DAY', 'WEEK', 'MONTH', 'YEAR', 'PERIOD'].includes(queryParams['ngx-utils-calendar-type'])
+                ? queryParams['ngx-utils-calendar-type']
+                : this.types[0];
+        const from: Date =
+            this.route.length !== 0 && Validator.STRING.isDate(queryParams['ngx-utils-calendar-from'])
+                ? new Date(`${jalali.gregorian(queryParams['ngx-utils-calendar-from']).date}T00:00:00`)
+                : new Date();
+        const to: Date =
+            this.route.length !== 0 && Validator.STRING.isDate(queryParams['ngx-utils-calendar-to'])
+                ? new Date(`${jalali.gregorian(queryParams['ngx-utils-calendar-to']).date}T00:00:00`)
+                : new Date();
+
+        this.setPeriod(type, from, to);
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -85,7 +106,23 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
                 break;
         }
 
+        if (this.route.length !== 0) {
+            const queryParams: Params = this.getQueryParams();
+
+            queryParams['ngx-utils-calendar-type'] = this.type;
+            queryParams['ngx-utils-calendar-from'] = jalali.toString(this.from, { format: 'Y-M-D' });
+            queryParams['ngx-utils-calendar-to'] = jalali.toString(this.to, { format: 'Y-M-D' });
+            this.router.navigate(this.route, { queryParams });
+        }
+
         this.changed.emit({ from: this.from, to: this.to });
+    }
+
+    getQueryParams(): Params {
+        const params: URLSearchParams = new URLSearchParams(window.location.search);
+        const queryParams: Params = {};
+        params.forEach((value: string, key: string) => (queryParams[key] = value));
+        return queryParams;
     }
 
     checkDate(date: Date): Date {
@@ -94,12 +131,12 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
         return date;
     }
 
-    setPeriod(type: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR' | 'PERIOD'): void {
+    setPeriod(type: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR' | 'PERIOD', from?: Date, to?: Date): void {
         const jalali = JalaliDateTime({ timezone: this.timezone });
 
         this.type = type;
         this.title = this.titles[this.type];
-        const date: Date = this.checkDate(new Date());
+        const date: Date = this.checkDate(from || new Date());
 
         switch (this.type) {
             case 'DAY':
@@ -125,7 +162,7 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
                 break;
             case 'PERIOD':
                 this.from = this.checkDate(jalali.periodMonth(1, date).from);
-                this.to = this.checkDate(jalali.periodDay(1, date).to);
+                this.to = this.checkDate(jalali.periodDay(1, this.checkDate(to || date)).to);
                 break;
         }
 
