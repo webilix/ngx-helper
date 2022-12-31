@@ -1,3 +1,5 @@
+export type NgxUtilsCalendar = 'DAY' | 'WEEK' | 'MONTH' | 'YEAR' | 'PERIOD';
+
 export interface INgxUtilsCalendarConfig {
     title: string | null;
     value: Date | null;
@@ -8,4 +10,9 @@ export interface INgxUtilsCalendarConfig {
 export interface INgxUtilsCalendarPeriod {
     from: Date;
     to: Date;
+}
+
+export interface INgxUtilsCalendarValue {
+    type: NgxUtilsCalendar;
+    period: INgxUtilsCalendarPeriod;
 }

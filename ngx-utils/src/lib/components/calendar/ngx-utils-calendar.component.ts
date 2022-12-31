@@ -5,7 +5,7 @@ import { Helper } from '@webilix/helper-library';
 import { JalaliDateTime, JalaliDateTimePeriod } from '@webilix/jalali-date-time';
 import { Validator } from '@webilix/validator-library';
 
-import { INgxUtilsCalendarPeriod } from '../../interfaces/ngx-utils-calendar';
+import { INgxUtilsCalendarPeriod, INgxUtilsCalendarValue, NgxUtilsCalendar } from '../../interfaces/ngx-utils-calendar';
 import { NgxUtilsMenu } from '../../types/ngx-utils-menu';
 import { NgxUtilsService } from '../../ngx-utils.service';
 
@@ -15,14 +15,14 @@ import { NgxUtilsService } from '../../ngx-utils.service';
     styleUrls: ['./ngx-utils-calendar.component.scss'],
 })
 export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
-    @Input() types: ('DAY' | 'WEEK' | 'MONTH' | 'YEAR' | 'PERIOD')[] = [];
+    @Input() types: NgxUtilsCalendar[] = [];
     @Input() route: string[] = [];
     @Input() value?: Date;
     @Input() minDate?: Date;
     @Input() maxDate?: Date;
-    @Output() changed: EventEmitter<INgxUtilsCalendarPeriod> = new EventEmitter<INgxUtilsCalendarPeriod>();
+    @Output() changed: EventEmitter<INgxUtilsCalendarValue> = new EventEmitter<INgxUtilsCalendarValue>();
 
-    public type: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR' | 'PERIOD' = 'DAY';
+    public type: NgxUtilsCalendar = 'DAY';
     public title: string = '';
     private titles = { DAY: 'روزانه', WEEK: 'هفتگی', MONTH: 'ماهانه', YEAR: 'سالانه', PERIOD: 'انتخابی' };
 
@@ -38,7 +38,7 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
             ['ماهانه', 'MONTH'],
             ['سالانه', 'YEAR'],
             ['انتخابی', 'PERIOD'],
-        ] as [string, 'DAY' | 'WEEK' | 'MONTH' | 'YEAR' | 'PERIOD'][]
+        ] as [string, NgxUtilsCalendar][]
     ).map((m) => ({
         title: m[0],
         click: () => this.setPeriod(m[1]),
@@ -57,7 +57,7 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
 
         const jalali = JalaliDateTime({ timezone: this.timezone });
         const queryParams: Params = this.getQueryParams();
-        const type: 'DAY' | 'WEEK' | 'MONTH' | 'YEAR' | 'PERIOD' =
+        const type: NgxUtilsCalendar =
             this.route.length !== 0 &&
             ['DAY', 'WEEK', 'MONTH', 'YEAR', 'PERIOD'].includes(queryParams['ngx-utils-calendar-type'])
                 ? queryParams['ngx-utils-calendar-type']
@@ -115,7 +115,10 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
             this.router.navigate(this.route, { queryParams });
         }
 
-        this.changed.emit({ from: this.from, to: this.to });
+        this.changed.emit({
+            type: this.type,
+            period: { from: this.from, to: this.to },
+        });
     }
 
     getQueryParams(): Params {
