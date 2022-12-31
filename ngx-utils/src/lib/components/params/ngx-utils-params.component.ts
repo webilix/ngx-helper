@@ -170,7 +170,10 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             if (param.type === 'COMMENT') return;
 
             const value: any = this.values[param.name];
-            if (Validator.VALUE.isEmpty(value)) return;
+            if (Validator.VALUE.isEmpty(value)) {
+                queryParams[param.name] = undefined;
+                return;
+            }
 
             switch (param.type) {
                 case 'DATE':
@@ -181,7 +184,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                     break;
                 case 'SEARCH':
                 case 'SELECT':
-                    queryParams[param.name] = value;
+                    queryParams[param.name] = value || undefined;
                     break;
             }
         });
