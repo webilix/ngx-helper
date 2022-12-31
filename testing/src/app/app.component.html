@@ -7,6 +7,13 @@
     </div>
 </div>
 
+<ngx-utils-calendar
+    [route]="['/']"
+    [minDate]="previousDate"
+    [maxDate]="nextDate"
+    (changed)="log($event)"
+></ngx-utils-calendar>
+
 <ngx-utils-params [params]="params1" (changed)="log('PARAMS1', $event)"></ngx-utils-params>
 <ngx-utils-params [params]="params2" (changed)="log('PARAMS2', $event)"></ngx-utils-params>
 <ngx-utils-params [params]="params4" (changed)="log('PARAMS4', $event)"></ngx-utils-params>
@@ -120,13 +127,6 @@
     <ngx-utils-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'accent'"></ngx-utils-menu>
     <ngx-utils-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'warn'" [border]="1"></ngx-utils-menu>
 </div>
-
-<ngx-utils-calendar
-    [route]="['/']"
-    [minDate]="previousDate"
-    [maxDate]="nextDate"
-    (changed)="log($event)"
-></ngx-utils-calendar>
 
 <ngx-utils-box title="نمایش باکس" icon="home" [component]="boxComponent"></ngx-utils-box>
 

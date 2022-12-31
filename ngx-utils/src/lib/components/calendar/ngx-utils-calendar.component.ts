@@ -31,20 +31,19 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
     public to: Date = new Date();
     public period: string | [string, string] = '';
 
-    public menu: NgxUtilsMenu[] = (
-        [
-            ['روزانه', 'DAY'],
-            ['هفتگی', 'WEEK'],
-            ['ماهانه', 'MONTH'],
-            ['سالانه', 'YEAR'],
-            ['انتخابی', 'PERIOD'],
-        ] as [string, NgxUtilsCalendar][]
-    ).map((m) => ({
-        title: m[0],
-        click: () => this.setPeriod(m[1]),
-        hideOn: () => !this.types.includes(m[1]),
-        disableOn: () => this.type === m[1],
-    }));
+    public previous: { active: boolean; date: Date; check?: Date } = { active: false, date: new Date() };
+    public next: { active: boolean; date: Date; check?: Date } = { active: false, date: new Date() };
+    public methods: {
+        [key in NgxUtilsCalendar]: (v: number, d?: Date, t?: string) => JalaliDateTimePeriod;
+    } = {
+        DAY: JalaliDateTime().periodDay,
+        WEEK: JalaliDateTime().periodWeek,
+        MONTH: JalaliDateTime().periodMonth,
+        YEAR: JalaliDateTime().periodYear,
+        PERIOD: JalaliDateTime().periodDay,
+    };
+
+    public menu: NgxUtilsMenu[] = [];
 
     constructor(
         @Inject('NGX_UTILS_TIMEZONE') public readonly timezone: string,
@@ -55,11 +54,25 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
     ngOnInit(): void {
         if (this.types.length === 0) this.types = ['DAY', 'WEEK', 'MONTH', 'YEAR', 'PERIOD'];
 
+        const types: [string, NgxUtilsCalendar][] = [
+            ['روزانه', 'DAY'],
+            ['هفتگی', 'WEEK'],
+            ['ماهانه', 'MONTH'],
+            ['سالانه', 'YEAR'],
+            ['انتخابی', 'PERIOD'],
+        ];
+        this.menu = types
+            .filter((m) => this.types.includes(m[1]))
+            .map((m) => ({
+                title: m[0],
+                click: () => this.setPeriod(m[1]),
+                disableOn: () => this.type === m[1],
+            }));
+
         const jalali = JalaliDateTime({ timezone: this.timezone });
         const queryParams: Params = this.getQueryParams();
         const type: NgxUtilsCalendar =
-            this.route.length !== 0 &&
-            ['DAY', 'WEEK', 'MONTH', 'YEAR', 'PERIOD'].includes(queryParams['ngx-utils-calendar-type'])
+            this.route.length !== 0 && this.types.includes(queryParams['ngx-utils-calendar-type'])
                 ? queryParams['ngx-utils-calendar-type']
                 : this.types[0];
         const from: Date =
@@ -106,6 +119,19 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
                 break;
         }
 
+        if (this.type !== 'PERIOD') {
+            this.previous.check = this.minDate
+                ? this.methods[this.type](1, this.minDate, this.timezone).from
+                : undefined;
+            this.previous.date = this.methods[this.type](1, new Date(this.from.getTime() - 1), this.timezone).from;
+            this.next.check = this.maxDate ? this.methods[this.type](1, this.maxDate, this.timezone).to : undefined;
+            this.next.date = this.methods[this.type](1, new Date(this.to.getTime() + 1), this.timezone).to;
+
+            this.previous.active =
+                !this.previous.check || this.previous.date.getTime() >= this.previous.check.getTime();
+            this.next.active = !this.next.check || this.next.date.getTime() <= this.next.check.getTime();
+        }
+
         if (this.route.length !== 0) {
             const queryParams: Params = this.getQueryParams();
 
@@ -143,25 +169,12 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
 
         switch (this.type) {
             case 'DAY':
-                const day: JalaliDateTimePeriod = jalali.periodDay(1, date);
-                this.from = day.from;
-                this.to = day.to;
-                break;
             case 'WEEK':
-                const week: JalaliDateTimePeriod = jalali.periodWeek(1, date);
-                this.from = week.from;
-                this.to = week.to;
-                break;
             case 'MONTH':
-                const month: JalaliDateTimePeriod = jalali.periodMonth(1, date);
-                this.from = month.from;
-                this.to = month.to;
-                break;
             case 'YEAR':
-                const year: string = jalali.toString(date, { format: 'Y' });
-                const lastDay: string = jalali.daysInMonth(`${year}-12`).toString();
-                this.from = jalali.periodDay(1, new Date(jalali.gregorian(`${year}-01-01`).date)).from;
-                this.to = jalali.periodDay(1, new Date(jalali.gregorian(`${year}-12-${lastDay}`).date)).to;
+                const period: JalaliDateTimePeriod = this.methods[this.type](1, date, this.timezone);
+                this.from = period.from;
+                this.to = period.to;
                 break;
             case 'PERIOD':
                 this.from = this.checkDate(jalali.periodMonth(1, date).from);
@@ -170,6 +183,38 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
         }
 
         this.setData();
+    }
+
+    setPN(type: 'PREVIOUS' | 'NEXT'): void {
+        if (this.type === 'PERIOD') return;
+        if ((type === 'PREVIOUS' && !this.previous.active) || (type === 'NEXT' && !this.next.active)) return;
+
+        if (type === 'PREVIOUS') {
+            this.from = this.previous.date;
+            this.to = this.methods[this.type](1, this.previous.date, this.timezone).to;
+        } else {
+            this.to = this.next.date;
+            this.from = this.methods[this.type](1, this.next.date, this.timezone).from;
+        }
+
+        this.setData();
+    }
+
+    getValue(): void {
+        switch (this.type) {
+            case 'DAY':
+                this.getDate();
+                break;
+            case 'WEEK':
+                this.getWeek();
+                break;
+            case 'MONTH':
+                this.getMonth();
+                break;
+            case 'YEAR':
+                this.getYear();
+                break;
+        }
     }
 
     getDate(): void {
