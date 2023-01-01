@@ -1,5 +1,15 @@
-.ngx-utils-params {
+:host {
+    display: flex;
     direction: rtl;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+
+.ngx-utils-params {
+    flex: 1;
     height: 32px;
 
     display: flex;
@@ -45,6 +55,7 @@
 
             padding: 0 0.5rem;
             background-color: #fff;
+            z-index: 3;
 
             line-height: 16px;
             font-weight: 600;
@@ -115,5 +126,74 @@
                 color: var(--ngxUtilsPrimaryColor);
             }
         }
+    }
+}
+
+.ngx-utils-order {
+    display: flex;
+    align-items: center;
+
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid var(--ngxUtilsBorderColor);
+    position: relative;
+
+    .title {
+        position: absolute;
+        top: -8px;
+        right: 0.25rem;
+
+        padding: 0 0.5rem;
+        background-color: #fff;
+        z-index: 3;
+
+        line-height: 16px;
+        font-weight: 600;
+        font-size: calc(var(--ngxUtilsFontSize) - 2px);
+        font-family: var(--ngxUtilsFaFont);
+        opacity: 0.6;
+    }
+
+    .option {
+        padding: 0 0.5rem;
+        font-family: var(--ngxUtilsFaFont);
+        font-size: calc(var(--ngxUtilsFontSize) - 1px);
+    }
+
+    mat-icon {
+        cursor: pointer;
+        width: 32px !important;
+        height: 30px !important;
+        color: var(--ngxUtilsPrimaryColor);
+        transition: all 0.35s ease-out;
+        z-index: 2;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    ngx-utils-menu {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        width: 32px !important;
+        height: 30px !important;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .background {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 32px !important;
+        height: 30px !important;
+        border-radius: 4px 0 0 4px;
+        color: var(--ngxUtilsPrimaryColor);
+        background-color: var(--ngxUtilsBackgroundColor);
+        z-index: 1;
     }
 }

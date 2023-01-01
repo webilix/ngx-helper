@@ -11,7 +11,12 @@ import {
     INgxUtilsParamSelect,
 } from '../../interfaces/ngx-utils-params';
 import { NgxUtilsMenu } from '../../types/ngx-utils-menu';
-import { INgxUtilsParamsUpdate, INgxUtilsParamsValues, NgxUtilsParams } from '../../types/ngx-utils-params';
+import {
+    INgxUtilsParamsOrder,
+    INgxUtilsParamsUpdate,
+    INgxUtilsParamsValue,
+    NgxUtilsParams,
+} from '../../types/ngx-utils-params';
 import { NgxUtilsService } from '../../ngx-utils.service';
 
 import { NgxUtilsParamsSelectComponent } from './select/ngx-utils-params-select.component';
@@ -26,10 +31,14 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     @Input() page: number = 1;
     @Input() params: NgxUtilsParams[] = [];
     @Input() update: INgxUtilsParamsUpdate = {};
-    @Output() changed: EventEmitter<INgxUtilsParamsValues> = new EventEmitter<INgxUtilsParamsValues>();
+    @Input() order?: INgxUtilsParamsOrder;
+    @Output() changed: EventEmitter<INgxUtilsParamsValue> = new EventEmitter<INgxUtilsParamsValue>();
 
-    public menu: { [key: string]: NgxUtilsMenu[] } = {};
+    public menus: { [key: string]: NgxUtilsMenu[] } = {};
     public values: { [key: string]: any } = {};
+
+    public orderMenu: NgxUtilsMenu[] = [];
+    public orderValue: { type: 'ASC' | 'DESC'; option: string } = { type: 'ASC', option: '' };
 
     private jalali = JalaliDateTime();
 
@@ -78,7 +87,10 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             }
         }
 
-        if (changes['params']) {
+        const hasParams: boolean = !!changes['params'];
+        const hasOrder: boolean = !!(changes['order'] && this.order && this.order.options.length !== 0);
+
+        if (hasParams) {
             this.values = {};
             const params: Params = this.getQueryParams();
             this.params.forEach((param: NgxUtilsParams) => {
@@ -112,13 +124,31 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             this.params.forEach((param: NgxUtilsParams) => {
                 if (param.type !== 'SELECT' || param.options.length > 14) return;
 
-                this.menu[param.name] = param.options.map((o) => ({
+                this.menus[param.name] = param.options.map((o) => ({
                     title: o.title,
                     english: !!param.english,
                     click: () => this.setSelect(param, o.id),
                 }));
             });
+        }
 
+        if (hasOrder) {
+            this.orderMenu =
+                this.order?.options.map((o) => ({ title: o.title, click: () => this.setOrderOption(o.id) })) || [];
+
+            const params: Params = this.getQueryParams();
+            this.orderValue.type =
+                params['ngx-utils-order-type'] === 'ASC' || params['ngx-utils-order-type'] === 'DESC'
+                    ? params['ngx-utils-order-type']
+                    : this.order?.type || 'ASC';
+            this.orderValue.option =
+                this.order?.options.find((o) => params['ngx-utils-order-option'] === o.id)?.id ||
+                this.order?.options.find((o) => this.order?.default === o.id)?.id ||
+                this.order?.options[0].id ||
+                '';
+        }
+
+        if (hasParams || hasOrder) {
             this.page = 1;
             this.emitChanges();
         }
@@ -132,7 +162,12 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     }
 
     emitChanges(): void {
-        const values: INgxUtilsParamsValues = { page: this.page, params: {} };
+        const values: INgxUtilsParamsValue = {
+            page: this.page,
+            params: {},
+            order: { type: 'ASC', option: '', param: '' },
+        };
+
         this.params.forEach((param: NgxUtilsParams) => {
             switch (param.type) {
                 case 'DATE':
@@ -160,12 +195,16 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             }
         });
 
+        if (this.order)
+            values.order = { ...this.orderValue, param: `${this.orderValue.type}:${this.orderValue.option}` };
+
         this.changed.emit(values);
     }
 
     updateRoute(): void {
         const queryParams: Params = this.getQueryParams();
         queryParams['page'] = this.page > 1 ? this.page.toString() : undefined;
+
         this.params.forEach((param: NgxUtilsParams) => {
             if (param.type === 'COMMENT') return;
 
@@ -188,6 +227,16 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                     break;
             }
         });
+
+        if (this.order) {
+            queryParams['ngx-utils-order-type'] =
+                this.orderValue.type !== this.order.type ? this.orderValue.type : undefined;
+            queryParams['ngx-utils-order-option'] =
+                this.orderValue.option === this.order.default ||
+                (!this.order.default && this.orderValue.option === this.order.options[0].id)
+                    ? undefined
+                    : this.orderValue.option;
+        }
 
         this.router.navigate(this.route, { queryParams });
         this.emitChanges();
@@ -260,5 +309,28 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             },
             () => {},
         );
+    }
+
+    getOrderTitle(): string {
+        if (!this.order || this.order.options.length === 0) return '';
+
+        return this.order.options.find((o) => o.id === this.orderValue.option)?.title || this.order.options[0]?.title;
+    }
+
+    setOrderOption(id: string): void {
+        if (!this.order || this.order.options.length === 0) return;
+
+        const option = this.order.options.find((o) => o.id === id);
+        if (!option) return;
+
+        this.orderValue.option = id;
+        this.updateRoute();
+    }
+
+    changeOrderType(): void {
+        if (!this.order || this.order.options.length === 0) return;
+
+        this.orderValue.type = this.orderValue.type === 'ASC' ? 'DESC' : 'ASC';
+        this.updateRoute();
     }
 }

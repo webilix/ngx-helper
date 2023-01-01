@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import {
     INgxUtilsCalendarPeriod,
     INgxUtilsLocation,
+    INgxUtilsParamsOrder,
     INgxUtilsParamsUpdate,
     NgxUtilsConnectionService,
     NgxUtilsLoadingService,
@@ -44,6 +45,16 @@ export class AppComponent implements OnInit, OnDestroy {
         },
         { type: 'DATE', name: 'fa_date' },
     ];
+
+    public order: INgxUtilsParamsOrder = {
+        type: 'DESC',
+        options: [
+            { id: 'option-1', title: 'گزینه اول' },
+            { id: 'option-2', title: 'گزینه دوم' },
+            { id: 'option-3', title: 'گزینه سوم' },
+        ],
+        default: 'option-2',
+    };
 
     public params2: NgxUtilsParams[] = [
         { type: 'FAVORITE', name: 'favorite' },

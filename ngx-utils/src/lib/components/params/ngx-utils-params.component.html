@@ -41,7 +41,7 @@
             </ng-container>
             <!-- SELECT -->
             <ng-container *ngIf="param.type === 'SELECT'">
-                <div class="title">{{ param.title }}</div>
+                <div class="title">{{ param.title || '' }}</div>
                 <div
                     [ngClass]="{ value: true, 'value-en': !!param.english }"
                     (click)="param.options.length > 14 ? getSelect(param) : null"
@@ -52,7 +52,7 @@
                 <ngx-utils-menu
                     *ngIf="param.options.length <= 14"
                     [icon]="param.icon || 'keyboard_double_arrow_down'"
-                    [menu]="menu[param.name]"
+                    [menu]="menus[param.name]"
                     [tigger]="menuTrigger"
                     [xPosition]="'before'"
                     [ngStyle]="{ position: values[param.name] ? 'absolute' : 'static' }"
@@ -68,4 +68,22 @@
             </ng-container>
         </div>
     </ng-container>
+</div>
+
+<div class="ngx-utils-order" *ngIf="order && order.options.length !== 0">
+    <div class="title">{{ order.title || 'ترتیب' }}</div>
+    <div class="option" #orderMenuTrigger>{{ getOrderTitle() }}</div>
+    <ngx-utils-menu
+        *ngIf="orderMenu.length > 1"
+        [menu]="orderMenu"
+        [xPosition]="'before'"
+        [tigger]="orderMenuTrigger"
+    ></ngx-utils-menu>
+    <mat-icon
+        class="ngx-utils-icon"
+        [fontIcon]="'filter_list'"
+        [ngStyle]="{ transform: this.orderValue.type === 'ASC' ? 'rotateX(180deg)' : 'rotateX(0deg)' }"
+        (click)="changeOrderType()"
+    ></mat-icon>
+    <div class="background"></div>
 </div>
