@@ -1,6 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
+import { Helper } from '@webilix/helper-library';
+
 import { NgxUtilsValuePipe } from '../../pipes/ngx-utils-value.pipe';
 import { INgxUtilsValues } from '../../types/ngx-utils-value';
 
@@ -52,6 +54,13 @@ export class NgxUtilsValuesComponent implements OnChanges {
                         break;
                     case 'NUMBER':
                         this.copy[index] = value.value.value.toString();
+                        break;
+                    case 'PRICE':
+                        const en: boolean = !!value.value.en;
+                        this.copy[index] = this.ngxUtilsValuePipe
+                            .getPrice(value.value.value, en, !!value.value.short)
+                            .map((v) => (typeof v === 'string' ? v : Helper.NUMBER.format(v, en ? 'EN' : 'FA')))
+                            .join(' ');
                         break;
                 }
         });

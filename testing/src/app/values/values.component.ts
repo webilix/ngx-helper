@@ -33,5 +33,6 @@ export class ValuesComponent {
             copy: true,
         },
         { title: 'مقدار عددی', value: { type: 'NUMBER', value: 123456789 }, copy: true },
+        { title: 'قیمت', value: { type: 'PRICE', value: 12300000 }, copy: true },
     ];
 }
