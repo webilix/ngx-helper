@@ -1,13 +1,13 @@
 {
     "name": "@webilix/ngx-utils",
-    "version": "0.0.34",
+    "version": "0.0.35",
     "description": "Persian utilities library for Angular",
     "author": "Ali Amirnezhad",
     "license": "MIT",
     "peerDependencies": {
         "@angular/common": "^15.0.4",
         "@angular/core": "^15.0.4",
-        "@angular/material": "^15.0.3",
+        "@angular/material": "^15.0.4",
         "@webilix/helper-library": "^2.0.0",
         "@webilix/jalali-date-time": "^1.1.0",
         "@webilix/validator-library": "^1.1.0"

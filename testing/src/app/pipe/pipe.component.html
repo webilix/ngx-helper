@@ -1,4 +1,27 @@
 <div class="pipe">
+    <div class="title">ngxUtilsBankCard</div>
+    <div class="value en">
+        {{ '1234123412341238' | ngxUtilsBankCard }}<br />
+        {{ '1234123412341238' | ngxUtilsBankCard : ' ' }}<br />
+        {{ '1234123412341238' | ngxUtilsBankCard : '.' }}<br />
+    </div>
+</div>
+
+<div class="pipe">
+    <div class="title">ngxUtilsDuration</div>
+    <div class="value en">
+        {{ 0 | ngxUtilsDuration }}<br />
+        {{ 0 | ngxUtilsDuration : 'HOUR' }}<br />
+        {{ 0 | ngxUtilsDuration : 'DAY' }}<br />
+        {{ 123456789 | ngxUtilsDuration }}<br />
+        {{ date | ngxUtilsDuration }}<br />
+        {{ { from: date } | ngxUtilsDuration }}<br />
+        {{ 123456789 | ngxUtilsDuration : 'HOUR' }}<br />
+        {{ 123456789 | ngxUtilsDuration : 'DAY' }}<br />
+    </div>
+</div>
+
+<div class="pipe">
     <div class="title">ngxUtilsFileSize</div>
     <div class="value">
         <div
@@ -6,8 +29,30 @@
             *ngFor="let size of [-1, 0, 100, 20000, 30000000, 40000000000, 50000000000000, 2000000000000000]"
         >
             <div>{{ size | ngxUtilsFileSize }}</div>
-            <div class="en">{{ size | ngxUtilsFileSize: true }}</div>
+            <div class="en">{{ size | ngxUtilsFileSize : true }}</div>
         </div>
+    </div>
+</div>
+
+<div class="pipe">
+    <div class="title">ngxUtilsJalali</div>
+    <div class="value">
+        {{ date | ngxUtilsJalali }}<br />
+        {{ date | ngxUtilsJalali : 'FULL' }}<br />
+        {{ date | ngxUtilsJalali : 'DATE' }}<br />
+        {{ date | ngxUtilsJalali : 'TIME' }}<br />
+        {{ date | ngxUtilsJalali : 'd N Y' }}<br />
+        {{ date | ngxUtilsJalali : 'FULL' : 'Europe/London' }}<br />
+        {{ date | ngxUtilsJalali : 'FULL' : 'America/Los_Angeles' }}<br />
+    </div>
+</div>
+
+<div class="pipe">
+    <div class="title">ngxUtilsMobile</div>
+    <div class="value en">
+        {{ '09123456789' | ngxUtilsMobile }}<br />
+        {{ '09123456789' | ngxUtilsMobile : ' ' }}<br />
+        {{ '09123456789' | ngxUtilsMobile : '.' }}<br />
     </div>
 </div>
 
@@ -16,7 +61,26 @@
     <div class="value">
         <div class="en" [innerHTML]="html | ngxUtilsMultiLine"></div>
         <br />
-        <div class="en" [innerHTML]="html | ngxUtilsMultiLine: true"></div>
+        <div class="en" [innerHTML]="html | ngxUtilsMultiLine : true"></div>
+    </div>
+</div>
+
+<div class="pipe">
+    <div class="title">ngxUtilsPrice</div>
+    <div class="value">
+        <div [innerHTML]="123.456786 | ngxUtilsPrice"></div>
+        <div [innerHTML]="123.456786 | ngxUtilsPrice : true"></div>
+        <div [innerHTML]="123456.789 | ngxUtilsPrice"></div>
+        <div [innerHTML]="123456.789 | ngxUtilsPrice : true"></div>
+        <div [innerHTML]="123456789 | ngxUtilsPrice"></div>
+        <div [innerHTML]="123456789 | ngxUtilsPrice : true"></div>
+
+        <div class="en" [innerHTML]="123.456786 | ngxUtilsPrice : false : true"></div>
+        <div class="en" [innerHTML]="123.456786 | ngxUtilsPrice : true : true"></div>
+        <div class="en" [innerHTML]="123456.789 | ngxUtilsPrice : false : true"></div>
+        <div class="en" [innerHTML]="123456.789 | ngxUtilsPrice : true : true"></div>
+        <div class="en" [innerHTML]="123456789 | ngxUtilsPrice : false : true"></div>
+        <div class="en" [innerHTML]="123456789 | ngxUtilsPrice : true : true"></div>
     </div>
 </div>
 
@@ -24,52 +88,7 @@
     <div class="title">ngxUtilsSafe</div>
     <div class="value">
         <div class="en" [innerHTML]="html.replace('\n', '<br />') + '<hr /><br />' | ngxUtilsSafe"></div>
-        <div class="en" [style]="style | ngxUtilsSafe: 'STYLE'">STYLE</div>
-    </div>
-</div>
-
-<div class="pipe">
-    <div class="title">ngxUtilsDuration</div>
-    <div class="value en">
-        {{ 0 | ngxUtilsDuration }}<br />
-        {{ 0 | ngxUtilsDuration: 'HOUR' }}<br />
-        {{ 0 | ngxUtilsDuration: 'DAY' }}<br />
-        {{ 123456789 | ngxUtilsDuration }}<br />
-        {{ date | ngxUtilsDuration }}<br />
-        {{ { from: date } | ngxUtilsDuration }}<br />
-        {{ 123456789 | ngxUtilsDuration: 'HOUR' }}<br />
-        {{ 123456789 | ngxUtilsDuration: 'DAY' }}<br />
-    </div>
-</div>
-
-<div class="pipe">
-    <div class="title">ngxUtilsMobile</div>
-    <div class="value en">
-        {{ '09123456789' | ngxUtilsMobile }}<br />
-        {{ '09123456789' | ngxUtilsMobile: ' ' }}<br />
-        {{ '09123456789' | ngxUtilsMobile: '.' }}<br />
-    </div>
-</div>
-
-<div class="pipe">
-    <div class="title">ngxUtilsBankCard</div>
-    <div class="value en">
-        {{ '1234123412341238' | ngxUtilsBankCard }}<br />
-        {{ '1234123412341238' | ngxUtilsBankCard: ' ' }}<br />
-        {{ '1234123412341238' | ngxUtilsBankCard: '.' }}<br />
-    </div>
-</div>
-
-<div class="pipe">
-    <div class="title">ngxUtilsJalali</div>
-    <div class="value">
-        {{ date | ngxUtilsJalali }}<br />
-        {{ date | ngxUtilsJalali: 'FULL' }}<br />
-        {{ date | ngxUtilsJalali: 'DATE' }}<br />
-        {{ date | ngxUtilsJalali: 'TIME' }}<br />
-        {{ date | ngxUtilsJalali: 'd N Y' }}<br />
-        {{ date | ngxUtilsJalali: 'FULL':'Europe/London' }}<br />
-        {{ date | ngxUtilsJalali: 'FULL':'America/Los_Angeles' }}<br />
+        <div class="en" [style]="style | ngxUtilsSafe : 'STYLE'">STYLE</div>
     </div>
 </div>
 
@@ -79,25 +98,19 @@
         <div class="en" style="font-weight: 500; color: red">STRING</div>
         <div [innerHTML]="'نمایش متن فارسی\nخط دوم باید در ادامه نمایش داده شود.' | ngxUtilsValue"></div>
         <div [innerHTML]="html | ngxUtilsValue"></div>
-        <div [innerHTML]="html | ngxUtilsValue: true"></div>
+        <div [innerHTML]="html | ngxUtilsValue : true"></div>
         <br />
 
-        <div class="en" style="font-weight: 500; color: red">EN</div>
-        <div [innerHTML]="{ type: 'EN', value: '11 انگلیسی نمایش داده می‌شود.' } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'EN', value: '11 انگلیسی نمایش داده می‌شود.' } | ngxUtilsValue: true"></div>
-        <br />
-
-        <div class="en" style="font-weight: 500; color: red">MULTILINE</div>
-        <div [innerHTML]="{ type: 'MULTILINE', value: html } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'MULTILINE', value: html } | ngxUtilsValue: true"></div>
-        <div [innerHTML]="{ type: 'MULTILINE', value: html, html: true } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'MULTILINE', value: html, html: true } | ngxUtilsValue: true"></div>
-        <div [innerHTML]="{ type: 'MULTILINE', value: html + '\nفارسی', html: true } | ngxUtilsValue"></div>
+        <div class="en" style="font-weight: 500; color: red">BANK-CARD</div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238' } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238' } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', en: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', en: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', join: ' ' } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', join: ' ' } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', en: true, join: ' ' } | ngxUtilsValue"></div>
         <div
-            [innerHTML]="
-                { type: 'MULTILINE', value: html + '\nفارسی با نمایش انگلیسی', html: true, en: true }
-                    | ngxUtilsValue: true
-            "
+            [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', en: true, join: ' ' } | ngxUtilsValue : true"
         ></div>
         <br />
 
@@ -114,49 +127,70 @@
         ></div>
         <br />
 
-        <div class="en" style="font-weight: 500; color: red">NUMBER</div>
-        <div [innerHTML]="{ type: 'NUMBER', value: 123456789 } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'NUMBER', value: 123456789 } | ngxUtilsValue: true"></div>
-        <div [innerHTML]="{ type: 'NUMBER', value: 123456789, en: true } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'NUMBER', value: 123456789, en: true } | ngxUtilsValue: true"></div>
-        <div [innerHTML]="{ type: 'NUMBER', value: -123456.789 } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'NUMBER', value: -123456.789 } | ngxUtilsValue: true"></div>
-        <div [innerHTML]="{ type: 'NUMBER', value: -123456.789, en: true } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'NUMBER', value: -123456.789, en: true } | ngxUtilsValue: true"></div>
-        <br />
-
         <div class="en" style="font-weight: 500; color: red">DURATION</div>
         <div [innerHTML]="{ type: 'DURATION', value: 123456789 } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'DURATION', value: 123456789 } | ngxUtilsValue: true"></div>
+        <div [innerHTML]="{ type: 'DURATION', value: 123456789 } | ngxUtilsValue : true"></div>
         <div [innerHTML]="{ type: 'DURATION', value: 123456789, en: true } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'DURATION', value: 123456789, en: true } | ngxUtilsValue: true"></div>
+        <div [innerHTML]="{ type: 'DURATION', value: 123456789, en: true } | ngxUtilsValue : true"></div>
         <div [innerHTML]="{ type: 'DURATION', value: 123456789, view: 'DAY' } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'DURATION', value: 123456789, en: true, view: 'DAY' } | ngxUtilsValue: true"></div>
+        <div [innerHTML]="{ type: 'DURATION', value: 123456789, en: true, view: 'DAY' } | ngxUtilsValue : true"></div>
         <div [innerHTML]="{ type: 'DURATION', value: 123456789, view: 'HOUR' } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'DURATION', value: 123456789, en: true, view: 'HOUR' } | ngxUtilsValue: true"></div>
+        <div [innerHTML]="{ type: 'DURATION', value: 123456789, en: true, view: 'HOUR' } | ngxUtilsValue : true"></div>
         <br />
 
-        <div class="en" style="font-weight: 500; color: red">BANK-CARD</div>
-        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238' } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238' } | ngxUtilsValue: true"></div>
-        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', en: true } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', en: true } | ngxUtilsValue: true"></div>
-        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', join: ' ' } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', join: ' ' } | ngxUtilsValue: true"></div>
-        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', en: true, join: ' ' } | ngxUtilsValue"></div>
-        <div
-            [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', en: true, join: ' ' } | ngxUtilsValue: true"
-        ></div>
+        <div class="en" style="font-weight: 500; color: red">EN</div>
+        <div [innerHTML]="{ type: 'EN', value: '11 انگلیسی نمایش داده می‌شود.' } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'EN', value: '11 انگلیسی نمایش داده می‌شود.' } | ngxUtilsValue : true"></div>
         <br />
 
         <div class="en" style="font-weight: 500; color: red">MOBILE</div>
         <div [innerHTML]="{ type: 'MOBILE', value: '09123456789' } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'MOBILE', value: '09123456789' } | ngxUtilsValue: true"></div>
+        <div [innerHTML]="{ type: 'MOBILE', value: '09123456789' } | ngxUtilsValue : true"></div>
         <div [innerHTML]="{ type: 'MOBILE', value: '09123456789', en: true } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'MOBILE', value: '09123456789', en: true } | ngxUtilsValue: true"></div>
+        <div [innerHTML]="{ type: 'MOBILE', value: '09123456789', en: true } | ngxUtilsValue : true"></div>
         <div [innerHTML]="{ type: 'MOBILE', value: '09123456789', join: ' ' } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'MOBILE', value: '09123456789', join: ' ' } | ngxUtilsValue: true"></div>
+        <div [innerHTML]="{ type: 'MOBILE', value: '09123456789', join: ' ' } | ngxUtilsValue : true"></div>
         <div [innerHTML]="{ type: 'MOBILE', value: '09123456789', en: true, join: ' ' } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'MOBILE', value: '09123456789', en: true, join: ' ' } | ngxUtilsValue: true"></div>
+        <div [innerHTML]="{ type: 'MOBILE', value: '09123456789', en: true, join: ' ' } | ngxUtilsValue : true"></div>
+        <br />
+
+        <div class="en" style="font-weight: 500; color: red">MULTILINE</div>
+        <div [innerHTML]="{ type: 'MULTILINE', value: html } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'MULTILINE', value: html } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'MULTILINE', value: html, html: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'MULTILINE', value: html, html: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'MULTILINE', value: html + '\nفارسی', html: true } | ngxUtilsValue"></div>
+        <div
+            [innerHTML]="
+                { type: 'MULTILINE', value: html + '\nفارسی با نمایش انگلیسی', html: true, en: true }
+                    | ngxUtilsValue : true
+            "
+        ></div>
+        <br />
+
+        <div class="en" style="font-weight: 500; color: red">NUMBER</div>
+        <div [innerHTML]="{ type: 'NUMBER', value: 123456789 } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'NUMBER', value: 123456789 } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'NUMBER', value: 123456789, en: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'NUMBER', value: 123456789, en: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'NUMBER', value: -123456.789 } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'NUMBER', value: -123456.789 } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'NUMBER', value: -123456.789, en: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'NUMBER', value: -123456.789, en: true } | ngxUtilsValue : true"></div>
+        <br />
+
+        <div class="en" style="font-weight: 500; color: red">PRICE</div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123.456789 } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456.789 } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456789 } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123.456789, short: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456.789, short: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456789, short: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123.456789, en: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456.789, en: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456789, en: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123.456789, en: true, short: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456.789, en: true, short: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456789, en: true, short: true } | ngxUtilsValue : true"></div>
     </div>
 </div>

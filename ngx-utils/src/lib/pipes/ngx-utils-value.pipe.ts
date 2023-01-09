@@ -67,6 +67,16 @@ export class NgxUtilsValuePipe implements PipeTransform {
         }
     }
 
+    getPrice(price: number, en: boolean, short: boolean): [number, string] {
+        if (price < 1000) return [+price.toFixed(2), ''];
+
+        price /= 1000;
+        if (price < 1000) return [+price.toFixed(2), short ? (en ? 'T' : 'ه') : en ? 'Thousand' : 'هزار'];
+
+        price /= 1000;
+        return [+price.toFixed(2), short ? (en ? 'M' : 'م') : en ? 'Million' : 'میلیون'];
+    }
+
     transform(value: NgxUtilsValue, block: boolean = false): SafeHtml {
         if (Validator.VALUE.isEmpty(value)) return '';
 
@@ -123,6 +133,19 @@ export class NgxUtilsValuePipe implements PipeTransform {
                     html = html.replace(/,/g, value.en ? ',' : '،');
                     english = !!value.en;
                     ltr = true;
+                    break;
+
+                case 'PRICE':
+                    const price: [number, string] = this.getPrice(value.value, !!value.en, !!value.short);
+                    const extra: string = !value.en ? '' : ' ngx-utils-en';
+
+                    html = Helper.NUMBER.format(price[0], value.en ? 'EN' : 'FA');
+                    html = html.replace(/,/g, value.en ? ',' : '،');
+                    html =
+                        `<span class="value${extra}">${html}</span>` +
+                        (price[1] ? ` <span class="unit">${price[1]}</span>` : '');
+                    english = !!value.en;
+                    ltr = false;
                     break;
             }
 

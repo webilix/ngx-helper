@@ -49,6 +49,7 @@ import { NgxUtilsFileSizePipe } from './pipes/ngx-utils-file-size.pipe';
 import { NgxUtilsJalaliPipe } from './pipes/ngx-utils-jalali.pipe';
 import { NgxUtilsMobilePipe } from './pipes/ngx-utils-mobile.pipe';
 import { NgxUtilsMultiLinePipe } from './pipes/ngx-utils-multi-line.pipe';
+import { NgxUtilsPricePipe } from './pipes/ngx-utils-price.pipe';
 import { NgxUtilsSafePipe } from './pipes/ngx-utils-safe.pipe';
 import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
 
@@ -85,6 +86,7 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsJalaliPipe,
         NgxUtilsMobilePipe,
         NgxUtilsMultiLinePipe,
+        NgxUtilsPricePipe,
         NgxUtilsSafePipe,
         NgxUtilsValuePipe,
     ],
@@ -120,6 +122,7 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsJalaliPipe,
         NgxUtilsMobilePipe,
         NgxUtilsMultiLinePipe,
+        NgxUtilsPricePipe,
         NgxUtilsSafePipe,
         NgxUtilsValuePipe,
     ],

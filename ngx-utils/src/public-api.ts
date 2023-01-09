@@ -26,6 +26,7 @@ export * from './lib/pipes/ngx-utils-file-size.pipe';
 export * from './lib/pipes/ngx-utils-jalali.pipe';
 export * from './lib/pipes/ngx-utils-mobile.pipe';
 export * from './lib/pipes/ngx-utils-multi-line.pipe';
+export * from './lib/pipes/ngx-utils-price.pipe';
 export * from './lib/pipes/ngx-utils-safe.pipe';
 export * from './lib/pipes/ngx-utils-value.pipe';
 
