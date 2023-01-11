@@ -45,16 +45,18 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     constructor(private readonly router: Router, private readonly ngxUtilsService: NgxUtilsService) {}
 
     ngOnInit(): void {
-        const params: Params = this.getQueryParams();
-
-        const page: string | null = params['page'] || null;
-        this.page = page === null ? 1 : !Validator.STRING.isNumeric(page || '') ? 1 : +page;
-
         if (this.params.length === 0) this.emitChanges();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['page'] && !changes['page'].firstChange) this.updateRoute();
+        if (changes['page']) {
+            if (!changes['page'].firstChange) this.updateRoute();
+            else {
+                const params: Params = this.getQueryParams();
+                const page: string | null = params['page'] || null;
+                this.page = page === null ? 1 : !Validator.STRING.isNumeric(page || '') ? 1 : +page;
+            }
+        }
 
         if (changes['update'] && !changes['update'].firstChange) {
             const values: { [key: string]: any } = {};
@@ -149,7 +151,8 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         }
 
         if (hasParams || hasOrder) {
-            this.page = 1;
+            const check: boolean[] = Object.keys(changes).map((change) => changes[change].firstChange);
+            this.page = check.includes(false) ? 1 : this.page;
             this.emitChanges();
         }
     }

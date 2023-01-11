@@ -73,6 +73,7 @@ export class AppComponent implements OnInit, OnDestroy {
     ];
 
     public paramsPage: number = 1;
+    public selectPage: number = 1;
     public params3: NgxUtilsParams[] = [
         {
             type: 'SELECT',

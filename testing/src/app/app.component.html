@@ -23,10 +23,13 @@
         [params]="params3"
         [page]="paramsPage"
         [update]="params3Update"
-        (changed)="log('PARAMS3', $event)"
+        (changed)="selectPage = $event.page; log('PARAMS3', $event)"
     ></ngx-utils-params>
     <select (change)="paramsPage = +paramsPageSelect.value" #paramsPageSelect>
-        <option *ngFor="let page of [1, 2, 3, 4, 5, 6, 7, 8, 9]" [value]="page">{{ page }}</option>
+        <ng-container *ngFor="let page of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
+            <option [value]="page" *ngIf="page !== selectPage">{{ page }}</option>
+            <option [value]="page" *ngIf="page === selectPage" selected>{{ page }}</option>
+        </ng-container>
     </select>
     <button mat-flat-button type="button" color="primary" (click)="changeParam()">CHANGE</button>
 </div>
