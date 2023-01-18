@@ -9,12 +9,13 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class NgxUtilsDialogComponent {
     public component: ComponentType<any> = this.data.component;
     public title: string = this.data.title;
+    public disableClose: boolean = !!this.data.disableClose;
     public injector: Injector = Injector.create({
         providers: [{ provide: MAT_DIALOG_DATA, useValue: this.data.data }],
     });
 
     constructor(
         @Inject(MAT_DIALOG_DATA)
-        private readonly data: { component: ComponentType<any>; title: string; data?: any },
+        private readonly data: { component: ComponentType<any>; title: string; data?: any; disableClose?: boolean },
     ) {}
 }

@@ -54,11 +54,11 @@ export class NgxUtilsService {
         panelClass: 'ngx-utils-bottom-sheet-panel',
     };
 
-    openBottomSheet<R>(component: ComponentType<any>, title: string, data?: any): Promise<R> {
+    openBottomSheet<R>(component: ComponentType<any>, title: string, data?: any, disableClose?: boolean): Promise<R> {
         return new Promise<R>((resolve, reject) => {
             this._bottomSheetRef = this.bottomSheet.open(NgxUtilsBottomSheetComponent, {
                 ...this._bottomSheetConfig,
-                data: { component, title, data },
+                data: { component, title, data, disableClose },
             });
 
             this._bottomSheetRef
@@ -96,11 +96,11 @@ export class NgxUtilsService {
         panelClass: 'ngx-utils-full-dialog',
     };
 
-    openDialog<R>(component: ComponentType<any>, title: string, data?: any): Promise<R> {
+    openDialog<R>(component: ComponentType<any>, title: string, data?: any, disableClose?: boolean): Promise<R> {
         return new Promise<R>((resolve, reject) => {
             this._dialogRef = this.dialog.open(NgxUtilsDialogComponent, {
                 ...this._dialogConfig,
-                data: { component, title, data },
+                data: { component, title, data, disableClose },
             });
 
             this._dialogRef.afterClosed().subscribe({ next: (result: R) => (result ? resolve(result) : reject()) });

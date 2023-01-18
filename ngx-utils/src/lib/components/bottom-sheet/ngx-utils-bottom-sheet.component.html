@@ -1,6 +1,6 @@
 <header>
     <div class="title">{{ title || '&nbsp;' }}</div>
-    <mat-icon [fontIcon]="'close'" class="ngx-utils-icon" (click)="dismiss()"></mat-icon>
+    <mat-icon *ngIf="!disableClose" [fontIcon]="'close'" class="ngx-utils-icon" (click)="dismiss()"></mat-icon>
 </header>
 <content>
     <ng-container *ngComponentOutlet="component; injector: injector"></ng-container>
