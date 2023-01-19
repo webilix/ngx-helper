@@ -258,7 +258,7 @@ export class AppComponent implements OnInit, OnDestroy {
     toast(type: 'ERROR' | 'INFO' | 'SUCCESS' | 'WARNING'): void {
         const index: number = type === 'ERROR' ? 0 : type === 'INFO' ? 1 : type === 'SUCCESS' ? 2 : 3;
         const message: string[] = Array(index + 1).fill('نمایش تست: شیوه نمایش ' + type);
-        this.ngxUtilsService.toast(type, message, index * 4);
+        this.ngxUtilsService.toast(type, message, index * 4).then(() => this.log(`TOAST: ${type}`));
     }
 
     getDate(type: number): void {
