@@ -192,30 +192,30 @@ export class NgxUtilsService {
         });
     }
 
-    toast(type: 'ERROR' | 'INFO' | 'SUCCESS' | 'WARNING', message: string | string[], timeout?: number): Promise<void> {
-        return new Promise<void>((resolve) => {
-            if (!this.viewContainerRef) {
-                this.domError();
-                resolve();
-                return;
-            }
+    toast(
+        type: 'ERROR' | 'INFO' | 'SUCCESS' | 'WARNING',
+        message: string | string[],
+        timeout?: number,
+        callback?: () => void,
+    ): void {
+        if (!this.viewContainerRef) return this.domError();
 
-            const toast = this.viewContainerRef.createComponent(NgxUtilsToastComponent);
-            toast.instance.index = ++this.toastIndex;
-            toast.instance.type = type;
-            toast.instance.message = Array.isArray(message) ? message : [message];
-            toast.instance.timeout = timeout === undefined || timeout < 0 ? 5 : timeout;
+        const toast = this.viewContainerRef.createComponent(NgxUtilsToastComponent);
+        toast.instance.index = ++this.toastIndex;
+        toast.instance.type = type;
+        toast.instance.message = Array.isArray(message) ? message : [message];
+        toast.instance.timeout = timeout === undefined || timeout < 0 ? 5 : timeout;
 
-            toast.instance.close = () => {
-                this.toasts = this.toasts.filter((t) => t.instance.index !== toast.instance.index);
-                this.updateToastsTop();
-                toast.destroy();
-                resolve();
-            };
-
-            this.toasts.push(toast);
+        toast.instance.close = () => {
+            this.toasts = this.toasts.filter((t) => t.instance.index !== toast.instance.index);
             this.updateToastsTop();
-        });
+            toast.destroy();
+
+            if (callback) callback();
+        };
+
+        this.toasts.push(toast);
+        this.updateToastsTop();
     }
     //#endregion
 
