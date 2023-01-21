@@ -68,19 +68,23 @@
 <div class="pipe">
     <div class="title">ngxUtilsPrice</div>
     <div class="value">
-        <div [innerHTML]="123.456786 | ngxUtilsPrice"></div>
-        <div [innerHTML]="123.456786 | ngxUtilsPrice : true"></div>
-        <div [innerHTML]="123456.789 | ngxUtilsPrice"></div>
-        <div [innerHTML]="123456.789 | ngxUtilsPrice : true"></div>
-        <div [innerHTML]="123456789 | ngxUtilsPrice"></div>
-        <div [innerHTML]="123456789 | ngxUtilsPrice : true"></div>
+        <div [innerHTML]="123.4567890123 | ngxUtilsPrice"></div>
+        <div [innerHTML]="123.4567890123 | ngxUtilsPrice : true"></div>
+        <div [innerHTML]="123456.7890123 | ngxUtilsPrice"></div>
+        <div [innerHTML]="123456.7890123 | ngxUtilsPrice : true"></div>
+        <div [innerHTML]="123456789.0123 | ngxUtilsPrice"></div>
+        <div [innerHTML]="123456789.0123 | ngxUtilsPrice : true"></div>
+        <div [innerHTML]="123456789012.3 | ngxUtilsPrice"></div>
+        <div [innerHTML]="123456789012.3 | ngxUtilsPrice : true"></div>
 
-        <div class="en" [innerHTML]="123.456786 | ngxUtilsPrice : false : true"></div>
-        <div class="en" [innerHTML]="123.456786 | ngxUtilsPrice : true : true"></div>
-        <div class="en" [innerHTML]="123456.789 | ngxUtilsPrice : false : true"></div>
-        <div class="en" [innerHTML]="123456.789 | ngxUtilsPrice : true : true"></div>
-        <div class="en" [innerHTML]="123456789 | ngxUtilsPrice : false : true"></div>
-        <div class="en" [innerHTML]="123456789 | ngxUtilsPrice : true : true"></div>
+        <div class="en" [innerHTML]="123.4567860123 | ngxUtilsPrice : false : true"></div>
+        <div class="en" [innerHTML]="123.4567860123 | ngxUtilsPrice : true : true"></div>
+        <div class="en" [innerHTML]="123456.7890123 | ngxUtilsPrice : false : true"></div>
+        <div class="en" [innerHTML]="123456.7890123 | ngxUtilsPrice : true : true"></div>
+        <div class="en" [innerHTML]="123456789.0123 | ngxUtilsPrice : false : true"></div>
+        <div class="en" [innerHTML]="123456789.0123 | ngxUtilsPrice : true : true"></div>
+        <div class="en" [innerHTML]="123456789012.3 | ngxUtilsPrice : false : true"></div>
+        <div class="en" [innerHTML]="123456789012.3 | ngxUtilsPrice : true : true"></div>
     </div>
 </div>
 
@@ -180,17 +184,21 @@
         <br />
 
         <div class="en" style="font-weight: 500; color: red">PRICE</div>
-        <div [innerHTML]="{ type: 'PRICE', value: 123.456789 } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'PRICE', value: 123456.789 } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'PRICE', value: 123456789 } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'PRICE', value: 123.456789, short: true } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'PRICE', value: 123456.789, short: true } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'PRICE', value: 123456789, short: true } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'PRICE', value: 123.456789, en: true } | ngxUtilsValue : true"></div>
-        <div [innerHTML]="{ type: 'PRICE', value: 123456.789, en: true } | ngxUtilsValue : true"></div>
-        <div [innerHTML]="{ type: 'PRICE', value: 123456789, en: true } | ngxUtilsValue : true"></div>
-        <div [innerHTML]="{ type: 'PRICE', value: 123.456789, en: true, short: true } | ngxUtilsValue : true"></div>
-        <div [innerHTML]="{ type: 'PRICE', value: 123456.789, en: true, short: true } | ngxUtilsValue : true"></div>
-        <div [innerHTML]="{ type: 'PRICE', value: 123456789, en: true, short: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123.4567890123 } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456.7890123 } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456789.0123 } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456789012.3 } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123.4567890123, short: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456.7890123, short: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456789.0123, short: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456789012.3, short: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123.4567890123, en: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456.7890123, en: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456789.0123, en: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456789012.3, en: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123.4567890123, en: true, short: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456.7890123, en: true, short: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456789.0123, en: true, short: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'PRICE', value: 123456789012.3, en: true, short: true } | ngxUtilsValue : true"></div>
     </div>
 </div>

@@ -74,7 +74,10 @@ export class NgxUtilsValuePipe implements PipeTransform {
         if (price < 1000) return [+price.toFixed(2), short ? (en ? 'T' : 'ه') : en ? 'Thousand' : 'هزار'];
 
         price /= 1000;
-        return [+price.toFixed(2), short ? (en ? 'M' : 'م') : en ? 'Million' : 'میلیون'];
+        if (price < 1000) return [+price.toFixed(2), short ? (en ? 'M' : 'م') : en ? 'Million' : 'میلیون'];
+
+        price /= 1000;
+        return [+price.toFixed(2), short ? (en ? 'B' : 'د') : en ? 'Billion' : 'میلیارد'];
     }
 
     transform(value: NgxUtilsValue, block: boolean = false): SafeHtml {
