@@ -59,7 +59,7 @@ export class NgxUtilsValuePipe implements PipeTransform {
                     [hours, minutes, seconds].map((v: number) => v.toString().padStart(2, '0')).join(':')
                 );
             case 'DAY':
-                return Helper.NUMBER.format(days, 'EN');
+                return Helper.NUMBER.format(days + (hours !== 0 || minutes !== 0 ? 1 : 0), 'EN');
             case 'HOUR':
                 return [days * 24 + hours, minutes, seconds]
                     .map((v: number) => Helper.NUMBER.format(v, 'EN').padStart(2, '0'))
