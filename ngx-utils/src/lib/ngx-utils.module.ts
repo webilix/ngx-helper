@@ -53,6 +53,7 @@ import { NgxUtilsMultiLinePipe } from './pipes/ngx-utils-multi-line.pipe';
 import { NgxUtilsPricePipe } from './pipes/ngx-utils-price.pipe';
 import { NgxUtilsSafePipe } from './pipes/ngx-utils-safe.pipe';
 import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
+import { NgxUtilsWeightPipe } from './pipes/ngx-utils-weight.pipe';
 
 @NgModule({
     declarations: [
@@ -91,6 +92,7 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsPricePipe,
         NgxUtilsSafePipe,
         NgxUtilsValuePipe,
+        NgxUtilsWeightPipe,
     ],
     imports: [
         CommonModule,
@@ -128,6 +130,7 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsPricePipe,
         NgxUtilsSafePipe,
         NgxUtilsValuePipe,
+        NgxUtilsWeightPipe,
     ],
     providers: [
         NgxUtilsValuePipe,

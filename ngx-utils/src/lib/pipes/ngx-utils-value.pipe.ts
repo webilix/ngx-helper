@@ -80,6 +80,18 @@ export class NgxUtilsValuePipe implements PipeTransform {
         return [+price.toFixed(2), short ? (en ? 'B' : 'د') : en ? 'Billion' : 'میلیارد'];
     }
 
+    getWeight(weight: number, en: boolean, short: boolean): [number, string] {
+        if (weight === 0) return [+weight.toFixed(2), ''];
+
+        if (weight < 1000) return [+weight.toFixed(2), short ? (en ? 'G' : 'گ') : en ? 'Gram' : 'گرم'];
+
+        weight /= 1000;
+        if (weight < 1000) return [+weight.toFixed(2), short ? (en ? 'K' : 'ک') : en ? 'Kilogram' : 'کیلو'];
+
+        weight /= 1000;
+        return [+weight.toFixed(2), short ? (en ? 'T' : 'ت') : en ? 'Tonne' : 'تن'];
+    }
+
     transform(value: NgxUtilsValue, block: boolean = false): SafeHtml {
         if (Validator.VALUE.isEmpty(value)) return '';
 
@@ -140,13 +152,26 @@ export class NgxUtilsValuePipe implements PipeTransform {
 
                 case 'PRICE':
                     const price: [number, string] = this.getPrice(value.value, !!value.en, !!value.short);
-                    const extra: string = !value.en ? '' : ' ngx-utils-en';
+                    const priceExtra: string = !value.en ? '' : ' ngx-utils-en';
 
                     html = Helper.NUMBER.format(price[0], value.en ? 'EN' : 'FA');
                     html = html.replace(/,/g, value.en ? ',' : '،');
                     html =
-                        `<span class="value${extra}">${html}</span>` +
+                        `<span class="value${priceExtra}">${html}</span>` +
                         (price[1] ? ` <span class="unit">${price[1]}</span>` : '');
+                    english = !!value.en;
+                    ltr = false;
+                    break;
+
+                case 'WEIGHT':
+                    const weight: [number, string] = this.getWeight(value.value, !!value.en, !!value.short);
+                    const weightExtra: string = !value.en ? '' : ' ngx-utils-en';
+
+                    html = Helper.NUMBER.format(weight[0], value.en ? 'EN' : 'FA');
+                    html = html.replace(/,/g, value.en ? ',' : '،');
+                    html =
+                        `<span class="value${weightExtra}">${html}</span>` +
+                        (weight[1] ? ` <span class="unit">${weight[1]}</span>` : '');
                     english = !!value.en;
                     ltr = false;
                     break;

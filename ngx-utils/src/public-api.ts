@@ -30,6 +30,7 @@ export * from './lib/pipes/ngx-utils-multi-line.pipe';
 export * from './lib/pipes/ngx-utils-price.pipe';
 export * from './lib/pipes/ngx-utils-safe.pipe';
 export * from './lib/pipes/ngx-utils-value.pipe';
+export * from './lib/pipes/ngx-utils-weight.pipe';
 
 export * from './lib/providers/ngx-utils-connection.service';
 export * from './lib/providers/ngx-utils-loading.service';

@@ -97,6 +97,27 @@
 </div>
 
 <div class="pipe">
+    <div class="title">ngxUtilsWeight</div>
+    <div class="value">
+        <div [innerHTML]="0 | ngxUtilsWeight"></div>
+        <div [innerHTML]="123.4567899 | ngxUtilsWeight"></div>
+        <div [innerHTML]="123.4567899 | ngxUtilsWeight : true"></div>
+        <div [innerHTML]="123456.7899 | ngxUtilsWeight"></div>
+        <div [innerHTML]="123456.7899 | ngxUtilsWeight : true"></div>
+        <div [innerHTML]="123456789.9 | ngxUtilsWeight"></div>
+        <div [innerHTML]="123456789.9 | ngxUtilsWeight : true"></div>
+
+        <div class="en" [innerHTML]="0 | ngxUtilsWeight : false : true"></div>
+        <div class="en" [innerHTML]="123.4567869 | ngxUtilsWeight : false : true"></div>
+        <div class="en" [innerHTML]="123.4567869 | ngxUtilsWeight : true : true"></div>
+        <div class="en" [innerHTML]="123456.7899 | ngxUtilsWeight : false : true"></div>
+        <div class="en" [innerHTML]="123456.7899 | ngxUtilsWeight : true : true"></div>
+        <div class="en" [innerHTML]="123456789.9 | ngxUtilsWeight : false : true"></div>
+        <div class="en" [innerHTML]="123456789.9 | ngxUtilsWeight : true : true"></div>
+    </div>
+</div>
+
+<div class="pipe">
     <div class="title">ngxUtilsValue</div>
     <div class="value">
         <div class="en" style="font-weight: 500; color: red">STRING</div>
@@ -200,5 +221,24 @@
         <div [innerHTML]="{ type: 'PRICE', value: 123456.7890123, en: true, short: true } | ngxUtilsValue : true"></div>
         <div [innerHTML]="{ type: 'PRICE', value: 123456789.0123, en: true, short: true } | ngxUtilsValue : true"></div>
         <div [innerHTML]="{ type: 'PRICE', value: 123456789012.3, en: true, short: true } | ngxUtilsValue : true"></div>
+        <br />
+
+        <div class="en" style="font-weight: 500; color: red">WEIGHT</div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 0 } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 123.4567899 } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 123456.7899 } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 123456789.9 } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 0, short: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 123.4567899, short: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 123456.7899, short: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 123456789.9, short: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 0, en: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 123.4567899, en: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 123456.7899, en: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 123456789.9, en: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 0, en: true, short: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 123.4567899, en: true, short: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 123456.7899, en: true, short: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'WEIGHT', value: 123456789.9, en: true, short: true } | ngxUtilsValue : true"></div>
     </div>
 </div>

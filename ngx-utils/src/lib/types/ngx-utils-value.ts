@@ -12,7 +12,8 @@ export type NgxUtilsValue =
     | { type: 'MOBILE'; value: string; en?: true; join?: string }
     | { type: 'MULTILINE'; value: string; en?: boolean; html?: boolean }
     | { type: 'NUMBER'; value: number; en?: boolean }
-    | { type: 'PRICE'; value: number; en?: boolean; short?: boolean };
+    | { type: 'PRICE'; value: number; en?: boolean; short?: boolean }
+    | { type: 'WEIGHT'; value: number; en?: boolean; short?: boolean };
 
 export interface INgxUtilsValues {
     title: string;
