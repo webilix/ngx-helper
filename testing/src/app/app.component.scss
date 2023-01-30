@@ -37,4 +37,11 @@
             outline: none;
         }
     }
+
+    .plates {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        column-gap: 1rem;
+    }
 }

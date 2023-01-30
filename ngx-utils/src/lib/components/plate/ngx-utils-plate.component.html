@@ -1,0 +1,9 @@
+<div class="ngx-utls-plate" *ngIf="show">
+    <div class="ngx-utls-plate-left">{{ plate[0] }}</div>
+    <div class="ngx-utls-plate-letter">{{ plate[1] === 'ا' ? 'الف' : plate[1] }}</div>
+    <div class="ngx-utls-plate-right">{{ plate[2] }}</div>
+    <div class="ngx-utls-plate-iran">
+        <div class="ngx-utls-plate-text">ایران</div>
+        <div class="ngx-utls-plate-value">{{ plate[3] }}</div>
+    </div>
+</div>

@@ -35,6 +35,7 @@ import { NgxUtilsMenuComponent } from './components/menu/ngx-utils-menu.componen
 import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-pagination.component';
 import { NgxUtilsParamsComponent } from './components/params/ngx-utils-params.component';
 import { NgxUtilsParamsSelectComponent } from './components/params/select/ngx-utils-params-select.component';
+import { NgxUtilsPlateComponent } from './components/plate/ngx-utils-plate.component';
 import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
 import { NgxUtilsToastComponent } from './components/toast/ngx-utils-toast.component';
 import { NgxUtilsUploadComponent } from './components/upload/ngx-utils-upload.component';
@@ -75,6 +76,7 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsPaginationComponent,
         NgxUtilsParamsComponent,
         NgxUtilsParamsSelectComponent,
+        NgxUtilsPlateComponent,
         NgxUtilsPreviewComponent,
         NgxUtilsToastComponent,
         NgxUtilsUploadComponent,
@@ -114,6 +116,7 @@ import { NgxUtilsValuePipe } from './pipes/ngx-utils-value.pipe';
         NgxUtilsMenuComponent,
         NgxUtilsPaginationComponent,
         NgxUtilsParamsComponent,
+        NgxUtilsPlateComponent,
         NgxUtilsValuesComponent,
 
         NgxUtilsBankCardPipe,

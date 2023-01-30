@@ -15,6 +15,7 @@ export * from './lib/components/map/ngx-utils-map.component';
 export * from './lib/components/menu/ngx-utils-menu.component';
 export * from './lib/components/pagination/ngx-utils-pagination.component';
 export * from './lib/components/params/ngx-utils-params.component';
+export * from './lib/components/plate/ngx-utils-plate.component';
 export * from './lib/components/values/ngx-utils-values.component';
 
 export * from './lib/interfaces/ngx-utils-calendar';

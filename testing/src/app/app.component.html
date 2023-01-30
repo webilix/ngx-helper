@@ -127,6 +127,12 @@
     <button mat-flat-button type="button" color="primary" (click)="confirm('ACTIVE', 'REQUIRED')">REQUIRED</button>
 </div>
 
+<div class="plates">
+    <ngx-utils-plate [plate]="['12', 'ا', '345', '67']"></ngx-utils-plate>
+    <ngx-utils-plate [plate]="['12', 'ب', '345', '67']"></ngx-utils-plate>
+    <ngx-utils-plate></ngx-utils-plate>
+</div>
+
 <div class="menu">
     <ngx-utils-menu [menu]="singleMenu"></ngx-utils-menu>
     <ngx-utils-menu [menu]="menu" [border]="1"></ngx-utils-menu>
