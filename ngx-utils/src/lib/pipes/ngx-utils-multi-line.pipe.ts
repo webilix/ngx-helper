@@ -8,10 +8,10 @@ import { Validator } from '@webilix/validator-library';
 export class NgxUtilsMultiLinePipe implements PipeTransform {
     constructor(private readonly sanitizer: DomSanitizer) {}
 
-    transform(value: string, html: boolean = false): string | SafeHtml {
+    transform(value: string, config?: { html?: boolean }): string | SafeHtml {
         if (!Validator.VALUE.isString(value) || value === '') return '';
 
-        return html
+        return config?.html
             ? this.sanitizer.bypassSecurityTrustHtml(value.replace(/(?:\r\n|\r|\n)/g, '<br />'))
             : Helper.STRING.escapeHTML(value).replace(/(?:\r\n|\r|\n)/g, '<br />');
     }

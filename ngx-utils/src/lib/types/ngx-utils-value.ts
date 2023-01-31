@@ -1,19 +1,19 @@
 export type NgxUtilsValue =
     | string
-    | { type: 'BANK-CARD'; value: string; en?: true; join?: string }
+    | { type: 'BANK-CARD'; value: string; english?: true; join?: string }
     | { type: 'DATE'; value: Date; format?: string | 'FULL' | 'DATE' | 'TIME'; timezone?: string }
     | {
           type: 'DURATION';
           value: number | Date | { from: Date; to?: Date };
-          en?: boolean;
-          view?: 'FULL' | 'DAY' | 'HOUR';
+          english?: boolean;
+          format?: 'FULL' | 'DAY' | 'HOUR';
       }
-    | { type: 'EN'; value: string }
-    | { type: 'MOBILE'; value: string; en?: true; join?: string }
-    | { type: 'MULTILINE'; value: string; en?: boolean; html?: boolean }
-    | { type: 'NUMBER'; value: number; en?: boolean }
-    | { type: 'PRICE'; value: number; en?: boolean; short?: boolean }
-    | { type: 'WEIGHT'; value: number; en?: boolean; short?: boolean };
+    | { type: 'ENGLISH'; value: string }
+    | { type: 'MOBILE'; value: string; english?: true; join?: string }
+    | { type: 'MULTILINE'; value: string; english?: boolean; html?: boolean }
+    | { type: 'NUMBER'; value: number; english?: boolean }
+    | { type: 'PRICE'; value: number; currency?: string; english?: boolean; short?: boolean }
+    | { type: 'WEIGHT'; value: number; english?: boolean; short?: boolean };
 
 export interface INgxUtilsValues {
     title: string;

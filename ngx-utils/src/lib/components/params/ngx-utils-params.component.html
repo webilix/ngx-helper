@@ -19,7 +19,7 @@
             <ng-container *ngIf="param.type === 'DATE'">
                 <div class="title">{{ param.title || 'تاریخ' }}</div>
                 <div class="value" (click)="setDate(param)">
-                    {{ values[param.name] ? (values[param.name] | ngxUtilsJalali : 'd N Y') : '&nbsp;' }}
+                    {{ values[param.name] ? (values[param.name] | ngxUtilsJalali : { format: 'd N Y' }) : '&nbsp;' }}
                 </div>
                 <mat-icon
                     class="ngx-utils-icon"

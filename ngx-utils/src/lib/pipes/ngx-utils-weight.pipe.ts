@@ -5,13 +5,13 @@ import { Validator } from '@webilix/validator-library';
 
 @Pipe({ name: 'ngxUtilsWeight' })
 export class NgxUtilsWeightPipe implements PipeTransform {
-    transform(weight: number, short: boolean = false, en: boolean = false): string {
+    transform(weight: number, config?: { short?: boolean; english?: boolean }): string {
         if (!Validator.VALUE.isNumber(weight) || weight < 0) return '';
 
         const getWeight = (...titles: [string, string][]): string => {
-            const title: number = short ? 0 : 1;
-            const index: number = en ? 0 : 1;
-            return Helper.NUMBER.format(+weight.toFixed(2), en ? 'EN' : 'FA') + ' ' + titles[title][index];
+            const title: number = config?.short ? 0 : 1;
+            const index: number = config?.english ? 0 : 1;
+            return Helper.NUMBER.format(+weight.toFixed(2), config?.english ? 'EN' : 'FA') + ' ' + titles[title][index];
         };
 
         if (weight === 0) return getWeight(['', ''], ['', '']);

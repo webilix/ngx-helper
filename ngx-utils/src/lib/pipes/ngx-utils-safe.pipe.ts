@@ -9,11 +9,11 @@ export class NgxUtilsSafePipe implements PipeTransform {
 
     transform(
         value: string,
-        type: 'HTML' | 'STYLE' | 'SCRIPT' | 'URL' | 'RESOURCE_URL' = 'HTML',
+        config?: { type?: 'HTML' | 'STYLE' | 'SCRIPT' | 'URL' | 'RESOURCE_URL' },
     ): string | SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl {
         if (!Validator.VALUE.isString(value) || value === '') return '';
 
-        switch (type) {
+        switch (config?.type || 'HTML') {
             case 'STYLE':
                 return this.sanitizer.bypassSecurityTrustStyle(value);
             case 'SCRIPT':

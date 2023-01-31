@@ -107,7 +107,7 @@ export class NgxUtilsValuePipe implements PipeTransform {
                     if (!Validator.STRING.isBankCard(value.value)) return '';
 
                     html = Helper.STRING.getBankCardView(value.value, value.join);
-                    html = !!value.en ? html : Helper.STRING.changeNumbers(html, 'FA');
+                    html = !!value.english ? html : Helper.STRING.changeNumbers(html, 'FA');
                     ltr = true;
                     break;
 
@@ -116,14 +116,14 @@ export class NgxUtilsValuePipe implements PipeTransform {
                     break;
 
                 case 'DURATION':
-                    html = this.getDuration(value.value, value.view);
-                    html = !!value.en ? html : Helper.STRING.changeNumbers(html, 'FA');
-                    html = !!value.en ? html : html.replace(/,/g, value.en ? ',' : '،');
-                    english = !!value.en;
+                    html = this.getDuration(value.value, value.format);
+                    html = !!value.english ? html : Helper.STRING.changeNumbers(html, 'FA');
+                    html = !!value.english ? html : html.replace(/,/g, value.english ? ',' : '،');
+                    english = !!value.english;
                     ltr = true;
                     break;
 
-                case 'EN':
+                case 'ENGLISH':
                     html = Helper.STRING.escapeHTML(value.value);
                     html = html.replace(/(?:\r\n|\r|\n)/g, ' ');
                     english = true;
@@ -133,46 +133,47 @@ export class NgxUtilsValuePipe implements PipeTransform {
                     if (!Validator.STRING.isMobile(value.value)) return '';
 
                     html = Helper.STRING.getMobileView(value.value, value.join);
-                    html = !!value.en ? html : Helper.STRING.changeNumbers(html, 'FA');
+                    html = !!value.english ? html : Helper.STRING.changeNumbers(html, 'FA');
                     ltr = true;
                     break;
 
                 case 'MULTILINE':
                     html = value.html ? value.value : Helper.STRING.escapeHTML(value.value);
                     html = html.replace(/(?:\r\n|\r|\n)/g, '<br />');
-                    english = !!value.en || !Helper.STRING.hasPersian(value.value);
+                    english = !!value.english || !Helper.STRING.hasPersian(value.value);
                     break;
 
                 case 'NUMBER':
-                    html = Helper.NUMBER.format(value.value, value.en ? 'EN' : 'FA');
-                    html = html.replace(/,/g, value.en ? ',' : '،');
-                    english = !!value.en;
+                    html = Helper.NUMBER.format(value.value, value.english ? 'EN' : 'FA');
+                    html = html.replace(/,/g, value.english ? ',' : '،');
+                    english = !!value.english;
                     ltr = true;
                     break;
 
                 case 'PRICE':
-                    const price: [number, string] = this.getPrice(value.value, !!value.en, !!value.short);
-                    const priceExtra: string = !value.en ? '' : ' ngx-utils-en';
+                    const price: [number, string] = this.getPrice(value.value, !!value.english, !!value.short);
+                    const priceExtra: string = !value.english ? '' : ' ngx-utils-en';
 
-                    html = Helper.NUMBER.format(price[0], value.en ? 'EN' : 'FA');
-                    html = html.replace(/,/g, value.en ? ',' : '،');
+                    html = Helper.NUMBER.format(price[0], value.english ? 'EN' : 'FA');
+                    html = html.replace(/,/g, value.english ? ',' : '،');
                     html =
                         `<span class="value${priceExtra}">${html}</span>` +
-                        (price[1] ? ` <span class="unit">${price[1]}</span>` : '');
-                    english = !!value.en;
+                        (price[1] ? ` <span class="unit">${price[1]}</span>` : '') +
+                        (value.currency ? ` <span class="currency">${value.currency}</span>` : '');
+                    english = !!value.english;
                     ltr = false;
                     break;
 
                 case 'WEIGHT':
-                    const weight: [number, string] = this.getWeight(value.value, !!value.en, !!value.short);
-                    const weightExtra: string = !value.en ? '' : ' ngx-utils-en';
+                    const weight: [number, string] = this.getWeight(value.value, !!value.english, !!value.short);
+                    const weightExtra: string = !value.english ? '' : ' ngx-utils-en';
 
-                    html = Helper.NUMBER.format(weight[0], value.en ? 'EN' : 'FA');
-                    html = html.replace(/,/g, value.en ? ',' : '،');
+                    html = Helper.NUMBER.format(weight[0], value.english ? 'EN' : 'FA');
+                    html = html.replace(/,/g, value.english ? ',' : '،');
                     html =
                         `<span class="value${weightExtra}">${html}</span>` +
                         (weight[1] ? ` <span class="unit">${weight[1]}</span>` : '');
-                    english = !!value.en;
+                    english = !!value.english;
                     ltr = false;
                     break;
             }

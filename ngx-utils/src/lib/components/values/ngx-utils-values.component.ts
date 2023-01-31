@@ -36,7 +36,7 @@ export class NgxUtilsValuesComponent implements OnChanges {
             else
                 switch (value.value.type) {
                     case 'BANK-CARD':
-                    case 'EN':
+                    case 'ENGLISH':
                     case 'MOBILE':
                     case 'MULTILINE':
                         this.copy[index] = value.value.value;
@@ -50,16 +50,24 @@ export class NgxUtilsValuesComponent implements OnChanges {
                         );
                         break;
                     case 'DURATION':
-                        this.copy[index] = this.ngxUtilsValuePipe.getDuration(value.value.value, value.value.view);
+                        this.copy[index] = this.ngxUtilsValuePipe.getDuration(value.value.value, value.value.format);
                         break;
                     case 'NUMBER':
                         this.copy[index] = value.value.value.toString();
                         break;
                     case 'PRICE':
-                        const en: boolean = !!value.value.en;
+                        const priceEN: boolean = !!value.value.english;
                         this.copy[index] = this.ngxUtilsValuePipe
-                            .getPrice(value.value.value, en, !!value.value.short)
-                            .map((v) => (typeof v === 'string' ? v : Helper.NUMBER.format(v, en ? 'EN' : 'FA')))
+                            .getPrice(value.value.value, priceEN, !!value.value.short)
+                            .map((v) => (typeof v === 'string' ? v : Helper.NUMBER.format(v, priceEN ? 'EN' : 'FA')))
+                            .join(' ');
+                        if (value.value.currency) this.copy[index] += ` ${value.value.currency}`;
+                        break;
+                    case 'WEIGHT':
+                        const weightEN: boolean = !!value.value.english;
+                        this.copy[index] = this.ngxUtilsValuePipe
+                            .getWeight(value.value.value, weightEN, !!value.value.short)
+                            .map((v) => (typeof v === 'string' ? v : Helper.NUMBER.format(v, weightEN ? 'EN' : 'FA')))
                             .join(' ');
                         break;
                 }

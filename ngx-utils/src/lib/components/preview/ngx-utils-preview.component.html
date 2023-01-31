@@ -10,7 +10,7 @@
             }"
         />
         <div *ngIf="description" class="description" [@description]>
-            <div class="description-text" [innerHTML]="description | ngxUtilsMultiLine: html"></div>
+            <div class="description-text" [innerHTML]="description | ngxUtilsMultiLine : { html: true }"></div>
         </div>
     </ng-container>
 </div>

@@ -5,10 +5,10 @@ import { Validator } from '@webilix/validator-library';
 
 @Pipe({ name: 'ngxUtilsDuration' })
 export class NgxUtilsDurationPipe implements PipeTransform {
-    transform(seconds: number, view?: 'FULL' | 'DAY' | 'HOUR'): string;
-    transform(date: Date, view?: 'FULL' | 'DAY' | 'HOUR'): string;
-    transform(period: { from: Date; to?: Date }, view?: 'FULL' | 'DAY' | 'HOUR'): string;
-    transform(value: any, view: 'FULL' | 'DAY' | 'HOUR' = 'FULL'): string {
+    transform(seconds: number, config?: { format?: 'FULL' | 'DAY' | 'HOUR' }): string;
+    transform(date: Date, config?: { format?: 'FULL' | 'DAY' | 'HOUR' }): string;
+    transform(period: { from: Date; to?: Date }, config?: { format?: 'FULL' | 'DAY' | 'HOUR' }): string;
+    transform(value: any, config?: { format?: 'FULL' | 'DAY' | 'HOUR' }): string {
         let seconds: number = 0;
         if (Validator.VALUE.isNumber(value)) seconds = Math.abs(value);
         else if (Validator.VALUE.isDate(value))
@@ -25,7 +25,7 @@ export class NgxUtilsDurationPipe implements PipeTransform {
         const minutes: number = Math.floor(seconds / 60);
         seconds -= minutes * 60;
 
-        switch (view) {
+        switch (config?.format || 'FULL') {
             case 'FULL':
                 return (
                     (days !== 0 ? `(${Helper.NUMBER.format(days, 'EN')}) ` : '') +

@@ -5,13 +5,15 @@ import { Validator } from '@webilix/validator-library';
 
 @Pipe({ name: 'ngxUtilsPrice' })
 export class NgxUtilsPricePipe implements PipeTransform {
-    transform(price: number, short: boolean = false, en: boolean = false): string {
+    transform(price: number, config?: { currency?: string; short?: boolean; english?: boolean }): string {
         if (!Validator.VALUE.isNumber(price) || price < 0) return '';
 
         const getPrice = (...titles: [string, string][]): string => {
-            const title: number = short ? 0 : 1;
-            const index: number = en ? 0 : 1;
-            return Helper.NUMBER.format(+price.toFixed(2), en ? 'EN' : 'FA') + ' ' + titles[title][index];
+            const value: string = Helper.NUMBER.format(+price.toFixed(2), config?.english ? 'EN' : 'FA');
+            const unit: string = titles[config?.short ? 0 : 1][config?.english ? 0 : 1];
+            const currency: string = config?.currency ? ' ' + config?.currency : '';
+
+            return `${value} ${unit}${currency}`;
         };
 
         if (price < 1000) return getPrice(['', ''], ['', '']);
