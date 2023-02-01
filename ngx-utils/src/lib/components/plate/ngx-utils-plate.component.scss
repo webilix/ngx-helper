@@ -1,8 +1,10 @@
 .ngx-utls-plate {
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
     column-gap: 0.35rem;
 
+    direction: rtl;
     padding-left: 0.5rem;
     border-radius: 4px;
     border: 1px solid var(--ngxUtilsBorderColor);
