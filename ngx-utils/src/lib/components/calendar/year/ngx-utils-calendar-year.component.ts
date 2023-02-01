@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { JalaliDateTime } from '@webilix/jalali-date-time';
-import { Validator } from '@webilix/validator-library';
+import { Helper } from '@webilix/helper-library';
 
 import { INgxUtilsCalendarConfig } from '../../../interfaces/ngx-utils-calendar';
 
@@ -34,7 +34,7 @@ export class NgxUtilsCalendarYearComponent implements OnInit {
         this.maxDate = this.data.maxDate ? this.jalali.toString(this.data.maxDate, { format: 'Y' }) : '9999';
 
         const value: Date | null =
-            this.data.value === undefined ? null : Validator.VALUE.isDate(this.data.value) ? this.data.value : null;
+            this.data.value === undefined ? null : Helper.IS.date(this.data.value) ? this.data.value : null;
 
         this.current = value ? this.jalali.toString(value, { format: 'Y' }) : '';
         this.changeYear(+(this.current ? this.current.substring(0, 4) : this.today.substring(0, 4)));

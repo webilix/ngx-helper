@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 
-import { Validator } from '@webilix/validator-library';
+import { Helper } from '@webilix/helper-library';
 
 @Injectable({ providedIn: 'root' })
 export class NgxUtilsLoadingService {
@@ -33,7 +33,7 @@ export class NgxUtilsLoadingService {
                 window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
             }
 
-            if (Validator.VALUE.isBoolean(loading)) this.set('ROUTE', !!loading);
+            if (Helper.IS.boolean(loading)) this.set('ROUTE', !!loading);
         });
     }
 

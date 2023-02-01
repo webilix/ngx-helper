@@ -10,7 +10,7 @@ import {
     ViewChild,
 } from '@angular/core';
 
-import { Validator } from '@webilix/validator-library';
+import { Helper } from '@webilix/helper-library';
 
 @Component({
     selector: 'ngx-utils-box',
@@ -30,7 +30,7 @@ export class NgxUtilsBoxComponent implements OnChanges, AfterViewInit {
     constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.padding = Validator.VALUE.isString(this.padding) ? this.padding : this.padding.toString() + 'px';
+        this.padding = Helper.IS.string(this.padding) ? this.padding : this.padding.toString() + 'px';
         this.ngAfterViewInit();
     }
 

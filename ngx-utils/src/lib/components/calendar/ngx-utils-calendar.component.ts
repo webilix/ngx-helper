@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Params, Router } from '@angular/router';
 
-import { Helper } from '@webilix/helper-library';
 import { JalaliDateTime, JalaliDateTimePeriod } from '@webilix/jalali-date-time';
-import { Validator } from '@webilix/validator-library';
+import { Helper } from '@webilix/helper-library';
 
 import { INgxUtilsCalendarPeriod, INgxUtilsCalendarValue, NgxUtilsCalendar } from '../../interfaces/ngx-utils-calendar';
 import { NgxUtilsMenu } from '../../types/ngx-utils-menu';
@@ -76,11 +75,11 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
                 ? queryParams['ngx-utils-calendar-type']
                 : this.types[0];
         const from: Date =
-            this.route.length !== 0 && Validator.STRING.isDate(queryParams['ngx-utils-calendar-from'])
+            this.route.length !== 0 && Helper.IS.STRING.date(queryParams['ngx-utils-calendar-from'])
                 ? new Date(`${jalali.gregorian(queryParams['ngx-utils-calendar-from']).date}T00:00:00`)
                 : new Date();
         const to: Date =
-            this.route.length !== 0 && Validator.STRING.isDate(queryParams['ngx-utils-calendar-to'])
+            this.route.length !== 0 && Helper.IS.STRING.date(queryParams['ngx-utils-calendar-to'])
                 ? new Date(`${jalali.gregorian(queryParams['ngx-utils-calendar-to']).date}T00:00:00`)
                 : new Date();
 

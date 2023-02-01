@@ -1,12 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 import { Helper } from '@webilix/helper-library';
-import { Validator } from '@webilix/validator-library';
 
 @Pipe({ name: 'ngxUtilsWeight' })
 export class NgxUtilsWeightPipe implements PipeTransform {
     transform(weight: number, config?: { short?: boolean; english?: boolean }): string {
-        if (!Validator.VALUE.isNumber(weight) || weight < 0) return '';
+        if (!Helper.IS.number(weight) || weight < 0) return '';
 
         const getWeight = (...titles: [string, string][]): string => {
             const title: number = config?.short ? 0 : 1;

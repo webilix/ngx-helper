@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeResourceUrl, SafeScript, SafeStyle, SafeUrl } from '@angular/platform-browser';
 
-import { Validator } from '@webilix/validator-library';
+import { Helper } from '@webilix/helper-library';
 
 @Pipe({ name: 'ngxUtilsSafe' })
 export class NgxUtilsSafePipe implements PipeTransform {
@@ -11,7 +11,7 @@ export class NgxUtilsSafePipe implements PipeTransform {
         value: string,
         config?: { type?: 'HTML' | 'STYLE' | 'SCRIPT' | 'URL' | 'RESOURCE_URL' },
     ): string | SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl {
-        if (!Validator.VALUE.isString(value) || value === '') return '';
+        if (!Helper.IS.string(value) || value === '') return '';
 
         switch (config?.type || 'HTML') {
             case 'STYLE':

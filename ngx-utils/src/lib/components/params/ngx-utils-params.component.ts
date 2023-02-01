@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { Params, Router } from '@angular/router';
 
 import { JalaliDateTime } from '@webilix/jalali-date-time';
-import { Validator } from '@webilix/validator-library';
+import { Helper } from '@webilix/helper-library';
 
 import {
     INgxUtilsParamDate,
@@ -54,7 +54,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             else {
                 const params: Params = this.getQueryParams();
                 const page: string | null = params['page'] || null;
-                this.page = page === null ? 1 : !Validator.STRING.isNumeric(page || '') ? 1 : +page;
+                this.page = page === null ? 1 : !Helper.IS.STRING.numeric(page || '') ? 1 : +page;
             }
         }
 
@@ -68,13 +68,13 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
 
                 switch (param.type) {
                     case 'DATE':
-                        if (Validator.VALUE.isDate(value)) values[param.name] = value;
+                        if (Helper.IS.date(value)) values[param.name] = value;
                         break;
                     case 'FAVORITE':
                         values[param.name] = value === true;
                         break;
                     case 'SEARCH':
-                        if (Validator.VALUE.isString(value)) values[param.name] = value;
+                        if (Helper.IS.string(value)) values[param.name] = value;
                         break;
                     case 'SELECT':
                         if (param.options.find((o) => o.id === value)) values[param.name] = value;
@@ -101,21 +101,21 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                 this.values[param.name] = null;
 
                 const value: any = params[param.name] || param.value;
-                if (Validator.VALUE.isEmpty(value)) return;
+                if (Helper.IS.empty(value)) return;
 
                 switch (param.type) {
                     case 'DATE':
-                        if (Validator.VALUE.isDate(value)) this.values[param.name] = value;
-                        else if (Validator.STRING.isDate(value)) {
+                        if (Helper.IS.date(value)) this.values[param.name] = value;
+                        else if (Helper.IS.STRING.date(value)) {
                             const gregorian = this.jalali.gregorian(value).date;
                             this.values[param.name] = new Date(`${gregorian}T00:00:00`);
                         }
                         break;
                     case 'FAVORITE':
-                        this.values[param.name] = Validator.VALUE.isBoolean(value) ? value : value === 'TRUE';
+                        this.values[param.name] = Helper.IS.boolean(value) ? value : value === 'TRUE';
                         break;
                     case 'SEARCH':
-                        this.values[param.name] = Validator.VALUE.isString(value) ? value : null;
+                        this.values[param.name] = Helper.IS.string(value) ? value : null;
                         break;
                     case 'SELECT':
                         this.values[param.name] = param.options.find((o) => o.id === value) ? value : null;
@@ -212,7 +212,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
             if (param.type === 'COMMENT') return;
 
             const value: any = this.values[param.name];
-            if (Validator.VALUE.isEmpty(value)) {
+            if (Helper.IS.empty(value)) {
                 queryParams[param.name] = undefined;
                 return;
             }

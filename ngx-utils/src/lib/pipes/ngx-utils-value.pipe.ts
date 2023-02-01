@@ -1,9 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-import { Helper } from '@webilix/helper-library';
 import { JalaliDateTime } from '@webilix/jalali-date-time';
-import { Validator } from '@webilix/validator-library';
+import { Helper } from '@webilix/helper-library';
 
 import { NgxUtilsValue } from '../types/ngx-utils-value';
 
@@ -33,15 +32,12 @@ export class NgxUtilsValuePipe implements PipeTransform {
 
     getDuration(value: number | Date | { from: Date; to?: Date }, view: 'FULL' | 'DAY' | 'HOUR' = 'FULL'): string {
         let seconds: number = 0;
-        if (Validator.VALUE.isNumber(value)) seconds = Math.abs(value as number);
-        else if (Validator.VALUE.isDate(value))
+        if (Helper.IS.number(value)) seconds = Math.abs(value as number);
+        else if (Helper.IS.date(value))
             seconds = Math.floor(Math.abs(new Date().getTime() - (value as Date).getTime()) / 1000);
-        else if (
-            Validator.VALUE.isObject(value) &&
-            Validator.VALUE.isDate((value as { from: Date; to?: Date })['from'])
-        ) {
+        else if (Helper.IS.object(value) && Helper.IS.date((value as { from: Date; to?: Date })['from'])) {
             value = value as { from: Date; to?: Date };
-            const to: Date = value['to'] && Validator.VALUE.isDate(value['to']) ? value['to'] : new Date();
+            const to: Date = value['to'] && Helper.IS.date(value['to']) ? value['to'] : new Date();
             seconds = Math.floor(Math.abs(value['from'].getTime() - to.getTime()) / 1000);
         }
 
@@ -93,7 +89,7 @@ export class NgxUtilsValuePipe implements PipeTransform {
     }
 
     transform(value: NgxUtilsValue, block: boolean = false): SafeHtml {
-        if (Validator.VALUE.isEmpty(value)) return '';
+        if (Helper.IS.empty(value)) return '';
 
         let html: string = '';
         let english: boolean = false;
@@ -104,7 +100,7 @@ export class NgxUtilsValuePipe implements PipeTransform {
         } else
             switch (value['type']) {
                 case 'BANK-CARD':
-                    if (!Validator.STRING.isBankCard(value.value)) return '';
+                    if (!Helper.IS.STRING.bankCard(value.value)) return '';
 
                     html = Helper.STRING.getBankCardView(value.value, value.join);
                     html = !!value.english ? html : Helper.STRING.changeNumbers(html, 'FA');
@@ -130,7 +126,7 @@ export class NgxUtilsValuePipe implements PipeTransform {
                     break;
 
                 case 'MOBILE':
-                    if (!Validator.STRING.isMobile(value.value)) return '';
+                    if (!Helper.IS.STRING.mobile(value.value)) return '';
 
                     html = Helper.STRING.getMobileView(value.value, value.join);
                     html = !!value.english ? html : Helper.STRING.changeNumbers(html, 'FA');

@@ -1,12 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 import { Helper } from '@webilix/helper-library';
-import { Validator } from '@webilix/validator-library';
 
 @Pipe({ name: 'ngxUtilsPrice' })
 export class NgxUtilsPricePipe implements PipeTransform {
     transform(price: number, config?: { currency?: string; short?: boolean; english?: boolean }): string {
-        if (!Validator.VALUE.isNumber(price) || price < 0) return '';
+        if (!Helper.IS.number(price) || price < 0) return '';
 
         const getPrice = (...titles: [string, string][]): string => {
             const value: string = Helper.NUMBER.format(+price.toFixed(2), config?.english ? 'EN' : 'FA');

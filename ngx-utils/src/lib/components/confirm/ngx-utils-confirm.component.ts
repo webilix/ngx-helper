@@ -1,6 +1,6 @@
 import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-import { Validator } from '@webilix/validator-library';
+import { Helper } from '@webilix/helper-library';
 
 import { INgxUtilsConfirm, INgxUtilsConfirmConfig, INgxUtilsConfirmResponse } from '../../types/ngx-utils-confirm';
 
@@ -29,13 +29,13 @@ export class NgxUtilsConfirmComponent {
         if (confirmed && this.config.description && this.descriptionElementRef) {
             const element: HTMLTextAreaElement = this.descriptionElementRef.nativeElement;
             const description: string = element.value.trim();
-            if (this.config.description === 'REQUIRED' && Validator.VALUE.isEmpty(description)) {
+            if (this.config.description === 'REQUIRED' && Helper.IS.empty(description)) {
                 this.error = true;
                 element.focus();
                 return;
             }
 
-            value = Validator.VALUE.isEmpty(description) ? null : description;
+            value = Helper.IS.empty(description) ? null : description;
         }
 
         const response: INgxUtilsConfirmResponse = { confirmed, value };

@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
-import { Validator } from '@webilix/validator-library';
+import { Helper } from '@webilix/helper-library';
 
 import { NgxUtilsListMenu } from '../../types/ngx-utils-list';
 import { NgxUtilsMenu } from '../../types/ngx-utils-menu';
@@ -46,7 +46,7 @@ export class NgxUtilsListComponent<D> implements OnChanges {
     }
 
     route(route: string[]): string[] {
-        if (!Validator.VALUE.isArray(route) || route.length === 0 || !this.id) return [];
+        if (!Helper.IS.array(route) || route.length === 0 || !this.id) return [];
 
         const id: string = this.id;
         return route.map((r: string) => (r === ':ID' ? id : r));

@@ -1,14 +1,14 @@
 import { Inject, Pipe, PipeTransform } from '@angular/core';
 
 import { JalaliDateTime } from '@webilix/jalali-date-time';
-import { Validator } from '@webilix/validator-library';
+import { Helper } from '@webilix/helper-library';
 
 @Pipe({ name: 'ngxUtilsJalali' })
 export class NgxUtilsJalaliPipe implements PipeTransform {
     constructor(@Inject('NGX_UTILS_TIMEZONE') public readonly timezone: string) {}
 
     transform(date: Date, config?: { format?: string | 'FULL' | 'DATE' | 'TIME'; timezone?: string }): string {
-        if (!Validator.VALUE.isDate(date)) return '';
+        if (!Helper.IS.date(date)) return '';
 
         const jalali = JalaliDateTime({ timezone: this.timezone });
         const timezones: string[] = jalali.timezones();

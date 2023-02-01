@@ -5,7 +5,7 @@ import { HttpStatusCode } from '@angular/common/http';
 import { MatBottomSheet, MatBottomSheetConfig, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 
-import { Validator } from '@webilix/validator-library';
+import { Helper } from '@webilix/helper-library';
 
 import { INgxUtilsCalendarConfig, INgxUtilsCalendarPeriod } from './interfaces/ngx-utils-calendar';
 import { INgxUtilsUpload } from './interfaces/ngx-utils-upload';
@@ -160,16 +160,16 @@ export class NgxUtilsService {
     showMap(latitude: number, longitude: number, zoom?: number): void;
     showMap(arg1: any, arg2?: any, arg3?: any): void {
         const zoom: number =
-            arg3 && Validator.VALUE.isNumber(arg3)
+            arg3 && Helper.IS.number(arg3)
                 ? arg3
-                : arg2 && Validator.VALUE.isNumber(arg2) && !Validator.VALUE.isNumber(arg1)
+                : arg2 && Helper.IS.number(arg2) && !Helper.IS.number(arg1)
                 ? arg2
                 : 15;
-        const position: { latitude: number; longitude: number } = Validator.VALUE.isNumber(arg1)
+        const position: { latitude: number; longitude: number } = Helper.IS.number(arg1)
             ? { latitude: arg1, longitude: arg2 }
-            : Validator.VALUE.isNumber(arg1['lat'])
+            : Helper.IS.number(arg1['lat'])
             ? { latitude: arg1['lat'], longitude: arg1['long'] }
-            : Validator.VALUE.isNumber(arg1['latitude'])
+            : Helper.IS.number(arg1['latitude'])
             ? { latitude: arg1['latitude'], longitude: arg1['longitude'] }
             : { latitude: 0, longitude: 0 };
 

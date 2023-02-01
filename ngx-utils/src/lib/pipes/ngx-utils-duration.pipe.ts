@@ -1,7 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 import { Helper } from '@webilix/helper-library';
-import { Validator } from '@webilix/validator-library';
 
 @Pipe({ name: 'ngxUtilsDuration' })
 export class NgxUtilsDurationPipe implements PipeTransform {
@@ -10,11 +9,10 @@ export class NgxUtilsDurationPipe implements PipeTransform {
     transform(period: { from: Date; to?: Date }, config?: { format?: 'FULL' | 'DAY' | 'HOUR' }): string;
     transform(value: any, config?: { format?: 'FULL' | 'DAY' | 'HOUR' }): string {
         let seconds: number = 0;
-        if (Validator.VALUE.isNumber(value)) seconds = Math.abs(value);
-        else if (Validator.VALUE.isDate(value))
-            seconds = Math.floor(Math.abs(new Date().getTime() - value.getTime()) / 1000);
-        else if (Validator.VALUE.isObject(value) && Validator.VALUE.isDate(value['from'])) {
-            const to: Date = Validator.VALUE.isDate(value['to']) ? value['to'] : new Date();
+        if (Helper.IS.number(value)) seconds = Math.abs(value);
+        else if (Helper.IS.date(value)) seconds = Math.floor(Math.abs(new Date().getTime() - value.getTime()) / 1000);
+        else if (Helper.IS.object(value) && Helper.IS.date(value['from'])) {
+            const to: Date = Helper.IS.date(value['to']) ? value['to'] : new Date();
             seconds = Math.floor(Math.abs(value['from'].getTime() - to.getTime()) / 1000);
         }
 

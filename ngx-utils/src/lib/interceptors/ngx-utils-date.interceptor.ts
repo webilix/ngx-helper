@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
-import { Validator } from '@webilix/validator-library';
+import { Helper } from '@webilix/helper-library';
 
 @Injectable()
 export class NgxUtilsDateInterceptor implements HttpInterceptor {
@@ -23,7 +23,7 @@ export class NgxUtilsDateInterceptor implements HttpInterceptor {
 
             if (value instanceof Array) for (const item of value) this.convert(item);
             if (value instanceof Object) this.convert(value);
-            if (Validator.STRING.isJsonDate(value)) body[key] = new Date(value);
+            if (Helper.IS.STRING.jsonDate(value)) body[key] = new Date(value);
         }
     }
 }
