@@ -8,7 +8,7 @@
         "@angular/common": ">=15.1.0",
         "@angular/core": ">=15.1.0",
         "@angular/material": ">=15.1.0",
-        "@webilix/helper-library": ">=2.0.0",
+        "@webilix/helper-library": ">=2.1.0",
         "@webilix/jalali-date-time": ">=1.1.0",
         "@webilix/validator-library": ">=1.1.0"
     },
