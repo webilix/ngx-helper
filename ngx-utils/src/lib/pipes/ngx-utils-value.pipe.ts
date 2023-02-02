@@ -102,9 +102,17 @@ export class NgxUtilsValuePipe implements PipeTransform {
                 case 'BANK-CARD':
                     if (!Helper.IS.STRING.bankCard(value.value)) return '';
 
-                    html = Helper.STRING.getBankCardView(value.value, value.join);
-                    html = !!value.english ? html : Helper.STRING.changeNumbers(html, 'FA');
-                    ltr = true;
+                    switch (value.view) {
+                        case 'BANK':
+                            html = Helper.BANK.findCard(value.value)?.title || '';
+                            if (html === '') return '';
+                            break;
+                        default:
+                            html = Helper.STRING.getBankCardView(value.value, value.join);
+                            html = !!value.english ? html : Helper.STRING.changeNumbers(html, 'FA');
+                            ltr = true;
+                            break;
+                    }
                     break;
 
                 case 'DATE':

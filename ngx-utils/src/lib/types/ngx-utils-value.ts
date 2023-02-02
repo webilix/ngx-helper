@@ -1,6 +1,6 @@
 export type NgxUtilsValue =
     | string
-    | { type: 'BANK-CARD'; value: string; english?: true; join?: string }
+    | { type: 'BANK-CARD'; value: string; view?: 'CARD' | 'BANK'; english?: true; join?: string }
     | { type: 'DATE'; value: Date; format?: string | 'FULL' | 'DATE' | 'TIME'; timezone?: string }
     | {
           type: 'DURATION';

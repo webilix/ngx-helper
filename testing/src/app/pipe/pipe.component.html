@@ -1,9 +1,11 @@
 <div class="pipe">
     <div class="title">ngxUtilsBankCard</div>
-    <div class="value en">
-        {{ '1234123412341238' | ngxUtilsBankCard }}<br />
-        {{ '1234123412341238' | ngxUtilsBankCard : { join: ' ' } }}<br />
-        {{ '1234123412341238' | ngxUtilsBankCard : { join: '.' } }}<br />
+    <div class="value">
+        <div class="en">{{ '5022291000000008' | ngxUtilsBankCard }}</div>
+        <div class="en">{{ '5022291000000008' | ngxUtilsBankCard : { join: ' ' } }}</div>
+        <div class="en">{{ '5022291000000008' | ngxUtilsBankCard : { join: '.' } }}</div>
+
+        {{ '5022291000000008' | ngxUtilsBankCard : { view: 'BANK' } }}<br />
     </div>
 </div>
 
@@ -129,20 +131,21 @@
         <br />
 
         <div class="en" style="font-weight: 500; color: red">BANK-CARD</div>
-        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238' } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238' } | ngxUtilsValue : true"></div>
-        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', english: true } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', english: true } | ngxUtilsValue : true"></div>
-        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', join: ' ' } | ngxUtilsValue"></div>
-        <div [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', join: ' ' } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '5022291000000008' } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '5022291000000008' } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '5022291000000008', english: true } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '5022291000000008', english: true } | ngxUtilsValue : true"></div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '5022291000000008', join: ' ' } | ngxUtilsValue"></div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '5022291000000008', join: ' ' } | ngxUtilsValue : true"></div>
         <div
-            [innerHTML]="{ type: 'BANK-CARD', value: '1234123412341238', english: true, join: ' ' } | ngxUtilsValue"
+            [innerHTML]="{ type: 'BANK-CARD', value: '5022291000000008', english: true, join: ' ' } | ngxUtilsValue"
         ></div>
         <div
             [innerHTML]="
-                { type: 'BANK-CARD', value: '1234123412341238', english: true, join: ' ' } | ngxUtilsValue : true
+                { type: 'BANK-CARD', value: '5022291000000008', english: true, join: ' ' } | ngxUtilsValue : true
             "
         ></div>
+        <div [innerHTML]="{ type: 'BANK-CARD', value: '5022291000000008', view: 'BANK' } | ngxUtilsValue : true"></div>
         <br />
 
         <div class="en" style="font-weight: 500; color: red">DATE</div>
