@@ -1,7 +1,8 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
 
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -10,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
 
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 
@@ -34,12 +36,15 @@ import { NgxUtilsMapComponent } from './components/map/ngx-utils-map.component';
 import { NgxUtilsMenuComponent } from './components/menu/ngx-utils-menu.component';
 import { NgxUtilsPaginationComponent } from './components/pagination/ngx-utils-pagination.component';
 import { NgxUtilsParamsComponent } from './components/params/ngx-utils-params.component';
+import { NgxUtilsParamsPlateComponent } from './components/params/plate/ngx-utils-params-plate.component';
 import { NgxUtilsParamsSelectComponent } from './components/params/select/ngx-utils-params-select.component';
 import { NgxUtilsPlateComponent } from './components/plate/ngx-utils-plate.component';
 import { NgxUtilsPreviewComponent } from './components/preview/ngx-utils-preview.component';
 import { NgxUtilsToastComponent } from './components/toast/ngx-utils-toast.component';
 import { NgxUtilsUploadComponent } from './components/upload/ngx-utils-upload.component';
 import { NgxUtilsValuesComponent } from './components/values/ngx-utils-values.component';
+
+import { NgxUtilsPersianNumberDirective } from './directives/ngx-utils-persian-number.directive';
 
 import { NgxUtilsDateInterceptor } from './interceptors/ngx-utils-date.interceptor';
 import { NgxUtilsLoadingInterceptor } from './interceptors/ngx-utils-loading.interceptor';
@@ -57,6 +62,8 @@ import { NgxUtilsWeightPipe } from './pipes/ngx-utils-weight.pipe';
 
 @NgModule({
     declarations: [
+        NgxUtilsPersianNumberDirective,
+
         NgxUtilsComponent,
 
         NgxUtilsBottomSheetComponent,
@@ -76,6 +83,7 @@ import { NgxUtilsWeightPipe } from './pipes/ngx-utils-weight.pipe';
         NgxUtilsMenuComponent,
         NgxUtilsPaginationComponent,
         NgxUtilsParamsComponent,
+        NgxUtilsParamsPlateComponent,
         NgxUtilsParamsSelectComponent,
         NgxUtilsPlateComponent,
         NgxUtilsPreviewComponent,
@@ -98,6 +106,7 @@ import { NgxUtilsWeightPipe } from './pipes/ngx-utils-weight.pipe';
         CommonModule,
         RouterModule,
         HttpClientModule,
+        NgxMaskDirective,
 
         ClipboardModule,
         MatBottomSheetModule,
@@ -106,6 +115,7 @@ import { NgxUtilsWeightPipe } from './pipes/ngx-utils-weight.pipe';
         MatIconModule,
         MatMenuModule,
         MatProgressBarModule,
+        MatSelectModule,
     ],
     exports: [
         NgxUtilsComponent,
@@ -133,6 +143,9 @@ import { NgxUtilsWeightPipe } from './pipes/ngx-utils-weight.pipe';
         NgxUtilsWeightPipe,
     ],
     providers: [
+        DecimalPipe,
+        provideEnvironmentNgxMask(),
+
         NgxUtilsValuePipe,
         { provide: HTTP_INTERCEPTORS, useClass: NgxUtilsDateInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: NgxUtilsLoadingInterceptor, multi: true },

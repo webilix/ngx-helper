@@ -125,6 +125,11 @@ export class AppComponent implements OnInit, OnDestroy {
         { type: 'COMMENT', title: 'انگلیسی', value: 'English value', english: true },
     ];
 
+    public params6: NgxUtilsParams[] = [
+        { name: 'plate-1', type: 'PLATE', value: ['12', 'ا', '345', '67'].join('-') },
+        { name: 'plate-2', type: 'PLATE', value: ['12', 'ا', '345', '67'] },
+    ];
+
     public boxComponent: ComponentType<BoxComponent> = BoxComponent;
     public listComponent: ComponentType<ListComponent> = ListComponent;
     public pipeComponent: ComponentType<PipeComponent> = PipeComponent;

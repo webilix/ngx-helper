@@ -24,6 +24,11 @@ export interface INgxUtilsParamFavorite extends Omit<INgxUtilsParam, 'title' | '
     value?: boolean;
 }
 
+export interface INgxUtilsParamPlate extends Omit<INgxUtilsParam, 'english' | 'value' | 'required'> {
+    type: 'PLATE';
+    value?: string | string[];
+}
+
 export interface INgxUtilsParamSearch extends Omit<INgxUtilsParam, 'required'> {
     type: 'SEARCH';
 }

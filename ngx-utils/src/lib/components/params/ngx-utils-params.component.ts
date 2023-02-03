@@ -7,6 +7,7 @@ import { Helper } from '@webilix/helper-library';
 import {
     INgxUtilsParamDate,
     INgxUtilsParamFavorite,
+    INgxUtilsParamPlate,
     INgxUtilsParamSearch,
     INgxUtilsParamSelect,
 } from '../../interfaces/ngx-utils-params';
@@ -20,6 +21,7 @@ import {
 import { NgxUtilsService } from '../../ngx-utils.service';
 
 import { NgxUtilsParamsSelectComponent } from './select/ngx-utils-params-select.component';
+import { NgxUtilsParamsPlateComponent } from './plate/ngx-utils-params-plate.component';
 
 @Component({
     selector: 'ngx-utils-params',
@@ -73,6 +75,13 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                     case 'FAVORITE':
                         values[param.name] = value === true;
                         break;
+                    case 'PLATE':
+                        this.values[param.name] = Helper.IS.plate(value)
+                            ? typeof value === 'string'
+                                ? value
+                                : value.join('-')
+                            : null;
+                        break;
                     case 'SEARCH':
                         if (Helper.IS.string(value)) values[param.name] = value;
                         break;
@@ -113,6 +122,13 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                         break;
                     case 'FAVORITE':
                         this.values[param.name] = Helper.IS.boolean(value) ? value : value === 'TRUE';
+                        break;
+                    case 'PLATE':
+                        this.values[param.name] = Helper.IS.plate(value)
+                            ? typeof value === 'string'
+                                ? value
+                                : value.join('-')
+                            : null;
                         break;
                     case 'SEARCH':
                         this.values[param.name] = Helper.IS.string(value) ? value : null;
@@ -188,6 +204,12 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                         param: this.values[param.name] ? 'TRUE' : 'FALSE',
                     };
                     break;
+                case 'PLATE':
+                    values.params[param.name] = {
+                        value: this.values[param.name] ? this.values[param.name].split('-') : null,
+                        param: this.values[param.name] || '',
+                    };
+                    break;
                 case 'SEARCH':
                 case 'SELECT':
                     values.params[param.name] = {
@@ -223,6 +245,9 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                     break;
                 case 'FAVORITE':
                     queryParams[param.name] = value == true ? 'TRUE' : undefined;
+                    break;
+                case 'PLATE':
+                    queryParams[param.name] = value || undefined;
                     break;
                 case 'SEARCH':
                 case 'SELECT':
@@ -278,6 +303,19 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
         this.page = 1;
         this.values[param.name] = !this.values[param.name];
         this.updateRoute();
+    }
+
+    setPlate(param: INgxUtilsParamPlate): void {
+        this.ngxUtilsService.openBottomSheet<string>(NgxUtilsParamsPlateComponent, param.title || 'پلاک').then(
+            (value) => {
+                if (this.values[param.name] === value) return;
+
+                this.page = 1;
+                this.values[param.name] = value;
+                this.updateRoute();
+            },
+            () => {},
+        );
     }
 
     setSearch(param: INgxUtilsParamSearch, value: string): void {

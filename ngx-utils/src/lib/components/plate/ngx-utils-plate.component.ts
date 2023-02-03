@@ -9,6 +9,7 @@ import { Helper } from '@webilix/helper-library';
 })
 export class NgxUtilsPlateComponent implements OnChanges {
     @Input() plate: string[] = [];
+    @Input() border: boolean = true;
 
     public show: boolean = false;
 

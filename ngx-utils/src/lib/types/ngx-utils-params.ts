@@ -2,6 +2,7 @@ import {
     INgxUtilsParamComment,
     INgxUtilsParamDate,
     INgxUtilsParamFavorite,
+    INgxUtilsParamPlate,
     INgxUtilsParamSearch,
     INgxUtilsParamSelect,
 } from '../interfaces/ngx-utils-params';
@@ -12,6 +13,7 @@ export type NgxUtilsParams =
     // INPUTS
     | INgxUtilsParamDate
     | INgxUtilsParamFavorite
+    | INgxUtilsParamPlate
     | INgxUtilsParamSearch
     | INgxUtilsParamSelect;
 

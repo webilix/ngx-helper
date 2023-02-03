@@ -8,6 +8,7 @@
         "@angular/common": ">=15.1.0",
         "@angular/core": ">=15.1.0",
         "@angular/material": ">=15.1.0",
+        "ngx-mask": ">=15.0.2",
         "@webilix/helper-library": ">=4.0.0",
         "@webilix/jalali-date-time": ">=1.1.0"
     },
