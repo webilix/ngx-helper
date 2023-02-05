@@ -12,6 +12,8 @@ import {
 
 import { Helper } from '@webilix/helper-library';
 
+import { NgxUtilsMenu } from '../../types/ngx-utils-menu';
+
 @Component({
     selector: 'ngx-utils-box',
     templateUrl: './ngx-utils-box.component.html',
@@ -22,6 +24,7 @@ export class NgxUtilsBoxComponent implements OnChanges, AfterViewInit {
 
     @Input() title?: string;
     @Input() icon?: string;
+    @Input() menu: NgxUtilsMenu[] = [];
     @Input() component?: ComponentType<any>;
     @Input() padding: string | number = '1rem';
 
