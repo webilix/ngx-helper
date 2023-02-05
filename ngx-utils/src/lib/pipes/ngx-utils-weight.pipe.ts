@@ -21,6 +21,9 @@ export class NgxUtilsWeightPipe implements PipeTransform {
         if (weight < 1000) return getWeight(['K', 'ک'], ['Kilogram', 'کیلو']);
 
         weight /= 1000;
-        return getWeight(['T', 'ت'], ['Tonne', 'تن']);
+        if (weight < 1000) return getWeight(['T', 'ت'], ['Tonne', 'تن']);
+
+        weight /= 1000;
+        return getWeight(['KT', 'ه'], ['Kilotonne', 'هزار تن']);
     }
 }

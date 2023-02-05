@@ -85,7 +85,10 @@ export class NgxUtilsValuePipe implements PipeTransform {
         if (weight < 1000) return [+weight.toFixed(2), short ? (en ? 'K' : 'ک') : en ? 'Kilogram' : 'کیلو'];
 
         weight /= 1000;
-        return [+weight.toFixed(2), short ? (en ? 'T' : 'ت') : en ? 'Tonne' : 'تن'];
+        if (weight < 1000) return [+weight.toFixed(2), short ? (en ? 'T' : 'ت') : en ? 'Tonne' : 'تن'];
+
+        weight /= 1000;
+        return [+weight.toFixed(2), short ? (en ? 'KT' : 'ه') : en ? 'Kilotonne' : 'هزار تن'];
     }
 
     transform(value: NgxUtilsValue, block: boolean = false): SafeHtml {
