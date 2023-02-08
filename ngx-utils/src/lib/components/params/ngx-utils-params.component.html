@@ -60,6 +60,7 @@
                 <div class="title">{{ param.title || '' }}</div>
                 <div
                     [ngClass]="{ value: true, 'value-en': !!param.english }"
+                    [ngStyle]="{ 'padding-left': !!param.english && !!param.required ? '35px' : '0.5rem' }"
                     (click)="param.options.length > 14 ? getSelect(param) : null"
                     #menuTrigger
                 >
