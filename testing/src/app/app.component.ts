@@ -325,8 +325,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
     showButtomSheet(disableClose?: boolean): void {
         this.ngxUtilsService.openBottomSheet<boolean>(
-            'نمایش BottomSheet',
             BottomSheetComponent,
+            'نمایش BottomSheet',
             { data: { date: new Date() }, disableClose },
             (result) => this.log(result),
         );
@@ -334,8 +334,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
     showDialog(disableClose?: boolean): void {
         this.ngxUtilsService.openDialog<boolean>(
-            'نمایش Dialog',
             DialogComponent,
+            'نمایش Dialog',
             { data: { date: new Date() }, disableClose },
             (result) => this.log(result),
         );

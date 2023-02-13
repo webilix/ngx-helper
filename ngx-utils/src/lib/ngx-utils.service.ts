@@ -56,16 +56,16 @@ export class NgxUtilsService {
         panelClass: 'ngx-utils-bottom-sheet-panel',
     };
 
-    openBottomSheet<R>(title: string, component: ComponentType<any>): void;
-    openBottomSheet<R>(title: string, component: ComponentType<any>, callback: (result: R) => void): void;
-    openBottomSheet<R>(title: string, component: ComponentType<any>, config: Partial<INgxUtilsBottomSheetConfig>): void;
+    openBottomSheet<R>(component: ComponentType<any>, title: string): void;
+    openBottomSheet<R>(component: ComponentType<any>, title: string, callback: (result: R) => void): void;
+    openBottomSheet<R>(component: ComponentType<any>, title: string, config: Partial<INgxUtilsBottomSheetConfig>): void;
     openBottomSheet<R>(
-        title: string,
         component: ComponentType<any>,
+        title: string,
         config: Partial<INgxUtilsBottomSheetConfig>,
         callback: (result: R) => void,
     ): void;
-    openBottomSheet<R>(title: string, component: ComponentType<any>, arg1?: any, arg2?: any): void {
+    openBottomSheet<R>(component: ComponentType<any>, title: string, arg1?: any, arg2?: any): void {
         const callback: (result: R) => void = arg2 || (typeof arg1 == 'function' ? arg1 : () => {});
         const config: Partial<INgxUtilsBottomSheetConfig> = arg2 || (arg1 && typeof arg1 === 'object') ? arg1 : {};
 
@@ -105,16 +105,16 @@ export class NgxUtilsService {
         panelClass: 'ngx-utils-full-dialog',
     };
 
-    openDialog<R>(title: string, component: ComponentType<any>): void;
-    openDialog<R>(title: string, component: ComponentType<any>, callback: (result: R) => void): void;
-    openDialog<R>(title: string, component: ComponentType<any>, config: Partial<INgxUtilsDialogConfig>): void;
+    openDialog<R>(component: ComponentType<any>, title: string): void;
+    openDialog<R>(component: ComponentType<any>, title: string, callback: (result: R) => void): void;
+    openDialog<R>(component: ComponentType<any>, title: string, config: Partial<INgxUtilsDialogConfig>): void;
     openDialog<R>(
-        title: string,
         component: ComponentType<any>,
+        title: string,
         config: Partial<INgxUtilsDialogConfig>,
         callback: (result: R) => void,
     ): void;
-    openDialog<R>(title: string, component: ComponentType<any>, arg1?: any, arg2?: any): void {
+    openDialog<R>(component: ComponentType<any>, title: string, arg1?: any, arg2?: any): void {
         const callback: (result: R) => void = arg2 || (typeof arg1 == 'function' ? arg1 : () => {});
         const config: Partial<INgxUtilsDialogConfig> = arg2 || (arg1 && typeof arg1 === 'object') ? arg1 : {};
 

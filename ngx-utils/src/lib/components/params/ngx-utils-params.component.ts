@@ -304,7 +304,7 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     }
 
     setPlate(param: INgxUtilsParamPlate): void {
-        this.ngxUtilsService.openBottomSheet<string>(param.title || 'پلاک', NgxUtilsParamsPlateComponent, (value) => {
+        this.ngxUtilsService.openBottomSheet<string>(NgxUtilsParamsPlateComponent, param.title || 'پلاک', (value) => {
             if (this.values[param.name] === value) return;
 
             this.page = 1;
@@ -336,8 +336,8 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     getSelect(param: INgxUtilsParamSelect): void {
         const value: string = this.values[param.name];
         this.ngxUtilsService.openBottomSheet<string>(
-            param.title,
             NgxUtilsParamsSelectComponent,
+            param.title,
             { data: { param, value } },
             (value) => {
                 if (this.values[param.name] === value) return;
