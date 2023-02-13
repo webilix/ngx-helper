@@ -332,12 +332,12 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     showDialog(disableClose?: boolean): void {
-        this.ngxUtilsService
-            .openDialog<boolean>(DialogComponent, 'نمایش Dialog', { date: new Date() }, disableClose)
-            .then(
-                (result) => this.log(result),
-                () => {},
-            );
+        this.ngxUtilsService.openDialog<boolean>(
+            'نمایش Dialog',
+            DialogComponent,
+            { data: { date: new Date() }, disableClose },
+            (result) => this.log(result),
+        );
     }
 
     showPreview(description: boolean, html: boolean = false): void {

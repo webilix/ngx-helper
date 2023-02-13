@@ -20,6 +20,7 @@ export * from './lib/components/values/ngx-utils-values.component';
 
 export * from './lib/interfaces/ngx-utils-bottomsheet';
 export * from './lib/interfaces/ngx-utils-calendar';
+export * from './lib/interfaces/ngx-utils-dialog';
 export * from './lib/interfaces/ngx-utils-location';
 
 export * from './lib/pipes/ngx-utils-bank-card.pipe';

@@ -9,6 +9,7 @@ import { Helper } from '@webilix/helper-library';
 
 import { INgxUtilsBottomSheetConfig } from './interfaces/ngx-utils-bottomsheet';
 import { INgxUtilsCalendarConfig, INgxUtilsCalendarPeriod } from './interfaces/ngx-utils-calendar';
+import { INgxUtilsDialogConfig } from './interfaces/ngx-utils-dialog';
 import { INgxUtilsUpload } from './interfaces/ngx-utils-upload';
 import {
     INgxUtilsConfirm,
@@ -102,15 +103,22 @@ export class NgxUtilsService {
         panelClass: 'ngx-utils-full-dialog',
     };
 
-    openDialog<R>(component: ComponentType<any>, title: string, data?: any, disableClose?: boolean): Promise<R> {
-        return new Promise<R>((resolve, reject) => {
-            this._dialogRef = this.dialog.open(NgxUtilsDialogComponent, {
-                ...this._dialogConfig,
-                data: { component, title, data, disableClose },
-            });
+    openDialog<R>(title: string, component: ComponentType<any>, callback: (result: R) => void): void;
+    openDialog<R>(
+        title: string,
+        component: ComponentType<any>,
+        config: Partial<INgxUtilsDialogConfig>,
+        callback: (result: R) => void,
+    ): void;
+    openDialog<R>(title: string, component: ComponentType<any>, arg1: any, arg2?: any): void {
+        const callback: (result: R) => void = arg2 || arg1;
+        const config: Partial<INgxUtilsDialogConfig> = typeof arg2 === 'function' ? arg1 : {};
 
-            this._dialogRef.afterClosed().subscribe({ next: (result: R) => (result ? resolve(result) : reject()) });
+        this._dialogRef = this.dialog.open(NgxUtilsDialogComponent, {
+            ...this._dialogConfig,
+            data: { title, component, config },
         });
+        this._dialogRef.afterClosed().subscribe({ next: (result: R) => result && callback(result) });
     }
 
     closeDialog<R>(result?: R): void {
