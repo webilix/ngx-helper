@@ -33,7 +33,7 @@ export class NgxUtilsUploadComponent<R, E> implements AfterViewInit {
     @Input() index: number = 0;
     @Input() file?: File;
     @Input() url: string = '';
-    @Input() config: INgxUtilsUpload = { header: {}, body: {}, maxSize: '0B', mimes: [] };
+    @Input() config: Partial<INgxUtilsUpload> = {};
 
     public progress: number = 0;
 
@@ -53,7 +53,7 @@ export class NgxUtilsUploadComponent<R, E> implements AfterViewInit {
             return;
         }
 
-        if (this.config.mimes.length !== 0 && !this.config.mimes.includes(this.file.type)) {
+        if (this.config.mimes && this.config.mimes.length !== 0 && !this.config.mimes.includes(this.file.type)) {
             this.ngxUtilsService.toast('ERROR', [
                 'فرمت فایل انتخاب شده مجاز نیست.',
                 `فرمت‌های مجاز: ${this.config.mimes.join(', ')}`,
@@ -64,10 +64,13 @@ export class NgxUtilsUploadComponent<R, E> implements AfterViewInit {
 
         const formData: FormData = new FormData();
         formData.append('file', this.file);
-        Object.keys(this.config.body).forEach((k: string) => formData.append(k, this.config.body[k]));
+
+        const body: { [key: string]: any } = this.config.body || {};
+        Object.keys(body).forEach((k: string) => formData.append(k, body[k]));
 
         let headers: HttpHeaders = new HttpHeaders();
-        Object.keys(this.config.header).forEach((key: string) => (headers = headers.set(key, this.config.header[key])));
+        const header: { [key: string]: any } = this.config.header || {};
+        Object.keys(header).forEach((key: string) => (headers = headers.set(key, header[key])));
 
         this.httpClient.post<R>(this.url, formData, { headers, reportProgress: true, observe: 'events' }).subscribe({
             next: (event: HttpEvent<R>) => {

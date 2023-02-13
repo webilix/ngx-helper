@@ -247,17 +247,18 @@ export class AppComponent implements OnInit, OnDestroy {
         const authorization: string =
             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjM5MzNjZWM1YzU0YTlkOTViOTRkYzllIiwidXNlciI6IjYzN2Q3OTY2ZmU2MTg2ODNmYzcwNmQ4MyIsImlhdCI6MTY3MDU5Mzc3MiwiZXhwIjoxNjc1Nzc3NzcyfQ.UjdX7Uu2Q88yYlLnNq-6IEmbehrXDDKRK-HCt-_U7E8';
 
-        this.ngxUtilsService
-            .upload<any, any>(file, 'http://localhost:3000/upload', {
+        this.ngxUtilsService.upload<any, any>(
+            file,
+            'http://localhost:3000/upload',
+            {
                 header: { authorization },
                 body: { type: 'INQUIRY' },
                 maxSize: '1MB',
                 mimes: ['image/png', 'image/gif', 'image/jpeg'],
-            })
-            .then(
-                (response: any) => this.log('RESPONSE', response),
-                (error: any) => this.log('ERROR', error),
-            );
+            },
+            (response: any) => this.log('RESPONSE', response),
+            (error: any) => this.log('ERROR', error),
+        );
     }
 
     toast(type: 'ERROR' | 'INFO' | 'SUCCESS' | 'WARNING'): void {

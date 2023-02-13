@@ -270,36 +270,47 @@ export class NgxUtilsService {
         this.updateComponentsBottom();
     }
 
-    upload<R, E>(file: File, url: string, config?: Partial<INgxUtilsUpload>): Promise<R> {
-        return new Promise<R>((resolve, reject) => {
-            if (!this.viewContainerRef) {
-                reject(null);
-                return this.domError();
-            }
+    upload<R, E>(
+        file: File,
+        url: string,
+        onSuccess: (response: R) => void,
+        onError: (error: { status: HttpStatusCode; error: E }) => void,
+    ): void;
+    upload<R, E>(
+        file: File,
+        url: string,
+        config: Partial<INgxUtilsUpload>,
+        onSuccess: (response: R) => void,
+        onError: (error: { status: HttpStatusCode; error: E }) => void,
+    ): void;
+    upload<R, E>(file: File, url: string, arg1: any, arg2: any, arg3?: any): void {
+        const config: Partial<INgxUtilsUpload> = typeof arg3 === 'function' ? arg1 : {};
+        const onSuccess: (response: R) => void = typeof arg3 === 'function' ? arg2 : arg1;
+        const onError: (error: { status: HttpStatusCode; error: E }) => void = typeof arg3 === 'function' ? arg3 : arg2;
 
-            config = config || {};
-            const component = this.viewContainerRef.createComponent(NgxUtilsUploadComponent<R, E>);
-            component.instance.index = ++this.componentIndex;
-            component.instance.file = file;
-            component.instance.url = url;
-            component.instance.config = {
-                header: config.header || {},
-                body: config.body || {},
-                maxSize: config.maxSize || '0B',
-                mimes: config.mimes || [],
-            };
+        if (!this.viewContainerRef) return this.domError();
 
-            component.instance.close = (response?: R, error?: { status: HttpStatusCode; error: E }) => {
-                this.components = this.components.filter((c) => c.instance.index !== component.instance.index);
-                this.updateComponentsBottom();
-                component.destroy();
+        const component = this.viewContainerRef.createComponent(NgxUtilsUploadComponent<R, E>);
+        component.instance.index = ++this.componentIndex;
+        component.instance.file = file;
+        component.instance.url = url;
+        component.instance.config = {
+            header: config.header || {},
+            body: config.body || {},
+            maxSize: config.maxSize || '0B',
+            mimes: config.mimes || [],
+        };
 
-                response ? resolve(response) : reject(error);
-            };
-
-            this.components.push(component);
+        component.instance.close = (response: R, error: { status: HttpStatusCode; error: E }) => {
+            this.components = this.components.filter((c) => c.instance.index !== component.instance.index);
             this.updateComponentsBottom();
-        });
+            component.destroy();
+
+            response ? onSuccess(response) : onError(error);
+        };
+
+        this.components.push(component);
+        this.updateComponentsBottom();
     }
     //#endregion
 
