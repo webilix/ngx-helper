@@ -217,73 +217,69 @@ export class NgxUtilsCalendarComponent implements OnInit, OnChanges {
     }
 
     getDate(): void {
-        this.ngxUtilsService.getDate({ value: this.from, minDate: this.minDate, maxDate: this.maxDate }).then(
+        this.ngxUtilsService.getDate(
+            { value: this.from, minDate: this.minDate, maxDate: this.maxDate },
             (date: Date) => {
                 const day: JalaliDateTimePeriod = JalaliDateTime({ timezone: this.timezone }).periodDay(1, date);
                 this.from = day.from;
                 this.to = day.to;
                 this.setData();
             },
-            () => {},
         );
     }
 
     getWeek(): void {
-        this.ngxUtilsService.getWeek({ value: this.from, minDate: this.minDate, maxDate: this.maxDate }).then(
+        this.ngxUtilsService.getWeek(
+            { value: this.from, minDate: this.minDate, maxDate: this.maxDate },
             (week: INgxUtilsCalendarPeriod) => {
                 this.from = week.from;
                 this.to = week.to;
                 this.setData();
             },
-            () => {},
         );
     }
 
     getMonth(): void {
-        this.ngxUtilsService.getMonth({ value: this.from, minDate: this.minDate, maxDate: this.maxDate }).then(
+        this.ngxUtilsService.getMonth(
+            { value: this.from, minDate: this.minDate, maxDate: this.maxDate },
             (month: INgxUtilsCalendarPeriod) => {
                 this.from = month.from;
                 this.to = month.to;
                 this.setData();
             },
-            () => {},
         );
     }
 
     getYear(): void {
-        this.ngxUtilsService.getYear({ value: this.from, minDate: this.minDate, maxDate: this.maxDate }).then(
+        this.ngxUtilsService.getYear(
+            { value: this.from, minDate: this.minDate, maxDate: this.maxDate },
             (year: INgxUtilsCalendarPeriod) => {
                 this.from = year.from;
                 this.to = year.to;
                 this.setData();
             },
-            () => {},
         );
     }
 
     getPeriodFrom(): void {
-        this.ngxUtilsService
-            .getDate({ value: this.from, minDate: this.minDate, maxDate: this.to || this.maxDate })
-            .then(
-                (date: Date) => {
-                    const day: JalaliDateTimePeriod = JalaliDateTime({ timezone: this.timezone }).periodDay(1, date);
-                    this.from = day.from;
-                    this.setData();
-                },
-                () => {},
-            );
+        this.ngxUtilsService.getDate(
+            { value: this.from, minDate: this.minDate, maxDate: this.to || this.maxDate },
+            (date: Date) => {
+                const day: JalaliDateTimePeriod = JalaliDateTime({ timezone: this.timezone }).periodDay(1, date);
+                this.from = day.from;
+                this.setData();
+            },
+        );
     }
 
     getPeriodTo(): void {
-        this.ngxUtilsService
-            .getDate({ value: this.to, minDate: this.from || this.minDate, maxDate: this.maxDate })
-            .then(
-                (date: Date) => {
-                    const day: JalaliDateTimePeriod = JalaliDateTime({ timezone: this.timezone }).periodDay(1, date);
-                    this.to = day.to;
-                    this.setData();
-                },
-                () => {},
-            );
+        this.ngxUtilsService.getDate(
+            { value: this.to, minDate: this.from || this.minDate, maxDate: this.maxDate },
+            (date: Date) => {
+                const day: JalaliDateTimePeriod = JalaliDateTime({ timezone: this.timezone }).periodDay(1, date);
+                this.to = day.to;
+                this.setData();
+            },
+        );
     }
 }

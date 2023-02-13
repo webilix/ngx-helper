@@ -267,58 +267,58 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     getDate(type: number): void {
-        this.ngxUtilsService
-            .getDate({
-                value: type === 1 ? new Date('1979-06-03') : null,
-                title: type === 2 ? 'تاریخ' : null,
-                minDate: type === 3 ? new Date() : null,
-                maxDate: type === 4 ? new Date() : null,
-            })
-            .then(
+        if (type === 5) this.ngxUtilsService.getDate((date: Date) => this.log(date));
+        else
+            this.ngxUtilsService.getDate(
+                {
+                    value: type === 1 ? new Date('1979-06-03') : null,
+                    title: type === 2 ? 'تاریخ' : null,
+                    minDate: type === 3 ? new Date() : null,
+                    maxDate: type === 4 ? new Date() : null,
+                },
                 (date: Date) => this.log(date),
-                () => {},
             );
     }
 
     getWeek(type: number): void {
-        this.ngxUtilsService
-            .getWeek({
-                value: type === 1 ? new Date('1979-06-03') : null,
-                title: type === 2 ? 'هفته' : null,
-                minDate: type === 3 ? new Date() : null,
-                maxDate: type === 4 ? new Date() : null,
-            })
-            .then(
+        if (type === 5) this.ngxUtilsService.getWeek((week: INgxUtilsCalendarPeriod) => this.log(week));
+        else
+            this.ngxUtilsService.getWeek(
+                {
+                    value: type === 1 ? new Date('1979-06-03') : null,
+                    title: type === 2 ? 'هفته' : null,
+                    minDate: type === 3 ? new Date() : null,
+                    maxDate: type === 4 ? new Date() : null,
+                },
                 (week: INgxUtilsCalendarPeriod) => this.log(week),
-                () => {},
             );
     }
 
     getMonth(type: number): void {
-        this.ngxUtilsService
-            .getMonth({
-                value: type === 1 ? new Date('1979-06-03') : null,
-                title: type === 2 ? 'ماه' : null,
-                minDate: type === 3 ? new Date() : null,
-                maxDate: type === 4 ? new Date() : null,
-            })
-            .then(
+        if (type === 5) this.ngxUtilsService.getMonth((month: INgxUtilsCalendarPeriod) => this.log(month));
+        else
+            this.ngxUtilsService.getMonth(
+                {
+                    value: type === 1 ? new Date('1979-06-03') : null,
+                    title: type === 2 ? 'ماه' : null,
+                    minDate: type === 3 ? new Date() : null,
+                    maxDate: type === 4 ? new Date() : null,
+                },
                 (month: INgxUtilsCalendarPeriod) => this.log(month),
-                () => {},
             );
     }
 
     getYear(type: number): void {
-        this.ngxUtilsService
-            .getYear({
-                value: type === 1 ? new Date('1979-06-03') : null,
-                title: type === 2 ? 'ماه' : null,
-                minDate: type === 3 ? new Date() : null,
-                maxDate: type === 4 ? new Date() : null,
-            })
-            .then(
+        if (type === 5) this.ngxUtilsService.getYear((year: INgxUtilsCalendarPeriod) => this.log(year));
+        else
+            this.ngxUtilsService.getYear(
+                {
+                    value: type === 1 ? new Date('1979-06-03') : null,
+                    title: type === 2 ? 'ماه' : null,
+                    minDate: type === 3 ? new Date() : null,
+                    maxDate: type === 4 ? new Date() : null,
+                },
                 (year: INgxUtilsCalendarPeriod) => this.log(year),
-                () => {},
             );
     }
 

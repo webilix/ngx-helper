@@ -294,40 +294,52 @@ export class NgxUtilsService {
         return { title: config?.title || null, value: config?.value || null, minDate, maxDate };
     }
 
-    getDate(config?: Partial<INgxUtilsCalendarConfig>): Promise<Date> {
-        return new Promise<Date>((resolve, reject) => {
-            this.dialog
-                .open(NgxUtilsCalendarDateComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
-                .afterClosed()
-                .subscribe((date: Date) => (date ? resolve(date) : reject()));
-        });
+    getDate(callback: (date: Date) => void): void;
+    getDate(config: Partial<INgxUtilsCalendarConfig>, callback: (date: Date) => void): void;
+    getDate(arg1: any, arg2?: any): void {
+        const callback: (date: Date) => void = arg2 || arg1;
+        const config: Partial<INgxUtilsCalendarConfig> = typeof arg2 === 'function' ? arg1 : {};
+
+        this.dialog
+            .open(NgxUtilsCalendarDateComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
+            .afterClosed()
+            .subscribe((date: Date) => date && callback(date));
     }
 
-    getWeek(config?: Partial<INgxUtilsCalendarConfig>): Promise<INgxUtilsCalendarPeriod> {
-        return new Promise<INgxUtilsCalendarPeriod>((resolve, reject) => {
-            this.dialog
-                .open(NgxUtilsCalendarWeekComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
-                .afterClosed()
-                .subscribe((week: INgxUtilsCalendarPeriod) => (week ? resolve(week) : reject()));
-        });
+    getWeek(callback: (period: INgxUtilsCalendarPeriod) => void): void;
+    getWeek(config: Partial<INgxUtilsCalendarConfig>, callback: (period: INgxUtilsCalendarPeriod) => void): void;
+    getWeek(arg1: any, arg2?: any): void {
+        const callback: (period: INgxUtilsCalendarPeriod) => void = arg2 || arg1;
+        const config: Partial<INgxUtilsCalendarConfig> = typeof arg2 === 'function' ? arg1 : {};
+
+        this.dialog
+            .open(NgxUtilsCalendarWeekComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
+            .afterClosed()
+            .subscribe((week: INgxUtilsCalendarPeriod) => week && callback(week));
     }
 
-    getMonth(config?: Partial<INgxUtilsCalendarConfig>): Promise<INgxUtilsCalendarPeriod> {
-        return new Promise<INgxUtilsCalendarPeriod>((resolve, reject) => {
-            this.dialog
-                .open(NgxUtilsCalendarMonthComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
-                .afterClosed()
-                .subscribe((month: INgxUtilsCalendarPeriod) => (month ? resolve(month) : reject()));
-        });
+    getMonth(callback: (period: INgxUtilsCalendarPeriod) => void): void;
+    getMonth(config: Partial<INgxUtilsCalendarConfig>, callback: (period: INgxUtilsCalendarPeriod) => void): void;
+    getMonth(arg1: any, arg2?: any): void {
+        const callback: (period: INgxUtilsCalendarPeriod) => void = arg2 || arg1;
+        const config: Partial<INgxUtilsCalendarConfig> = typeof arg2 === 'function' ? arg1 : {};
+
+        this.dialog
+            .open(NgxUtilsCalendarMonthComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
+            .afterClosed()
+            .subscribe((month: INgxUtilsCalendarPeriod) => month && callback(month));
     }
 
-    getYear(config?: Partial<INgxUtilsCalendarConfig>): Promise<INgxUtilsCalendarPeriod> {
-        return new Promise<INgxUtilsCalendarPeriod>((resolve, reject) => {
-            this.dialog
-                .open(NgxUtilsCalendarYearComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
-                .afterClosed()
-                .subscribe((month: INgxUtilsCalendarPeriod) => (month ? resolve(month) : reject()));
-        });
+    getYear(callback: (period: INgxUtilsCalendarPeriod) => void): void;
+    getYear(config: Partial<INgxUtilsCalendarConfig>, callback: (period: INgxUtilsCalendarPeriod) => void): void;
+    getYear(arg1: any, arg2?: any): void {
+        const callback: (period: INgxUtilsCalendarPeriod) => void = arg2 || arg1;
+        const config: Partial<INgxUtilsCalendarConfig> = typeof arg2 === 'function' ? arg1 : {};
+
+        this.dialog
+            .open(NgxUtilsCalendarYearComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
+            .afterClosed()
+            .subscribe((month: INgxUtilsCalendarPeriod) => month && callback(month));
     }
     //#endregion
 }

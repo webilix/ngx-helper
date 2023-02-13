@@ -4,6 +4,7 @@ import { Params, Router } from '@angular/router';
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 import { Helper } from '@webilix/helper-library';
 
+import { INgxUtilsCalendarConfig } from '../../interfaces/ngx-utils-calendar';
 import {
     INgxUtilsParamDate,
     INgxUtilsParamFavorite,
@@ -280,23 +281,20 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     }
 
     setDate(param: INgxUtilsParamDate): void {
-        this.ngxUtilsService
-            .getDate({
-                title: param.title || 'تاریخ',
-                value: this.values[param.name],
-                minDate: param.minDate,
-                maxDate: param.maxDate,
-            })
-            .then(
-                (date: Date) => {
-                    if (this.values[param.name]?.getTime() === date.getTime()) return;
+        const config: Partial<INgxUtilsCalendarConfig> = {
+            title: param.title || 'تاریخ',
+            value: this.values[param.name],
+            minDate: param.minDate,
+            maxDate: param.maxDate,
+        };
 
-                    this.page = 1;
-                    this.values[param.name] = date;
-                    this.updateRoute();
-                },
-                () => {},
-            );
+        this.ngxUtilsService.getDate(config, (date: Date) => {
+            if (this.values[param.name]?.getTime() === date.getTime()) return;
+
+            this.page = 1;
+            this.values[param.name] = date;
+            this.updateRoute();
+        });
     }
 
     setFavorite(param: INgxUtilsParamFavorite): void {
