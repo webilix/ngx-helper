@@ -56,6 +56,7 @@ export class NgxUtilsService {
         panelClass: 'ngx-utils-bottom-sheet-panel',
     };
 
+    openBottomSheet<R>(title: string, component: ComponentType<any>): void;
     openBottomSheet<R>(title: string, component: ComponentType<any>, callback: (result: R) => void): void;
     openBottomSheet<R>(title: string, component: ComponentType<any>, config: Partial<INgxUtilsBottomSheetConfig>): void;
     openBottomSheet<R>(
@@ -64,9 +65,9 @@ export class NgxUtilsService {
         config: Partial<INgxUtilsBottomSheetConfig>,
         callback: (result: R) => void,
     ): void;
-    openBottomSheet<R>(title: string, component: ComponentType<any>, arg1: any, arg2?: any): void {
+    openBottomSheet<R>(title: string, component: ComponentType<any>, arg1?: any, arg2?: any): void {
         const callback: (result: R) => void = arg2 || (typeof arg1 == 'function' ? arg1 : () => {});
-        const config: Partial<INgxUtilsBottomSheetConfig> = arg2 || typeof arg1 === 'object' ? arg1 : {};
+        const config: Partial<INgxUtilsBottomSheetConfig> = arg2 || (arg1 && typeof arg1 === 'object') ? arg1 : {};
 
         this._bottomSheetRef = this.bottomSheet.open(NgxUtilsBottomSheetComponent, {
             ...this._bottomSheetConfig,
@@ -104,6 +105,7 @@ export class NgxUtilsService {
         panelClass: 'ngx-utils-full-dialog',
     };
 
+    openDialog<R>(title: string, component: ComponentType<any>): void;
     openDialog<R>(title: string, component: ComponentType<any>, callback: (result: R) => void): void;
     openDialog<R>(title: string, component: ComponentType<any>, config: Partial<INgxUtilsDialogConfig>): void;
     openDialog<R>(
@@ -112,9 +114,9 @@ export class NgxUtilsService {
         config: Partial<INgxUtilsDialogConfig>,
         callback: (result: R) => void,
     ): void;
-    openDialog<R>(title: string, component: ComponentType<any>, arg1: any, arg2?: any): void {
+    openDialog<R>(title: string, component: ComponentType<any>, arg1?: any, arg2?: any): void {
         const callback: (result: R) => void = arg2 || (typeof arg1 == 'function' ? arg1 : () => {});
-        const config: Partial<INgxUtilsDialogConfig> = arg2 || typeof arg1 === 'object' ? arg1 : {};
+        const config: Partial<INgxUtilsDialogConfig> = arg2 || (arg1 && typeof arg1 === 'object') ? arg1 : {};
 
         this._dialogRef = this.dialog.open(NgxUtilsDialogComponent, {
             ...this._dialogConfig,
