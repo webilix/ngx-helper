@@ -1,9 +1,8 @@
 <header>
     <div [ngClass]="['title', 'ngx-utils-color-' + (info.color || 'primary')]">{{ info.title }} کردن {{ item }}</div>
     <mat-icon
-        *ngIf="info.icon"
         [ngClass]="['ngx-utils-icon', 'ngx-utils-color-' + (info.color || 'primary')]"
-        [fontIcon]="info.icon"
+        [fontIcon]="info.icon || 'help_outline'"
     ></mat-icon>
 </header>
 

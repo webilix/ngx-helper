@@ -130,21 +130,29 @@ export class NgxUtilsService {
     //#endregion
 
     //#region CONFIRM
-    confirm(confirm: NgxUtilsConfirm, item: string, config?: INgxUtilsConfirmConfig): Promise<any>;
-    confirm(confirm: INgxUtilsConfirm, item: string, config?: INgxUtilsConfirmConfig): Promise<any>;
-    confirm(confirm: NgxUtilsConfirm | INgxUtilsConfirm, item: string, config?: INgxUtilsConfirmConfig): Promise<any> {
-        return new Promise<any>((resolve, reject) => {
-            const info: INgxUtilsConfirm = typeof confirm === 'string' ? NgxUtilsConfirmInfo[confirm] : confirm;
-            this.bottomSheet
-                .open(NgxUtilsConfirmComponent, {
-                    ...this._bottomSheetConfig,
-                    data: { info, item, config: config || {} },
-                })
-                .afterDismissed()
-                .subscribe((result: INgxUtilsConfirmResponse) =>
-                    result && result.confirmed ? resolve(result.value) : reject(),
-                );
-        });
+    confirm(confirm: NgxUtilsConfirm, item: string, callback: (description?: string) => void): void;
+    confirm(confirm: INgxUtilsConfirm, item: string, callback: (description?: string) => void): void;
+    confirm(
+        confirm: NgxUtilsConfirm,
+        item: string,
+        config: Partial<INgxUtilsConfirmConfig>,
+        callback: (description?: string) => void,
+    ): void;
+    confirm(
+        confirm: INgxUtilsConfirm,
+        item: string,
+        config: Partial<INgxUtilsConfirmConfig>,
+        callback: (description?: string) => void,
+    ): void;
+    confirm(confirm: NgxUtilsConfirm | INgxUtilsConfirm, item: string, arg1: any, arg2?: any): void {
+        const callback: (description?: string) => void = arg2 || arg1;
+        const config: Partial<INgxUtilsConfirmConfig> = typeof arg2 === 'function' ? arg1 : {};
+
+        const info: INgxUtilsConfirm = typeof confirm === 'string' ? NgxUtilsConfirmInfo[confirm] : confirm;
+        this.bottomSheet
+            .open(NgxUtilsConfirmComponent, { ...this._bottomSheetConfig, data: { info, item, config: config || {} } })
+            .afterDismissed()
+            .subscribe((result: INgxUtilsConfirmResponse) => result && result.confirmed && callback(result.value));
     }
     //#endregion
 

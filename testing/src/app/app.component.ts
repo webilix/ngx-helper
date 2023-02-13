@@ -386,18 +386,17 @@ export class AppComponent implements OnInit, OnDestroy {
         const title: string = 'عنوان اطلاعات';
         const message: string = 'این پیام برای تست نحوه نمایش پیام‌های مربوط به تاییدیه، اضافه شده است.';
 
-        (type
+        type
             ? type === 'EMPTY'
-                ? this.ngxUtilsService.confirm('ACTIVE', item)
-                : this.ngxUtilsService.confirm(type, item, { title, message, description })
-            : this.ngxUtilsService.confirm({ title: 'سفارشی', icon: 'tune', color: 'accent' }, item, {
-                  title,
-                  message,
-                  description,
-              })
-        ).then(
-            (response: any) => this.log(response),
-            () => {},
-        );
+                ? this.ngxUtilsService.confirm('ACTIVE', item, (description) => this.log(description))
+                : this.ngxUtilsService.confirm(type, item, { title, message, description }, (description) =>
+                      this.log(description),
+                  )
+            : this.ngxUtilsService.confirm(
+                  { title: 'سفارشی', icon: 'tune', color: 'accent' },
+                  item,
+                  { title, message, description },
+                  (description) => this.log(description),
+              );
     }
 }

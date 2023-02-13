@@ -13,13 +13,13 @@ export class NgxUtilsConfirmComponent {
 
     public info: INgxUtilsConfirm = this.data.info;
     public item: string = this.data.item;
-    public config: INgxUtilsConfirmConfig = this.data.config;
+    public config: Partial<INgxUtilsConfirmConfig> = this.data.config;
 
     public error: boolean = false;
 
     constructor(
         @Inject(MAT_BOTTOM_SHEET_DATA)
-        private readonly data: { info: INgxUtilsConfirm; item: string; config: INgxUtilsConfirmConfig },
+        private readonly data: { info: INgxUtilsConfirm; item: string; config: Partial<INgxUtilsConfirmConfig> },
         private readonly bottomSheetRef: MatBottomSheetRef<NgxUtilsConfirmComponent>,
     ) {}
 

@@ -15,9 +15,9 @@ export const NgxUtilsConfirmInfo: { [key in NgxUtilsConfirm]: INgxUtilsConfirm }
 };
 
 export interface INgxUtilsConfirmConfig {
-    title?: string;
-    message?: string;
-    description?: boolean | 'REQUIRED';
+    title: string;
+    message: string;
+    description: boolean | 'REQUIRED';
 }
 
 export interface INgxUtilsConfirmResponse {
