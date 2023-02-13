@@ -2,6 +2,8 @@ import { ComponentType } from '@angular/cdk/portal';
 import { Component, Inject, Injector } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
+import { INgxUtilsBottomSheetConfig } from '../../interfaces/ngx-utils-bottomsheet';
+
 @Component({
     templateUrl: './ngx-utils-bottom-sheet.component.html',
     styleUrls: ['./ngx-utils-bottom-sheet.component.scss'],
@@ -9,14 +11,18 @@ import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bott
 export class NgxUtilsBottomSheetComponent {
     public component: ComponentType<any> = this.data.component;
     public title: string = this.data.title;
-    public disableClose: boolean = !!this.data.disableClose;
+    public disableClose: boolean = !!this.data.config.disableClose;
     public injector: Injector = Injector.create({
-        providers: [{ provide: MAT_BOTTOM_SHEET_DATA, useValue: this.data.data }],
+        providers: [{ provide: MAT_BOTTOM_SHEET_DATA, useValue: this.data.config.data }],
     });
 
     constructor(
         @Inject(MAT_BOTTOM_SHEET_DATA)
-        private readonly data: { component: ComponentType<any>; title: string; data?: any; disableClose?: boolean },
+        private readonly data: {
+            title: string;
+            component: ComponentType<any>;
+            config: Partial<INgxUtilsBottomSheetConfig>;
+        },
         private readonly bottomSheetRef: MatBottomSheetRef<NgxUtilsBottomSheetComponent>,
     ) {}
 

@@ -18,6 +18,7 @@ export * from './lib/components/params/ngx-utils-params.component';
 export * from './lib/components/plate/ngx-utils-plate.component';
 export * from './lib/components/values/ngx-utils-values.component';
 
+export * from './lib/interfaces/ngx-utils-bottomsheet';
 export * from './lib/interfaces/ngx-utils-calendar';
 export * from './lib/interfaces/ngx-utils-location';
 

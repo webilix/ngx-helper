@@ -304,16 +304,13 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
     }
 
     setPlate(param: INgxUtilsParamPlate): void {
-        this.ngxUtilsService.openBottomSheet<string>(NgxUtilsParamsPlateComponent, param.title || 'پلاک').then(
-            (value) => {
-                if (this.values[param.name] === value) return;
+        this.ngxUtilsService.openBottomSheet<string>(param.title || 'پلاک', NgxUtilsParamsPlateComponent, (value) => {
+            if (this.values[param.name] === value) return;
 
-                this.page = 1;
-                this.values[param.name] = value;
-                this.updateRoute();
-            },
-            () => {},
-        );
+            this.page = 1;
+            this.values[param.name] = value;
+            this.updateRoute();
+        });
     }
 
     setSearch(param: INgxUtilsParamSearch, value: string): void {
@@ -338,7 +335,10 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
 
     getSelect(param: INgxUtilsParamSelect): void {
         const value: string = this.values[param.name];
-        this.ngxUtilsService.openBottomSheet<string>(NgxUtilsParamsSelectComponent, param.title, { param, value }).then(
+        this.ngxUtilsService.openBottomSheet<string>(
+            param.title,
+            NgxUtilsParamsSelectComponent,
+            { data: { param, value } },
             (value) => {
                 if (this.values[param.name] === value) return;
 
@@ -346,7 +346,6 @@ export class NgxUtilsParamsComponent implements OnInit, OnChanges {
                 this.values[param.name] = value;
                 this.updateRoute();
             },
-            () => {},
         );
     }
 

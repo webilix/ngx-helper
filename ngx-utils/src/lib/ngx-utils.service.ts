@@ -7,6 +7,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 
 import { Helper } from '@webilix/helper-library';
 
+import { INgxUtilsBottomSheetConfig } from './interfaces/ngx-utils-bottomsheet';
 import { INgxUtilsCalendarConfig, INgxUtilsCalendarPeriod } from './interfaces/ngx-utils-calendar';
 import { INgxUtilsUpload } from './interfaces/ngx-utils-upload';
 import {
@@ -54,17 +55,22 @@ export class NgxUtilsService {
         panelClass: 'ngx-utils-bottom-sheet-panel',
     };
 
-    openBottomSheet<R>(component: ComponentType<any>, title: string, data?: any, disableClose?: boolean): Promise<R> {
-        return new Promise<R>((resolve, reject) => {
-            this._bottomSheetRef = this.bottomSheet.open(NgxUtilsBottomSheetComponent, {
-                ...this._bottomSheetConfig,
-                data: { component, title, data, disableClose },
-            });
+    openBottomSheet<R>(title: string, component: ComponentType<any>, callback: (result: R) => void): void;
+    openBottomSheet<R>(
+        title: string,
+        component: ComponentType<any>,
+        config: Partial<INgxUtilsBottomSheetConfig>,
+        callback: (result: R) => void,
+    ): void;
+    openBottomSheet<R>(title: string, component: ComponentType<any>, arg1: any, arg2?: any): void {
+        const callback: (result: R) => void = arg2 || arg1;
+        const config: Partial<INgxUtilsBottomSheetConfig> = typeof arg2 === 'function' ? arg1 : {};
 
-            this._bottomSheetRef
-                .afterDismissed()
-                .subscribe({ next: (result?: R) => (result ? resolve(result) : reject()) });
+        this._bottomSheetRef = this.bottomSheet.open(NgxUtilsBottomSheetComponent, {
+            ...this._bottomSheetConfig,
+            data: { title, component, config },
         });
+        this._bottomSheetRef.afterDismissed().subscribe({ next: (result: R) => result && callback(result) });
     }
 
     closeBottomSheet<R>(result?: R): void {
