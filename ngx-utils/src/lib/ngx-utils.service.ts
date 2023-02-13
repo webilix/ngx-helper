@@ -57,6 +57,7 @@ export class NgxUtilsService {
     };
 
     openBottomSheet<R>(title: string, component: ComponentType<any>, callback: (result: R) => void): void;
+    openBottomSheet<R>(title: string, component: ComponentType<any>, config: Partial<INgxUtilsBottomSheetConfig>): void;
     openBottomSheet<R>(
         title: string,
         component: ComponentType<any>,
@@ -64,8 +65,8 @@ export class NgxUtilsService {
         callback: (result: R) => void,
     ): void;
     openBottomSheet<R>(title: string, component: ComponentType<any>, arg1: any, arg2?: any): void {
-        const callback: (result: R) => void = arg2 || arg1;
-        const config: Partial<INgxUtilsBottomSheetConfig> = typeof arg2 === 'function' ? arg1 : {};
+        const callback: (result: R) => void = arg2 || (typeof arg1 == 'function' ? arg1 : () => {});
+        const config: Partial<INgxUtilsBottomSheetConfig> = arg2 || typeof arg1 === 'object' ? arg1 : {};
 
         this._bottomSheetRef = this.bottomSheet.open(NgxUtilsBottomSheetComponent, {
             ...this._bottomSheetConfig,
@@ -104,6 +105,7 @@ export class NgxUtilsService {
     };
 
     openDialog<R>(title: string, component: ComponentType<any>, callback: (result: R) => void): void;
+    openDialog<R>(title: string, component: ComponentType<any>, config: Partial<INgxUtilsDialogConfig>): void;
     openDialog<R>(
         title: string,
         component: ComponentType<any>,
@@ -111,8 +113,8 @@ export class NgxUtilsService {
         callback: (result: R) => void,
     ): void;
     openDialog<R>(title: string, component: ComponentType<any>, arg1: any, arg2?: any): void {
-        const callback: (result: R) => void = arg2 || arg1;
-        const config: Partial<INgxUtilsDialogConfig> = typeof arg2 === 'function' ? arg1 : {};
+        const callback: (result: R) => void = arg2 || (typeof arg1 == 'function' ? arg1 : () => {});
+        const config: Partial<INgxUtilsDialogConfig> = arg2 || typeof arg1 === 'object' ? arg1 : {};
 
         this._dialogRef = this.dialog.open(NgxUtilsDialogComponent, {
             ...this._dialogConfig,
