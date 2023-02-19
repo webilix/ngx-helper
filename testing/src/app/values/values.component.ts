@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { INgxUtilsValues } from '@ngx-utils';
+import { INgxHelperValues } from '@ngx-helper';
 
 @Component({
     selector: 'app-values',
@@ -8,7 +8,7 @@ import { INgxUtilsValues } from '@ngx-utils';
     styleUrls: ['./values.component.scss'],
 })
 export class ValuesComponent {
-    public values: INgxUtilsValues[] = [
+    public values: INgxHelperValues[] = [
         { title: 'عبارت متنی فارسی', value: 'مقدار عبارت متنی فارسی', copy: true },
         { title: 'عبارت متنی انگلیسی', value: 'english text', copy: true },
         { title: 'کارت بانکی', value: { type: 'BANK-CARD', value: '1234123412341238', english: true }, copy: true },

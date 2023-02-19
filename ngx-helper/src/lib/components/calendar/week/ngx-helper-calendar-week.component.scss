@@ -1,0 +1,179 @@
+:host {
+    position: relative;
+
+    mat-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-family: var(--ngxHelperIconFont) !important;
+        font-size: var(--ngxHelperIconSize) !important;
+    }
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--ngxHelperBackgroundColor);
+    opacity: 0.5;
+    z-index: 1;
+}
+
+section.header {
+    display: flex;
+    align-items: center;
+    background-color: var(--ngxHelperBackgroundColor);
+
+    padding: 1rem 1.5rem 1rem 1rem;
+
+    .title {
+        flex: 1;
+        font-weight: 600;
+        color: var(--ngxHelperPrimaryColor);
+    }
+
+    mat-icon {
+        margin: 0 !important;
+        width: 25px !important;
+        height: 25px !important;
+        color: var(--ngxHelperPrimaryColor);
+        cursor: pointer;
+    }
+}
+
+section.icons {
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+    padding: 0 1rem;
+
+    mat-icon {
+        margin: 0 !important;
+        width: 25px !important;
+        height: 25px !important;
+        cursor: pointer;
+    }
+
+    .month {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        column-gap: 0.5rem;
+        z-index: 2;
+        padding: 0.5rem 0.5rem 0.5rem 0;
+        background-color: #fff;
+    }
+
+    .seperator {
+        flex: 1;
+    }
+}
+
+section.names {
+    display: flex;
+    align-items: center;
+    background-color: var(--ngxHelperBackgroundColor);
+    column-gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.75rem 0.5rem;
+    position: relative;
+
+    .name {
+        flex: 1;
+        text-align: center;
+        color: var(--ngxHelperPrimaryColor);
+    }
+
+    .month {
+        position: absolute;
+        top: 0;
+        right: 1rem;
+        background-color: #fff;
+        z-index: 2;
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 0.25rem 0;
+
+            mat-icon {
+                flex: 1;
+                color: var(--ngxHelperPrimaryColor);
+            }
+
+            input {
+                width: 50px;
+                text-align: center;
+                border-width: 0;
+                outline: none;
+                color: var(--ngxHelperPrimaryColor);
+            }
+        }
+
+        .season {
+            display: flex;
+            align-items: center;
+
+            .month-name {
+                flex: 1;
+                padding: 0.75rem 1rem;
+                text-align: center;
+            }
+        }
+    }
+}
+
+section.days {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    padding: 0 0.5rem;
+    margin-bottom: 0.5rem;
+
+    .day {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 1px solid transparent;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 2;
+    }
+
+    .day::after {
+        content: ' ';
+        display: 'block';
+        padding-bottom: 100%;
+    }
+
+    .today {
+        border-color: var(--ngxHelperBorderColor);
+    }
+
+    .disable {
+        opacity: 0.5;
+        cursor: default;
+    }
+}
+
+section.current {
+    position: relative;
+    font-weight: 600;
+}
+
+section.current::after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--ngxHelperPrimaryColor);
+    opacity: 0.25;
+    z-index: 1;
+}

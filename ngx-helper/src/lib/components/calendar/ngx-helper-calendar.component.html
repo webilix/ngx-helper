@@ -1,0 +1,45 @@
+<ngx-helper-menu
+    *ngIf="menu.length > 1"
+    [menu]="menu"
+    [icon]="'keyboard_double_arrow_down'"
+    [title]="title"
+></ngx-helper-menu>
+
+<ng-container *ngIf="type === 'DAY' || type === 'WEEK' || type === 'MONTH' || type === 'YEAR'">
+    <div class="title" (click)="getValue()">{{ period }}</div>
+
+    <div class="pn">
+        <mat-icon
+            [fontIcon]="'chevron_right'"
+            [ngClass]="{ 'ngx-helper-icon': true, disabled: !previous.active }"
+            (click)="setPN('PREVIOUS')"
+        ></mat-icon>
+        <mat-icon
+            [fontIcon]="'chevron_left'"
+            [ngClass]="{ 'ngx-helper-icon': true, disabled: !next.active }"
+            (click)="setPN('NEXT')"
+        ></mat-icon>
+    </div>
+
+    <mat-icon *ngIf="type === 'DAY'" [fontIcon]="'today'" class="ngx-helper-icon" (click)="getDate()"></mat-icon>
+    <mat-icon *ngIf="type === 'WEEK'" [fontIcon]="'date_range'" class="ngx-helper-icon" (click)="getWeek()"></mat-icon>
+    <mat-icon
+        *ngIf="type === 'MONTH'"
+        [fontIcon]="'calendar_month'"
+        class="ngx-helper-icon"
+        (click)="getMonth()"
+    ></mat-icon>
+    <mat-icon
+        *ngIf="type === 'YEAR'"
+        [fontIcon]="'calendar_today'"
+        class="ngx-helper-icon"
+        (click)="getYear()"
+    ></mat-icon>
+</ng-container>
+
+<ng-container *ngIf="type === 'PERIOD'">
+    <div class="title" (click)="getPeriodFrom()">{{ period[0] }}</div>
+    <mat-icon [fontIcon]="'today'" class="middle ngx-helper-icon" (click)="getPeriodFrom()"></mat-icon>
+    <div class="title" (click)="getPeriodTo()">{{ period[1] }}</div>
+    <mat-icon [fontIcon]="'today'" class="ngx-helper-icon" (click)="getPeriodTo()"></mat-icon>
+</ng-container>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NgxUtilsListMenu } from '@ngx-utils';
+import { NgxHelperListMenu } from '@ngx-helper';
 
 interface IList {
     id: string;
@@ -45,7 +45,7 @@ export class ListComponent {
         },
     ];
 
-    public empty: NgxUtilsListMenu<IList>[] = [
+    public empty: NgxHelperListMenu<IList>[] = [
         'SEPERATOR',
         {
             icon: 'check_box',
@@ -56,7 +56,7 @@ export class ListComponent {
         'SEPERATOR',
     ];
 
-    public menu: NgxUtilsListMenu<IList>[] = [
+    public menu: NgxHelperListMenu<IList>[] = [
         {
             icon: 'check_box',
             click: ['/active', ':ID'],

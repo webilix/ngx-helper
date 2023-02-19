@@ -1,0 +1,31 @@
+<header>
+    <div [ngClass]="['title', 'ngx-helper-color-' + (info.color || 'primary')]">{{ info.title }} کردن {{ item }}</div>
+    <mat-icon
+        [ngClass]="['ngx-helper-icon', 'ngx-helper-color-' + (info.color || 'primary')]"
+        [fontIcon]="info.icon || 'help_outline'"
+    ></mat-icon>
+</header>
+
+<content>
+    <div class="question">آیا می‌خواهید {{ item }} انتخاب شده را {{ info.title }} کنید؟</div>
+    <div class="message" *ngIf="config.message">{{ config.message }}</div>
+    <div class="data" *ngIf="config.title">
+        <div class="data-type">{{ item }}:</div>
+        <div class="data-title">{{ config.title }}</div>
+    </div>
+
+    <textarea
+        *ngIf="config.description"
+        placeholder="توضیحات"
+        [ngStyle]="{ 'border-color': error ? 'var(--ngxHelperWarnColor)' : 'var(--ngxHelperBorderColor)' }"
+        (input)="error = config.description === 'REQUIRED' && !ngxHelperConfirmDescription.value.trim()"
+        #ngxHelperConfirmDescription
+    ></textarea>
+
+    <div class="buttons">
+        <button mat-flat-button type="button" class="submit" [color]="info.color || 'primary'" (click)="dismiss(true)">
+            بلی
+        </button>
+        <button mat-stroked-button type="button" [color]="info.color || 'primary'" (click)="dismiss()">خیر</button>
+    </div>
+</content>

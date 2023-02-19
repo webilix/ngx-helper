@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 
-import { NgxUtilsModule } from '@ngx-utils';
+import { NgxHelperModule } from '@ngx-helper';
 
 import { AppComponent } from './app.component';
 
@@ -35,7 +35,7 @@ import { ValuesComponent } from './values/values.component';
 
         MatButtonModule,
 
-        NgxUtilsModule.forRoot(),
+        NgxHelperModule.forRoot(),
     ],
     bootstrap: [AppComponent],
 })

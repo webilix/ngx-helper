@@ -11,7 +11,7 @@
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "sourceMap": true,
-        "paths": { "@ngx-utils": ["ngx-utils/src/public-api"] },
+        "paths": { "@ngx-helper": ["ngx-helper/src/public-api"] },
         "declaration": false,
         "downlevelIteration": true,
         "experimentalDecorators": true,

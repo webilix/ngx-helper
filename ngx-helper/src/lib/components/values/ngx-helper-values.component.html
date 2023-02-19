@@ -1,0 +1,28 @@
+<div
+    *ngFor="let value of values; let index = index"
+    [ngClass]="{ 'ngx-helper-values': true, 'ngx-helper-values-no-border': !border }"
+>
+    <div class="data">
+        <div class="title" [ngStyle]="{ width: width.toString() + 'px' }">{{ value.title }}:</div>
+        <div
+            class="value"
+            [ngStyle]="{ flex: value.block ? 1 : 'none' }"
+            [innerHTML]="value.value | ngxHelperValue : true"
+        ></div>
+    </div>
+
+    <div class="copy" *ngIf="value.copy && copy[index]">
+        <mat-icon
+            class="ngx-helper-icon"
+            [fontIcon]="'content_copy'"
+            [@copy]="copyIndex === index ? 'hide' : 'show'"
+            [cdkCopyToClipboard]="copy[index]"
+            (click)="setCopy(index)"
+        ></mat-icon>
+        <mat-icon
+            class="ngx-helper-icon copied"
+            [fontIcon]="'done_all'"
+            [@copy]="copyIndex === index ? 'show' : 'hide'"
+        ></mat-icon>
+    </div>
+</div>

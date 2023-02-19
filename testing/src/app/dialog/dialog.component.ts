@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { NgxUtilsService } from '@ngx-utils';
+import { NgxHelperService } from '@ngx-helper';
 
 @Component({
     templateUrl: './dialog.component.html',
@@ -10,10 +10,10 @@ import { NgxUtilsService } from '@ngx-utils';
 export class DialogComponent {
     constructor(
         @Inject(MAT_DIALOG_DATA) public readonly data: any,
-        private readonly ngxUtilsService: NgxUtilsService,
+        private readonly ngxHelperService: NgxHelperService,
     ) {}
 
     close(result: boolean = false): void {
-        this.ngxUtilsService.closeDialog(result);
+        this.ngxHelperService.closeDialog(result);
     }
 }

@@ -3,18 +3,18 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import {
-    INgxUtilsCalendarPeriod,
-    INgxUtilsLocation,
-    INgxUtilsParamsOrder,
-    INgxUtilsParamsUpdate,
-    NgxUtilsConnectionService,
-    NgxUtilsLoadingService,
-    NgxUtilsLocationService,
-    NgxUtilsMenu,
-    NgxUtilsParams,
-    NgxUtilsService,
-    NGX_UTILS_LOADING_HEADER,
-} from '@ngx-utils';
+    INgxHelperCalendarPeriod,
+    INgxHelperLocation,
+    INgxHelperParamsOrder,
+    INgxHelperParamsUpdate,
+    NgxHelperConnectionService,
+    NgxHelperLoadingService,
+    NgxHelperLocationService,
+    NgxHelperMenu,
+    NgxHelperParams,
+    NgxHelperService,
+    NGX_HELPER_LOADING_HEADER,
+} from '@ngx-helper';
 
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { BoxComponent } from './box/box.component';
@@ -31,7 +31,7 @@ import { ValuesComponent } from './values/values.component';
 export class AppComponent implements OnInit, OnDestroy {
     public log = console.log;
 
-    public params1: NgxUtilsParams[] = [
+    public params1: NgxHelperParams[] = [
         { type: 'SEARCH', name: 'fa_query' },
         {
             type: 'SELECT',
@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, OnDestroy {
         { type: 'DATE', name: 'fa_date' },
     ];
 
-    public order: INgxUtilsParamsOrder = {
+    public order: INgxHelperParamsOrder = {
         type: 'DESC',
         options: [
             { id: 'option-1', title: 'گزینه اول' },
@@ -56,7 +56,7 @@ export class AppComponent implements OnInit, OnDestroy {
         default: 'option-2',
     };
 
-    public params2: NgxUtilsParams[] = [
+    public params2: NgxHelperParams[] = [
         { type: 'FAVORITE', name: 'favorite' },
         { type: 'SEARCH', name: 'en_query', english: true },
         {
@@ -74,7 +74,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     public paramsPage: number = 1;
     public selectPage: number = 1;
-    public params3: NgxUtilsParams[] = [
+    public params3: NgxHelperParams[] = [
         {
             type: 'SELECT',
             name: 'fa_select_big',
@@ -91,9 +91,9 @@ export class AppComponent implements OnInit, OnDestroy {
             english: true,
         },
     ];
-    public params3Update: INgxUtilsParamsUpdate = {};
+    public params3Update: INgxHelperParamsUpdate = {};
 
-    public params4: NgxUtilsParams[] = [
+    public params4: NgxHelperParams[] = [
         { type: 'FAVORITE', name: 'value_favorite', value: true },
         { type: 'SEARCH', name: 'value_query', value: 'متن جستجو' },
         {
@@ -120,12 +120,12 @@ export class AppComponent implements OnInit, OnDestroy {
         { type: 'DATE', name: 'value_date', value: new Date(), required: true, maxDate: new Date() },
     ];
 
-    public params5: NgxUtilsParams[] = [
+    public params5: NgxHelperParams[] = [
         { type: 'COMMENT', title: 'فارسی', value: 'مقدار فارسی' },
         { type: 'COMMENT', title: 'انگلیسی', value: 'English value', english: true },
     ];
 
-    public params6: NgxUtilsParams[] = [
+    public params6: NgxHelperParams[] = [
         { name: 'plate-1', type: 'PLATE', value: ['12', 'ا', '345', '67'].join('-') },
         { name: 'plate-2', type: 'PLATE', value: ['12', 'ا', '345', '67'] },
     ];
@@ -135,10 +135,10 @@ export class AppComponent implements OnInit, OnDestroy {
     public pipeComponent: ComponentType<PipeComponent> = PipeComponent;
     public valuesComponent: ComponentType<ValuesComponent> = ValuesComponent;
 
-    public singleMenu: NgxUtilsMenu[] = [
+    public singleMenu: NgxHelperMenu[] = [
         { title: 'حذف', click: () => this.log('DELETE'), icon: 'delete', color: 'warn' },
     ];
-    public menu: NgxUtilsMenu[] = [
+    public menu: NgxHelperMenu[] = [
         { title: 'عدم نمایش', click: [], hideOn: () => true },
         'SEPERATOR',
         'SEPERATOR',
@@ -167,14 +167,14 @@ export class AppComponent implements OnInit, OnDestroy {
     public loading: boolean = false;
     private _onLoadingChanged?: Subscription;
 
-    public location?: INgxUtilsLocation | false;
+    public location?: INgxHelperLocation | false;
 
     constructor(
         private readonly changeDetectorRef: ChangeDetectorRef,
-        private readonly ngxUtilsService: NgxUtilsService,
-        private readonly ngxUtilsConnectionService: NgxUtilsConnectionService,
-        private readonly ngxUtilsLoadingService: NgxUtilsLoadingService,
-        private readonly ngxUtilsLocationService: NgxUtilsLocationService,
+        private readonly ngxHelperService: NgxHelperService,
+        private readonly ngxHelperConnectionService: NgxHelperConnectionService,
+        private readonly ngxHelperLoadingService: NgxHelperLoadingService,
+        private readonly ngxHelperLocationService: NgxHelperLocationService,
     ) {}
 
     ngOnInit(): void {
@@ -196,23 +196,23 @@ export class AppComponent implements OnInit, OnDestroy {
             ];
         }, 2000);
 
-        this.log(NGX_UTILS_LOADING_HEADER);
+        this.log(NGX_HELPER_LOADING_HEADER);
 
-        this.connection = this.ngxUtilsConnectionService.connection;
-        this._onConnectionChanged = this.ngxUtilsConnectionService.onConnectionChanged.subscribe({
+        this.connection = this.ngxHelperConnectionService.connection;
+        this._onConnectionChanged = this.ngxHelperConnectionService.onConnectionChanged.subscribe({
             next: (connection: boolean) => (this.connection = connection),
         });
 
-        this.loading = this.ngxUtilsLoadingService.loading;
-        this._onLoadingChanged = this.ngxUtilsLoadingService.onLoadingChanged.subscribe({
+        this.loading = this.ngxHelperLoadingService.loading;
+        this._onLoadingChanged = this.ngxHelperLoadingService.onLoadingChanged.subscribe({
             next: (loading: boolean) => {
                 this.log(`LOADING: ${(this.loading = loading)}`);
                 this.changeDetectorRef.detectChanges();
             },
         });
 
-        this.ngxUtilsLocationService.getLocation().then(
-            (location: INgxUtilsLocation) => (this.location = location),
+        this.ngxHelperLocationService.getLocation().then(
+            (location: INgxHelperLocation) => (this.location = location),
             (error: string) => {
                 console.error(error);
                 this.location = false;
@@ -233,7 +233,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     download(correct: boolean): void {
-        this.ngxUtilsService.download('localhost.html', correct ? 'http://localhost:4200' : 'http://localhost:14200');
+        this.ngxHelperService.download('localhost.html', correct ? 'http://localhost:4200' : 'http://localhost:14200');
     }
 
     upload(event: Event): void {
@@ -247,7 +247,7 @@ export class AppComponent implements OnInit, OnDestroy {
         const authorization: string =
             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjM5MzNjZWM1YzU0YTlkOTViOTRkYzllIiwidXNlciI6IjYzN2Q3OTY2ZmU2MTg2ODNmYzcwNmQ4MyIsImlhdCI6MTY3MDU5Mzc3MiwiZXhwIjoxNjc1Nzc3NzcyfQ.UjdX7Uu2Q88yYlLnNq-6IEmbehrXDDKRK-HCt-_U7E8';
 
-        this.ngxUtilsService.upload<any, any>(
+        this.ngxHelperService.upload<any, any>(
             file,
             'http://localhost:3000/upload',
             {
@@ -264,13 +264,13 @@ export class AppComponent implements OnInit, OnDestroy {
     toast(type: 'ERROR' | 'INFO' | 'SUCCESS' | 'WARNING'): void {
         const index: number = type === 'ERROR' ? 0 : type === 'INFO' ? 1 : type === 'SUCCESS' ? 2 : 3;
         const message: string[] = Array(index + 1).fill('نمایش تست: شیوه نمایش ' + type);
-        this.ngxUtilsService.toast(type, message, index * 4, () => this.log(`TOAST: ${type}`));
+        this.ngxHelperService.toast(type, message, index * 4, () => this.log(`TOAST: ${type}`));
     }
 
     getDate(type: number): void {
-        if (type === 5) this.ngxUtilsService.getDate((date: Date) => this.log(date));
+        if (type === 5) this.ngxHelperService.getDate((date: Date) => this.log(date));
         else
-            this.ngxUtilsService.getDate(
+            this.ngxHelperService.getDate(
                 {
                     value: type === 1 ? new Date('1979-06-03') : null,
                     title: type === 2 ? 'تاریخ' : null,
@@ -282,49 +282,49 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     getWeek(type: number): void {
-        if (type === 5) this.ngxUtilsService.getWeek((week: INgxUtilsCalendarPeriod) => this.log(week));
+        if (type === 5) this.ngxHelperService.getWeek((week: INgxHelperCalendarPeriod) => this.log(week));
         else
-            this.ngxUtilsService.getWeek(
+            this.ngxHelperService.getWeek(
                 {
                     value: type === 1 ? new Date('1979-06-03') : null,
                     title: type === 2 ? 'هفته' : null,
                     minDate: type === 3 ? new Date() : null,
                     maxDate: type === 4 ? new Date() : null,
                 },
-                (week: INgxUtilsCalendarPeriod) => this.log(week),
+                (week: INgxHelperCalendarPeriod) => this.log(week),
             );
     }
 
     getMonth(type: number): void {
-        if (type === 5) this.ngxUtilsService.getMonth((month: INgxUtilsCalendarPeriod) => this.log(month));
+        if (type === 5) this.ngxHelperService.getMonth((month: INgxHelperCalendarPeriod) => this.log(month));
         else
-            this.ngxUtilsService.getMonth(
+            this.ngxHelperService.getMonth(
                 {
                     value: type === 1 ? new Date('1979-06-03') : null,
                     title: type === 2 ? 'ماه' : null,
                     minDate: type === 3 ? new Date() : null,
                     maxDate: type === 4 ? new Date() : null,
                 },
-                (month: INgxUtilsCalendarPeriod) => this.log(month),
+                (month: INgxHelperCalendarPeriod) => this.log(month),
             );
     }
 
     getYear(type: number): void {
-        if (type === 5) this.ngxUtilsService.getYear((year: INgxUtilsCalendarPeriod) => this.log(year));
+        if (type === 5) this.ngxHelperService.getYear((year: INgxHelperCalendarPeriod) => this.log(year));
         else
-            this.ngxUtilsService.getYear(
+            this.ngxHelperService.getYear(
                 {
                     value: type === 1 ? new Date('1979-06-03') : null,
                     title: type === 2 ? 'ماه' : null,
                     minDate: type === 3 ? new Date() : null,
                     maxDate: type === 4 ? new Date() : null,
                 },
-                (year: INgxUtilsCalendarPeriod) => this.log(year),
+                (year: INgxHelperCalendarPeriod) => this.log(year),
             );
     }
 
     showButtomSheet(disableClose?: boolean): void {
-        this.ngxUtilsService.openBottomSheet<boolean>(
+        this.ngxHelperService.openBottomSheet<boolean>(
             BottomSheetComponent,
             'نمایش BottomSheet',
             { data: { date: new Date() }, disableClose },
@@ -333,7 +333,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     showDialog(disableClose?: boolean): void {
-        this.ngxUtilsService.openDialog<boolean>(
+        this.ngxHelperService.openDialog<boolean>(
             DialogComponent,
             'نمایش Dialog',
             { data: { date: new Date() }, disableClose },
@@ -342,7 +342,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     showPreview(description: boolean, html: boolean = false): void {
-        this.ngxUtilsService.showPreview(
+        this.ngxHelperService.showPreview(
             'https://angular.io/assets/images/logos/angular/logo-nav@2x.png',
             description
                 ? 'شیوه نمایش توضیحات مربوط به تصویر در هنگام استفاده از کامپوننت پیش‌نمایش تصویر' +
@@ -366,17 +366,17 @@ export class AppComponent implements OnInit, OnDestroy {
             },
         ];
 
-        this.ngxUtilsService.showGallery(images, index, html);
+        this.ngxHelperService.showGallery(images, index, html);
     }
 
     showMap(type: number): void {
         type === 1
-            ? this.ngxUtilsService.showMap(35.715298, 51.404343)
+            ? this.ngxHelperService.showMap(35.715298, 51.404343)
             : type === 2
-            ? this.ngxUtilsService.showMap({ lat: 35.715298, long: 51.404343 })
+            ? this.ngxHelperService.showMap({ lat: 35.715298, long: 51.404343 })
             : type === 3
-            ? this.ngxUtilsService.showMap({ latitude: 35.715298, longitude: 51.404343 })
-            : this.ngxUtilsService.showMap(35.715298, 51.404343, 11);
+            ? this.ngxHelperService.showMap({ latitude: 35.715298, longitude: 51.404343 })
+            : this.ngxHelperService.showMap(35.715298, 51.404343, 11);
     }
 
     confirm(
@@ -389,11 +389,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
         type
             ? type === 'EMPTY'
-                ? this.ngxUtilsService.confirm('ACTIVE', item, (description) => this.log(description))
-                : this.ngxUtilsService.confirm(type, item, { title, message, description }, (description) =>
+                ? this.ngxHelperService.confirm('ACTIVE', item, (description) => this.log(description))
+                : this.ngxHelperService.confirm(type, item, { title, message, description }, (description) =>
                       this.log(description),
                   )
-            : this.ngxUtilsService.confirm(
+            : this.ngxHelperService.confirm(
                   { title: 'سفارشی', icon: 'tune', color: 'accent' },
                   item,
                   { title, message, description },

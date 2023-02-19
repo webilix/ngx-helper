@@ -1,0 +1,81 @@
+:host {
+    direction: rtl;
+
+    width: calc(100vw - 4rem);
+    max-width: 300px;
+    transition: all 0.35s ease-out;
+    z-index: 5000;
+    cursor: pointer;
+
+    border-radius: 4px;
+    box-shadow: 0 0 12px 0px #999;
+
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+:host.ngx-helper-toast-error {
+    background-color: #bd362f;
+}
+
+:host.ngx-helper-toast-info {
+    background-color: #2f96b4;
+}
+
+:host.ngx-helper-toast-success {
+    background-color: #51a351;
+}
+
+:host.ngx-helper-toast-warning {
+    background-color: #f89406;
+}
+
+content {
+    display: flex;
+    align-items: flex-start;
+
+    ul {
+        flex: 1;
+        list-style: none;
+        padding: 1rem;
+        min-height: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        li {
+            color: #fff;
+            font-family: var(--ngxHelperFaFont);
+            font-size: var(--ngxHelperFontSize);
+            font-weight: 600;
+        }
+    }
+
+    mat-icon {
+        color: #fff;
+        font-size: 30px !important;
+        width: 45px !important;
+        height: 50px !important;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.timeout {
+    width: 100;
+    height: 4px;
+    border-radius: 0 0 4px 4px;
+    background-color: rgba(255, 255, 255, 0.25);
+    position: relative;
+    overflow: hidden;
+
+    .percent {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 4px;
+        background-color: rgba(0, 0, 0, 0.25);
+    }
+}

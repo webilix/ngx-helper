@@ -3,25 +3,25 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "ngx-utils": {
+        "ngx-helper": {
             "projectType": "library",
-            "root": "ngx-utils",
-            "sourceRoot": "ngx-utils/src",
+            "root": "ngx-helper",
+            "sourceRoot": "ngx-helper/src",
             "prefix": "lib",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:ng-packagr",
-                    "options": { "project": "ngx-utils/ng-package.json" },
+                    "options": { "project": "ngx-helper/ng-package.json" },
                     "configurations": {
-                        "production": { "tsConfig": "ngx-utils/tsconfig.lib.prod.json" },
-                        "development": { "tsConfig": "ngx-utils/tsconfig.lib.json" }
+                        "production": { "tsConfig": "ngx-helper/tsconfig.lib.prod.json" },
+                        "development": { "tsConfig": "ngx-helper/tsconfig.lib.json" }
                     },
                     "defaultConfiguration": "production"
                 },
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
-                        "tsConfig": "ngx-utils/tsconfig.spec.json",
+                        "tsConfig": "ngx-helper/tsconfig.spec.json",
                         "polyfills": ["zone.js", "zone.js/testing"]
                     }
                 }

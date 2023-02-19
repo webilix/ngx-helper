@@ -1,13 +1,13 @@
 {
-    "name": "ngx-utils",
-    "version": "0.0.0",
+    "name": "ngx-helper",
+    "version": "0.0.1",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "publish": "ng build ngx-utils && cd dist/ngx-utils/ && npm publish --access public"
+        "publish": "ng build ngx-helper && cd dist/ngx-helper/ && npm publish --access public"
     },
     "private": true,
     "dependencies": {

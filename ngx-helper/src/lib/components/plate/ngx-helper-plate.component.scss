@@ -1,0 +1,38 @@
+.ngx-utls-plate {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    column-gap: 0.35rem;
+
+    direction: rtl;
+    padding-left: 0.5rem;
+    border-radius: 4px;
+    font-size: var(--ngxHelperFontSize);
+    font-family: var(--ngxHelperFaFont);
+
+    .ngx-utls-plate-left,
+    .ngx-utls-plate-letter,
+    .ngx-utls-plate-right {
+        font-weight: 500;
+    }
+
+    .ngx-utls-plate-iran {
+        margin-left: 0.5rem;
+        padding: 0.25rem 0.5rem 0 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--ngxHelperBackgroundColor);
+        border-radius: 0 4px 4px 0;
+        color: var(--ngxHelperPrimaryColor);
+
+        .ngx-utls-plate-text {
+            font-size: calc(var(--ngxHelperFontSize) - 3px);
+            line-height: 1;
+        }
+
+        .ngx-utls-plate-value {
+            font-weight: 500;
+        }
+    }
+}

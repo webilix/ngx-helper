@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
-import { NgxUtilsService } from '@ngx-utils';
+import { NgxHelperService } from '@ngx-helper';
 
 @Component({
     selector: 'app-bottom',
@@ -11,10 +11,10 @@ import { NgxUtilsService } from '@ngx-utils';
 export class BottomSheetComponent {
     constructor(
         @Inject(MAT_BOTTOM_SHEET_DATA) public readonly data: any,
-        private readonly ngxUtilsService: NgxUtilsService,
+        private readonly ngxHelperService: NgxHelperService,
     ) {}
 
     close(result: boolean = false): void {
-        this.ngxUtilsService.closeBottomSheet(result);
+        this.ngxHelperService.closeBottomSheet(result);
     }
 }

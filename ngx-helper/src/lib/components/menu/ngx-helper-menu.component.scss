@@ -1,0 +1,63 @@
+.ngx-helper-menu {
+    min-width: auto;
+    padding: 0 1rem;
+    direction: rtl;
+
+    .label {
+        display: flex;
+        column-gap: 0.5rem;
+        align-items: center;
+    }
+}
+
+::ng-deep .ngx-helper-menu-panel .mat-mdc-menu-content {
+    padding: 0 !important;
+
+    .ngx-helper-menu-seperator {
+        height: 1px;
+        background-color: var(--ngxHelperBorderColor);
+    }
+
+    button {
+        direction: rtl;
+        min-height: auto;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+
+        span {
+            display: inline-block;
+            width: 100%;
+        }
+
+        .label,
+        .label-en {
+            width: 100%;
+            display: flex;
+            column-gap: 0.5rem;
+            align-items: center;
+
+            mat-icon {
+                margin: 0;
+                font-size: calc(var(--ngxHelperIconSize) - 2px);
+            }
+
+            .title {
+                flex: 1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-align: right;
+            }
+        }
+
+        .label-en {
+            flex-direction: row-reverse;
+
+            .title {
+                direction: ltr;
+                text-align: left;
+                font-family: var(--ngxHelperEnFont);
+            }
+        }
+    }
+}

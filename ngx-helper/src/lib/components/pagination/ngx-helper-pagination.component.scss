@@ -1,0 +1,17 @@
+.ngx-helper-pagination {
+    display: flex;
+    justify-content: center;
+    column-gap: 0.25rem;
+    direction: ltr;
+
+    .space {
+        width: 1rem;
+    }
+
+    button {
+        min-width: auto;
+        padding: 0 1rem;
+        font-size: calc(var(--ngxHelperFontSize) - 1px);
+        line-height: 28px;
+    }
+}

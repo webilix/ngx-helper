@@ -1,0 +1,49 @@
+<div class="plate">
+    <input
+        type="text"
+        [ngxHelperPersianNumber]="true"
+        inputmode="numeric"
+        calss="ngx-helper-en"
+        [mask]="'00'"
+        (blur)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
+        (keyup)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
+        (input)="(plateLeft.value || '').length === 2 ? plateLetter.focus() : null"
+        (keydown.enter)="setValue()"
+        #plateLeft
+    />
+    <mat-select
+        panelClass="ngx-helper-plate-panel"
+        (valueChange)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
+        #plateLetter
+    >
+        <mat-option [value]="null"></mat-option>
+        <mat-option *ngFor="let letter of letters" [value]="letter">
+            {{ letter === 'ا' ? 'الف' : letter }}
+        </mat-option>
+    </mat-select>
+    <input
+        type="text"
+        [ngxHelperPersianNumber]="true"
+        inputmode="numeric"
+        calss="ngx-helper-en"
+        [mask]="'000'"
+        (blur)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
+        (keyup)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
+        (input)="(plateRight.value || '').length === 3 ? plateIran.focus() : null"
+        (keydown.enter)="setValue()"
+        #plateRight
+    />
+    <input
+        type="text"
+        [ngxHelperPersianNumber]="true"
+        inputmode="numeric"
+        calss="ngx-helper-en"
+        [mask]="'00'"
+        (blur)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
+        (keyup)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
+        (keydown.enter)="setValue()"
+        #plateIran
+    />
+    <div class="iran">ایران</div>
+</div>
+<button mat-flat-button type="button" color="primary" [disabled]="!plate" (click)="setValue()">تایید</button>

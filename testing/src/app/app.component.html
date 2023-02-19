@@ -7,25 +7,25 @@
     </div>
 </div>
 
-<ngx-utils-calendar
+<ngx-helper-calendar
     [route]="['/']"
     [minDate]="previousDate"
     [maxDate]="nextDate"
     (changed)="log($event)"
-></ngx-utils-calendar>
+></ngx-helper-calendar>
 
-<ngx-utils-params [params]="params1" [order]="order" (changed)="log('PARAMS1', $event)"></ngx-utils-params>
-<ngx-utils-params [params]="params2" (changed)="log('PARAMS2', $event)"></ngx-utils-params>
-<ngx-utils-params [params]="params4" (changed)="log('PARAMS4', $event)"></ngx-utils-params>
-<ngx-utils-params [params]="params5" (changed)="log('PARAMS5', $event)"></ngx-utils-params>
-<ngx-utils-params [params]="params6" (changed)="log('PARAMS6', $event)"></ngx-utils-params>
+<ngx-helper-params [params]="params1" [order]="order" (changed)="log('PARAMS1', $event)"></ngx-helper-params>
+<ngx-helper-params [params]="params2" (changed)="log('PARAMS2', $event)"></ngx-helper-params>
+<ngx-helper-params [params]="params4" (changed)="log('PARAMS4', $event)"></ngx-helper-params>
+<ngx-helper-params [params]="params5" (changed)="log('PARAMS5', $event)"></ngx-helper-params>
+<ngx-helper-params [params]="params6" (changed)="log('PARAMS6', $event)"></ngx-helper-params>
 <div class="params-page">
-    <ngx-utils-params
+    <ngx-helper-params
         [params]="params3"
         [page]="paramsPage"
         [update]="params3Update"
         (changed)="selectPage = $event.page; log('PARAMS3', $event)"
-    ></ngx-utils-params>
+    ></ngx-helper-params>
     <select (change)="paramsPage = +paramsPageSelect.value" #paramsPageSelect>
         <ng-container *ngFor="let page of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
             <option [value]="page" *ngIf="page !== selectPage">{{ page }}</option>
@@ -133,35 +133,35 @@
 </div>
 
 <div class="plates">
-    <ngx-utils-plate [plate]="['12', 'ا', '345', '67']"></ngx-utils-plate>
-    <ngx-utils-plate [plate]="['12', 'ب', '345', '67']"></ngx-utils-plate>
-    <ngx-utils-plate></ngx-utils-plate>
+    <ngx-helper-plate [plate]="['12', 'ا', '345', '67']"></ngx-helper-plate>
+    <ngx-helper-plate [plate]="['12', 'ب', '345', '67']"></ngx-helper-plate>
+    <ngx-helper-plate></ngx-helper-plate>
 </div>
 
 <div class="menu">
-    <ngx-utils-menu [menu]="singleMenu"></ngx-utils-menu>
-    <ngx-utils-menu [menu]="menu" [border]="1"></ngx-utils-menu>
-    <ngx-utils-menu [menu]="menu" [icon]="'menu'"></ngx-utils-menu>
-    <ngx-utils-menu [menu]="menu" [title]="'منو'" [border]="1"></ngx-utils-menu>
-    <ngx-utils-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'accent'"></ngx-utils-menu>
-    <ngx-utils-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'warn'" [border]="1"></ngx-utils-menu>
+    <ngx-helper-menu [menu]="singleMenu"></ngx-helper-menu>
+    <ngx-helper-menu [menu]="menu" [border]="1"></ngx-helper-menu>
+    <ngx-helper-menu [menu]="menu" [icon]="'menu'"></ngx-helper-menu>
+    <ngx-helper-menu [menu]="menu" [title]="'منو'" [border]="1"></ngx-helper-menu>
+    <ngx-helper-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'accent'"></ngx-helper-menu>
+    <ngx-helper-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'warn'" [border]="1"></ngx-helper-menu>
 </div>
 
-<ngx-utils-box title="نمایش باکس" icon="home" [component]="boxComponent"></ngx-utils-box>
+<ngx-helper-box title="نمایش باکس" icon="home" [component]="boxComponent"></ngx-helper-box>
 
-<ngx-utils-box title="نمایش منو در باکس" icon="menu" [menu]="menu"><br /></ngx-utils-box>
+<ngx-helper-box title="نمایش منو در باکس" icon="menu" [menu]="menu"><br /></ngx-helper-box>
 
-<ngx-utils-box title="پایپ‌ها" [component]="pipeComponent"></ngx-utils-box>
+<ngx-helper-box title="پایپ‌ها" [component]="pipeComponent"></ngx-helper-box>
 
 <app-values></app-values>
 
 <app-list></app-list>
 
-<ngx-utils-pagination
+<ngx-helper-pagination
     [current]="paginationCurrent"
     [total]="paginationTotal"
     [margin]="0"
     (page)="log($event); paginationCurrent = $event"
-></ngx-utils-pagination>
+></ngx-helper-pagination>
 
-<ngx-utils></ngx-utils>
+<ngx-helper></ngx-helper>

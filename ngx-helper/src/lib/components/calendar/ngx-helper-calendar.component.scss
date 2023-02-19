@@ -1,0 +1,86 @@
+:host {
+    direction: rtl;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    border: 1px solid var(--ngxHelperBorderColor);
+    height: 32px;
+
+    ngx-helper-menu {
+        border-radius: 0 4px 4px 0;
+        background-color: var(--ngxHelperBackgroundColor);
+        height: 30px !important;
+        overflow: hidden;
+
+        ::ng-deep button {
+            height: 30px !important;
+            padding: 0 0.5rem 0 1rem !important;
+        }
+
+        ::ng-deep mat-icon {
+            height: 30px !important;
+            display: flex;
+            align-items: center;
+            font-size: calc(var(--ngxHelperIconSize) - 2px) !important;
+        }
+
+        ::ng-deep .title {
+            font-size: calc(var(--ngxHelperFontSize) - 1px) !important;
+        }
+    }
+
+    .title {
+        flex: 1;
+        padding: 0 0.5rem;
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    mat-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        cursor: pointer;
+        width: 32px !important;
+        height: 30px !important;
+        border-radius: 4px 0 0 4px;
+        background-color: var(--ngxHelperBackgroundColor);
+        color: var(--ngxHelperPrimaryColor);
+    }
+
+    .pn {
+        position: relative;
+        display: flex;
+
+        mat-icon {
+            position: relative;
+            cursor: pointer;
+            background-color: transparent;
+            z-index: 2;
+        }
+
+        mat-icon.disabled {
+            cursor: default;
+            opacity: 0.5;
+        }
+    }
+
+    .pn::after {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: var(--ngxHelperBackgroundColor);
+        opacity: 0.65;
+        z-index: 1;
+    }
+
+    mat-icon.middle {
+        border-radius: 0;
+    }
+}
