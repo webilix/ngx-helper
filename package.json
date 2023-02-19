@@ -1,13 +1,13 @@
 {
     "name": "ngx-helper",
-    "version": "0.0.1",
+    "version": "0.0.0",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "build": "ng build",
+        "build": "rimraf dist && ng build ngx-helper",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
-        "publish": "ng build ngx-helper && cd dist/ngx-helper/ && npm publish --access public"
+        "publish": "npm run build && cd dist/ngx-helper/ && npm publish --access public"
     },
     "private": true,
     "dependencies": {
@@ -40,6 +40,7 @@
         "karma-jasmine": "~5.1.0",
         "karma-jasmine-html-reporter": "~2.0.0",
         "ng-packagr": "^15.1.1",
+        "rimraf": "^4.1.2",
         "typescript": "~4.8.4"
     }
 }
