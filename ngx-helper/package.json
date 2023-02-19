@@ -1,7 +1,7 @@
 {
     "name": "@webilix/ngx-helper",
     "version": "0.0.1",
-    "description": "Persian utilities library for Angular",
+    "description": "Helper library for Angular",
     "author": "Ali Amirnezhad",
     "license": "MIT",
     "peerDependencies": {
