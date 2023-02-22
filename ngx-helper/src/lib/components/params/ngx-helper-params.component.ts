@@ -35,7 +35,9 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
     @Input() params: NgxHelperParams[] = [];
     @Input() update: INgxHelperParamsUpdate = {};
     @Input() order?: INgxHelperParamsOrder;
+
     @Output() changed: EventEmitter<INgxHelperParamsValue> = new EventEmitter<INgxHelperParamsValue>();
+    @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
 
     public menus: { [key: string]: NgxHelperMenu[] } = {};
     public values: { [key: string]: any } = {};
@@ -57,7 +59,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
             else {
                 const params: Params = this.getQueryParams();
                 const page: string | null = params['page'] || null;
-                this.page = page === null ? 1 : !Helper.IS.STRING.numeric(page || '') ? 1 : +page;
+                this.setPage(page === null ? 1 : !Helper.IS.STRING.numeric(page || '') ? 1 : +page);
             }
         }
 
@@ -93,7 +95,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
             });
 
             if (Object.keys(values).length !== 0) {
-                this.page = 1;
+                this.setPage(1);
                 this.values = { ...this.values, ...values };
                 this.updateRoute();
             }
@@ -169,7 +171,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
 
         if (hasParams || hasOrder) {
             const check: boolean[] = Object.keys(changes).map((change) => changes[change].firstChange);
-            this.page = check.includes(false) ? 1 : this.page;
+            this.setPage(check.includes(false) ? 1 : this.page);
             this.emitChanges();
         }
     }
@@ -275,8 +277,19 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
         if (param.type === 'COMMENT') return;
         if (this.values[param.name] === null) return;
 
-        this.page = 1;
+        this.setPage(1);
         this.values[param.name] = null;
+        this.updateRoute();
+    }
+
+    setPage(page: number): void {
+        this.page = page;
+        this.pageChange.emit(this.page);
+    }
+
+    setFavorite(param: INgxHelperParamFavorite): void {
+        this.setPage(1);
+        this.values[param.name] = !this.values[param.name];
         this.updateRoute();
     }
 
@@ -291,23 +304,17 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
         this.ngxHelperService.getDate(config, (date: Date) => {
             if (this.values[param.name]?.getTime() === date.getTime()) return;
 
-            this.page = 1;
+            this.setPage(1);
             this.values[param.name] = date;
             this.updateRoute();
         });
-    }
-
-    setFavorite(param: INgxHelperParamFavorite): void {
-        this.page = 1;
-        this.values[param.name] = !this.values[param.name];
-        this.updateRoute();
     }
 
     setPlate(param: INgxHelperParamPlate): void {
         this.ngxHelperService.openBottomSheet<string>(NgxHelperParamsPlateComponent, param.title || 'پلاک', (value) => {
             if (this.values[param.name] === value) return;
 
-            this.page = 1;
+            this.setPage(1);
             this.values[param.name] = value;
             this.updateRoute();
         });
@@ -316,7 +323,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
     setSearch(param: INgxHelperParamSearch, value: string): void {
         if (this.values[param.name] === (value.trim() || null)) return;
 
-        this.page = 1;
+        this.setPage(1);
         this.values[param.name] = value.trim() || null;
         this.updateRoute();
     }
@@ -328,7 +335,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
     setSelect(param: INgxHelperParamSelect, value: string | null): void {
         if (this.values[param.name] === value) return;
 
-        this.page = 1;
+        this.setPage(1);
         this.values[param.name] = param.options.find((o) => o.id === value) ? value : null;
         this.updateRoute();
     }
@@ -342,7 +349,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
             (value) => {
                 if (this.values[param.name] === value) return;
 
-                this.page = 1;
+                this.setPage(1);
                 this.values[param.name] = value;
                 this.updateRoute();
             },
@@ -361,6 +368,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
         const option = this.order.options.find((o) => o.id === id);
         if (!option) return;
 
+        this.setPage(1);
         this.orderValue.option = id;
         this.updateRoute();
     }
@@ -368,6 +376,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
     changeOrderType(): void {
         if (!this.order || this.order.options.length === 0) return;
 
+        this.setPage(1);
         this.orderValue.type = this.orderValue.type === 'ASC' ? 'DESC' : 'ASC';
         this.updateRoute();
     }
