@@ -68,6 +68,18 @@
 </div>
 
 <div class="pipe">
+    <div class="title">ngxHelperPeriod</div>
+    <div class="value">
+        {{ period.from | ngxHelperPeriod }}<br />
+        {{ { from: period.from } | ngxHelperPeriod }}<br />
+        {{ { from: period.to, to: period.from } | ngxHelperPeriod }}<br />
+        {{ period | ngxHelperPeriod }}<br />
+        {{ period | ngxHelperPeriod : { timezone: 'Australia/Sydney' } }}<br />
+        {{ period | ngxHelperPeriod : { timezone: 'America/Los_Angeles' } }}<br />
+    </div>
+</div>
+
+<div class="pipe">
     <div class="title">ngxHelperPrice</div>
     <div class="value">
         <div [innerHTML]="123.4567890123 | ngxHelperPrice"></div>
@@ -222,6 +234,14 @@
         <div [innerHTML]="{ type: 'NUMBER', value: -123456.789, english: true } | ngxHelperValue"></div>
         <div [innerHTML]="{ type: 'NUMBER', value: -123456.789, english: true } | ngxHelperValue : true"></div>
         <br />
+
+        <div class="en" style="font-weight: 500; color: red">PERIOD</div>
+        <div [innerHTML]="{ type: 'PERIOD', value: period.from } | ngxHelperValue"></div>
+        <div [innerHTML]="{ type: 'PERIOD', value: { from: period.from } } | ngxHelperValue"></div>
+        <div [innerHTML]="{ type: 'PERIOD', value: { from: period.to, to: period.from } } | ngxHelperValue"></div>
+        <div [innerHTML]="{ type: 'PERIOD', value: period } | ngxHelperValue"></div>
+        <div [innerHTML]="{ type: 'PERIOD', value: period, timezone: 'Australia/Sydney' } | ngxHelperValue"></div>
+        <div [innerHTML]="{ type: 'PERIOD', value: period, timezone: 'America/Los_Angeles' } | ngxHelperValue"></div>
 
         <div class="en" style="font-weight: 500; color: red">PRICE</div>
         <div [innerHTML]="{ type: 'PRICE', value: 123.4567890123 } | ngxHelperValue"></div>

@@ -63,6 +63,13 @@ export class NgxHelperValuePipe implements PipeTransform {
         }
     }
 
+    getPeriod(value: Date | { from: Date; to?: Date }, timezone?: string): string {
+        const from: Date = Helper.IS.date(value) ? (value as Date) : (value as { from: Date; to?: Date }).from;
+        const to: Date = Helper.IS.date(value) ? new Date() : (value as { from: Date; to?: Date }).to || new Date();
+
+        return Helper.DATE.jalaliPeriod(from, to, timezone);
+    }
+
     getPrice(price: number, en: boolean, short: boolean): [number, string] {
         if (price < 1000) return [+price.toFixed(2), ''];
 
@@ -155,6 +162,10 @@ export class NgxHelperValuePipe implements PipeTransform {
                     html = html.replace(/,/g, value.english ? ',' : '،');
                     english = !!value.english;
                     ltr = true;
+                    break;
+
+                case 'PERIOD':
+                    html = this.getPeriod(value.value, value.timezone);
                     break;
 
                 case 'PRICE':

@@ -55,6 +55,9 @@ export class NgxHelperValuesComponent implements OnChanges {
                     case 'NUMBER':
                         this.copy[index] = value.value.value.toString();
                         break;
+                    case 'PERIOD':
+                        this.copy[index] = this.ngxHelperValuePipe.getPeriod(value.value.value, value.value.timezone);
+                        break;
                     case 'PRICE':
                         const priceEN: boolean = !!value.value.english;
                         this.copy[index] = this.ngxHelperValuePipe

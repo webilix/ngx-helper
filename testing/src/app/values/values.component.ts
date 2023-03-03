@@ -33,6 +33,11 @@ export class ValuesComponent {
             copy: true,
         },
         { title: 'مقدار عددی', value: { type: 'NUMBER', value: 123456789 }, copy: true },
+        {
+            title: 'دوره زمانی',
+            value: { type: 'PERIOD', value: new Date(new Date().getTime() - 123456789) },
+            copy: true,
+        },
         { title: 'قیمت', value: { type: 'PRICE', value: 12300000, currency: 'تومان' }, copy: true },
         { title: 'وزن', value: { type: 'WEIGHT', value: 12300000 }, copy: true },
     ];

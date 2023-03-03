@@ -12,6 +12,7 @@ export type NgxHelperValue =
     | { type: 'MOBILE'; value: string; english?: true; join?: string }
     | { type: 'MULTILINE'; value: string; english?: boolean; html?: boolean }
     | { type: 'NUMBER'; value: number; english?: boolean }
+    | { type: 'PERIOD'; value: Date | { from: Date; to?: Date }; timezone?: string }
     | { type: 'PRICE'; value: number; currency?: string; english?: boolean; short?: boolean }
     | { type: 'WEIGHT'; value: number; english?: boolean; short?: boolean };
 

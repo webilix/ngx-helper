@@ -9,4 +9,8 @@ export class PipeComponent {
     public style: string =
         'font-size: 15px; color: red; background-color: gray; padding: 0 1rem; text-shadow: 0 1px 0 #000;';
     public date: Date = new Date(new Date().getTime() - 123456789000);
+    public period: { from: Date; to: Date } = {
+        from: new Date(new Date().getTime() - 7 * 24 * 3600 * 1000),
+        to: new Date(),
+    };
 }

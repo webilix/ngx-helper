@@ -55,6 +55,7 @@ import { NgxHelperFileSizePipe } from './pipes/ngx-helper-file-size.pipe';
 import { NgxHelperJalaliPipe } from './pipes/ngx-helper-jalali.pipe';
 import { NgxHelperMobilePipe } from './pipes/ngx-helper-mobile.pipe';
 import { NgxHelperMultiLinePipe } from './pipes/ngx-helper-multi-line.pipe';
+import { NgxHelperPeriodPipe } from './pipes/ngx-helper-period.pipe';
 import { NgxHelperPricePipe } from './pipes/ngx-helper-price.pipe';
 import { NgxHelperSafePipe } from './pipes/ngx-helper-safe.pipe';
 import { NgxHelperValuePipe } from './pipes/ngx-helper-value.pipe';
@@ -97,6 +98,7 @@ import { NgxHelperWeightPipe } from './pipes/ngx-helper-weight.pipe';
         NgxHelperJalaliPipe,
         NgxHelperMobilePipe,
         NgxHelperMultiLinePipe,
+        NgxHelperPeriodPipe,
         NgxHelperPricePipe,
         NgxHelperSafePipe,
         NgxHelperValuePipe,
@@ -137,6 +139,7 @@ import { NgxHelperWeightPipe } from './pipes/ngx-helper-weight.pipe';
         NgxHelperJalaliPipe,
         NgxHelperMobilePipe,
         NgxHelperMultiLinePipe,
+        NgxHelperPeriodPipe,
         NgxHelperPricePipe,
         NgxHelperSafePipe,
         NgxHelperValuePipe,

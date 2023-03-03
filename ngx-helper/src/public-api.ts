@@ -30,6 +30,7 @@ export * from './lib/pipes/ngx-helper-file-size.pipe';
 export * from './lib/pipes/ngx-helper-jalali.pipe';
 export * from './lib/pipes/ngx-helper-mobile.pipe';
 export * from './lib/pipes/ngx-helper-multi-line.pipe';
+export * from './lib/pipes/ngx-helper-period.pipe';
 export * from './lib/pipes/ngx-helper-price.pipe';
 export * from './lib/pipes/ngx-helper-safe.pipe';
 export * from './lib/pipes/ngx-helper-value.pipe';
