@@ -1,7 +1,7 @@
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
 
 import { ClipboardModule } from '@angular/cdk/clipboard';
@@ -150,8 +150,7 @@ import { NgxHelperWeightPipe } from './pipes/ngx-helper-weight.pipe';
         provideEnvironmentNgxMask(),
 
         NgxHelperValuePipe,
-        { provide: HTTP_INTERCEPTORS, useClass: NgxHelperDateInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: NgxHelperLoadingInterceptor, multi: true },
+        provideHttpClient(withInterceptors([NgxHelperLoadingInterceptor, NgxHelperDateInterceptor])),
     ],
 })
 export class NgxHelperModule {
