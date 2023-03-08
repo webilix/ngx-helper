@@ -2,7 +2,7 @@ import { ComponentType } from '@angular/cdk/portal';
 import { Component, Inject, Injector } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { INgxHelperDialogConfig } from '../../interfaces/ngx-helper-dialog';
+import { INgxHelperDialogConfig } from '../../interfaces';
 
 @Component({
     templateUrl: './ngx-helper-dialog.component.html',

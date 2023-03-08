@@ -5,7 +5,7 @@ import {
     INgxHelperParamPlate,
     INgxHelperParamSearch,
     INgxHelperParamSelect,
-} from '../interfaces/ngx-helper-params';
+} from '../interfaces';
 
 export type NgxHelperParams =
     // VIEW

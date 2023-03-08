@@ -4,21 +4,21 @@ import { Params, Router } from '@angular/router';
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 import { Helper } from '@webilix/helper-library';
 
-import { INgxHelperCalendarConfig } from '../../interfaces/ngx-helper-calendar';
 import {
+    INgxHelperCalendarConfig,
     INgxHelperParamDate,
     INgxHelperParamFavorite,
     INgxHelperParamPlate,
     INgxHelperParamSearch,
     INgxHelperParamSelect,
-} from '../../interfaces/ngx-helper-params';
-import { NgxHelperMenu } from '../../types/ngx-helper-menu';
+} from '../../interfaces';
 import {
     INgxHelperParamsOrder,
     INgxHelperParamsUpdate,
     INgxHelperParamsValue,
+    NgxHelperMenu,
     NgxHelperParams,
-} from '../../types/ngx-helper-params';
+} from '../../types';
 import { NgxHelperService } from '../../ngx-helper.service';
 
 import { NgxHelperParamsSelectComponent } from './select/ngx-helper-params-select.component';

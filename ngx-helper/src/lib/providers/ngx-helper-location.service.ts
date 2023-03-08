@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { INgxHelperLocation } from '../interfaces/ngx-helper-location';
+import { INgxHelperLocation } from '../interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class NgxHelperLocationService {

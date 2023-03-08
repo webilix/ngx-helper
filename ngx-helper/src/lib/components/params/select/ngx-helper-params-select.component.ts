@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
-import { INgxHelperParamSelect } from '../../../interfaces/ngx-helper-params';
+import { INgxHelperParamSelect } from '../../../interfaces';
 import { NgxHelperService } from '../../../ngx-helper.service';
 
 @Component({

@@ -1,3 +1,3 @@
-import { INgxHelperMenu } from '../interfaces/ngx-helper-menu';
+import { INgxHelperMenu } from '../interfaces';
 
 export type NgxHelperMenu = INgxHelperMenu | 'SEPERATOR';

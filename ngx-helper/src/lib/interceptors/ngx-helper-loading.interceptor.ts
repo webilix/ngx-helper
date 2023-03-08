@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { HttpHeaders, HttpInterceptorFn } from '@angular/common/http';
 import { finalize } from 'rxjs';
 
-import { NgxHelperLoadingService } from '../providers/ngx-helper-loading.service';
+import { NgxHelperLoadingService } from '../providers';
 import { NGX_HELPER_LOADING_HEADER } from '../ngx-helper.values';
 
 export const NgxHelperLoadingInterceptor: HttpInterceptorFn = (request, next) => {

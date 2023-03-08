@@ -2,7 +2,7 @@ import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { Helper } from '@webilix/helper-library';
 
-import { INgxHelperConfirm, INgxHelperConfirmConfig, INgxHelperConfirmResponse } from '../../types/ngx-helper-confirm';
+import { INgxHelperConfirm, INgxHelperConfirmConfig, INgxHelperConfirmResponse } from '../../types';
 
 @Component({
     templateUrl: './ngx-helper-confirm.component.html',

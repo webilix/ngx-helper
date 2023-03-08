@@ -11,7 +11,7 @@ import {
 
 import { Helper } from '@webilix/helper-library';
 
-import { INgxHelperUpload } from '../../interfaces/ngx-helper-upload';
+import { INgxHelperUpload } from '../../interfaces';
 import { NgxHelperService } from '../../ngx-helper.service';
 
 @Component({

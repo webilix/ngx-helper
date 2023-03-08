@@ -7,31 +7,35 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 
 import { Helper } from '@webilix/helper-library';
 
-import { INgxHelperBottomSheetConfig } from './interfaces/ngx-helper-bottomsheet';
-import { INgxHelperCalendarConfig, INgxHelperCalendarPeriod } from './interfaces/ngx-helper-calendar';
-import { INgxHelperDialogConfig } from './interfaces/ngx-helper-dialog';
-import { INgxHelperUpload } from './interfaces/ngx-helper-upload';
+import {
+    NgxHelperBottomSheetComponent,
+    NgxHelperCalendarDateComponent,
+    NgxHelperCalendarMonthComponent,
+    NgxHelperCalendarWeekComponent,
+    NgxHelperCalendarYearComponent,
+    NgxHelperConfirmComponent,
+    NgxHelperDialogComponent,
+    NgxHelperDownloadComponent,
+    NgxHelperGalleryComponent,
+    NgxHelperMapComponent,
+    NgxHelperPreviewComponent,
+    NgxHelperToastComponent,
+    NgxHelperUploadComponent,
+} from './components';
+import {
+    INgxHelperBottomSheetConfig,
+    INgxHelperCalendarConfig,
+    INgxHelperCalendarPeriod,
+    INgxHelperDialogConfig,
+    INgxHelperUpload,
+} from './interfaces';
 import {
     INgxHelperConfirm,
     INgxHelperConfirmConfig,
     INgxHelperConfirmResponse,
     NgxHelperConfirm,
     NgxHelperConfirmInfo,
-} from './types/ngx-helper-confirm';
-
-import { NgxHelperBottomSheetComponent } from './components/bottom-sheet/ngx-helper-bottom-sheet.component';
-import { NgxHelperCalendarDateComponent } from './components/calendar/date/ngx-helper-calendar-date.component';
-import { NgxHelperCalendarMonthComponent } from './components/calendar/month/ngx-helper-calendar-month.component';
-import { NgxHelperCalendarWeekComponent } from './components/calendar/week/ngx-helper-calendar-week.component';
-import { NgxHelperCalendarYearComponent } from './components/calendar/year/ngx-helper-calendar-year.component';
-import { NgxHelperConfirmComponent } from './components/confirm/ngx-helper-confirm.component';
-import { NgxHelperDialogComponent } from './components/dialog/ngx-helper-dialog.component';
-import { NgxHelperDownloadComponent } from './components/download/ngx-helper-download.component';
-import { NgxHelperGalleryComponent } from './components/gallery/ngx-helper-gallery.component';
-import { NgxHelperMapComponent } from './components/map/ngx-helper-map.component';
-import { NgxHelperPreviewComponent } from './components/preview/ngx-helper-preview.component';
-import { NgxHelperToastComponent } from './components/toast/ngx-helper-toast.component';
-import { NgxHelperUploadComponent } from './components/upload/ngx-helper-upload.component';
+} from './types';
 
 @Injectable()
 export class NgxHelperService {

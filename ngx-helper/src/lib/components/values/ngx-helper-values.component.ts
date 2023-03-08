@@ -3,8 +3,8 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { Helper } from '@webilix/helper-library';
 
-import { NgxHelperValuePipe } from '../../pipes/ngx-helper-value.pipe';
-import { INgxHelperValues } from '../../types/ngx-helper-value';
+import { NgxHelperValuePipe } from '../../pipes';
+import { INgxHelperValues } from '../../types';
 
 @Component({
     selector: 'ngx-helper-values',

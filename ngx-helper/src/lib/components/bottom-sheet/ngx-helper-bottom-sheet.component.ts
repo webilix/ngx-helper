@@ -2,7 +2,7 @@ import { ComponentType } from '@angular/cdk/portal';
 import { Component, Inject, Injector } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
-import { INgxHelperBottomSheetConfig } from '../../interfaces/ngx-helper-bottomsheet';
+import { INgxHelperBottomSheetConfig } from '../../interfaces';
 
 @Component({
     templateUrl: './ngx-helper-bottom-sheet.component.html',

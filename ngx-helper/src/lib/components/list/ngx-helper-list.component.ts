@@ -2,8 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { Helper } from '@webilix/helper-library';
 
-import { NgxHelperListMenu } from '../../types/ngx-helper-list';
-import { NgxHelperMenu } from '../../types/ngx-helper-menu';
+import { NgxHelperListMenu, NgxHelperMenu } from '../../types';
 
 @Component({
     selector: 'ngx-helper-list',

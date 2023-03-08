@@ -12,7 +12,7 @@ import {
 import { MatMenuTrigger, MenuPositionX, MenuPositionY } from '@angular/material/menu';
 import { Router } from '@angular/router';
 
-import { NgxHelperMenu } from '../../types/ngx-helper-menu';
+import { NgxHelperMenu } from '../../types';
 
 @Component({
     selector: 'ngx-helper-menu',
