@@ -28,6 +28,7 @@ export {
     NgxHelperCalendar,
     INgxHelperDialogConfig,
     INgxHelperLocation,
+    INgxHelperToastConfig,
     INgxHelperUpload,
 } from './lib/interfaces';
 
@@ -54,6 +55,7 @@ export {
     INgxHelperParamsUpdate,
     INgxHelperParamsValue,
     NgxHelperParams,
+    NgxHelperToast,
     INgxHelperValues,
     NgxHelperValue,
 } from './lib/types';

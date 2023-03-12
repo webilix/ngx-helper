@@ -27,6 +27,7 @@ import {
     INgxHelperCalendarConfig,
     INgxHelperCalendarPeriod,
     INgxHelperDialogConfig,
+    INgxHelperToastConfig,
     INgxHelperUpload,
 } from './interfaces';
 import {
@@ -35,6 +36,7 @@ import {
     INgxHelperConfirmResponse,
     NgxHelperConfirm,
     NgxHelperConfirmInfo,
+    NgxHelperToast,
 } from './types';
 
 @Injectable()
@@ -226,17 +228,21 @@ export class NgxHelperService {
         });
     }
 
-    toast(
-        type: 'ERROR' | 'INFO' | 'SUCCESS' | 'WARNING',
-        message: string | string[],
-        timeout?: number,
-        callback?: () => void,
-    ): void {
+    toast(type: NgxHelperToast, message: string | string[], timeout?: number, callback?: () => void): void;
+    toast(config: INgxHelperToastConfig, message: string | string[], timeout?: number, callback?: () => void): void;
+    toast(arg1: any, message: string | string[], timeout?: number, callback?: () => void): void {
         if (!this.viewContainerRef) return this.domError();
+
+        const configs: { [key in NgxHelperToast]: INgxHelperToastConfig } = {
+            ERROR: { icon: 'cancel', foreColor: '#fff', backColor: '#bd362f' },
+            INFO: { icon: 'warning_amber', foreColor: '#fff', backColor: '#2f96b4' },
+            SUCCESS: { icon: 'done_all', foreColor: '#fff', backColor: '#51a351' },
+            WARNING: { icon: 'info', foreColor: '#fff', backColor: '#f89406' },
+        };
 
         const toast = this.viewContainerRef.createComponent(NgxHelperToastComponent);
         toast.instance.index = ++this.toastIndex;
-        toast.instance.type = type;
+        toast.instance.config = typeof arg1 === 'string' ? configs[arg1 as NgxHelperToast] : arg1;
         toast.instance.message = Array.isArray(message) ? message : [message];
         toast.instance.timeout = timeout === undefined || timeout < 0 ? 5 : timeout;
 

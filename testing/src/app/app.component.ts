@@ -267,6 +267,14 @@ export class AppComponent implements OnInit, OnDestroy {
         this.ngxHelperService.toast(type, message, index * 4, () => this.log(`TOAST: ${type}`));
     }
 
+    customToast(): void {
+        this.ngxHelperService.toast(
+            { icon: 'download', foreColor: '#ccc', backColor: '#246' },
+            ['دانلود اطلاعات ثبت شده با موفقیت انجام شد.', 'این پیام با شیوه نمایش سفارشی نمایش داده می‌شود.'],
+            25,
+        );
+    }
+
     getDate(type: number): void {
         if (type === 5) this.ngxHelperService.getDate((date: Date) => this.log(date));
         else

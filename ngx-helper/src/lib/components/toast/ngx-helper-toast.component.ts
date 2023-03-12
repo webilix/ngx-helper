@@ -1,6 +1,8 @@
 import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 
+import { INgxHelperToastConfig } from '../../interfaces';
+
 @Component({
     templateUrl: './ngx-helper-toast.component.html',
     styleUrls: ['./ngx-helper-toast.component.scss'],
@@ -16,12 +18,11 @@ export class NgxHelperToastComponent implements OnInit, OnDestroy {
     @HostBinding('@host') private host: boolean = true;
     @HostBinding('style.top') top: string = '1rem';
     @HostBinding('className') className: string = '';
+    @HostBinding('style.backgroundColor') backgroundColor: string = '';
 
-    @Input() type: 'ERROR' | 'INFO' | 'SUCCESS' | 'WARNING' = 'SUCCESS';
+    @Input() config?: INgxHelperToastConfig;
     @Input() message: string[] = [];
     @Input() timeout: number = 5;
-
-    public icon: string = 'done_all';
 
     public index: number = 0;
     public percent: number = 0;
@@ -31,15 +32,9 @@ export class NgxHelperToastComponent implements OnInit, OnDestroy {
     constructor(public readonly elementRef: ElementRef) {}
 
     ngOnInit(): void {
-        this.className = 'ngx-helper-toast ngx-helper-toast-' + this.type.toLowerCase();
-        this.icon =
-            this.type === 'ERROR'
-                ? 'cancel'
-                : this.type === 'INFO'
-                ? 'warning_amber'
-                : this.type === 'SUCCESS'
-                ? 'done_all'
-                : 'info';
+        if (!this.config) return;
+        this.className = 'ngx-helper-toast';
+        this.backgroundColor = this.config.backColor;
 
         if (this.timeout === 0) return;
         this.start = new Date().getTime();

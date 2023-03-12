@@ -16,22 +16,6 @@
     transform: translate(-50%, 0);
 }
 
-:host.ngx-helper-toast-error {
-    background-color: #bd362f;
-}
-
-:host.ngx-helper-toast-info {
-    background-color: #2f96b4;
-}
-
-:host.ngx-helper-toast-success {
-    background-color: #51a351;
-}
-
-:host.ngx-helper-toast-warning {
-    background-color: #f89406;
-}
-
 content {
     display: flex;
     align-items: flex-start;
@@ -46,7 +30,6 @@ content {
         justify-content: center;
 
         li {
-            color: #fff;
             font-family: var(--ngxHelperFaFont);
             font-size: var(--ngxHelperFontSize);
             font-weight: 600;
@@ -54,7 +37,6 @@ content {
     }
 
     mat-icon {
-        color: #fff;
         font-size: 30px !important;
         width: 45px !important;
         height: 50px !important;

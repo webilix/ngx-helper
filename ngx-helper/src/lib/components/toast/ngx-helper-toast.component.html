@@ -1,9 +1,11 @@
-<content>
-    <ul>
-        <li *ngFor="let m of message" [innerHTML]="m | ngxHelperMultiLine"></li>
-    </ul>
-    <mat-icon [fontIcon]="icon" class="ngx-helper-icon"></mat-icon>
-</content>
-<div class="timeout" *ngIf="timeout !== 0">
-    <div class="percent" [ngStyle]="{ width: percent.toString() + '%' }"></div>
-</div>
+<ng-container *ngIf="config">
+    <content>
+        <ul [ngStyle]="{ color: config.foreColor }">
+            <li *ngFor="let m of message" [innerHTML]="m | ngxHelperMultiLine"></li>
+        </ul>
+        <mat-icon [fontIcon]="config.icon" class="ngx-helper-icon" [ngStyle]="{ color: config.foreColor }"></mat-icon>
+    </content>
+    <div class="timeout" *ngIf="timeout !== 0">
+        <div class="percent" [ngStyle]="{ width: percent.toString() + '%' }"></div>
+    </div>
+</ng-container>
