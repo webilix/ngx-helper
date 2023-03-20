@@ -9,7 +9,7 @@
         "@angular/core": ">=15.2.1",
         "@angular/material": ">=15.2.1",
         "ngx-mask": ">=15.0.2",
-        "@webilix/helper-library": ">=4.2.2",
+        "@webilix/helper-library": ">=4.3.0",
         "@webilix/jalali-date-time": ">=1.1.0"
     },
     "dependencies": {}
