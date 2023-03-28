@@ -17,6 +17,7 @@ export const NgxHelperConfirmInfo: { [key in NgxHelperConfirm]: INgxHelperConfir
 export interface INgxHelperConfirmConfig {
     title: string;
     message: string;
+    question: string;
     description: boolean | 'REQUIRED';
 }
 

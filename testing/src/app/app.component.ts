@@ -404,7 +404,7 @@ export class AppComponent implements OnInit, OnDestroy {
             : this.ngxHelperService.confirm(
                   { title: 'سفارشی', icon: 'tune', color: 'accent' },
                   item,
-                  { title, message, description },
+                  { title, message, description, question: 'آیا می‌خواهید سوال سفارشی نمایش داده شود؟' },
                   (description) => this.log(description),
               );
     }
