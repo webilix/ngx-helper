@@ -35,6 +35,27 @@
     <button mat-flat-button type="button" color="primary" (click)="changeParam()">CHANGE</button>
 </div>
 
+<div class="button-group">
+    <ngx-helper-button-group
+        [title]="'امکانات'"
+        [menu]="buttonGroupMenu"
+        [color]="'primary'"
+        (action)="log('Button Group: ' + $event)"
+    ></ngx-helper-button-group>
+    <ngx-helper-button-group
+        [title]="'امکانات'"
+        [menu]="buttonGroupMenu"
+        [color]="'accent'"
+        (action)="log('Button Group: ' + $event)"
+    ></ngx-helper-button-group>
+    <ngx-helper-button-group
+        [title]="'امکانات'"
+        [menu]="buttonGroupMenu"
+        [color]="'warn'"
+        (action)="log('Button Group: ' + $event)"
+    ></ngx-helper-button-group>
+</div>
+
 <div class="buttons">
     <button mat-flat-button type="button" color="primary" (click)="download(true)">Download OK</button>
     <button mat-flat-button type="button" color="primary" (click)="download(false)">Download ERROR</button>

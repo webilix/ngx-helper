@@ -1,0 +1,70 @@
+:host {
+    display: flex;
+    align-items: center;
+    direction: rtl;
+}
+
+button.title {
+    flex: 1;
+    border-radius: 0 4px 4px 0;
+    min-width: auto;
+    justify-content: flex-start;
+}
+
+button.menu {
+    border-radius: 4px 0 0 4px;
+    padding: 0 0.75rem;
+    min-width: auto;
+
+    mat-icon {
+        margin: 0;
+        font-size: calc(var(--ngxHelperIconSize) + 2px);
+    }
+}
+
+::ng-deep .ngx-helper-menu-panel .mat-mdc-menu-content {
+    padding: 0 !important;
+
+    button {
+        direction: rtl;
+        min-height: auto;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+
+        span {
+            display: inline-block;
+            width: 100%;
+        }
+
+        .label,
+        .label-en {
+            width: 100%;
+            display: flex;
+            column-gap: 0.5rem;
+            align-items: center;
+
+            mat-icon {
+                margin: 0;
+                font-size: calc(var(--ngxHelperIconSize) - 2px);
+            }
+
+            .title {
+                flex: 1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-align: right;
+            }
+        }
+
+        .label-en {
+            flex-direction: row-reverse;
+
+            .title {
+                direction: ltr;
+                text-align: left;
+                font-family: var(--ngxHelperEnFont);
+            }
+        }
+    }
+}

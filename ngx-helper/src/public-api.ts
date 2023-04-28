@@ -9,6 +9,7 @@ export { NGX_HELPER_LOADING_HEADER } from './lib/ngx-helper.values';
 
 export {
     NgxHelperBoxComponent,
+    NgxHelperButtonGroupComponent,
     NgxHelperCalendarComponent,
     NgxHelperListComponent,
     NgxHelperLoadingComponent,
@@ -22,6 +23,7 @@ export {
 
 export {
     INgxHelperBottomSheetConfig,
+    INgxHelperButtonGroup,
     INgxHelperCalendarConfig,
     INgxHelperCalendarPeriod,
     INgxHelperCalendarValue,

@@ -1,0 +1,14 @@
+<ng-container *ngIf="title && menu.length > 0">
+    <button mat-flat-button type="button" class="title" [color]="color" (click)="action.emit('')">{{ title }}</button>
+    <button mat-flat-button type="button" class="menu" [color]="color" [matMenuTriggerFor]="ngxButtonGroupMenu">
+        <mat-icon [fontIcon]="'expand_more'" class="ngx-helper-icon"></mat-icon>
+    </button>
+    <mat-menu #ngxButtonGroupMenu="matMenu" class="ngx-helper-menu-panel" [xPosition]="'after'" [yPosition]="'below'">
+        <button mat-menu-item type="button" *ngFor="let m of menu" (click)="action.emit(m.action)">
+            <div class="label ngx-helper-color-primary">
+                <mat-icon [fontIcon]="m.icon" class="ngx-helper-icon" [color]="'primary'"></mat-icon>
+                <div class="title">{{ m.title }}</div>
+            </div>
+        </button>
+    </mat-menu>
+</ng-container>

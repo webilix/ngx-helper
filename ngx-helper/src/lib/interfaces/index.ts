@@ -1,4 +1,5 @@
-export * from './ngx-helper-bottomsheet';
+export * from './ngx-helper-bottom-sheet';
+export * from './ngx-helper-button-group';
 export * from './ngx-helper-calendar';
 export * from './ngx-helper-dialog';
 export * from './ngx-helper-list';

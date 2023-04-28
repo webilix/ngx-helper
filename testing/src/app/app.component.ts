@@ -15,6 +15,7 @@ import {
     NgxHelperParams,
     NgxHelperService,
     NGX_HELPER_LOADING_HEADER,
+    INgxHelperButtonGroup,
 } from '@ngx-helper';
 
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
@@ -129,6 +130,11 @@ export class AppComponent implements OnInit, OnDestroy {
     public params6: NgxHelperParams[] = [
         { name: 'plate-1', type: 'PLATE', value: ['12', 'ا', '345', '67'].join('-') },
         { name: 'plate-2', type: 'PLATE', value: ['12', 'ا', '345', '67'] },
+    ];
+
+    public buttonGroupMenu: INgxHelperButtonGroup[] = [
+        { icon: 'print', title: 'پرینت', action: 'PRINT' },
+        { icon: 'file_download', title: 'دانلود', action: 'DOWNLOAD' },
     ];
 
     public boxComponent: ComponentType<BoxComponent> = BoxComponent;
