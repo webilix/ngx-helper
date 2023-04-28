@@ -3,7 +3,7 @@
     <button mat-flat-button type="button" class="menu" [color]="color" [matMenuTriggerFor]="ngxButtonGroupMenu">
         <mat-icon [fontIcon]="'expand_more'" class="ngx-helper-icon"></mat-icon>
     </button>
-    <mat-menu #ngxButtonGroupMenu="matMenu" class="ngx-helper-menu-panel" [xPosition]="'after'" [yPosition]="'below'">
+    <mat-menu #ngxButtonGroupMenu="matMenu" class="ngx-helper-menu-panel" [xPosition]="'before'" [yPosition]="'below'">
         <button mat-menu-item type="button" *ngFor="let m of menu" (click)="action.emit(m.action)">
             <div class="label ngx-helper-color-primary">
                 <mat-icon [fontIcon]="m.icon" class="ngx-helper-icon" [color]="'primary'"></mat-icon>
