@@ -1,6 +1,6 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
-import { HttpStatusCode } from '@angular/common/http';
+import { HttpClient, HttpStatusCode } from '@angular/common/http';
 
 import { MatBottomSheet, MatBottomSheetConfig, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
@@ -43,7 +43,11 @@ import {
 export class NgxHelperService {
     public viewContainerRef?: ViewContainerRef;
 
-    constructor(private readonly bottomSheet: MatBottomSheet, private readonly dialog: MatDialog) {}
+    constructor(
+        private readonly httpClient: HttpClient,
+        private readonly bottomSheet: MatBottomSheet,
+        private readonly dialog: MatDialog,
+    ) {}
 
     private domError(): void {
         const errors: string[] = [
@@ -393,6 +397,44 @@ export class NgxHelperService {
             .open(NgxHelperCalendarYearComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
             .afterClosed()
             .subscribe((month: INgxHelperCalendarPeriod) => month && callback(month));
+    }
+    //#endregion
+
+    //#region PRINT
+    private getPDFBlob(data: string | ArrayBuffer | Blob): Promise<Blob> {
+        return new Promise<Blob>((resolve, reject) => {
+            if (typeof data === 'string') {
+                this.httpClient.get(data, { responseType: 'arraybuffer' }).subscribe({
+                    next: (response) => resolve(new Blob([response], { type: 'application/pdf' })),
+                    error: () => {
+                        this.toast('ERROR', 'امکان دانلود فایل وجود ندارد.');
+                        reject();
+                    },
+                });
+            } else resolve(new Blob([data], { type: 'application/pdf' }));
+        });
+    }
+
+    printPDF(url: string): void;
+    printPDF(buffer: ArrayBuffer): void;
+    printPDF(blob: Blob): void;
+    printPDF(data: any): void {
+        this.getPDFBlob(data).then(
+            (blob: Blob) => {
+                const prevIframe = document.getElementById('ngx-helper-pdf-download-iframe');
+                if (prevIframe) document.body.removeChild(prevIframe);
+
+                const src: string = URL.createObjectURL(blob);
+                const iframe: HTMLIFrameElement = document.createElement('iframe');
+                iframe.id = 'ngx-helper-pdf-download-iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+
+                iframe.src = src;
+                iframe.onload = () => iframe.contentWindow?.print();
+            },
+            () => {},
+        );
     }
     //#endregion
 }

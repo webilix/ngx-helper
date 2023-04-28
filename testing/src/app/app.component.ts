@@ -1,5 +1,6 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 
 import {
@@ -171,6 +172,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     constructor(
         private readonly changeDetectorRef: ChangeDetectorRef,
+        private readonly httpClient: HttpClient,
         private readonly ngxHelperService: NgxHelperService,
         private readonly ngxHelperConnectionService: NgxHelperConnectionService,
         private readonly ngxHelperLoadingService: NgxHelperLoadingService,
@@ -407,5 +409,24 @@ export class AppComponent implements OnInit, OnDestroy {
                   { title, message, description, question: 'آیا می‌خواهید سوال سفارشی نمایش داده شود؟' },
                   (description) => this.log(description),
               );
+    }
+
+    print(type: 'URL' | 'BUFFER' | 'BLOB'): void {
+        const url: string = 'http://localhost:3000/download/sample.pdf';
+        switch (type) {
+            case 'URL':
+                this.ngxHelperService.printPDF(url);
+                break;
+            case 'BUFFER':
+                this.httpClient.get(url, { responseType: 'arraybuffer' }).subscribe((response) => {
+                    this.ngxHelperService.printPDF(response);
+                });
+                break;
+            case 'BLOB':
+                this.httpClient.get(url, { responseType: 'blob' }).subscribe((response) => {
+                    this.ngxHelperService.printPDF(response);
+                });
+                break;
+        }
     }
 }
