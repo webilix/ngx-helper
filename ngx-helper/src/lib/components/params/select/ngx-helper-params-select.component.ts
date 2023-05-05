@@ -5,6 +5,7 @@ import { INgxHelperParamSelect } from '../../../interfaces';
 import { NgxHelperService } from '../../../ngx-helper.service';
 
 @Component({
+    host: { selector: 'ngx-helper-params-select' },
     templateUrl: './ngx-helper-params-select.component.html',
     styleUrls: ['./ngx-helper-params-select.component.scss'],
 })

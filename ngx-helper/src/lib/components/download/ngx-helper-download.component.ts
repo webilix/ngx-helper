@@ -6,6 +6,7 @@ import { NgxHelperService } from '../../ngx-helper.service';
 import { NGX_HELPER_LOADING_HEADER } from '../../ngx-helper.values';
 
 @Component({
+    host: { selector: 'ngx-helper-download' },
     templateUrl: './ngx-helper-download.component.html',
     styleUrls: ['./ngx-helper-download.component.scss'],
     animations: [

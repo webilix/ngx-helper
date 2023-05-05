@@ -5,6 +5,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { INgxHelperDialogConfig } from '../../interfaces';
 
 @Component({
+    host: { selector: 'ngx-helper-dialog' },
     templateUrl: './ngx-helper-dialog.component.html',
     styleUrls: ['./ngx-helper-dialog.component.scss'],
 })

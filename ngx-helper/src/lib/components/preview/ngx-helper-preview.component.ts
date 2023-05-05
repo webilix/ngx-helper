@@ -3,6 +3,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
+    host: { selector: 'ngx-helper-preview' },
     templateUrl: './ngx-helper-preview.component.html',
     styleUrls: ['./ngx-helper-preview.component.scss'],
     animations: [

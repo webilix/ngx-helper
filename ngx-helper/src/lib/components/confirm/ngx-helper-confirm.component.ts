@@ -5,6 +5,7 @@ import { Helper } from '@webilix/helper-library';
 import { INgxHelperConfirm, INgxHelperConfirmConfig, INgxHelperConfirmResponse } from '../../types';
 
 @Component({
+    host: { selector: 'ngx-helper-confirm' },
     templateUrl: './ngx-helper-confirm.component.html',
     styleUrls: ['./ngx-helper-confirm.component.scss'],
 })

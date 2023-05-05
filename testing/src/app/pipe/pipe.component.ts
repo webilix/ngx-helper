@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
+    host: { selector: 'pipe' },
     templateUrl: './pipe.component.html',
     styleUrls: ['./pipe.component.scss'],
 })

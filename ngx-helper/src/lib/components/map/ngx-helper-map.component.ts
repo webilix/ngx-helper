@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
+    host: { selector: 'ngx-helper-map' },
     templateUrl: './ngx-helper-map.component.html',
     styleUrls: ['./ngx-helper-map.component.scss'],
 })

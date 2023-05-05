@@ -15,6 +15,7 @@ import { INgxHelperUpload } from '../../interfaces';
 import { NgxHelperService } from '../../ngx-helper.service';
 
 @Component({
+    host: { selector: 'ngx-helper-upload' },
     templateUrl: './ngx-helper-upload.component.html',
     styleUrls: ['./ngx-helper-upload.component.scss'],
     animations: [

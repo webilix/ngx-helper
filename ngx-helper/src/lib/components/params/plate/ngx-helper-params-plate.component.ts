@@ -5,6 +5,7 @@ import { Helper } from '@webilix/helper-library';
 import { NgxHelperService } from '../../../ngx-helper.service';
 
 @Component({
+    host: { selector: 'ngx-helper-params-plate' },
     templateUrl: './ngx-helper-params-plate.component.html',
     styleUrls: ['./ngx-helper-params-plate.component.scss'],
 })

@@ -5,6 +5,7 @@ import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bott
 import { INgxHelperBottomSheetConfig } from '../../interfaces';
 
 @Component({
+    host: { selector: 'ngx-helper-bottom-sheet' },
     templateUrl: './ngx-helper-bottom-sheet.component.html',
     styleUrls: ['./ngx-helper-bottom-sheet.component.scss'],
 })

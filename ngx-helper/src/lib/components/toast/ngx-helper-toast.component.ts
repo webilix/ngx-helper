@@ -4,6 +4,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { INgxHelperToastConfig } from '../../interfaces';
 
 @Component({
+    host: { selector: 'ngx-helper-toast' },
     templateUrl: './ngx-helper-toast.component.html',
     styleUrls: ['./ngx-helper-toast.component.scss'],
     animations: [

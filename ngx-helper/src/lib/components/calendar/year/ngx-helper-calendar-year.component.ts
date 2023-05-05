@@ -7,6 +7,7 @@ import { Helper } from '@webilix/helper-library';
 import { INgxHelperCalendarConfig } from '../../../interfaces';
 
 @Component({
+    host: { selector: 'ngx-helper-calendar-year' },
     templateUrl: './ngx-helper-calendar-year.component.html',
     styleUrls: ['./ngx-helper-calendar-year.component.scss'],
 })
