@@ -132,6 +132,34 @@ export class AppComponent implements OnInit, OnDestroy {
         { name: 'plate-2', type: 'PLATE', value: ['12', 'ا', '345', '67'] },
     ];
 
+    public params7: NgxHelperParams[] = [
+        {
+            type: 'SELECT',
+            name: 'tree-1',
+            icon: 'keyboard_hide',
+            title: 'گزینه‌ها',
+            options: [...Array(10).keys()].map((n: number) => ({ id: (n + 1).toString(), title: (n + 1).toString() })),
+            list: true,
+        },
+        {
+            type: 'SELECT',
+            name: 'tree-2',
+            icon: 'keyboard_hide',
+            title: 'گزینه‌ها',
+            options: [...Array(100).keys()].map((n: number) => ({ id: (n + 1).toString(), title: (n + 1).toString() })),
+            list: true,
+        },
+        {
+            type: 'SELECT',
+            name: 'tree-3',
+            icon: 'keyboard_hide',
+            title: 'گزینه‌ها',
+            options: [...Array(100).keys()].map((n: number) => ({ id: (n + 1).toString(), title: (n + 1).toString() })),
+            list: true,
+            english: true,
+        },
+    ];
+
     public buttonGroupMenu: INgxHelperButtonGroup[] = [
         { icon: 'print', title: 'پرینت', action: 'PRINT' },
         { icon: 'file_download', title: 'دانلود', action: 'DOWNLOAD' },

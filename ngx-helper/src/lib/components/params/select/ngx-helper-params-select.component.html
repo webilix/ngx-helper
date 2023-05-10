@@ -1,5 +1,13 @@
 <input type="text" [ngClass]="{ en: !!param.english }" (input)="filter(searchInput.value)" #searchInput />
-<div [ngClass]="{ options: true, 'options-en': !!param.english }" *ngIf="options.length !== 0">
+<div
+    *ngIf="options.length !== 0"
+    [ngClass]="{
+        options: true,
+        'options-en': !!param.english,
+        'options-list': !!param.list,
+        'options-list-en': !!param.list && !!param.english
+    }"
+>
     <div class="option" *ngFor="let option of options" (click)="select(option.id)">{{ option.title }}</div>
 </div>
 <mat-icon [fontIcon]="'search_off'" class="ngx-helper-icon" *ngIf="options.length === 0"></mat-icon>

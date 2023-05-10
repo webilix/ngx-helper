@@ -47,6 +47,21 @@ input.en {
     }
 }
 
+.options-list {
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    .option {
+        text-align: right;
+    }
+}
+
+.options-list-en {
+    .option {
+        text-align: left;
+    }
+}
+
 mat-icon {
     padding: 1rem;
     display: block;

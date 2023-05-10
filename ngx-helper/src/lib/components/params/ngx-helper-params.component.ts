@@ -143,7 +143,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
             });
 
             this.params.forEach((param: NgxHelperParams) => {
-                if (param.type !== 'SELECT' || param.options.length > 14) return;
+                if (param.type !== 'SELECT' || param.list || param.options.length > 14) return;
 
                 this.menus[param.name] = param.options.map((o) => ({
                     title: o.title,

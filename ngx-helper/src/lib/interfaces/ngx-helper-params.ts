@@ -37,5 +37,6 @@ export interface INgxHelperParamSelect extends Omit<INgxHelperParam, 'title'> {
     type: 'SELECT';
     title: string;
     icon?: string;
+    list?: boolean;
     options: { id: string; title: string }[];
 }
