@@ -6,8 +6,8 @@ import { Helper } from '@webilix/helper-library';
 
 import {
     INgxHelperCalendarConfig,
+    INgxHelperParamBoolean,
     INgxHelperParamDate,
-    INgxHelperParamFavorite,
     INgxHelperParamPlate,
     INgxHelperParamSearch,
     INgxHelperParamSelect,
@@ -72,11 +72,11 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
                 if (value === undefined || this.values[param.name] === value) return;
 
                 switch (param.type) {
+                    case 'BOOLEAN':
+                        values[param.name] = value === true;
+                        break;
                     case 'DATE':
                         if (Helper.IS.date(value)) values[param.name] = value;
-                        break;
-                    case 'FAVORITE':
-                        values[param.name] = value === true;
                         break;
                     case 'PLATE':
                         this.values[param.name] = Helper.IS.plate(value)
@@ -116,15 +116,15 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
                 if (Helper.IS.empty(value)) return;
 
                 switch (param.type) {
+                    case 'BOOLEAN':
+                        this.values[param.name] = Helper.IS.boolean(value) ? value : value === 'TRUE';
+                        break;
                     case 'DATE':
                         if (Helper.IS.date(value)) this.values[param.name] = value;
                         else if (Helper.IS.STRING.date(value)) {
                             const gregorian = this.jalali.gregorian(value).date;
                             this.values[param.name] = new Date(`${gregorian}T00:00:00`);
                         }
-                        break;
-                    case 'FAVORITE':
-                        this.values[param.name] = Helper.IS.boolean(value) ? value : value === 'TRUE';
                         break;
                     case 'PLATE':
                         this.values[param.name] = Helper.IS.plate(value)
@@ -192,6 +192,12 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
 
         this.params.forEach((param: NgxHelperParams) => {
             switch (param.type) {
+                case 'BOOLEAN':
+                    values.params[param.name] = {
+                        value: this.values[param.name],
+                        param: this.values[param.name] ? 'TRUE' : 'FALSE',
+                    };
+                    break;
                 case 'DATE':
                     values.params[param.name] = {
                         value: this.values[param.name],
@@ -199,12 +205,6 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
                             ? this.jalali.gregorian(this.jalali.toString(this.values[param.name], { format: 'Y-M-D' }))
                                   .date
                             : '',
-                    };
-                    break;
-                case 'FAVORITE':
-                    values.params[param.name] = {
-                        value: this.values[param.name],
-                        param: this.values[param.name] ? 'TRUE' : 'FALSE',
                     };
                     break;
                 case 'PLATE':
@@ -243,11 +243,11 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
             }
 
             switch (param.type) {
+                case 'BOOLEAN':
+                    queryParams[param.name] = value == true ? 'TRUE' : undefined;
+                    break;
                 case 'DATE':
                     queryParams[param.name] = this.jalali.toString(value, { format: 'Y-M-D' });
-                    break;
-                case 'FAVORITE':
-                    queryParams[param.name] = value == true ? 'TRUE' : undefined;
                     break;
                 case 'PLATE':
                     queryParams[param.name] = value || undefined;
@@ -287,7 +287,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
         this.pageChange.emit(this.page);
     }
 
-    setFavorite(param: INgxHelperParamFavorite): void {
+    setBoolean(param: INgxHelperParamBoolean): void {
         this.setPage(1);
         this.values[param.name] = !this.values[param.name];
         this.updateRoute();

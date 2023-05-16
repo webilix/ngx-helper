@@ -1,15 +1,15 @@
 <div class="ngx-helper-params" *ngIf="params.length !== 0">
     <ng-container *ngFor="let param of params">
-        <!-- FAVORITE -->
-        <div class="ngx-helper-favorite" *ngIf="param.type === 'FAVORITE'">
+        <!-- BOOLEAN -->
+        <div class="ngx-helper-boolean" *ngIf="param.type === 'BOOLEAN'">
             <mat-icon
-                [ngClass]="{ 'ngx-helper-icon': true, favorite: values[param.name] }"
-                [fontIcon]="'star'"
-                (click)="setFavorite(param)"
+                [ngClass]="{ 'ngx-helper-icon': true, selected: values[param.name] }"
+                [fontIcon]="param.icon || 'star'"
+                (click)="setBoolean(param)"
             ></mat-icon>
         </div>
 
-        <div class="ngx-helper-param" *ngIf="param.type !== 'FAVORITE'">
+        <div class="ngx-helper-param" *ngIf="param.type !== 'BOOLEAN'">
             <!-- COMMENT -->
             <ng-container *ngIf="param.type === 'COMMENT'">
                 <div class="title">{{ param.title }}</div>

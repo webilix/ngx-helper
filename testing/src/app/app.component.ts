@@ -59,7 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
     };
 
     public params2: NgxHelperParams[] = [
-        { type: 'FAVORITE', name: 'favorite' },
+        { type: 'BOOLEAN', name: 'boolean', icon: 'restart_alt' },
         { type: 'SEARCH', name: 'en_query', english: true },
         {
             type: 'SELECT',
@@ -96,7 +96,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public params3Update: INgxHelperParamsUpdate = {};
 
     public params4: NgxHelperParams[] = [
-        { type: 'FAVORITE', name: 'value_favorite', value: true },
+        { type: 'BOOLEAN', name: 'value_boolean', value: true },
         { type: 'SEARCH', name: 'value_query', value: 'متن جستجو' },
         {
             type: 'SELECT',

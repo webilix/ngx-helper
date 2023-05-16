@@ -12,16 +12,17 @@ export interface INgxHelperParamComment extends Omit<INgxHelperParam, 'name' | '
     value: string;
 }
 
+export interface INgxHelperParamBoolean extends Omit<INgxHelperParam, 'title' | 'english' | 'value' | 'required'> {
+    type: 'BOOLEAN';
+    value?: boolean;
+    icon?: string;
+}
+
 export interface INgxHelperParamDate extends Omit<INgxHelperParam, 'english' | 'value'> {
     type: 'DATE';
     value?: Date;
     minDate?: Date;
     maxDate?: Date;
-}
-
-export interface INgxHelperParamFavorite extends Omit<INgxHelperParam, 'title' | 'english' | 'value' | 'required'> {
-    type: 'FAVORITE';
-    value?: boolean;
 }
 
 export interface INgxHelperParamPlate extends Omit<INgxHelperParam, 'english' | 'value' | 'required'> {
