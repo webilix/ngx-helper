@@ -284,7 +284,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
 
     setPage(page: number): void {
         this.page = page;
-        this.pageChange.emit(this.page);
+        setTimeout(() => this.pageChange.emit(this.page), 0);
     }
 
     setBoolean(param: INgxHelperParamBoolean): void {

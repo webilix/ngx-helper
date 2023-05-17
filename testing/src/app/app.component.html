@@ -7,25 +7,12 @@
     </div>
 </div>
 
-<ngx-helper-calendar
-    [route]="['/']"
-    [minDate]="previousDate"
-    [maxDate]="nextDate"
-    (changed)="log($event)"
-></ngx-helper-calendar>
-
-<ngx-helper-params [params]="params1" [order]="order" (changed)="log('PARAMS1', $event)"></ngx-helper-params>
-<ngx-helper-params [params]="params2" (changed)="log('PARAMS2', $event)"></ngx-helper-params>
-<ngx-helper-params [params]="params4" (changed)="log('PARAMS4', $event)"></ngx-helper-params>
-<ngx-helper-params [params]="params5" (changed)="log('PARAMS5', $event)"></ngx-helper-params>
-<ngx-helper-params [params]="params6" (changed)="log('PARAMS6', $event)"></ngx-helper-params>
-<ngx-helper-params [params]="params7" (changed)="log('PARAMS7', $event)"></ngx-helper-params>
 <div class="params-page">
     <ngx-helper-params
         [params]="params3"
-        [page]="paramsPage"
+        [(page)]="paramsPage"
         [update]="params3Update"
-        (changed)="selectPage = $event.page; log('PARAMS3', $event)"
+        (changed)="selectPage = $event.page; log('PARAMS3', $event, paramsPage)"
     ></ngx-helper-params>
     <select (change)="paramsPage = +paramsPageSelect.value" #paramsPageSelect>
         <ng-container *ngFor="let page of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
@@ -35,6 +22,19 @@
     </select>
     <button mat-flat-button type="button" color="primary" (click)="changeParam()">CHANGE</button>
 </div>
+<ngx-helper-params [params]="params1" [order]="order" (changed)="log('PARAMS1', $event)"></ngx-helper-params>
+<ngx-helper-params [params]="params2" (changed)="log('PARAMS2', $event)"></ngx-helper-params>
+<ngx-helper-params [params]="params4" (changed)="log('PARAMS4', $event)"></ngx-helper-params>
+<ngx-helper-params [params]="params5" (changed)="log('PARAMS5', $event)"></ngx-helper-params>
+<ngx-helper-params [params]="params6" (changed)="log('PARAMS6', $event)"></ngx-helper-params>
+<ngx-helper-params [params]="params7" (changed)="log('PARAMS7', $event)"></ngx-helper-params>
+
+<ngx-helper-calendar
+    [route]="['/']"
+    [minDate]="previousDate"
+    [maxDate]="nextDate"
+    (changed)="log($event)"
+></ngx-helper-calendar>
 
 <div class="button-group">
     <ngx-helper-button-group
