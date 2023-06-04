@@ -29,7 +29,6 @@ export {
     INgxHelperCalendarValue,
     NgxHelperCalendar,
     INgxHelperDialogConfig,
-    INgxHelperLocation,
     INgxHelperToastConfig,
     INgxHelperUpload,
 } from './lib/interfaces';
@@ -48,7 +47,7 @@ export {
     NgxHelperWeightPipe,
 } from './lib/pipes';
 
-export { NgxHelperConnectionService, NgxHelperLoadingService, NgxHelperLocationService } from './lib/providers';
+export { NgxHelperConnectionService, NgxHelperLoadingService } from './lib/providers';
 
 export {
     NgxHelperListMenu,

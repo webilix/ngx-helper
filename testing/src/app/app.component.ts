@@ -3,14 +3,14 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 
+import { Helper, IGeoLocation } from '@webilix/helper-library';
+
 import {
     INgxHelperCalendarPeriod,
-    INgxHelperLocation,
     INgxHelperParamsOrder,
     INgxHelperParamsUpdate,
     NgxHelperConnectionService,
     NgxHelperLoadingService,
-    NgxHelperLocationService,
     NgxHelperMenu,
     NgxHelperParams,
     NgxHelperService,
@@ -202,7 +202,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public loading: boolean = false;
     private _onLoadingChanged?: Subscription;
 
-    public location?: INgxHelperLocation | false;
+    public location?: IGeoLocation | false;
 
     constructor(
         private readonly changeDetectorRef: ChangeDetectorRef,
@@ -210,7 +210,6 @@ export class AppComponent implements OnInit, OnDestroy {
         private readonly ngxHelperService: NgxHelperService,
         private readonly ngxHelperConnectionService: NgxHelperConnectionService,
         private readonly ngxHelperLoadingService: NgxHelperLoadingService,
-        private readonly ngxHelperLocationService: NgxHelperLocationService,
     ) {}
 
     ngOnInit(): void {
@@ -247,8 +246,8 @@ export class AppComponent implements OnInit, OnDestroy {
             },
         });
 
-        this.ngxHelperLocationService.getLocation().then(
-            (location: INgxHelperLocation) => (this.location = location),
+        Helper.GEO.location().then(
+            (location: IGeoLocation) => (this.location = location),
             (error: string) => {
                 console.error(error);
                 this.location = false;
