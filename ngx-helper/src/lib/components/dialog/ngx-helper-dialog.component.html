@@ -2,6 +2,6 @@
     <div class="title">{{ title || '&nbsp;' }}</div>
     <mat-icon *ngIf="!disableClose" [fontIcon]="'close'" class="ngx-helper-icon" mat-dialog-close></mat-icon>
 </header>
-<content>
+<content [ngStyle]="{ padding: padding }">
     <ng-container *ngComponentOutlet="component; injector: injector"></ng-container>
 </content>
