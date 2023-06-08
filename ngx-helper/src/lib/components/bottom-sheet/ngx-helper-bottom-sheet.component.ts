@@ -13,6 +13,8 @@ export class NgxHelperBottomSheetComponent {
     public component: ComponentType<any> = this.data.component;
     public title: string = this.data.title;
     public disableClose: boolean = !!this.data.config.disableClose;
+    public padding: string = this.data.config.padding || '1rem';
+
     public injector: Injector = Injector.create({
         providers: [{ provide: MAT_BOTTOM_SHEET_DATA, useValue: this.data.config.data }],
     });

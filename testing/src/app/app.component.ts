@@ -366,11 +366,11 @@ export class AppComponent implements OnInit, OnDestroy {
             );
     }
 
-    showButtomSheet(disableClose?: boolean): void {
+    showButtomSheet(disableClose?: boolean, padding?: string): void {
         this.ngxHelperService.openBottomSheet<boolean>(
             BottomSheetComponent,
             'نمایش BottomSheet',
-            { data: { date: new Date() }, disableClose },
+            { data: { date: new Date() }, disableClose, padding },
             (result) => this.log(result),
         );
     }
