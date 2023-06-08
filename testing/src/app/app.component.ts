@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 
-import { Helper, IGeoLocation } from '@webilix/helper-library';
+import { Helper, IGeoCoordinates } from '@webilix/helper-library';
 
 import {
     INgxHelperCalendarPeriod,
@@ -202,7 +202,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public loading: boolean = false;
     private _onLoadingChanged?: Subscription;
 
-    public location?: IGeoLocation | false;
+    public coordinates?: IGeoCoordinates | false;
 
     constructor(
         private readonly changeDetectorRef: ChangeDetectorRef,
@@ -246,11 +246,11 @@ export class AppComponent implements OnInit, OnDestroy {
             },
         });
 
-        Helper.GEO.location().then(
-            (location: IGeoLocation) => (this.location = location),
+        Helper.GEO.coordinates().then(
+            (coordinates: IGeoCoordinates) => (this.coordinates = coordinates),
             (error: string) => {
                 console.error(error);
-                this.location = false;
+                this.coordinates = false;
             },
         );
     }

@@ -3,7 +3,7 @@
     <div><strong>LOADING:</strong> {{ loading }}</div>
     <div>
         <strong>LOCATION:</strong>
-        {{ location === undefined ? '...' : location === false ? 'ERROR' : (location | json) }}
+        {{ coordinates === undefined ? '...' : coordinates === false ? 'ERROR' : (coordinates | json) }}
     </div>
 </div>
 
