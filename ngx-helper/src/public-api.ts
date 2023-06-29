@@ -13,7 +13,6 @@ export {
     NgxHelperCalendarComponent,
     NgxHelperListComponent,
     NgxHelperLoadingComponent,
-    NgxHelperMapComponent,
     NgxHelperMenuComponent,
     NgxHelperPaginationComponent,
     NgxHelperParamsComponent,

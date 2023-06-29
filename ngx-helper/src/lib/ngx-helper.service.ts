@@ -17,7 +17,6 @@ import {
     NgxHelperDialogComponent,
     NgxHelperDownloadComponent,
     NgxHelperGalleryComponent,
-    NgxHelperMapComponent,
     NgxHelperPreviewComponent,
     NgxHelperToastComponent,
     NgxHelperUploadComponent,
@@ -190,32 +189,6 @@ export class NgxHelperService {
         this.dialog.open(NgxHelperGalleryComponent, {
             ...this._dialogFullConfig,
             data: { index: index && images[index] ? index : 0, images, html },
-        });
-    }
-    //#endregion
-
-    //#region MAP
-    showMap(position: { lat: number; long: number }, zoom?: number): void;
-    showMap(position: { latitude: number; longitude: number }, zoom?: number): void;
-    showMap(latitude: number, longitude: number, zoom?: number): void;
-    showMap(arg1: any, arg2?: any, arg3?: any): void {
-        const zoom: number =
-            arg3 && Helper.IS.number(arg3)
-                ? arg3
-                : arg2 && Helper.IS.number(arg2) && !Helper.IS.number(arg1)
-                ? arg2
-                : 15;
-        const position: { latitude: number; longitude: number } = Helper.IS.number(arg1)
-            ? { latitude: arg1, longitude: arg2 }
-            : Helper.IS.number(arg1['lat'])
-            ? { latitude: arg1['lat'], longitude: arg1['long'] }
-            : Helper.IS.number(arg1['latitude'])
-            ? { latitude: arg1['latitude'], longitude: arg1['longitude'] }
-            : { latitude: 0, longitude: 0 };
-
-        this.dialog.open(NgxHelperMapComponent, {
-            ...this._dialogFullConfig,
-            data: { zoom, position },
         });
     }
     //#endregion

@@ -412,16 +412,6 @@ export class AppComponent implements OnInit, OnDestroy {
         this.ngxHelperService.showGallery(images, index, html);
     }
 
-    showMap(type: number): void {
-        type === 1
-            ? this.ngxHelperService.showMap(35.715298, 51.404343)
-            : type === 2
-            ? this.ngxHelperService.showMap({ lat: 35.715298, long: 51.404343 })
-            : type === 3
-            ? this.ngxHelperService.showMap({ latitude: 35.715298, longitude: 51.404343 })
-            : this.ngxHelperService.showMap(35.715298, 51.404343, 11);
-    }
-
     confirm(
         type?: 'ACTIVE' | 'ARCHIVE' | 'BLOCK' | 'DEACTIVE' | 'DELETE' | 'EMPTY',
         description: boolean | 'REQUIRED' = false,
