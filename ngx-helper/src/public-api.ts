@@ -27,6 +27,8 @@ export {
     INgxHelperCalendarPeriod,
     INgxHelperCalendarValue,
     NgxHelperCalendar,
+    INgxHelperCoordinates,
+    INgxHelperCoordinatesConfig,
     INgxHelperDialogConfig,
     INgxHelperToastConfig,
     INgxHelperUpload,

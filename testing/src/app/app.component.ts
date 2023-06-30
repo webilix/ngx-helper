@@ -434,6 +434,26 @@ export class AppComponent implements OnInit, OnDestroy {
               );
     }
 
+    showCoordinates(type: number): void {
+        switch (type) {
+            case 1:
+                this.ngxHelperService.showCoordinates(
+                    { latitude: 35.7, longitude: 51.4 },
+                    { image: '/assets/pin.png' },
+                );
+                break;
+            case 2:
+                this.ngxHelperService.showCoordinates({ latitude: 35.7, longitude: 51.4 });
+                break;
+            case 3:
+                this.ngxHelperService.showCoordinates(
+                    { latitude: 35.7, longitude: 51.4 },
+                    { image: '/assets/pin.png', zoom: 17 },
+                );
+                break;
+        }
+    }
+
     print(type: 'URL' | 'BUFFER' | 'BLOB'): void {
         const url: string = 'http://localhost:3000/download/sample.pdf';
         switch (type) {

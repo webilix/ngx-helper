@@ -27,6 +27,7 @@ import {
     NgxHelperCalendarWeekComponent,
     NgxHelperCalendarYearComponent,
     NgxHelperConfirmComponent,
+    NgxHelperCoordinatesShowComponent,
     NgxHelperDialogComponent,
     NgxHelperDownloadComponent,
     NgxHelperGalleryComponent,
@@ -80,6 +81,7 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperCalendarWeekComponent,
         NgxHelperCalendarYearComponent,
         NgxHelperConfirmComponent,
+        NgxHelperCoordinatesShowComponent,
         NgxHelperDialogComponent,
         NgxHelperDownloadComponent,
         NgxHelperGalleryComponent,
@@ -165,6 +167,8 @@ export class NgxHelperModule {
     static forRoot(arg1?: any, arg2?: any): ModuleWithProviders<NgxHelperModule> {
         const style: Partial<INgxHelperStyle> =
             arg1 && typeof arg1 !== 'string' ? arg1 : arg2 && typeof arg2 !== 'string' ? arg2 : {};
+        const primaryColor: string = style.primaryColor || 'rgb(29, 91, 116)';
+
         const root: string =
             ':root{' +
             `--ngxHelperFontSize:${style.fontSize || '12px'};` +
@@ -172,7 +176,7 @@ export class NgxHelperModule {
             `--ngxHelperEnFont:${style.enFont || "Roboto, 'Helvetica Neue', sans-serif"};` +
             `--ngxHelperIconFont:${style.iconFont || 'Material Icons Outlined'};` +
             `--ngxHelperIconSize:${style.iconSize || '16px'};` +
-            `--ngxHelperPrimaryColor:${style.primaryColor || 'rgb(29, 91, 116)'};` +
+            `--ngxHelperPrimaryColor:${primaryColor};` +
             `--ngxHelperAccentColor:${style.accentColor || 'rgb(228, 190, 146)'};` +
             `--ngxHelperWarnColor:${style.warnColor || 'rgb(255, 49, 27)'};` +
             `--ngxHelperBorderColor:${style.borderColor || 'rgb(187, 206, 213)'};` +
@@ -212,7 +216,11 @@ export class NgxHelperModule {
 
         return {
             ngModule: NgxHelperModule,
-            providers: [NgxHelperService, { provide: 'NGX_HELPER_TIMEZONE', useValue: timezone }],
+            providers: [
+                NgxHelperService,
+                { provide: 'NGX_HELPER_TIMEZONE', useValue: timezone },
+                { provide: 'NGX_HELPER_PRIMARY_COLOR', useValue: primaryColor },
+            ],
         };
     }
 }

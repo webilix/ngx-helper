@@ -14,6 +14,7 @@ import {
     NgxHelperCalendarWeekComponent,
     NgxHelperCalendarYearComponent,
     NgxHelperConfirmComponent,
+    NgxHelperCoordinatesShowComponent,
     NgxHelperDialogComponent,
     NgxHelperDownloadComponent,
     NgxHelperGalleryComponent,
@@ -25,6 +26,8 @@ import {
     INgxHelperBottomSheetConfig,
     INgxHelperCalendarConfig,
     INgxHelperCalendarPeriod,
+    INgxHelperCoordinates,
+    INgxHelperCoordinatesConfig,
     INgxHelperDialogConfig,
     INgxHelperToastConfig,
     INgxHelperUpload,
@@ -408,6 +411,20 @@ export class NgxHelperService {
             },
             () => {},
         );
+    }
+    //#endregion
+
+    //#region COORDINATES
+    showCoordinates(coordinates: INgxHelperCoordinates, config?: Partial<INgxHelperCoordinatesConfig>): void {
+        config = config || {};
+        config.zoom = config.zoom || 15;
+        config.image = config.image || undefined;
+        config.color = config.color ? Helper.COLOR.toHEX(config.color) || undefined : undefined;
+
+        this.dialog.open(NgxHelperCoordinatesShowComponent, {
+            ...this._dialogFullConfig,
+            data: { coordinates, config },
+        });
     }
     //#endregion
 }

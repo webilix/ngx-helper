@@ -1,0 +1,54 @@
+:host {
+    display: grid;
+    grid-template-rows: 1fr 4rem;
+
+    width: 100vw;
+    height: 100vh;
+
+    .ngx-helper-map {
+        margin: 0.5rem;
+        width: calc(100% - 1rem);
+        height: calc(100% - 1rem);
+    }
+
+    footer {
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        height: 4rem;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+        background-color: var(--ngxHelperBackgroundColor);
+
+        content {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            width: var(--ngxHelperDialogWidth);
+            max-width: calc(100vw - 2rem);
+            margin: 0 auto;
+
+            div.ngx-helper-coordinate {
+                flex: 1;
+                direction: ltr;
+                text-align: left;
+                font-family: var(--ngxHelperEnFont);
+                color: var(--ngxHelperPrimaryColor);
+
+                div.ngx-helper-title {
+                    font-size: calc(var(--ngxHelperFontSize) - 2px);
+                    font-weight: 500;
+                }
+            }
+
+            .ngx-helper-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 2rem !important;
+                height: 4rem !important;
+                font-size: 20px !important;
+                color: var(--ngxHelperPrimaryColor);
+            }
+        }
+    }
+}

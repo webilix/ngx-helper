@@ -12,6 +12,8 @@ export * from './calendar/ngx-helper-calendar.component';
 
 export * from './confirm/ngx-helper-confirm.component';
 
+export * from './coordinates/show/ngx-helper-coordinates-show.component';
+
 export * from './dialog/ngx-helper-dialog.component';
 
 export * from './download/ngx-helper-download.component';

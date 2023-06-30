@@ -44,12 +44,17 @@
                         "tsConfig": "testing/tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
                         "assets": ["testing/src/favicon.ico", "testing/src/assets"],
-                        "styles": ["testing/src/theme/material.scss", "testing/src/theme/styles.scss"],
+                        "styles": [
+                            "testing/src/theme/material.scss",
+                            "testing/src/theme/styles.scss",
+                            "node_modules/ol/ol.css"
+                        ],
                         "scripts": [],
                         "allowedCommonJsDependencies": [
                             "@webilix/helper-library",
                             "@webilix/jalali-date-time",
-                            "@webilix/validator-library"
+                            "@webilix/validator-library",
+                            "rbush"
                         ]
                     },
                     "configurations": {
