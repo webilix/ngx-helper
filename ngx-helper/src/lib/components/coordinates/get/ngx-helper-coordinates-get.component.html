@@ -1,0 +1,21 @@
+<div
+    id="ngx-helper-map"
+    class="ngx-helper-map"
+    (dblclick)="setCoordinates($event)"
+    (contextmenu)="setCoordinates($event)"
+></div>
+
+<footer>
+    <content>
+        <div class="ngx-helper-coordinate">
+            <div class="ngx-helper-title">Latitude:</div>
+            {{ coordinates?.latitude || '' }}
+        </div>
+        <div class="ngx-helper-coordinate">
+            <div class="ngx-helper-title">Longitude:</div>
+            {{ coordinates?.longitude || '' }}
+        </div>
+        <mat-icon class="ngx-helper-icon" (click)="select()" *ngIf="coordinates">done_all</mat-icon>
+        <mat-icon class="ngx-helper-icon" mat-dialog-close>close</mat-icon>
+    </content>
+</footer>

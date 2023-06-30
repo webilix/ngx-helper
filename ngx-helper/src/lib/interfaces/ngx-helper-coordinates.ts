@@ -7,4 +7,5 @@ export interface INgxHelperCoordinatesConfig {
     zoom: number;
     image?: string;
     color?: string;
+    view?: INgxHelperCoordinates;
 }

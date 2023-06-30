@@ -434,20 +434,40 @@ export class AppComponent implements OnInit, OnDestroy {
               );
     }
 
+    getCoordinates(type: number): void {
+        (type === 1
+            ? this.ngxHelperService.getCoordinates(undefined, { zoom: 5 })
+            : type === 2
+            ? this.ngxHelperService.getCoordinates(undefined, { image: '/assets/pin.png', zoom: 5 })
+            : type === 3
+            ? this.ngxHelperService.getCoordinates(undefined, {
+                  image: '/assets/pin.png',
+                  view: { latitude: 35.6997382, longitude: 51.3380603 },
+              })
+            : this.ngxHelperService.getCoordinates(
+                  { latitude: 35.6997382, longitude: 51.3380603 },
+                  { image: '/assets/pin.png', view: { latitude: 0, longitude: 0 } },
+              )
+        ).then(
+            (coordinates) => this.log(coordinates),
+            () => {},
+        );
+    }
+
     showCoordinates(type: number): void {
         switch (type) {
             case 1:
                 this.ngxHelperService.showCoordinates(
-                    { latitude: 35.7, longitude: 51.4 },
+                    { latitude: 35.6997382, longitude: 51.3380603 },
                     { image: '/assets/pin.png' },
                 );
                 break;
             case 2:
-                this.ngxHelperService.showCoordinates({ latitude: 35.7, longitude: 51.4 });
+                this.ngxHelperService.showCoordinates({ latitude: 35.6997382, longitude: 51.3380603 });
                 break;
             case 3:
                 this.ngxHelperService.showCoordinates(
-                    { latitude: 35.7, longitude: 51.4 },
+                    { latitude: 35.6997382, longitude: 51.3380603 },
                     { image: '/assets/pin.png', zoom: 17 },
                 );
                 break;

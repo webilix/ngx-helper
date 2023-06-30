@@ -14,6 +14,7 @@ import {
     NgxHelperCalendarWeekComponent,
     NgxHelperCalendarYearComponent,
     NgxHelperConfirmComponent,
+    NgxHelperCoordinatesGetComponent,
     NgxHelperCoordinatesShowComponent,
     NgxHelperDialogComponent,
     NgxHelperDownloadComponent,
@@ -415,15 +416,39 @@ export class NgxHelperService {
     //#endregion
 
     //#region COORDINATES
-    showCoordinates(coordinates: INgxHelperCoordinates, config?: Partial<INgxHelperCoordinatesConfig>): void {
-        config = config || {};
-        config.zoom = config.zoom || 15;
-        config.image = config.image || undefined;
-        config.color = config.color ? Helper.COLOR.toHEX(config.color) || undefined : undefined;
+    private updateCoordinatesConfig(config?: Partial<INgxHelperCoordinatesConfig>): INgxHelperCoordinatesConfig {
+        return {
+            zoom: config?.zoom || 15,
+            image: config?.image,
+            color: config?.color ? Helper.COLOR.toHEX(config.color) || undefined : undefined,
+            view: config?.view,
+        };
+    }
 
+    getCoordinates(
+        coordinates?: INgxHelperCoordinates,
+        config?: Partial<INgxHelperCoordinatesConfig>,
+    ): Promise<INgxHelperCoordinates> {
+        return new Promise<INgxHelperCoordinates>((resolve, reject) => {
+            this.dialog
+                .open(NgxHelperCoordinatesGetComponent, {
+                    ...this._dialogFullConfig,
+                    data: { coordinates, config: this.updateCoordinatesConfig(config) },
+                })
+                .afterClosed()
+                .subscribe({
+                    next: (coordinates?: INgxHelperCoordinates) => (coordinates ? resolve(coordinates) : reject()),
+                });
+        });
+    }
+
+    showCoordinates(
+        coordinates: INgxHelperCoordinates,
+        config?: Partial<Omit<INgxHelperCoordinatesConfig, 'view'>>,
+    ): void {
         this.dialog.open(NgxHelperCoordinatesShowComponent, {
             ...this._dialogFullConfig,
-            data: { coordinates, config },
+            data: { coordinates, config: this.updateCoordinatesConfig(config) },
         });
     }
     //#endregion
