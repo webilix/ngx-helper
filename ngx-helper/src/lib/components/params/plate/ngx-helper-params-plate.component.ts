@@ -1,4 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
 import { Helper } from '@webilix/helper-library';
 
@@ -13,9 +14,13 @@ export class NgxHelperParamsPlateComponent {
     @ViewChild('plateLeft') private readonly plateLeft?: ElementRef;
 
     public plate?: string[];
+    public letter?: string = this.data.letter;
     public letters: string[] = Helper.PLATE.letters;
 
-    constructor(private readonly ngxHelperService: NgxHelperService) {}
+    constructor(
+        @Inject(MAT_BOTTOM_SHEET_DATA) private readonly data: { letter?: string },
+        private readonly ngxHelperService: NgxHelperService,
+    ) {}
 
     setPlate(left: string, letter: string, right: string, iran: string): void {
         const plate: string[] = [left, letter, right, iran];

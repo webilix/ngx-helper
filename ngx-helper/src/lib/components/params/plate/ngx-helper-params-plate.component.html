@@ -7,13 +7,14 @@
         [mask]="'00'"
         (blur)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
         (keyup)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
-        (input)="(plateLeft.value || '').length === 2 ? plateLetter.focus() : null"
+        (input)="(plateLeft.value || '').length === 2 ? (letter ? plateRight.focus() : plateLetter.focus()) : null"
         (keydown.enter)="setValue()"
         #plateLeft
     />
     <mat-select
         panelClass="ngx-helper-plate-panel"
         (valueChange)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
+        [value]="letter || null"
         #plateLetter
     >
         <mat-option [value]="null"></mat-option>

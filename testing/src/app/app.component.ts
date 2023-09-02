@@ -130,6 +130,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public params6: NgxHelperParams[] = [
         { name: 'plate-1', type: 'PLATE', value: ['12', 'ا', '345', '67'].join('-') },
         { name: 'plate-2', type: 'PLATE', value: ['12', 'ا', '345', '67'] },
+        { name: 'plate-3', type: 'PLATE', letter: 'ع' },
     ];
 
     public params7: NgxHelperParams[] = [

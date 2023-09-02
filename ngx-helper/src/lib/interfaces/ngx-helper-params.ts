@@ -28,6 +28,7 @@ export interface INgxHelperParamDate extends Omit<INgxHelperParam, 'english' | '
 export interface INgxHelperParamPlate extends Omit<INgxHelperParam, 'english' | 'value' | 'required'> {
     type: 'PLATE';
     value?: string | string[];
+    letter?: string;
 }
 
 export interface INgxHelperParamSearch extends Omit<INgxHelperParam, 'required'> {

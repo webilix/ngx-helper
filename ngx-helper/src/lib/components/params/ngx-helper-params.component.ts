@@ -311,13 +311,21 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
     }
 
     setPlate(param: INgxHelperParamPlate): void {
-        this.ngxHelperService.openBottomSheet<string>(NgxHelperParamsPlateComponent, param.title || 'پلاک', (value) => {
-            if (this.values[param.name] === value) return;
+        const letter: string | undefined =
+            param.letter && Helper.PLATE.letters.includes(param.letter) ? param.letter : undefined;
 
-            this.setPage(1);
-            this.values[param.name] = value;
-            this.updateRoute();
-        });
+        this.ngxHelperService.openBottomSheet<string>(
+            NgxHelperParamsPlateComponent,
+            param.title || 'پلاک',
+            { data: { letter } },
+            (value) => {
+                if (this.values[param.name] === value) return;
+
+                this.setPage(1);
+                this.values[param.name] = value;
+                this.updateRoute();
+            },
+        );
     }
 
     setSearch(param: INgxHelperParamSearch, value: string): void {
