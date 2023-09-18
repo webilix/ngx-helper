@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Params, Router } from '@angular/router';
 
 import { JalaliDateTime } from '@webilix/jalali-date-time';
@@ -32,6 +32,8 @@ import { NgxHelperParamsPlateComponent } from './plate/ngx-helper-params-plate.c
     styleUrls: ['./ngx-helper-params.component.scss'],
 })
 export class NgxHelperParamsComponent implements OnInit, OnChanges {
+    @HostBinding('style.display') private display: string = 'block';
+
     @Input() route: string[] = ['/'];
     @Input() page: number = 1;
     @Input() params: NgxHelperParams[] = [];
@@ -62,6 +64,8 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
             if (param === 'SEPERATOR') this.paramGroups.push([]);
             else this.paramGroups[this.paramGroups.length - 1].push(param);
         });
+        this.paramGroups = this.paramGroups.filter((group) => group.length !== 0);
+        this.display = this.paramGroups.length === 0 ? 'none' : 'block';
 
         if (changes['page']) {
             if (!changes['page'].firstChange) this.updateRoute();

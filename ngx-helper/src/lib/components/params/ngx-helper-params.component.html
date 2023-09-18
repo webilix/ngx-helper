@@ -1,4 +1,4 @@
-<div class="ngx-helper-params-group" *ngIf="params.length !== 0">
+<div class="ngx-helper-params-group" *ngIf="paramGroups.length !== 0">
     <div class="ngx-helper-params" *ngFor="let params of paramGroups; let groupIndex = index">
         <ng-container *ngFor="let param of params; let paramIndex = index">
             <ng-container *ngIf="param !== 'SEPERATOR'">

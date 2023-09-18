@@ -96,6 +96,8 @@ export class AppComponent implements OnInit, OnDestroy {
     public params3Update: INgxHelperParamsUpdate = {};
 
     public params4: NgxHelperParams[] = [
+        'SEPERATOR',
+        'SEPERATOR',
         {
             type: 'MENU',
             name: 'value_menu',
@@ -111,6 +113,8 @@ export class AppComponent implements OnInit, OnDestroy {
         },
         { type: 'BOOLEAN', name: 'value_boolean', value: true },
         { type: 'SEARCH', name: 'value_query', value: 'متن جستجو' },
+        'SEPERATOR',
+        'SEPERATOR',
         'SEPERATOR',
         {
             type: 'SELECT',
@@ -134,6 +138,8 @@ export class AppComponent implements OnInit, OnDestroy {
             required: true,
         },
         { type: 'DATE', name: 'value_date', value: new Date(), required: true, maxDate: new Date() },
+        'SEPERATOR',
+        'SEPERATOR',
     ];
 
     public params5: NgxHelperParams[] = [
