@@ -15,6 +15,7 @@
                 <ngx-helper-menu
                     *ngIf="param.type === 'MENU'"
                     [menu]="menus[param.name]"
+                    [title]="param.title"
                     [icon]="param.icon"
                     [border]="1"
                     class="ngx-helper-menu"

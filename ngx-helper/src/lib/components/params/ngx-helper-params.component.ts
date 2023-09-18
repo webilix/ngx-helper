@@ -92,8 +92,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
                         if (Helper.IS.date(value)) values[param.name] = value;
                         break;
                     case 'MENU':
-                        if (param.options.find((o) => o !== 'SEPERATOR' && o.value === value))
-                            values[param.name] = value;
+                        if (param.options.find((o) => o.value === value)) values[param.name] = value;
                         break;
                     case 'PLATE':
                         this.values[param.name] = Helper.IS.plate(value)
@@ -144,9 +143,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
                         }
                         break;
                     case 'MENU':
-                        this.values[param.name] = param.options.find((o) => o !== 'SEPERATOR' && o.value === value)
-                            ? value
-                            : null;
+                        this.values[param.name] = param.options.find((o) => o.value === value) ? value : null;
                         break;
                     case 'PLATE':
                         this.values[param.name] = Helper.IS.plate(value)
@@ -169,18 +166,20 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
             this.params.forEach((param: NgxHelperParams) => {
                 if (param === 'SEPERATOR' || param.type !== 'MENU') return;
 
-                this.menus[param.name] = param.options.map((option) =>
-                    option === 'SEPERATOR'
-                        ? 'SEPERATOR'
-                        : ({
-                              title: option.title,
-                              click: () => this.setMenu(param, option.value),
-                              icon: option.icon,
-                              color: option.color,
-                              english: param.english,
-                              disableOn: () => this.values[param.name] === option.value,
-                          } as INgxHelperMenu),
-                );
+                this.menus[param.name] = param.options.map((option) => ({
+                    title: option.title,
+                    click: () => this.setMenu(param, option.value),
+                    icon: option.icon,
+                    color: option.color,
+                    disableOn: () => this.values[param.name] === option.value,
+                }));
+                this.menus[param.name].push('SEPERATOR');
+                this.menus[param.name].push({
+                    title: 'همه موارد',
+                    click: () => this.setMenu(param, null),
+                    icon: param.icon,
+                    disableOn: () => this.values[param.name] === null,
+                });
             });
 
             this.params.forEach((param: NgxHelperParams) => {
@@ -361,9 +360,9 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
         });
     }
 
-    setMenu(param: INgxHelperParamMenu, value: string): void {
-        const values: string[] = param.options.map((o) => (o === 'SEPERATOR' ? '' : o.value)).filter((v) => v !== '');
-        if (!values.includes(value)) return;
+    setMenu(param: INgxHelperParamMenu, value: string | null): void {
+        const values: string[] = param.options.map((o) => o.value).filter((v) => v !== '');
+        if (value !== null && !values.includes(value)) return;
 
         this.setPage(1);
         this.values[param.name] = value;

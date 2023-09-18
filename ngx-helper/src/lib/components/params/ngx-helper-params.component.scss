@@ -32,12 +32,15 @@
 
         .ngx-helper-menu {
             ::ng-deep button {
-                padding: 0;
-                width: 32px !important;
+                padding: 0 0.5rem;
                 height: 32px !important;
 
                 mat-icon {
                     font-size: calc(var(--ngxHelperIconSize) + 4px) !important;
+                }
+
+                .title {
+                    font-size: calc(var(--ngxHelperFontSize) - 1px) !important;
                 }
             }
         }
