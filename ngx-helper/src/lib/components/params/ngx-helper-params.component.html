@@ -85,22 +85,22 @@
             </ng-container>
         </div>
     </ng-container>
-</div>
 
-<div class="ngx-helper-order" *ngIf="order && order.options.length !== 0">
-    <div class="title">{{ order.title || 'ترتیب' }}</div>
-    <div class="option" #orderMenuTrigger>{{ getOrderTitle() }}</div>
-    <ngx-helper-menu
-        *ngIf="orderMenu.length > 1"
-        [menu]="orderMenu"
-        [xPosition]="'before'"
-        [tigger]="orderMenuTrigger"
-    ></ngx-helper-menu>
-    <mat-icon
-        class="ngx-helper-icon"
-        [fontIcon]="'filter_list'"
-        [ngStyle]="{ transform: this.orderValue.type === 'ASC' ? 'rotateX(180deg)' : 'rotateX(0deg)' }"
-        (click)="changeOrderType()"
-    ></mat-icon>
-    <div class="background"></div>
+    <div class="ngx-helper-order" *ngIf="order && order.options.length !== 0">
+        <div class="title">{{ order.title || 'ترتیب' }}</div>
+        <div class="option" #orderMenuTrigger>{{ getOrderTitle() }}</div>
+        <ngx-helper-menu
+            *ngIf="orderMenu.length > 1"
+            [menu]="orderMenu"
+            [xPosition]="'before'"
+            [tigger]="orderMenuTrigger"
+        ></ngx-helper-menu>
+        <mat-icon
+            class="ngx-helper-icon"
+            [fontIcon]="'filter_list'"
+            [ngStyle]="{ transform: this.orderValue.type === 'ASC' ? 'rotateX(180deg)' : 'rotateX(0deg)' }"
+            (click)="changeOrderType()"
+        ></mat-icon>
+        <div class="background"></div>
+    </div>
 </div>
