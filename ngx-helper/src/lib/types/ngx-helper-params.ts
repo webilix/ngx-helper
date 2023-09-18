@@ -8,6 +8,8 @@ import {
 } from '../interfaces';
 
 export type NgxHelperParams =
+    // SEPERATOR (NEW LINE)
+    | 'SEPERATOR'
     // VIEW
     | INgxHelperParamComment
     // INPUTS

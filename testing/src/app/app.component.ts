@@ -98,6 +98,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public params4: NgxHelperParams[] = [
         { type: 'BOOLEAN', name: 'value_boolean', value: true },
         { type: 'SEARCH', name: 'value_query', value: 'متن جستجو' },
+        'SEPERATOR',
         {
             type: 'SELECT',
             name: 'value_select',
@@ -228,7 +229,9 @@ export class AppComponent implements OnInit, OnDestroy {
                         { id: 'option-4', title: 'گزینه چهارم' },
                     ],
                 },
+                'SEPERATOR',
                 { type: 'DATE', name: 'fa_date' },
+                { type: 'DATE', name: 'fa_date_2', title: 'تاریخ دوم' },
             ];
         }, 2000);
 

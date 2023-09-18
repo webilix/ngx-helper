@@ -39,6 +39,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
     @Output() changed: EventEmitter<INgxHelperParamsValue> = new EventEmitter<INgxHelperParamsValue>();
     @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
 
+    public paramGroups: NgxHelperParams[][] = [];
     public menus: { [key: string]: NgxHelperMenu[] } = {};
     public values: { [key: string]: any } = {};
 
@@ -54,6 +55,12 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        this.paramGroups[0] = [];
+        this.params.forEach((param: NgxHelperParams) => {
+            if (param === 'SEPERATOR') this.paramGroups.push([]);
+            else this.paramGroups[this.paramGroups.length - 1].push(param);
+        });
+
         if (changes['page']) {
             if (!changes['page'].firstChange) this.updateRoute();
             else {
@@ -66,7 +73,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
         if (changes['update'] && !changes['update'].firstChange) {
             const values: { [key: string]: any } = {};
             this.params.forEach((param: NgxHelperParams) => {
-                if (param.type === 'COMMENT') return;
+                if (param === 'SEPERATOR' || param.type === 'COMMENT') return;
 
                 const value: any = changes['update'].currentValue[param.name];
                 if (value === undefined || this.values[param.name] === value) return;
@@ -108,7 +115,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
             this.values = {};
             const params: Params = this.getQueryParams();
             this.params.forEach((param: NgxHelperParams) => {
-                if (param.type === 'COMMENT') return;
+                if (param === 'SEPERATOR' || param.type === 'COMMENT') return;
 
                 this.values[param.name] = null;
 
@@ -143,7 +150,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
             });
 
             this.params.forEach((param: NgxHelperParams) => {
-                if (param.type !== 'SELECT' || param.list || param.options.length > 14) return;
+                if (param === 'SEPERATOR' || param.type !== 'SELECT' || param.list || param.options.length > 14) return;
 
                 this.menus[param.name] = param.options.map((o) => ({
                     title: o.title,
@@ -191,6 +198,8 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
         };
 
         this.params.forEach((param: NgxHelperParams) => {
+            if (param === 'SEPERATOR') return;
+
             switch (param.type) {
                 case 'BOOLEAN':
                     values.params[param.name] = {
@@ -234,7 +243,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
         queryParams['page'] = this.page > 1 ? this.page.toString() : undefined;
 
         this.params.forEach((param: NgxHelperParams) => {
-            if (param.type === 'COMMENT') return;
+            if (param === 'SEPERATOR' || param.type === 'COMMENT') return;
 
             const value: any = this.values[param.name];
             if (Helper.IS.empty(value)) {
@@ -274,8 +283,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
     }
 
     resetValue(param: NgxHelperParams): void {
-        if (param.type === 'COMMENT') return;
-        if (this.values[param.name] === null) return;
+        if (param === 'SEPERATOR' || param.type === 'COMMENT' || this.values[param.name] === null) return;
 
         this.setPage(1);
         this.values[param.name] = null;
