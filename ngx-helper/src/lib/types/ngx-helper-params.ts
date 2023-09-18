@@ -2,6 +2,7 @@ import {
     INgxHelperParamBoolean,
     INgxHelperParamComment,
     INgxHelperParamDate,
+    INgxHelperParamMenu,
     INgxHelperParamPlate,
     INgxHelperParamSearch,
     INgxHelperParamSelect,
@@ -15,6 +16,7 @@ export type NgxHelperParams =
     // INPUTS
     | INgxHelperParamBoolean
     | INgxHelperParamDate
+    | INgxHelperParamMenu
     | INgxHelperParamPlate
     | INgxHelperParamSearch
     | INgxHelperParamSelect;

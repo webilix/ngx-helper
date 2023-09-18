@@ -11,7 +11,16 @@
                     ></mat-icon>
                 </div>
 
-                <div class="ngx-helper-param" *ngIf="param.type !== 'BOOLEAN'">
+                <!-- MENU -->
+                <ngx-helper-menu
+                    *ngIf="param.type === 'MENU'"
+                    [menu]="menus[param.name]"
+                    [icon]="param.icon"
+                    [border]="1"
+                    class="ngx-helper-menu"
+                ></ngx-helper-menu>
+
+                <div class="ngx-helper-param" *ngIf="param.type !== 'BOOLEAN' && param.type !== 'MENU'">
                     <!-- COMMENT -->
                     <ng-container *ngIf="param.type === 'COMMENT'">
                         <div class="title">{{ param.title }}</div>

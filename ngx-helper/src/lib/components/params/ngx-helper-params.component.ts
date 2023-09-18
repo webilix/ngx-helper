@@ -6,8 +6,10 @@ import { Helper } from '@webilix/helper-library';
 
 import {
     INgxHelperCalendarConfig,
+    INgxHelperMenu,
     INgxHelperParamBoolean,
     INgxHelperParamDate,
+    INgxHelperParamMenu,
     INgxHelperParamPlate,
     INgxHelperParamSearch,
     INgxHelperParamSelect,
@@ -85,6 +87,10 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
                     case 'DATE':
                         if (Helper.IS.date(value)) values[param.name] = value;
                         break;
+                    case 'MENU':
+                        if (param.options.find((o) => o !== 'SEPERATOR' && o.value === value))
+                            values[param.name] = value;
+                        break;
                     case 'PLATE':
                         this.values[param.name] = Helper.IS.plate(value)
                             ? typeof value === 'string'
@@ -133,6 +139,11 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
                             this.values[param.name] = new Date(`${gregorian}T00:00:00`);
                         }
                         break;
+                    case 'MENU':
+                        this.values[param.name] = param.options.find((o) => o !== 'SEPERATOR' && o.value === value)
+                            ? value
+                            : null;
+                        break;
                     case 'PLATE':
                         this.values[param.name] = Helper.IS.plate(value)
                             ? typeof value === 'string'
@@ -147,6 +158,25 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
                         this.values[param.name] = param.options.find((o) => o.id === value) ? value : null;
                         break;
                 }
+            });
+
+            this.menus = {};
+
+            this.params.forEach((param: NgxHelperParams) => {
+                if (param === 'SEPERATOR' || param.type !== 'MENU') return;
+
+                this.menus[param.name] = param.options.map((option) =>
+                    option === 'SEPERATOR'
+                        ? 'SEPERATOR'
+                        : ({
+                              title: option.title,
+                              click: () => this.setMenu(param, option.value),
+                              icon: option.icon,
+                              color: option.color,
+                              english: param.english,
+                              disableOn: () => this.values[param.name] === option.value,
+                          } as INgxHelperMenu),
+                );
             });
 
             this.params.forEach((param: NgxHelperParams) => {
@@ -216,6 +246,12 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
                             : '',
                     };
                     break;
+                case 'MENU':
+                    values.params[param.name] = {
+                        value: this.values[param.name],
+                        param: this.values[param.name] || '',
+                    };
+                    break;
                 case 'PLATE':
                     values.params[param.name] = {
                         value: this.values[param.name] ? this.values[param.name].split('-') : null,
@@ -257,6 +293,9 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
                     break;
                 case 'DATE':
                     queryParams[param.name] = this.jalali.toString(value, { format: 'Y-M-D' });
+                    break;
+                case 'MENU':
+                    queryParams[param.name] = value || undefined;
                     break;
                 case 'PLATE':
                     queryParams[param.name] = value || undefined;
@@ -316,6 +355,15 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
             this.values[param.name] = date;
             this.updateRoute();
         });
+    }
+
+    setMenu(param: INgxHelperParamMenu, value: string): void {
+        const values: string[] = param.options.map((o) => (o === 'SEPERATOR' ? '' : o.value)).filter((v) => v !== '');
+        if (!values.includes(value)) return;
+
+        this.setPage(1);
+        this.values[param.name] = value;
+        this.updateRoute();
     }
 
     setPlate(param: INgxHelperParamPlate): void {

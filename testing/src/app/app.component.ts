@@ -96,6 +96,19 @@ export class AppComponent implements OnInit, OnDestroy {
     public params3Update: INgxHelperParamsUpdate = {};
 
     public params4: NgxHelperParams[] = [
+        {
+            type: 'MENU',
+            name: 'value_menu',
+            icon: 'toc',
+            value: 'ALL',
+            options: [
+                { title: 'گزینه اول', value: '1ST', icon: 'looks_one' },
+                { title: 'گزینه دوم', value: '2ND', icon: 'looks_two' },
+                { title: 'گزینه سوم', value: '3RD', icon: 'looks_3' },
+                'SEPERATOR',
+                { title: 'همه گزینه‌ها', value: 'ALL', icon: 'apps', color: 'warn' },
+            ],
+        },
         { type: 'BOOLEAN', name: 'value_boolean', value: true },
         { type: 'SEARCH', name: 'value_query', value: 'متن جستجو' },
         'SEPERATOR',

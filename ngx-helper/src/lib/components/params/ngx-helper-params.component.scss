@@ -30,6 +30,18 @@
             }
         }
 
+        .ngx-helper-menu {
+            ::ng-deep button {
+                padding: 0;
+                width: 32px !important;
+                height: 32px !important;
+
+                mat-icon {
+                    font-size: calc(var(--ngxHelperIconSize) + 4px) !important;
+                }
+            }
+        }
+
         .ngx-helper-param {
             flex: 1;
             width: 100%;
