@@ -1,4 +1,4 @@
-.ngx-utls-plate {
+.ngx-helper-plate {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -10,13 +10,13 @@
     font-size: var(--ngxHelperFontSize);
     font-family: var(--ngxHelperFaFont);
 
-    .ngx-utls-plate-left,
-    .ngx-utls-plate-letter,
-    .ngx-utls-plate-right {
+    .ngx-helper-plate-left,
+    .ngx-helper-plate-letter,
+    .ngx-helper-plate-right {
         font-weight: 500;
     }
 
-    .ngx-utls-plate-iran {
+    .ngx-helper-plate-iran {
         margin-left: 0.5rem;
         padding: 0.25rem 0.5rem 0 0.5rem;
         display: flex;
@@ -26,12 +26,12 @@
         border-radius: 0 4px 4px 0;
         color: var(--ngxHelperPrimaryColor);
 
-        .ngx-utls-plate-text {
+        .ngx-helper-plate-text {
             font-size: calc(var(--ngxHelperFontSize) - 3px);
             line-height: 1;
         }
 
-        .ngx-utls-plate-value {
+        .ngx-helper-plate-value {
             font-weight: 500;
         }
     }

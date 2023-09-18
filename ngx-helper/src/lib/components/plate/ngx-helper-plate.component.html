@@ -1,13 +1,13 @@
 <div
     *ngIf="show"
-    class="ngx-utls-plate"
+    class="ngx-helper-plate"
     [ngStyle]="{ border: border ? '1px solid var(--ngxHelperBorderColor)' : 'none' }"
 >
-    <div class="ngx-utls-plate-left">{{ plate[0] }}</div>
-    <div class="ngx-utls-plate-letter">{{ plate[1] === 'ا' ? 'الف' : plate[1] }}</div>
-    <div class="ngx-utls-plate-right">{{ plate[2] }}</div>
-    <div class="ngx-utls-plate-iran">
-        <div class="ngx-utls-plate-text">ایران</div>
-        <div class="ngx-utls-plate-value">{{ plate[3] }}</div>
+    <div class="ngx-helper-plate-left">{{ plate[0] }}</div>
+    <div class="ngx-helper-plate-letter">{{ plate[1] === 'ا' ? 'الف' : plate[1] }}</div>
+    <div class="ngx-helper-plate-right">{{ plate[2] }}</div>
+    <div class="ngx-helper-plate-iran">
+        <div class="ngx-helper-plate-text">ایران</div>
+        <div class="ngx-helper-plate-value">{{ plate[3] }}</div>
     </div>
 </div>

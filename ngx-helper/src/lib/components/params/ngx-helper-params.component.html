@@ -30,7 +30,7 @@
             <!-- PLATE -->
             <ng-container *ngIf="param.type === 'PLATE'">
                 <div class="title">{{ param.title || 'پلاک' }}</div>
-                <div class="value-plate" (click)="setPlate(param)">
+                <div class="value value-plate" (click)="setPlate(param)">
                     <ngx-helper-plate
                         *ngIf="values[param.name]"
                         [plate]="values[param.name].split('-')"
