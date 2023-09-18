@@ -25,9 +25,8 @@ export interface INgxHelperParamDate extends Omit<INgxHelperParam, 'english' | '
     maxDate?: Date;
 }
 
-export interface INgxHelperParamMenu extends Omit<INgxHelperParam, 'title' | 'english' | 'value' | 'required'> {
+export interface INgxHelperParamMenu extends Omit<INgxHelperParam, 'title' | 'english' | 'required'> {
     type: 'MENU';
-    value: string;
     title?: string;
     icon?: string;
     options: { title: string; value: string; icon?: string; color?: 'primary' | 'accent' | 'warn' }[];

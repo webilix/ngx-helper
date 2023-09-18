@@ -103,7 +103,6 @@ export class AppComponent implements OnInit, OnDestroy {
             name: 'value_menu',
             icon: 'toc',
             title: 'گزینه‌ها',
-            value: 'ALL',
             options: [
                 { title: 'گزینه اول', value: '1ST', icon: 'looks_one' },
                 { title: 'گزینه دوم', value: '2ND', icon: 'looks_two' },
