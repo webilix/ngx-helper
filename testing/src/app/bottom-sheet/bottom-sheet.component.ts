@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
-import { NgxHelperService } from '@ngx-helper';
+import { NgxHelperService } from '@webilix/ngx-helper';
 
 @Component({
     selector: 'app-bottom',

@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 
-import { NgxHelperModule } from '@ngx-helper';
+import { NgxHelperModule } from '@webilix/ngx-helper';
 
 import { AppComponent } from './app.component';
 

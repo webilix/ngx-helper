@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { INgxHelperValues } from '@ngx-helper';
+import { INgxHelperValues } from '@webilix/ngx-helper';
 
 @Component({
     selector: 'app-values',

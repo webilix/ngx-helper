@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NgxHelperListMenu } from '@ngx-helper';
+import { NgxHelperListMenu } from '@webilix/ngx-helper';
 
 interface IList {
     id: string;
