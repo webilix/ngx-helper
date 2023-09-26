@@ -6,8 +6,8 @@ import { Helper } from '@webilix/helper-library';
 
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 
-import { INgxHelperCalendarPeriod, INgxHelperCalendarValue, NgxHelperCalendar } from '../../interfaces';
-import { NgxHelperService } from '../../ngx-helper.service';
+import { INgxHelperCalendarPeriod, INgxHelperCalendarValue, NgxHelperCalendar } from './ngx-helper-calendar.interface';
+import { NgxHelperCalendarService } from './ngx-helper-calendar.service';
 
 @Component({
     selector: 'ngx-helper-calendar',
@@ -48,7 +48,7 @@ export class NgxHelperCalendarComponent implements OnInit, OnChanges {
     constructor(
         @Inject('NGX_HELPER_TIMEZONE') public readonly timezone: string,
         private readonly router: Router,
-        private readonly ngxHelperService: NgxHelperService,
+        private readonly ngxHelperCalendarService: NgxHelperCalendarService,
     ) {}
 
     ngOnInit(): void {
@@ -218,7 +218,7 @@ export class NgxHelperCalendarComponent implements OnInit, OnChanges {
     }
 
     getDate(): void {
-        this.ngxHelperService.getDate(
+        this.ngxHelperCalendarService.getDate(
             { value: this.from, minDate: this.minDate, maxDate: this.maxDate },
             (date: Date) => {
                 const day: JalaliDateTimePeriod = JalaliDateTime({ timezone: this.timezone }).periodDay(1, date);
@@ -230,7 +230,7 @@ export class NgxHelperCalendarComponent implements OnInit, OnChanges {
     }
 
     getWeek(): void {
-        this.ngxHelperService.getWeek(
+        this.ngxHelperCalendarService.getWeek(
             { value: this.from, minDate: this.minDate, maxDate: this.maxDate },
             (week: INgxHelperCalendarPeriod) => {
                 this.from = week.from;
@@ -241,7 +241,7 @@ export class NgxHelperCalendarComponent implements OnInit, OnChanges {
     }
 
     getMonth(): void {
-        this.ngxHelperService.getMonth(
+        this.ngxHelperCalendarService.getMonth(
             { value: this.from, minDate: this.minDate, maxDate: this.maxDate },
             (month: INgxHelperCalendarPeriod) => {
                 this.from = month.from;
@@ -252,7 +252,7 @@ export class NgxHelperCalendarComponent implements OnInit, OnChanges {
     }
 
     getYear(): void {
-        this.ngxHelperService.getYear(
+        this.ngxHelperCalendarService.getYear(
             { value: this.from, minDate: this.minDate, maxDate: this.maxDate },
             (year: INgxHelperCalendarPeriod) => {
                 this.from = year.from;
@@ -263,7 +263,7 @@ export class NgxHelperCalendarComponent implements OnInit, OnChanges {
     }
 
     getPeriodFrom(): void {
-        this.ngxHelperService.getDate(
+        this.ngxHelperCalendarService.getDate(
             { value: this.from, minDate: this.minDate, maxDate: this.to || this.maxDate },
             (date: Date) => {
                 const day: JalaliDateTimePeriod = JalaliDateTime({ timezone: this.timezone }).periodDay(1, date);
@@ -274,7 +274,7 @@ export class NgxHelperCalendarComponent implements OnInit, OnChanges {
     }
 
     getPeriodTo(): void {
-        this.ngxHelperService.getDate(
+        this.ngxHelperCalendarService.getDate(
             { value: this.to, minDate: this.from || this.minDate, maxDate: this.maxDate },
             (date: Date) => {
                 const day: JalaliDateTimePeriod = JalaliDateTime({ timezone: this.timezone }).periodDay(1, date);

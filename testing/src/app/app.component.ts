@@ -6,7 +6,6 @@ import { Subscription } from 'rxjs';
 import { Helper, IGeoCoordinates } from '@webilix/helper-library';
 
 import {
-    INgxHelperCalendarPeriod,
     INgxHelperParamsOrder,
     INgxHelperParamsUpdate,
     NgxHelperConnectionService,
@@ -16,6 +15,7 @@ import {
     NGX_HELPER_LOADING_HEADER,
 } from '@webilix/ngx-helper';
 import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
+import { INgxHelperCalendarPeriod, NgxHelperCalendarService } from '@webilix/ngx-helper/calendar';
 import { NgxHelperConfirmService } from '@webilix/ngx-helper/confirm';
 import { NgxHelperCoordinatesService } from '@webilix/ngx-helper/coordinates';
 import { NgxHelperDialogService } from '@webilix/ngx-helper/dialog';
@@ -232,6 +232,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private readonly httpClient: HttpClient,
         private readonly ngxHelperService: NgxHelperService,
         private readonly ngxHelperBottomSheetService: NgxHelperBottomSheetService,
+        private readonly ngxHelperCalendarService: NgxHelperCalendarService,
         private readonly ngxHelperConfirmService: NgxHelperConfirmService,
         private readonly ngxHelperCoordinatesService: NgxHelperCoordinatesService,
         private readonly ngxHelperDialogService: NgxHelperDialogService,
@@ -340,9 +341,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     getDate(type: number): void {
-        if (type === 5) this.ngxHelperService.getDate((date: Date) => this.log(date));
+        if (type === 5) this.ngxHelperCalendarService.getDate((date: Date) => this.log(date));
         else
-            this.ngxHelperService.getDate(
+            this.ngxHelperCalendarService.getDate(
                 {
                     value: type === 1 ? new Date('1979-06-03') : null,
                     title: type === 2 ? 'تاریخ' : null,
@@ -354,9 +355,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     getWeek(type: number): void {
-        if (type === 5) this.ngxHelperService.getWeek((week: INgxHelperCalendarPeriod) => this.log(week));
+        if (type === 5) this.ngxHelperCalendarService.getWeek((week: INgxHelperCalendarPeriod) => this.log(week));
         else
-            this.ngxHelperService.getWeek(
+            this.ngxHelperCalendarService.getWeek(
                 {
                     value: type === 1 ? new Date('1979-06-03') : null,
                     title: type === 2 ? 'هفته' : null,
@@ -368,9 +369,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     getMonth(type: number): void {
-        if (type === 5) this.ngxHelperService.getMonth((month: INgxHelperCalendarPeriod) => this.log(month));
+        if (type === 5) this.ngxHelperCalendarService.getMonth((month: INgxHelperCalendarPeriod) => this.log(month));
         else
-            this.ngxHelperService.getMonth(
+            this.ngxHelperCalendarService.getMonth(
                 {
                     value: type === 1 ? new Date('1979-06-03') : null,
                     title: type === 2 ? 'ماه' : null,
@@ -382,9 +383,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     getYear(type: number): void {
-        if (type === 5) this.ngxHelperService.getYear((year: INgxHelperCalendarPeriod) => this.log(year));
+        if (type === 5) this.ngxHelperCalendarService.getYear((year: INgxHelperCalendarPeriod) => this.log(year));
         else
-            this.ngxHelperService.getYear(
+            this.ngxHelperCalendarService.getYear(
                 {
                     value: type === 1 ? new Date('1979-06-03') : null,
                     title: type === 2 ? 'ماه' : null,

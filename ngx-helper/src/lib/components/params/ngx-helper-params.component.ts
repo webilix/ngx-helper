@@ -5,10 +5,10 @@ import { JalaliDateTime } from '@webilix/jalali-date-time';
 import { Helper } from '@webilix/helper-library';
 
 import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
+import { INgxHelperCalendarConfig, NgxHelperCalendarService } from '@webilix/ngx-helper/calendar';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 
 import {
-    INgxHelperCalendarConfig,
     INgxHelperParamBoolean,
     INgxHelperParamDate,
     INgxHelperParamMenu,
@@ -17,7 +17,6 @@ import {
     INgxHelperParamSelect,
 } from '../../interfaces';
 import { INgxHelperParamsOrder, INgxHelperParamsUpdate, INgxHelperParamsValue, NgxHelperParams } from '../../types';
-import { NgxHelperService } from '../../ngx-helper.service';
 
 import { NgxHelperParamsSelectComponent } from './select/ngx-helper-params-select.component';
 import { NgxHelperParamsPlateComponent } from './plate/ngx-helper-params-plate.component';
@@ -50,8 +49,8 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
 
     constructor(
         private readonly router: Router,
-        private readonly ngxHelperService: NgxHelperService,
         private readonly ngxHelperBottomSheetService: NgxHelperBottomSheetService,
+        private readonly ngxHelperCalendarService: NgxHelperCalendarService,
     ) {}
 
     ngOnInit(): void {
@@ -351,7 +350,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
             maxDate: param.maxDate,
         };
 
-        this.ngxHelperService.getDate(config, (date: Date) => {
+        this.ngxHelperCalendarService.getDate(config, (date: Date) => {
             if (this.values[param.name]?.getTime() === date.getTime()) return;
 
             this.setPage(1);

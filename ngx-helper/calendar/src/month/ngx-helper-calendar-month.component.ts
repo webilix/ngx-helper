@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { JalaliDateTime, JalaliDateTimePeriod } from '@webilix/jalali-date-time';
 import { Helper } from '@webilix/helper-library';
 
-import { INgxHelperCalendarConfig } from '../../../interfaces';
+import { INgxHelperCalendarConfig } from '../ngx-helper-calendar.interface';
 
 @Component({
     host: { selector: 'ngx-helper-calendar-month' },

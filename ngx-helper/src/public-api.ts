@@ -7,16 +7,9 @@ export { NgxHelperModule } from './lib/ngx-helper.module';
 export { NgxHelperService } from './lib/ngx-helper.service';
 export { NGX_HELPER_LOADING_HEADER } from './lib/ngx-helper.values';
 
-export { NgxHelperCalendarComponent, NgxHelperParamsComponent, NgxHelperValuesComponent } from './lib/components';
+export { NgxHelperParamsComponent, NgxHelperValuesComponent } from './lib/components';
 
-export {
-    INgxHelperCalendarConfig,
-    INgxHelperCalendarPeriod,
-    INgxHelperCalendarValue,
-    NgxHelperCalendar,
-    INgxHelperToastConfig,
-    INgxHelperUpload,
-} from './lib/interfaces';
+export { INgxHelperToastConfig, INgxHelperUpload } from './lib/interfaces';
 
 export {
     NgxHelperBankCardPipe,

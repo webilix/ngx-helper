@@ -1,9 +1,3 @@
-export * from './calendar/date/ngx-helper-calendar-date.component';
-export * from './calendar/month/ngx-helper-calendar-month.component';
-export * from './calendar/week/ngx-helper-calendar-week.component';
-export * from './calendar/year/ngx-helper-calendar-year.component';
-export * from './calendar/ngx-helper-calendar.component';
-
 export * from './download/ngx-helper-download.component';
 
 export * from './gallery/ngx-helper-gallery.component';

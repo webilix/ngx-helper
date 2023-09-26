@@ -4,22 +4,13 @@ import { HttpClient, HttpStatusCode } from '@angular/common/http';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import {
-    NgxHelperCalendarDateComponent,
-    NgxHelperCalendarMonthComponent,
-    NgxHelperCalendarWeekComponent,
-    NgxHelperCalendarYearComponent,
     NgxHelperDownloadComponent,
     NgxHelperGalleryComponent,
     NgxHelperPreviewComponent,
     NgxHelperToastComponent,
     NgxHelperUploadComponent,
 } from './components';
-import {
-    INgxHelperCalendarConfig,
-    INgxHelperCalendarPeriod,
-    INgxHelperToastConfig,
-    INgxHelperUpload,
-} from './interfaces';
+import { INgxHelperToastConfig, INgxHelperUpload } from './interfaces';
 import { NgxHelperToast } from './types';
 
 @Injectable()
@@ -35,15 +26,6 @@ export class NgxHelperService {
         ];
         console.error(errors.join('\n'));
     }
-
-    private _dialogConfig: MatDialogConfig = {
-        autoFocus: false,
-        width: 'calc(100vw - 4rem)',
-        maxWidth: 'var(--ngxHelperDialogWidth)',
-        maxHeight: '80vh',
-        direction: 'rtl',
-        disableClose: true,
-    };
 
     private _dialogFullConfig: MatDialogConfig = {
         autoFocus: false,
@@ -191,68 +173,6 @@ export class NgxHelperService {
 
         this.components.push(component);
         this.updateComponentsBottom();
-    }
-    //#endregion
-
-    //#region CALENDAR
-    private getCalendarConfig(config?: Partial<INgxHelperCalendarConfig>): INgxHelperCalendarConfig {
-        let minDate: Date | null = config?.minDate || null;
-        let maxDate: Date | null = config?.maxDate || null;
-        if (minDate && maxDate && minDate.getTime() >= maxDate.getTime()) {
-            const temp = minDate;
-            minDate = maxDate;
-            maxDate = temp;
-        }
-
-        return { title: config?.title || null, value: config?.value || null, minDate, maxDate };
-    }
-
-    getDate(callback: (date: Date) => void): void;
-    getDate(config: Partial<INgxHelperCalendarConfig>, callback: (date: Date) => void): void;
-    getDate(arg1: any, arg2?: any): void {
-        const callback: (date: Date) => void = arg2 || arg1;
-        const config: Partial<INgxHelperCalendarConfig> = typeof arg2 === 'function' ? arg1 : {};
-
-        this.dialog
-            .open(NgxHelperCalendarDateComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
-            .afterClosed()
-            .subscribe((date: Date) => date && callback(date));
-    }
-
-    getWeek(callback: (period: INgxHelperCalendarPeriod) => void): void;
-    getWeek(config: Partial<INgxHelperCalendarConfig>, callback: (period: INgxHelperCalendarPeriod) => void): void;
-    getWeek(arg1: any, arg2?: any): void {
-        const callback: (period: INgxHelperCalendarPeriod) => void = arg2 || arg1;
-        const config: Partial<INgxHelperCalendarConfig> = typeof arg2 === 'function' ? arg1 : {};
-
-        this.dialog
-            .open(NgxHelperCalendarWeekComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
-            .afterClosed()
-            .subscribe((week: INgxHelperCalendarPeriod) => week && callback(week));
-    }
-
-    getMonth(callback: (period: INgxHelperCalendarPeriod) => void): void;
-    getMonth(config: Partial<INgxHelperCalendarConfig>, callback: (period: INgxHelperCalendarPeriod) => void): void;
-    getMonth(arg1: any, arg2?: any): void {
-        const callback: (period: INgxHelperCalendarPeriod) => void = arg2 || arg1;
-        const config: Partial<INgxHelperCalendarConfig> = typeof arg2 === 'function' ? arg1 : {};
-
-        this.dialog
-            .open(NgxHelperCalendarMonthComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
-            .afterClosed()
-            .subscribe((month: INgxHelperCalendarPeriod) => month && callback(month));
-    }
-
-    getYear(callback: (period: INgxHelperCalendarPeriod) => void): void;
-    getYear(config: Partial<INgxHelperCalendarConfig>, callback: (period: INgxHelperCalendarPeriod) => void): void;
-    getYear(arg1: any, arg2?: any): void {
-        const callback: (period: INgxHelperCalendarPeriod) => void = arg2 || arg1;
-        const config: Partial<INgxHelperCalendarConfig> = typeof arg2 === 'function' ? arg1 : {};
-
-        this.dialog
-            .open(NgxHelperCalendarYearComponent, { ...this._dialogConfig, data: this.getCalendarConfig(config) })
-            .afterClosed()
-            .subscribe((month: INgxHelperCalendarPeriod) => month && callback(month));
     }
     //#endregion
 

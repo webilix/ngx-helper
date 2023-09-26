@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 
 import { NgxHelperBottomSheetModule } from '@webilix/ngx-helper/bottom-sheet';
+import { NgxHelperCalendarModule } from '@webilix/ngx-helper/calendar';
 import { NgxHelperLoadingModule } from '@webilix/ngx-helper/loading';
 import { NgxHelperMenuModule } from '@webilix/ngx-helper/menu';
 import { NgxHelperPlateModule } from '@webilix/ngx-helper/plate';
@@ -23,11 +24,6 @@ import { NgxHelperPlateModule } from '@webilix/ngx-helper/plate';
 import { INgxHelperStyle } from './interfaces';
 
 import {
-    NgxHelperCalendarComponent,
-    NgxHelperCalendarDateComponent,
-    NgxHelperCalendarMonthComponent,
-    NgxHelperCalendarWeekComponent,
-    NgxHelperCalendarYearComponent,
     NgxHelperDownloadComponent,
     NgxHelperGalleryComponent,
     NgxHelperParamsComponent,
@@ -66,11 +62,6 @@ import { NgxHelperService } from './ngx-helper.service';
 
         NgxHelperComponent,
 
-        NgxHelperCalendarComponent,
-        NgxHelperCalendarDateComponent,
-        NgxHelperCalendarMonthComponent,
-        NgxHelperCalendarWeekComponent,
-        NgxHelperCalendarYearComponent,
         NgxHelperDownloadComponent,
         NgxHelperGalleryComponent,
         NgxHelperParamsComponent,
@@ -109,6 +100,7 @@ import { NgxHelperService } from './ngx-helper.service';
         MatSelectModule,
 
         NgxHelperBottomSheetModule,
+        NgxHelperCalendarModule,
         NgxHelperLoadingModule,
         NgxHelperMenuModule,
         NgxHelperPlateModule,
@@ -116,7 +108,6 @@ import { NgxHelperService } from './ngx-helper.service';
     exports: [
         NgxHelperComponent,
 
-        NgxHelperCalendarComponent,
         NgxHelperParamsComponent,
         NgxHelperValuesComponent,
 
