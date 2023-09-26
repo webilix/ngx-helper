@@ -11,8 +11,9 @@ import {
 
 import { Helper } from '@webilix/helper-library';
 
-import { INgxHelperUpload } from '../../interfaces';
-import { NgxHelperService } from '../../ngx-helper.service';
+import { NgxHelperToastService } from '@webilix/ngx-helper/toast';
+
+import { INgxHelperUpload } from '../ngx-helper-http.interface';
 
 @Component({
     host: { selector: 'ngx-helper-upload' },
@@ -38,7 +39,10 @@ export class NgxHelperUploadComponent<R, E> implements AfterViewInit {
 
     public progress: number = 0;
 
-    constructor(private readonly httpClient: HttpClient, private readonly ngxHelperService: NgxHelperService) {}
+    constructor(
+        private readonly httpClient: HttpClient,
+        private readonly ngxHelperToastService: NgxHelperToastService,
+    ) {}
 
     ngAfterViewInit(): void {
         setTimeout(this.upload.bind(this), 500);
@@ -49,16 +53,19 @@ export class NgxHelperUploadComponent<R, E> implements AfterViewInit {
 
         const maxSize: number = Helper.STRING.toFileSize(this.config.maxSize || '0B');
         if (maxSize && this.file.size > maxSize) {
-            // this.ngxHelperService.toast('ERROR', `حداکثر حجم فایل می‌تواند ${Helper.NUMBER.toFileSize(maxSize)} باشد.`);
+            this.ngxHelperToastService.toast(
+                'ERROR',
+                `حداکثر حجم فایل می‌تواند ${Helper.NUMBER.toFileSize(maxSize)} باشد.`,
+            );
             this.close(undefined, undefined);
             return;
         }
 
         if (this.config.mimes && this.config.mimes.length !== 0 && !this.config.mimes.includes(this.file.type)) {
-            // this.ngxHelperService.toast('ERROR', [
-            //     'فرمت فایل انتخاب شده مجاز نیست.',
-            //     `فرمت‌های مجاز: ${this.config.mimes.join(', ')}`,
-            // ]);
+            this.ngxHelperToastService.toast('ERROR', [
+                'فرمت فایل انتخاب شده مجاز نیست.',
+                `فرمت‌های مجاز: ${this.config.mimes.join(', ')}`,
+            ]);
             this.close(undefined, undefined);
             return;
         }

@@ -1,9 +1,8 @@
-import { AfterViewInit, Component, HostBinding, Input } from '@angular/core';
+import { AfterViewInit, Component, HostBinding, Inject, Input } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
 
-import { NgxHelperService } from '../../ngx-helper.service';
-import { NGX_HELPER_LOADING_HEADER } from '../../ngx-helper.values';
+import { NgxHelperToastService } from '@webilix/ngx-helper/toast';
 
 @Component({
     host: { selector: 'ngx-helper-download' },
@@ -28,14 +27,18 @@ export class NgxHelperDownloadComponent implements AfterViewInit {
 
     public progress: number = 0;
 
-    constructor(private readonly httpClient: HttpClient, private readonly ngxHelperService: NgxHelperService) {}
+    constructor(
+        @Inject('NGX_HELPER_LOADING_HEADER') private readonly loading: string,
+        private readonly httpClient: HttpClient,
+        private readonly ngxHelperToastService: NgxHelperToastService,
+    ) {}
 
     ngAfterViewInit(): void {
         setTimeout(this.download.bind(this), 500);
     }
 
     download(): void {
-        const headers: HttpHeaders = new HttpHeaders().set(NGX_HELPER_LOADING_HEADER, 'N');
+        const headers: HttpHeaders = new HttpHeaders().set(this.loading, 'N');
         this.httpClient
             .get(this.path, { headers, reportProgress: true, observe: 'events', responseType: 'blob' })
             .subscribe({
@@ -67,7 +70,7 @@ export class NgxHelperDownloadComponent implements AfterViewInit {
     }
 
     error(): void {
-        // this.ngxHelperService.toast('ERROR', `امکان دانلود فایل ${this.name} وجود ندارد.`);
+        this.ngxHelperToastService.toast('ERROR', `امکان دانلود فایل ${this.name} وجود ندارد.`);
         this.close();
     }
 

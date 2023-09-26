@@ -5,18 +5,14 @@ import { Subscription } from 'rxjs';
 
 import { Helper, IGeoCoordinates } from '@webilix/helper-library';
 
-import {
-    NgxHelperConnectionService,
-    NgxHelperLoadingService,
-    NgxHelperService,
-    NGX_HELPER_LOADING_HEADER,
-} from '@webilix/ngx-helper';
+import { NgxHelperConnectionService, NgxHelperLoadingService, NGX_HELPER_LOADING_HEADER } from '@webilix/ngx-helper';
 import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
 import { INgxHelperButtonGroup } from '@webilix/ngx-helper/button-group';
 import { INgxHelperCalendarPeriod, NgxHelperCalendarService } from '@webilix/ngx-helper/calendar';
 import { NgxHelperConfirmService } from '@webilix/ngx-helper/confirm';
 import { NgxHelperCoordinatesService } from '@webilix/ngx-helper/coordinates';
 import { NgxHelperDialogService } from '@webilix/ngx-helper/dialog';
+import { NgxHelperHttpService } from '@webilix/ngx-helper/http';
 import { NgxHelperImageService } from '@webilix/ngx-helper/image';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 import { INgxHelperParamOrder, INgxHelperParamUpdate, NgxHelperParam } from '@webilix/ngx-helper/param';
@@ -230,12 +226,12 @@ export class AppComponent implements OnInit, OnDestroy {
     constructor(
         private readonly changeDetectorRef: ChangeDetectorRef,
         private readonly httpClient: HttpClient,
-        private readonly ngxHelperService: NgxHelperService,
         private readonly ngxHelperBottomSheetService: NgxHelperBottomSheetService,
         private readonly ngxHelperCalendarService: NgxHelperCalendarService,
         private readonly ngxHelperConfirmService: NgxHelperConfirmService,
         private readonly ngxHelperCoordinatesService: NgxHelperCoordinatesService,
         private readonly ngxHelperDialogService: NgxHelperDialogService,
+        private readonly ngxHelperHttpService: NgxHelperHttpService,
         private readonly ngxHelperImageService: NgxHelperImageService,
         private readonly ngxHelperConnectionService: NgxHelperConnectionService,
         private readonly ngxHelperLoadingService: NgxHelperLoadingService,
@@ -300,7 +296,10 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     download(correct: boolean): void {
-        this.ngxHelperService.download('localhost.html', correct ? 'http://localhost:4200' : 'http://localhost:14200');
+        this.ngxHelperHttpService.download(
+            'localhost.html',
+            correct ? 'http://localhost:4200' : 'http://localhost:14200',
+        );
     }
 
     upload(event: Event): void {
@@ -314,7 +313,7 @@ export class AppComponent implements OnInit, OnDestroy {
         const authorization: string =
             'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uIjoiNjM5MzNjZWM1YzU0YTlkOTViOTRkYzllIiwidXNlciI6IjYzN2Q3OTY2ZmU2MTg2ODNmYzcwNmQ4MyIsImlhdCI6MTY3MDU5Mzc3MiwiZXhwIjoxNjc1Nzc3NzcyfQ.UjdX7Uu2Q88yYlLnNq-6IEmbehrXDDKRK-HCt-_U7E8';
 
-        this.ngxHelperService.upload<any, any>(
+        this.ngxHelperHttpService.upload<any, any>(
             file,
             'http://localhost:3000/upload',
             {
@@ -510,16 +509,16 @@ export class AppComponent implements OnInit, OnDestroy {
         const url: string = 'http://localhost:3000/download/sample.pdf';
         switch (type) {
             case 'URL':
-                this.ngxHelperService.printPDF(url);
+                this.ngxHelperHttpService.printPDF(url);
                 break;
             case 'BUFFER':
                 this.httpClient.get(url, { responseType: 'arraybuffer' }).subscribe((response) => {
-                    this.ngxHelperService.printPDF(response);
+                    this.ngxHelperHttpService.printPDF(response);
                 });
                 break;
             case 'BLOB':
                 this.httpClient.get(url, { responseType: 'blob' }).subscribe((response) => {
-                    this.ngxHelperService.printPDF(response);
+                    this.ngxHelperHttpService.printPDF(response);
                 });
                 break;
         }

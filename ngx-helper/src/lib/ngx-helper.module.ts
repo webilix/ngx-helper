@@ -1,36 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 
-import { MatIconModule } from '@angular/material/icon';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-
 import { JalaliDateTime } from '@webilix/jalali-date-time';
-
-import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
-
-import { INgxHelperStyle } from './interfaces';
-
-import { NgxHelperDownloadComponent, NgxHelperUploadComponent } from './components';
-
-import { NgxHelperPersianNumberDirective } from './directives';
 
 import { NgxHelperDateInterceptor, NgxHelperLoadingInterceptor } from './interceptors';
 
 import { NgxHelperComponent } from './ngx-helper.component';
-import { NgxHelperService } from './ngx-helper.service';
+import { INgxHelperStyle } from './ngx-helper.interface';
+import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
 
 @NgModule({
-    declarations: [
-        NgxHelperPersianNumberDirective,
-
-        NgxHelperComponent,
-
-        NgxHelperDownloadComponent,
-        NgxHelperUploadComponent,
-    ],
-    imports: [CommonModule, RouterModule, HttpClientModule, MatIconModule, MatProgressBarModule, NgxHelperPipeModule],
+    declarations: [NgxHelperComponent],
+    imports: [CommonModule, HttpClientModule],
     exports: [NgxHelperComponent],
     providers: [provideHttpClient(withInterceptors([NgxHelperLoadingInterceptor, NgxHelperDateInterceptor]))],
 })
@@ -92,9 +74,9 @@ export class NgxHelperModule {
         return {
             ngModule: NgxHelperModule,
             providers: [
-                NgxHelperService,
                 { provide: 'NGX_HELPER_TIMEZONE', useValue: timezone },
                 { provide: 'NGX_HELPER_PRIMARY_COLOR', useValue: primaryColor },
+                { provide: 'NGX_HELPER_LOADING_HEADER', useValue: NGX_HELPER_LOADING_HEADER },
             ],
         };
     }

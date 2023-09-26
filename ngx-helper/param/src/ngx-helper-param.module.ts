@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
 
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -28,6 +29,7 @@ import { NgxHelperParamSelectComponent } from './select/ngx-helper-param-select.
     ],
     imports: [
         CommonModule,
+        RouterModule,
         NgxMaskDirective,
 
         MatBottomSheetModule,

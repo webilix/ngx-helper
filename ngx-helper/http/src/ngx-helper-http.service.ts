@@ -1,29 +1,26 @@
-import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
+import { ComponentRef, Injectable } from '@angular/core';
 import { HttpClient, HttpStatusCode } from '@angular/common/http';
 
-import { NgxHelperDownloadComponent, NgxHelperUploadComponent } from './components';
-import { INgxHelperUpload } from './interfaces';
+import { NgxHelperContainerService } from '@webilix/ngx-helper';
+import { NgxHelperToastService } from '@webilix/ngx-helper/toast';
+
+import { NgxHelperDownloadComponent } from './download/ngx-helper-download.component';
+import { NgxHelperUploadComponent } from './upload/ngx-helper-upload.component';
+import { INgxHelperUpload } from './ngx-helper-http.interface';
 
 @Injectable()
-export class NgxHelperService {
-    public viewContainerRef?: ViewContainerRef;
-
-    constructor(private readonly httpClient: HttpClient) {}
-
-    private domError(): void {
-        const errors: string[] = [
-            'NgxHelperComponent not addedd to DOM.',
-            'Please add <ngx-helper></ngx-helper> at the end of App Component HTML file / template.',
-        ];
-        console.error(errors.join('\n'));
-    }
-
-    //#region DOWNLOAD and UPLOAD
+export class NgxHelperHttpService {
     private componentIndex: number = 0;
     private components: (
         | ComponentRef<NgxHelperDownloadComponent>
         | ComponentRef<NgxHelperUploadComponent<any, any>>
     )[] = [];
+
+    constructor(
+        private readonly httpClient: HttpClient,
+        private readonly ngxHelperContainerService: NgxHelperContainerService,
+        private readonly ngxHelperToastService: NgxHelperToastService,
+    ) {}
 
     private updateComponentsBottom(): void {
         this.components.forEach((component, index: number) => {
@@ -32,9 +29,10 @@ export class NgxHelperService {
     }
 
     download(name: string, path: string): void {
-        if (!this.viewContainerRef) return this.domError();
+        const viewContainerRef = this.ngxHelperContainerService.getContainer();
+        if (!viewContainerRef) return;
 
-        const component = this.viewContainerRef.createComponent(NgxHelperDownloadComponent);
+        const component = viewContainerRef.createComponent(NgxHelperDownloadComponent);
         component.instance.index = ++this.componentIndex;
         component.instance.name = name;
         component.instance.path = path;
@@ -67,9 +65,10 @@ export class NgxHelperService {
         const onSuccess: (response: R) => void = typeof arg3 === 'function' ? arg2 : arg1;
         const onError: (error: { status: HttpStatusCode; error: E }) => void = typeof arg3 === 'function' ? arg3 : arg2;
 
-        if (!this.viewContainerRef) return this.domError();
+        const viewContainerRef = this.ngxHelperContainerService.getContainer();
+        if (!viewContainerRef) return;
 
-        const component = this.viewContainerRef.createComponent(NgxHelperUploadComponent<R, E>);
+        const component = viewContainerRef.createComponent(NgxHelperUploadComponent<R, E>);
         component.instance.index = ++this.componentIndex;
         component.instance.file = file;
         component.instance.url = url;
@@ -91,16 +90,14 @@ export class NgxHelperService {
         this.components.push(component);
         this.updateComponentsBottom();
     }
-    //#endregion
 
-    //#region PRINT
     private getPDFBlob(data: string | ArrayBuffer | Blob): Promise<Blob> {
         return new Promise<Blob>((resolve, reject) => {
             if (typeof data === 'string') {
                 this.httpClient.get(data, { responseType: 'arraybuffer' }).subscribe({
                     next: (response) => resolve(new Blob([response], { type: 'application/pdf' })),
                     error: () => {
-                        // this.toast('ERROR', 'امکان دانلود فایل وجود ندارد.');
+                        this.ngxHelperToastService.toast('ERROR', 'امکان دانلود فایل وجود ندارد.');
                         reject();
                     },
                 });
@@ -129,5 +126,4 @@ export class NgxHelperService {
             () => {},
         );
     }
-    //#endregion
 }
