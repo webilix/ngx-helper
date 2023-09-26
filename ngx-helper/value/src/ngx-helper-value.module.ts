@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 
 import { ClipboardModule } from '@angular/cdk/clipboard';
@@ -10,7 +9,7 @@ import { NgxHelperValuePipe } from './ngx-helper-value.pipe';
 
 @NgModule({
     declarations: [NgxHelperValuePipe, NgxHelperValueComponent],
-    imports: [CommonModule, BrowserAnimationsModule, ClipboardModule, MatIconModule],
+    imports: [CommonModule, ClipboardModule, MatIconModule],
     providers: [NgxHelperValuePipe],
     exports: [NgxHelperValuePipe, NgxHelperValueComponent],
 })

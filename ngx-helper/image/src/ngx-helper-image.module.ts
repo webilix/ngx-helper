@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,16 +13,7 @@ import { NgxHelperImageGalleryComponent } from './gallery/ngx-helper-image-galle
 
 @NgModule({
     declarations: [NgxHelperImagePreviewComponent, NgxHelperImageGalleryComponent],
-    imports: [
-        CommonModule,
-        BrowserAnimationsModule,
-
-        MatDialogModule,
-        MatIconModule,
-
-        NgxHelperPipeModule,
-        NgxHelperProgressModule,
-    ],
+    imports: [CommonModule, MatDialogModule, MatIconModule, NgxHelperPipeModule, NgxHelperProgressModule],
     providers: [NgxHelperImageService],
 })
 export class NgxHelperImageModule {}
