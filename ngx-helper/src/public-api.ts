@@ -13,7 +13,6 @@ export {
     NgxHelperLoadingComponent,
     NgxHelperPaginationComponent,
     NgxHelperParamsComponent,
-    NgxHelperPlateComponent,
     NgxHelperValuesComponent,
 } from './lib/components';
 

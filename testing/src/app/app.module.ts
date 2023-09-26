@@ -10,6 +10,7 @@ import { NgxHelperModule } from '@webilix/ngx-helper';
 import { NgxHelperBoxModule } from '@webilix/ngx-helper/box';
 import { NgxHelperListModule } from '@webilix/ngx-helper/list';
 import { NgxHelperMenuModule } from '@webilix/ngx-helper/menu';
+import { NgxHelperPlateModule } from '@webilix/ngx-helper/plate';
 
 import { AppComponent } from './app.component';
 
@@ -42,6 +43,7 @@ import { ValuesComponent } from './values/values.component';
         NgxHelperBoxModule,
         NgxHelperListModule,
         NgxHelperMenuModule,
+        NgxHelperPlateModule,
     ],
     bootstrap: [AppComponent],
 })

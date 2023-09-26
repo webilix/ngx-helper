@@ -15,7 +15,8 @@
             "@webilix/ngx-helper": ["ngx-helper/src/public-api"],
             "@webilix/ngx-helper/box": ["ngx-helper/box/public-api"],
             "@webilix/ngx-helper/list": ["ngx-helper/list/public-api"],
-            "@webilix/ngx-helper/menu": ["ngx-helper/menu/public-api"]
+            "@webilix/ngx-helper/menu": ["ngx-helper/menu/public-api"],
+            "@webilix/ngx-helper/plate": ["ngx-helper/plate/public-api"]
         },
         "declaration": false,
         "downlevelIteration": true,

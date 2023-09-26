@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 
 import { NgxHelperMenuModule } from '@webilix/ngx-helper/menu';
+import { NgxHelperPlateModule } from '@webilix/ngx-helper/plate';
 
 import { INgxHelperStyle } from './interfaces';
 
@@ -38,7 +39,6 @@ import {
     NgxHelperParamsComponent,
     NgxHelperParamsPlateComponent,
     NgxHelperParamsSelectComponent,
-    NgxHelperPlateComponent,
     NgxHelperPreviewComponent,
     NgxHelperToastComponent,
     NgxHelperUploadComponent,
@@ -90,7 +90,6 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperParamsComponent,
         NgxHelperParamsPlateComponent,
         NgxHelperParamsSelectComponent,
-        NgxHelperPlateComponent,
         NgxHelperPreviewComponent,
         NgxHelperToastComponent,
         NgxHelperUploadComponent,
@@ -124,6 +123,7 @@ import { NgxHelperService } from './ngx-helper.service';
         MatSelectModule,
 
         NgxHelperMenuModule,
+        NgxHelperPlateModule,
     ],
     exports: [
         NgxHelperComponent,
@@ -133,7 +133,6 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperLoadingComponent,
         NgxHelperPaginationComponent,
         NgxHelperParamsComponent,
-        NgxHelperPlateComponent,
         NgxHelperValuesComponent,
 
         NgxHelperBankCardPipe,

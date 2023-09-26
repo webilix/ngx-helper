@@ -8,8 +8,8 @@ import { Helper } from '@webilix/helper-library';
     styleUrls: ['./ngx-helper-plate.component.scss'],
 })
 export class NgxHelperPlateComponent implements OnChanges {
-    @Input() plate: string[] = [];
-    @Input() border: boolean = true;
+    @Input({ required: true }) plate!: string[];
+    @Input({ required: false }) border: boolean = true;
 
     public show: boolean = false;
 
