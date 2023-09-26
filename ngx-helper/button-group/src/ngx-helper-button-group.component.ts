@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { INgxHelperButtonGroup } from '../../interfaces';
+import { INgxHelperButtonGroup } from './ngx-helper-button-group.interface';
 
 @Component({
     selector: 'ngx-helper-button-group',
@@ -8,9 +8,9 @@ import { INgxHelperButtonGroup } from '../../interfaces';
     styleUrls: ['./ngx-helper-button-group.component.scss'],
 })
 export class NgxHelperButtonGroupComponent {
-    @Input() title: string = '';
-    @Input() menu: INgxHelperButtonGroup[] = [];
-    @Input() color: 'primary' | 'accent' | 'warn' = 'primary';
+    @Input({ required: true }) title!: string;
+    @Input({ required: true }) menu!: INgxHelperButtonGroup[];
+    @Input({ required: false }) color: 'primary' | 'accent' | 'warn' = 'primary';
 
     @Output() action: EventEmitter<string> = new EventEmitter<string>();
 }

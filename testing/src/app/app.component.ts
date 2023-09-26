@@ -14,8 +14,8 @@ import {
     NgxHelperParams,
     NgxHelperService,
     NGX_HELPER_LOADING_HEADER,
-    INgxHelperButtonGroup,
 } from '@webilix/ngx-helper';
+import { INgxHelperButtonGroup } from '@webilix/ngx-helper/button-group';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
