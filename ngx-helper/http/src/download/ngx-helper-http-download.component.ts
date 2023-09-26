@@ -5,9 +5,9 @@ import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
 import { NgxHelperToastService } from '@webilix/ngx-helper/toast';
 
 @Component({
-    host: { selector: 'ngx-helper-download' },
-    templateUrl: './ngx-helper-download.component.html',
-    styleUrls: ['./ngx-helper-download.component.scss'],
+    host: { selector: 'ngx-helper-http-download' },
+    templateUrl: './ngx-helper-http-download.component.html',
+    styleUrls: ['./ngx-helper-http-download.component.scss'],
     animations: [
         trigger('host', [
             transition(':enter', [
@@ -17,7 +17,7 @@ import { NgxHelperToastService } from '@webilix/ngx-helper/toast';
         ]),
     ],
 })
-export class NgxHelperDownloadComponent implements AfterViewInit {
+export class NgxHelperHttpDownloadComponent implements AfterViewInit {
     @HostBinding('@host') private host: boolean = true;
     @HostBinding('style.bottom') bottom: string = '1rem';
 

@@ -4,16 +4,16 @@ import { HttpClient, HttpStatusCode } from '@angular/common/http';
 import { NgxHelperContainerService } from '@webilix/ngx-helper';
 import { NgxHelperToastService } from '@webilix/ngx-helper/toast';
 
-import { NgxHelperDownloadComponent } from './download/ngx-helper-download.component';
-import { NgxHelperUploadComponent } from './upload/ngx-helper-upload.component';
-import { INgxHelperUpload } from './ngx-helper-http.interface';
+import { NgxHelperHttpDownloadComponent } from './download/ngx-helper-http-download.component';
+import { NgxHelperHttpUploadComponent } from './upload/ngx-helper-http-upload.component';
+import { INgxHelperHttpUpload } from './ngx-helper-http.interface';
 
 @Injectable()
 export class NgxHelperHttpService {
     private componentIndex: number = 0;
     private components: (
-        | ComponentRef<NgxHelperDownloadComponent>
-        | ComponentRef<NgxHelperUploadComponent<any, any>>
+        | ComponentRef<NgxHelperHttpDownloadComponent>
+        | ComponentRef<NgxHelperHttpUploadComponent<any, any>>
     )[] = [];
 
     constructor(
@@ -32,7 +32,7 @@ export class NgxHelperHttpService {
         const viewContainerRef = this.ngxHelperContainerService.getContainer();
         if (!viewContainerRef) return;
 
-        const component = viewContainerRef.createComponent(NgxHelperDownloadComponent);
+        const component = viewContainerRef.createComponent(NgxHelperHttpDownloadComponent);
         component.instance.index = ++this.componentIndex;
         component.instance.name = name;
         component.instance.path = path;
@@ -56,19 +56,19 @@ export class NgxHelperHttpService {
     upload<R, E>(
         file: File,
         url: string,
-        config: Partial<INgxHelperUpload>,
+        config: Partial<INgxHelperHttpUpload>,
         onSuccess: (response: R) => void,
         onError: (error: { status: HttpStatusCode; error: E }) => void,
     ): void;
     upload<R, E>(file: File, url: string, arg1: any, arg2: any, arg3?: any): void {
-        const config: Partial<INgxHelperUpload> = typeof arg3 === 'function' ? arg1 : {};
+        const config: Partial<INgxHelperHttpUpload> = typeof arg3 === 'function' ? arg1 : {};
         const onSuccess: (response: R) => void = typeof arg3 === 'function' ? arg2 : arg1;
         const onError: (error: { status: HttpStatusCode; error: E }) => void = typeof arg3 === 'function' ? arg3 : arg2;
 
         const viewContainerRef = this.ngxHelperContainerService.getContainer();
         if (!viewContainerRef) return;
 
-        const component = viewContainerRef.createComponent(NgxHelperUploadComponent<R, E>);
+        const component = viewContainerRef.createComponent(NgxHelperHttpUploadComponent<R, E>);
         component.instance.index = ++this.componentIndex;
         component.instance.file = file;
         component.instance.url = url;

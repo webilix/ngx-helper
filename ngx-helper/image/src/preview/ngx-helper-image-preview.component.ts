@@ -3,9 +3,9 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
-    host: { selector: 'ngx-helper-preview' },
-    templateUrl: './ngx-helper-preview.component.html',
-    styleUrls: ['./ngx-helper-preview.component.scss'],
+    host: { selector: 'ngx-helper-image-preview' },
+    templateUrl: './ngx-helper-image-preview.component.html',
+    styleUrls: ['./ngx-helper-image-preview.component.scss'],
     animations: [
         trigger('image', [
             transition(':enter', [
@@ -21,7 +21,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
         ]),
     ],
 })
-export class NgxHelperPreviewComponent implements OnInit {
+export class NgxHelperImagePreviewComponent implements OnInit {
     public loading: boolean = false;
     public image: string = this.data.image;
     public description: string | undefined = this.data.description;

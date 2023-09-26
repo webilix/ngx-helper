@@ -9,11 +9,11 @@ import { NgxHelperLoadingModule } from '@webilix/ngx-helper/loading';
 import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
 
 import { NgxHelperImageService } from './ngx-helper-image.service';
-import { NgxHelperGalleryComponent } from './gallery/ngx-helper-gallery.component';
-import { NgxHelperPreviewComponent } from './preview/ngx-helper-preview.component';
+import { NgxHelperImagePreviewComponent } from './preview/ngx-helper-image-preview.component';
+import { NgxHelperImageGalleryComponent } from './gallery/ngx-helper-image-gallery.component';
 
 @NgModule({
-    declarations: [NgxHelperGalleryComponent, NgxHelperPreviewComponent],
+    declarations: [NgxHelperImagePreviewComponent, NgxHelperImageGalleryComponent],
     imports: [
         CommonModule,
         BrowserAnimationsModule,

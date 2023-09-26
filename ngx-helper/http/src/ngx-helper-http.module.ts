@@ -9,11 +9,11 @@ import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
 import { NgxHelperToastModule } from '@webilix/ngx-helper/toast';
 
 import { NgxHelperHttpService } from './ngx-helper-http.service';
-import { NgxHelperDownloadComponent } from './download/ngx-helper-download.component';
-import { NgxHelperUploadComponent } from './upload/ngx-helper-upload.component';
+import { NgxHelperHttpDownloadComponent } from './download/ngx-helper-http-download.component';
+import { NgxHelperHttpUploadComponent } from './upload/ngx-helper-http-upload.component';
 
 @NgModule({
-    declarations: [NgxHelperDownloadComponent, NgxHelperUploadComponent],
+    declarations: [NgxHelperHttpDownloadComponent, NgxHelperHttpUploadComponent],
     imports: [
         CommonModule,
         HttpClientModule,

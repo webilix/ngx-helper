@@ -13,12 +13,12 @@ import { Helper } from '@webilix/helper-library';
 
 import { NgxHelperToastService } from '@webilix/ngx-helper/toast';
 
-import { INgxHelperUpload } from '../ngx-helper-http.interface';
+import { INgxHelperHttpUpload } from '../ngx-helper-http.interface';
 
 @Component({
-    host: { selector: 'ngx-helper-upload' },
-    templateUrl: './ngx-helper-upload.component.html',
-    styleUrls: ['./ngx-helper-upload.component.scss'],
+    host: { selector: 'ngx-helper-http-upload' },
+    templateUrl: './ngx-helper-http-upload.component.html',
+    styleUrls: ['./ngx-helper-http-upload.component.scss'],
     animations: [
         trigger('host', [
             transition(':enter', [
@@ -28,14 +28,14 @@ import { INgxHelperUpload } from '../ngx-helper-http.interface';
         ]),
     ],
 })
-export class NgxHelperUploadComponent<R, E> implements AfterViewInit {
+export class NgxHelperHttpUploadComponent<R, E> implements AfterViewInit {
     @HostBinding('@host') private host: boolean = true;
     @HostBinding('style.bottom') bottom: string = '1rem';
 
     @Input({ required: true }) index: number = 0;
     @Input({ required: true }) file?: File;
     @Input({ required: true }) url: string = '';
-    @Input({ required: true }) config: Partial<INgxHelperUpload> = {};
+    @Input({ required: true }) config: Partial<INgxHelperHttpUpload> = {};
 
     public progress: number = 0;
 

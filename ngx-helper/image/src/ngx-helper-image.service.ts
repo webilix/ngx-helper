@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
-import { NgxHelperPreviewComponent } from './preview/ngx-helper-preview.component';
-import { NgxHelperGalleryComponent } from './gallery/ngx-helper-gallery.component';
+import { NgxHelperImagePreviewComponent } from './preview/ngx-helper-image-preview.component';
+import { NgxHelperImageGalleryComponent } from './gallery/ngx-helper-image-gallery.component';
 
 @Injectable()
 export class NgxHelperImageService {
@@ -21,14 +21,14 @@ export class NgxHelperImageService {
     constructor(private readonly matDialog: MatDialog) {}
 
     preview(image: string, description?: string, html: boolean = false): void {
-        this.matDialog.open(NgxHelperPreviewComponent, {
+        this.matDialog.open(NgxHelperImagePreviewComponent, {
             ...this._dialogConfig,
             data: { image, description, html },
         });
     }
 
     gallery(images: (string | { image: string; description?: string })[], index?: number, html: boolean = false): void {
-        this.matDialog.open(NgxHelperGalleryComponent, {
+        this.matDialog.open(NgxHelperImageGalleryComponent, {
             ...this._dialogConfig,
             data: { index: index && images[index] ? index : 0, images, html },
         });
