@@ -15,10 +15,3 @@ export type NgxHelperValue =
     | { type: 'PERIOD'; value: Date | { from: Date; to?: Date }; timezone?: string }
     | { type: 'PRICE'; value: number; currency?: string; english?: boolean; short?: boolean }
     | { type: 'WEIGHT'; value: number; english?: boolean; short?: boolean };
-
-export interface INgxHelperValues {
-    title: string;
-    value: NgxHelperValue;
-    block?: boolean;
-    copy?: boolean;
-}

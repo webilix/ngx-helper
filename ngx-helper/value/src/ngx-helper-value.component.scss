@@ -2,7 +2,7 @@
     direction: rtl;
 }
 
-.ngx-helper-values {
+.ngx-helper-value {
     display: flex;
     align-items: flex-start;
     column-gap: 1rem;
@@ -52,11 +52,11 @@
     }
 }
 
-.ngx-helper-values:nth-last-child(1) {
+.ngx-helper-value:nth-last-child(1) {
     border-bottom-width: 0;
 }
 
-.ngx-helper-values-no-border {
+.ngx-helper-value-no-border {
     border-bottom-width: 0;
 
     .data {
@@ -64,7 +64,7 @@
     }
 }
 
-.ngx-helper-values:nth-last-child(1) {
+.ngx-helper-value:nth-last-child(1) {
     .data {
         padding-bottom: 0.75rem;
     }

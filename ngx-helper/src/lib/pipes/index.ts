@@ -7,5 +7,4 @@ export * from './ngx-helper-multi-line.pipe';
 export * from './ngx-helper-period.pipe';
 export * from './ngx-helper-price.pipe';
 export * from './ngx-helper-safe.pipe';
-export * from './ngx-helper-value.pipe';
 export * from './ngx-helper-weight.pipe';

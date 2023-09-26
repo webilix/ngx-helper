@@ -4,12 +4,9 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
 
-import { ClipboardModule } from '@angular/cdk/clipboard';
-import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 
@@ -32,7 +29,6 @@ import {
     NgxHelperPreviewComponent,
     NgxHelperToastComponent,
     NgxHelperUploadComponent,
-    NgxHelperValuesComponent,
 } from './components';
 
 import { NgxHelperPersianNumberDirective } from './directives';
@@ -49,7 +45,6 @@ import {
     NgxHelperPeriodPipe,
     NgxHelperPricePipe,
     NgxHelperSafePipe,
-    NgxHelperValuePipe,
     NgxHelperWeightPipe,
 } from './pipes';
 
@@ -70,7 +65,6 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperPreviewComponent,
         NgxHelperToastComponent,
         NgxHelperUploadComponent,
-        NgxHelperValuesComponent,
 
         NgxHelperBankCardPipe,
         NgxHelperDurationPipe,
@@ -81,7 +75,6 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperPeriodPipe,
         NgxHelperPricePipe,
         NgxHelperSafePipe,
-        NgxHelperValuePipe,
         NgxHelperWeightPipe,
     ],
     imports: [
@@ -90,12 +83,9 @@ import { NgxHelperService } from './ngx-helper.service';
         HttpClientModule,
         NgxMaskDirective,
 
-        ClipboardModule,
-        MatBottomSheetModule,
         MatButtonModule,
         MatDialogModule,
         MatIconModule,
-        MatMenuModule,
         MatProgressBarModule,
         MatSelectModule,
 
@@ -109,7 +99,6 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperComponent,
 
         NgxHelperParamsComponent,
-        NgxHelperValuesComponent,
 
         NgxHelperBankCardPipe,
         NgxHelperDurationPipe,
@@ -120,14 +109,12 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperPeriodPipe,
         NgxHelperPricePipe,
         NgxHelperSafePipe,
-        NgxHelperValuePipe,
         NgxHelperWeightPipe,
     ],
     providers: [
         DecimalPipe,
         provideEnvironmentNgxMask(),
 
-        NgxHelperValuePipe,
         provideHttpClient(withInterceptors([NgxHelperLoadingInterceptor, NgxHelperDateInterceptor])),
     ],
 })

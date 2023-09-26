@@ -4,7 +4,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 import { Helper } from '@webilix/helper-library';
 
-import { NgxHelperValue } from '../types';
+import { NgxHelperValue } from './ngx-helper-value.type';
 
 @Pipe({ name: 'ngxHelperValue' })
 export class NgxHelperValuePipe implements PipeTransform {

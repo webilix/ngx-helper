@@ -1,15 +1,15 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 import { Helper } from '@webilix/helper-library';
 
-import { NgxHelperValuePipe } from '../../pipes';
-import { INgxHelperValues } from '../../types';
+import { INgxHelperValue } from './ngx-helper-value.interface';
+import { NgxHelperValuePipe } from './ngx-helper-value.pipe';
 
 @Component({
-    selector: 'ngx-helper-values',
-    templateUrl: './ngx-helper-values.component.html',
-    styleUrls: ['./ngx-helper-values.component.scss'],
+    selector: 'ngx-helper-value',
+    templateUrl: './ngx-helper-value.component.html',
+    styleUrls: ['./ngx-helper-value.component.scss'],
     animations: [
         trigger('copy', [
             state('show', style({ opacity: 1 })),
@@ -18,8 +18,8 @@ import { INgxHelperValues } from '../../types';
         ]),
     ],
 })
-export class NgxHelperValuesComponent implements OnChanges {
-    @Input() values: INgxHelperValues[] = [];
+export class NgxHelperValueComponent implements OnChanges {
+    @Input() values: INgxHelperValue[] = [];
     @Input() width: number = 100;
     @Input() border: boolean = true;
 
@@ -31,7 +31,7 @@ export class NgxHelperValuesComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         this.copy = Array(this.values.length).fill('');
-        this.values.forEach((value: INgxHelperValues, index: number) => {
+        this.values.forEach((value: INgxHelperValue, index: number) => {
             if (typeof value.value === 'string') this.copy[index] = value.value;
             else
                 switch (value.value.type) {

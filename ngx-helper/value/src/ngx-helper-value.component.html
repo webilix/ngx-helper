@@ -1,6 +1,6 @@
 <div
     *ngFor="let value of values; let index = index"
-    [ngClass]="{ 'ngx-helper-values': true, 'ngx-helper-values-no-border': !border }"
+    [ngClass]="{ 'ngx-helper-value': true, 'ngx-helper-value-no-border': !border }"
 >
     <div class="data">
         <div class="title" [ngStyle]="{ width: width.toString() + 'px' }">{{ value.title }}:</div>
