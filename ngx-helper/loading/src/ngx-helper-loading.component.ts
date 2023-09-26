@@ -6,8 +6,8 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
     styleUrls: ['./ngx-helper-loading.component.scss'],
 })
 export class NgxHelperLoadingComponent implements OnInit, OnDestroy {
-    @Input() color?: 'primary' | 'accent' | 'warn';
-    @Input() fixed: boolean = false;
+    @Input({ required: false }) color: 'primary' | 'accent' | 'warn' = 'accent';
+    @Input({ required: false }) fixed: boolean = false;
 
     public rotate: number = 0;
     private interval?: any;

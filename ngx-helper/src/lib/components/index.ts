@@ -17,8 +17,6 @@ export * from './download/ngx-helper-download.component';
 
 export * from './gallery/ngx-helper-gallery.component';
 
-export * from './loading/ngx-helper-loading.component';
-
 export * from './pagination/ngx-helper-pagination.component';
 
 export * from './params/plate/ngx-helper-params-plate.component';
