@@ -22,11 +22,12 @@ import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 export class NgxHelperBoxComponent implements OnChanges, AfterViewInit {
     @ViewChild('contentView') private readonly contentView?: ElementRef;
 
-    @Input() title?: string;
-    @Input() icon?: string;
-    @Input() menu: NgxHelperMenu[] = [];
-    @Input() component?: ComponentType<any>;
-    @Input() padding: string | number = '1rem';
+    @Input({ required: true }) title!: string;
+
+    @Input({ required: false }) icon?: string;
+    @Input({ required: false }) menu: NgxHelperMenu[] = [];
+    @Input({ required: false }) component?: ComponentType<any>;
+    @Input({ required: false }) padding: string | number = '1rem';
 
     public show: boolean = true;
 

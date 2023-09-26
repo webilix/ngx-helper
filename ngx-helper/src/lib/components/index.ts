@@ -1,7 +1,5 @@
 export * from './bottom-sheet/ngx-helper-bottom-sheet.component';
 
-export * from './box/ngx-helper-box.component';
-
 export * from './button-group/ngx-helper-button-group.component';
 
 export * from './calendar/date/ngx-helper-calendar-date.component';

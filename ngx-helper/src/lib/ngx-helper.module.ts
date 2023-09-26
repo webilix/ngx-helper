@@ -21,7 +21,6 @@ import { INgxHelperStyle } from './interfaces';
 
 import {
     NgxHelperBottomSheetComponent,
-    NgxHelperBoxComponent,
     NgxHelperButtonGroupComponent,
     NgxHelperCalendarComponent,
     NgxHelperCalendarDateComponent,
@@ -75,7 +74,6 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperComponent,
 
         NgxHelperBottomSheetComponent,
-        NgxHelperBoxComponent,
         NgxHelperButtonGroupComponent,
         NgxHelperCalendarComponent,
         NgxHelperCalendarDateComponent,
@@ -132,7 +130,6 @@ import { NgxHelperService } from './ngx-helper.service';
     exports: [
         NgxHelperComponent,
 
-        NgxHelperBoxComponent,
         NgxHelperButtonGroupComponent,
         NgxHelperCalendarComponent,
         NgxHelperListComponent,
