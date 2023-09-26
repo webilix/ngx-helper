@@ -11,19 +11,6 @@ export { NgxHelperParamsComponent } from './lib/components';
 
 export { INgxHelperToastConfig, INgxHelperUpload } from './lib/interfaces';
 
-export {
-    NgxHelperBankCardPipe,
-    NgxHelperDurationPipe,
-    NgxHelperFileSizePipe,
-    NgxHelperJalaliPipe,
-    NgxHelperMobilePipe,
-    NgxHelperMultiLinePipe,
-    NgxHelperPeriodPipe,
-    NgxHelperPricePipe,
-    NgxHelperSafePipe,
-    NgxHelperWeightPipe,
-} from './lib/pipes';
-
 export { NgxHelperConnectionService, NgxHelperLoadingService } from './lib/providers';
 
 export {

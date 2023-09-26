@@ -18,6 +18,7 @@ import { NgxHelperListModule } from '@webilix/ngx-helper/list';
 import { NgxHelperLoadingModule } from '@webilix/ngx-helper/loading';
 import { NgxHelperMenuModule } from '@webilix/ngx-helper/menu';
 import { NgxHelperPaginationModule } from '@webilix/ngx-helper/pagination';
+import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
 import { NgxHelperPlateModule } from '@webilix/ngx-helper/plate';
 import { NgxHelperValueModule } from '@webilix/ngx-helper/value';
 
@@ -60,6 +61,7 @@ import { ValuesComponent } from './values/values.component';
         NgxHelperLoadingModule,
         NgxHelperMenuModule,
         NgxHelperPaginationModule,
+        NgxHelperPipeModule,
         NgxHelperPlateModule,
         NgxHelperValueModule,
     ],

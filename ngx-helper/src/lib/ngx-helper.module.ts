@@ -16,6 +16,7 @@ import { NgxHelperBottomSheetModule } from '@webilix/ngx-helper/bottom-sheet';
 import { NgxHelperCalendarModule } from '@webilix/ngx-helper/calendar';
 import { NgxHelperLoadingModule } from '@webilix/ngx-helper/loading';
 import { NgxHelperMenuModule } from '@webilix/ngx-helper/menu';
+import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
 import { NgxHelperPlateModule } from '@webilix/ngx-helper/plate';
 
 import { INgxHelperStyle } from './interfaces';
@@ -35,19 +36,6 @@ import { NgxHelperPersianNumberDirective } from './directives';
 
 import { NgxHelperDateInterceptor, NgxHelperLoadingInterceptor } from './interceptors';
 
-import {
-    NgxHelperBankCardPipe,
-    NgxHelperDurationPipe,
-    NgxHelperFileSizePipe,
-    NgxHelperJalaliPipe,
-    NgxHelperMobilePipe,
-    NgxHelperMultiLinePipe,
-    NgxHelperPeriodPipe,
-    NgxHelperPricePipe,
-    NgxHelperSafePipe,
-    NgxHelperWeightPipe,
-} from './pipes';
-
 import { NgxHelperComponent } from './ngx-helper.component';
 import { NgxHelperService } from './ngx-helper.service';
 
@@ -65,17 +53,6 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperPreviewComponent,
         NgxHelperToastComponent,
         NgxHelperUploadComponent,
-
-        NgxHelperBankCardPipe,
-        NgxHelperDurationPipe,
-        NgxHelperFileSizePipe,
-        NgxHelperJalaliPipe,
-        NgxHelperMobilePipe,
-        NgxHelperMultiLinePipe,
-        NgxHelperPeriodPipe,
-        NgxHelperPricePipe,
-        NgxHelperSafePipe,
-        NgxHelperWeightPipe,
     ],
     imports: [
         CommonModule,
@@ -93,24 +70,10 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperCalendarModule,
         NgxHelperLoadingModule,
         NgxHelperMenuModule,
+        NgxHelperPipeModule,
         NgxHelperPlateModule,
     ],
-    exports: [
-        NgxHelperComponent,
-
-        NgxHelperParamsComponent,
-
-        NgxHelperBankCardPipe,
-        NgxHelperDurationPipe,
-        NgxHelperFileSizePipe,
-        NgxHelperJalaliPipe,
-        NgxHelperMobilePipe,
-        NgxHelperMultiLinePipe,
-        NgxHelperPeriodPipe,
-        NgxHelperPricePipe,
-        NgxHelperSafePipe,
-        NgxHelperWeightPipe,
-    ],
+    exports: [NgxHelperComponent, NgxHelperParamsComponent],
     providers: [
         DecimalPipe,
         provideEnvironmentNgxMask(),
