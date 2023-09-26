@@ -1,32 +1,18 @@
-import { CommonModule, DecimalPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
-import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
 
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatSelectModule } from '@angular/material/select';
 
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 
-import { NgxHelperBottomSheetModule } from '@webilix/ngx-helper/bottom-sheet';
-import { NgxHelperCalendarModule } from '@webilix/ngx-helper/calendar';
-import { NgxHelperMenuModule } from '@webilix/ngx-helper/menu';
 import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
-import { NgxHelperPlateModule } from '@webilix/ngx-helper/plate';
 
 import { INgxHelperStyle } from './interfaces';
 
-import {
-    NgxHelperDownloadComponent,
-    NgxHelperParamsComponent,
-    NgxHelperParamsPlateComponent,
-    NgxHelperParamsSelectComponent,
-    NgxHelperToastComponent,
-    NgxHelperUploadComponent,
-} from './components';
+import { NgxHelperDownloadComponent, NgxHelperToastComponent, NgxHelperUploadComponent } from './components';
 
 import { NgxHelperPersianNumberDirective } from './directives';
 
@@ -42,36 +28,12 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperComponent,
 
         NgxHelperDownloadComponent,
-        NgxHelperParamsComponent,
-        NgxHelperParamsPlateComponent,
-        NgxHelperParamsSelectComponent,
         NgxHelperToastComponent,
         NgxHelperUploadComponent,
     ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        HttpClientModule,
-        NgxMaskDirective,
-
-        MatButtonModule,
-        MatIconModule,
-        MatProgressBarModule,
-        MatSelectModule,
-
-        NgxHelperBottomSheetModule,
-        NgxHelperCalendarModule,
-        NgxHelperMenuModule,
-        NgxHelperPipeModule,
-        NgxHelperPlateModule,
-    ],
-    exports: [NgxHelperComponent, NgxHelperParamsComponent],
-    providers: [
-        DecimalPipe,
-        provideEnvironmentNgxMask(),
-
-        provideHttpClient(withInterceptors([NgxHelperLoadingInterceptor, NgxHelperDateInterceptor])),
-    ],
+    imports: [CommonModule, RouterModule, HttpClientModule, MatIconModule, MatProgressBarModule, NgxHelperPipeModule],
+    exports: [NgxHelperComponent],
+    providers: [provideHttpClient(withInterceptors([NgxHelperLoadingInterceptor, NgxHelperDateInterceptor]))],
 })
 export class NgxHelperModule {
     static forRoot(): ModuleWithProviders<NgxHelperModule>;

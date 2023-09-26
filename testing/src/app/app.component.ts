@@ -6,11 +6,8 @@ import { Subscription } from 'rxjs';
 import { Helper, IGeoCoordinates } from '@webilix/helper-library';
 
 import {
-    INgxHelperParamsOrder,
-    INgxHelperParamsUpdate,
     NgxHelperConnectionService,
     NgxHelperLoadingService,
-    NgxHelperParams,
     NgxHelperService,
     NGX_HELPER_LOADING_HEADER,
 } from '@webilix/ngx-helper';
@@ -22,6 +19,7 @@ import { NgxHelperCoordinatesService } from '@webilix/ngx-helper/coordinates';
 import { NgxHelperDialogService } from '@webilix/ngx-helper/dialog';
 import { NgxHelperImageService } from '@webilix/ngx-helper/image';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
+import { INgxHelperParamOrder, INgxHelperParamUpdate, NgxHelperParam } from '@webilix/ngx-helper/param';
 
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { BoxComponent } from './box/box.component';
@@ -38,7 +36,7 @@ import { ValuesComponent } from './values/values.component';
 export class AppComponent implements OnInit, OnDestroy {
     public log = console.log;
 
-    public params1: NgxHelperParams[] = [
+    public params1: NgxHelperParam[] = [
         { type: 'SEARCH', name: 'fa_query' },
         {
             type: 'SELECT',
@@ -53,7 +51,7 @@ export class AppComponent implements OnInit, OnDestroy {
         { type: 'DATE', name: 'fa_date' },
     ];
 
-    public order: INgxHelperParamsOrder = {
+    public order: INgxHelperParamOrder = {
         type: 'DESC',
         options: [
             { id: 'option-1', title: 'گزینه اول' },
@@ -63,7 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
         default: 'option-2',
     };
 
-    public params2: NgxHelperParams[] = [
+    public params2: NgxHelperParam[] = [
         { type: 'BOOLEAN', name: 'boolean', icon: 'restart_alt' },
         { type: 'SEARCH', name: 'en_query', english: true },
         {
@@ -81,7 +79,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     public paramsPage: number = 1;
     public selectPage: number = 1;
-    public params3: NgxHelperParams[] = [
+    public params3: NgxHelperParam[] = [
         {
             type: 'SELECT',
             name: 'fa_select_big',
@@ -98,9 +96,9 @@ export class AppComponent implements OnInit, OnDestroy {
             english: true,
         },
     ];
-    public params3Update: INgxHelperParamsUpdate = {};
+    public params3Update: INgxHelperParamUpdate = {};
 
-    public params4: NgxHelperParams[] = [
+    public params4: NgxHelperParam[] = [
         'SEPERATOR',
         'SEPERATOR',
         {
@@ -145,18 +143,18 @@ export class AppComponent implements OnInit, OnDestroy {
         'SEPERATOR',
     ];
 
-    public params5: NgxHelperParams[] = [
+    public params5: NgxHelperParam[] = [
         { type: 'COMMENT', title: 'فارسی', value: 'مقدار فارسی' },
         { type: 'COMMENT', title: 'انگلیسی', value: 'English value', english: true },
     ];
 
-    public params6: NgxHelperParams[] = [
+    public params6: NgxHelperParam[] = [
         { name: 'plate-1', type: 'PLATE', value: ['12', 'ا', '345', '67'].join('-') },
         { name: 'plate-2', type: 'PLATE', value: ['12', 'ا', '345', '67'] },
         { name: 'plate-3', type: 'PLATE', letter: 'ع' },
     ];
 
-    public params7: NgxHelperParams[] = [
+    public params7: NgxHelperParam[] = [
         {
             type: 'SELECT',
             name: 'tree-1',

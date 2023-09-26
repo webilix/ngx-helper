@@ -6,11 +6,11 @@ import { Helper } from '@webilix/helper-library';
 import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
 
 @Component({
-    host: { selector: 'ngx-helper-params-plate' },
-    templateUrl: './ngx-helper-params-plate.component.html',
-    styleUrls: ['./ngx-helper-params-plate.component.scss'],
+    host: { selector: 'ngx-helper-param-plate' },
+    templateUrl: './ngx-helper-param-plate.component.html',
+    styleUrls: ['./ngx-helper-param-plate.component.scss'],
 })
-export class NgxHelperParamsPlateComponent {
+export class NgxHelperParamPlateComponent {
     @ViewChild('plateLeft') private readonly plateLeft?: ElementRef;
 
     public plate?: string[];

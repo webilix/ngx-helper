@@ -15,30 +15,35 @@ import {
     INgxHelperParamPlate,
     INgxHelperParamSearch,
     INgxHelperParamSelect,
-} from '../../interfaces';
-import { INgxHelperParamsOrder, INgxHelperParamsUpdate, INgxHelperParamsValue, NgxHelperParams } from '../../types';
+} from './ngx-helper-param.interface';
+import {
+    INgxHelperParamOrder,
+    INgxHelperParamUpdate,
+    INgxHelperParamValue,
+    NgxHelperParam,
+} from './ngx-helper-param.type';
 
-import { NgxHelperParamsSelectComponent } from './select/ngx-helper-params-select.component';
-import { NgxHelperParamsPlateComponent } from './plate/ngx-helper-params-plate.component';
+import { NgxHelperParamSelectComponent } from './select/ngx-helper-param-select.component';
+import { NgxHelperParamPlateComponent } from './plate/ngx-helper-param-plate.component';
 
 @Component({
-    selector: 'ngx-helper-params',
-    templateUrl: './ngx-helper-params.component.html',
-    styleUrls: ['./ngx-helper-params.component.scss'],
+    selector: 'ngx-helper-param',
+    templateUrl: './ngx-helper-param.component.html',
+    styleUrls: ['./ngx-helper-param.component.scss'],
 })
-export class NgxHelperParamsComponent implements OnInit, OnChanges {
+export class NgxHelperParamComponent implements OnInit, OnChanges {
     @HostBinding('style.display') private display: string = 'block';
 
     @Input() route: string[] = ['/'];
     @Input() page: number = 1;
-    @Input() params: NgxHelperParams[] = [];
-    @Input() update: INgxHelperParamsUpdate = {};
-    @Input() order?: INgxHelperParamsOrder;
+    @Input() params: NgxHelperParam[] = [];
+    @Input() update: INgxHelperParamUpdate = {};
+    @Input() order?: INgxHelperParamOrder;
 
-    @Output() changed: EventEmitter<INgxHelperParamsValue> = new EventEmitter<INgxHelperParamsValue>();
+    @Output() changed: EventEmitter<INgxHelperParamValue> = new EventEmitter<INgxHelperParamValue>();
     @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
 
-    public paramGroups: NgxHelperParams[][] = [];
+    public paramGroups: NgxHelperParam[][] = [];
     public menus: { [key: string]: NgxHelperMenu[] } = {};
     public values: { [key: string]: any } = {};
 
@@ -59,7 +64,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         this.paramGroups[0] = [];
-        this.params.forEach((param: NgxHelperParams) => {
+        this.params.forEach((param: NgxHelperParam) => {
             if (param === 'SEPERATOR') this.paramGroups.push([]);
             else this.paramGroups[this.paramGroups.length - 1].push(param);
         });
@@ -77,7 +82,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
 
         if (changes['update'] && !changes['update'].firstChange) {
             const values: { [key: string]: any } = {};
-            this.params.forEach((param: NgxHelperParams) => {
+            this.params.forEach((param: NgxHelperParam) => {
                 if (param === 'SEPERATOR' || param.type === 'COMMENT') return;
 
                 const value: any = changes['update'].currentValue[param.name];
@@ -122,7 +127,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
         if (hasParams) {
             this.values = {};
             const params: Params = this.getQueryParams();
-            this.params.forEach((param: NgxHelperParams) => {
+            this.params.forEach((param: NgxHelperParam) => {
                 if (param === 'SEPERATOR' || param.type === 'COMMENT') return;
 
                 this.values[param.name] = null;
@@ -162,7 +167,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
 
             this.menus = {};
 
-            this.params.forEach((param: NgxHelperParams) => {
+            this.params.forEach((param: NgxHelperParam) => {
                 if (param === 'SEPERATOR' || param.type !== 'MENU') return;
 
                 this.menus[param.name] = param.options.map((option) => ({
@@ -181,7 +186,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
                 });
             });
 
-            this.params.forEach((param: NgxHelperParams) => {
+            this.params.forEach((param: NgxHelperParam) => {
                 if (param === 'SEPERATOR' || param.type !== 'SELECT' || param.list || param.options.length > 14) return;
 
                 this.menus[param.name] = param.options.map((o) => ({
@@ -223,13 +228,13 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
     }
 
     emitChanges(): void {
-        const values: INgxHelperParamsValue = {
+        const values: INgxHelperParamValue = {
             page: this.page,
             params: {},
             order: { type: 'ASC', option: '', param: '' },
         };
 
-        this.params.forEach((param: NgxHelperParams) => {
+        this.params.forEach((param: NgxHelperParam) => {
             if (param === 'SEPERATOR') return;
 
             switch (param.type) {
@@ -280,7 +285,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
         const queryParams: Params = this.getQueryParams();
         queryParams['page'] = this.page > 1 ? this.page.toString() : undefined;
 
-        this.params.forEach((param: NgxHelperParams) => {
+        this.params.forEach((param: NgxHelperParam) => {
             if (param === 'SEPERATOR' || param.type === 'COMMENT') return;
 
             const value: any = this.values[param.name];
@@ -323,7 +328,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
         this.emitChanges();
     }
 
-    resetValue(param: NgxHelperParams): void {
+    resetValue(param: NgxHelperParam): void {
         if (param === 'SEPERATOR' || param.type === 'COMMENT' || this.values[param.name] === null) return;
 
         this.setPage(1);
@@ -373,7 +378,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
             param.letter && Helper.PLATE.letters.includes(param.letter) ? param.letter : undefined;
 
         this.ngxHelperBottomSheetService.open<string>(
-            NgxHelperParamsPlateComponent,
+            NgxHelperParamPlateComponent,
             param.title || 'پلاک',
             { data: { letter } },
             (value) => {
@@ -409,7 +414,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
     getSelect(param: INgxHelperParamSelect): void {
         const value: string = this.values[param.name];
         this.ngxHelperBottomSheetService.open<string>(
-            NgxHelperParamsSelectComponent,
+            NgxHelperParamSelectComponent,
             param.title,
             { data: { param, value } },
             (value) => {

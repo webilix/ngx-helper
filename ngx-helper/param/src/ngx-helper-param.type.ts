@@ -6,9 +6,9 @@ import {
     INgxHelperParamPlate,
     INgxHelperParamSearch,
     INgxHelperParamSelect,
-} from '../interfaces';
+} from './ngx-helper-param.interface';
 
-export type NgxHelperParams =
+export type NgxHelperParam =
     // SEPERATOR (NEW LINE)
     | 'SEPERATOR'
     // VIEW
@@ -21,19 +21,19 @@ export type NgxHelperParams =
     | INgxHelperParamSearch
     | INgxHelperParamSelect;
 
-export interface INgxHelperParamsOrder {
+export interface INgxHelperParamOrder {
     title?: string;
     type: 'ASC' | 'DESC';
     options: { id: string; title: string }[];
     default?: string;
 }
 
-export interface INgxHelperParamsValue {
+export interface INgxHelperParamValue {
     page: number;
     params: { [key: string]: { value: any; param: string } };
     order: { type: 'ASC' | 'DESC'; option: string; param: string };
 }
 
-export interface INgxHelperParamsUpdate {
+export interface INgxHelperParamUpdate {
     [key: string]: any;
 }
