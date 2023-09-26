@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 export class NgxHelperPaginationComponent implements OnChanges {
     @Input({ required: true }) current?: number;
     @Input({ required: true }) total?: number;
-    @Input({ required: true }) margin: number = 1;
+    @Input({ required: false }) margin: number = 1;
 
     @Output() page: EventEmitter<number> = new EventEmitter<number>();
 
