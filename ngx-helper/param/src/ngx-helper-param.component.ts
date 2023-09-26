@@ -34,11 +34,11 @@ import { NgxHelperParamPlateComponent } from './plate/ngx-helper-param-plate.com
 export class NgxHelperParamComponent implements OnInit, OnChanges {
     @HostBinding('style.display') private display: string = 'block';
 
-    @Input() route: string[] = ['/'];
-    @Input() page: number = 1;
-    @Input() params: NgxHelperParam[] = [];
-    @Input() update: INgxHelperParamUpdate = {};
-    @Input() order?: INgxHelperParamOrder;
+    @Input({ required: false }) route: string[] = ['/'];
+    @Input({ required: false }) page: number = 1;
+    @Input({ required: false }) params: NgxHelperParam[] = [];
+    @Input({ required: false }) update: INgxHelperParamUpdate = {};
+    @Input({ required: false }) order?: INgxHelperParamOrder;
 
     @Output() changed: EventEmitter<INgxHelperParamValue> = new EventEmitter<INgxHelperParamValue>();
     @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();

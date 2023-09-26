@@ -32,10 +32,10 @@ export class NgxHelperUploadComponent<R, E> implements AfterViewInit {
     @HostBinding('@host') private host: boolean = true;
     @HostBinding('style.bottom') bottom: string = '1rem';
 
-    @Input() index: number = 0;
-    @Input() file?: File;
-    @Input() url: string = '';
-    @Input() config: Partial<INgxHelperUpload> = {};
+    @Input({ required: true }) index: number = 0;
+    @Input({ required: true }) file?: File;
+    @Input({ required: true }) url: string = '';
+    @Input({ required: true }) config: Partial<INgxHelperUpload> = {};
 
     public progress: number = 0;
 

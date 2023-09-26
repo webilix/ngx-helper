@@ -12,10 +12,11 @@ import { NgxHelperListMenu } from './ngx-helper-list.type';
     styleUrls: ['./ngx-helper-list.component.scss'],
 })
 export class NgxHelperListComponent<D> implements OnChanges {
-    @Input() id?: string;
-    @Input() data?: D;
-    @Input() menu: NgxHelperListMenu<D>[] = [];
-    @Input() deactive: boolean = false;
+    @Input({ required: true }) data!: D;
+    @Input({ required: true }) id!: string;
+
+    @Input({ required: false }) menu: NgxHelperListMenu<D>[] = [];
+    @Input({ required: false }) deactive: boolean = false;
 
     public ngxMenu: NgxHelperMenu[] = [];
 
@@ -26,7 +27,7 @@ export class NgxHelperListComponent<D> implements OnChanges {
                     menu === 'SEPERATOR' || !this.data || !menu.hideOn || !menu.hideOn(this.data),
             )
             .map((menu: NgxHelperListMenu<D>) => {
-                if (menu === 'SEPERATOR' || !this.id) return 'SEPERATOR';
+                if (menu === 'SEPERATOR') return 'SEPERATOR';
 
                 return {
                     title: menu.title,
@@ -43,11 +44,11 @@ export class NgxHelperListComponent<D> implements OnChanges {
     }
 
     click(click: string[] | ((id: string) => void)): string[] | (() => void) {
-        return Array.isArray(click) ? this.route(click) : () => this.id && click(this.id);
+        return Array.isArray(click) ? this.route(click) : () => click(this.id);
     }
 
     route(route: string[]): string[] {
-        if (!Helper.IS.array(route) || route.length === 0 || !this.id) return [];
+        if (!Helper.IS.array(route) || route.length === 0) return [];
 
         const id: string = this.id;
         return route.map((r: string) => (r === ':ID' ? id : r));

@@ -19,9 +19,9 @@ import { NgxHelperValuePipe } from './ngx-helper-value.pipe';
     ],
 })
 export class NgxHelperValueComponent implements OnChanges {
-    @Input() values: INgxHelperValue[] = [];
-    @Input() width: number = 100;
-    @Input() border: boolean = true;
+    @Input({ required: true }) values: INgxHelperValue[] = [];
+    @Input({ required: false }) width: number = 100;
+    @Input({ required: false }) border: boolean = true;
 
     public copy: string[] = [];
     public copyIndex: number | null = null;

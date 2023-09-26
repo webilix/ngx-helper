@@ -21,9 +21,9 @@ export class NgxHelperToastComponent implements OnInit, OnDestroy {
     @HostBinding('className') className: string = '';
     @HostBinding('style.backgroundColor') backgroundColor: string = '';
 
-    @Input() config?: INgxHelperToastConfig;
-    @Input() message: string[] = [];
-    @Input() timeout: number = 5;
+    @Input({ required: true }) config?: INgxHelperToastConfig;
+    @Input({ required: true }) message: string[] = [];
+    @Input({ required: true }) timeout: number = 5;
 
     public index: number = 0;
     public percent: number = 0;

@@ -15,11 +15,13 @@ import { NgxHelperCalendarService } from './ngx-helper-calendar.service';
     styleUrls: ['./ngx-helper-calendar.component.scss'],
 })
 export class NgxHelperCalendarComponent implements OnInit, OnChanges {
-    @Input() types: NgxHelperCalendar[] = [];
-    @Input() route: string[] = [];
-    @Input() value?: Date;
-    @Input() minDate?: Date;
-    @Input() maxDate?: Date;
+    @Input({ required: false }) types: NgxHelperCalendar[] = [];
+
+    @Input({ required: false }) route: string[] = [];
+    @Input({ required: false }) value?: Date;
+    @Input({ required: false }) minDate?: Date;
+    @Input({ required: false }) maxDate?: Date;
+
     @Output() changed: EventEmitter<INgxHelperCalendarValue> = new EventEmitter<INgxHelperCalendarValue>();
 
     public type: NgxHelperCalendar = 'DAY';

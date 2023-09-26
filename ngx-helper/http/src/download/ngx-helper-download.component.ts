@@ -21,9 +21,9 @@ export class NgxHelperDownloadComponent implements AfterViewInit {
     @HostBinding('@host') private host: boolean = true;
     @HostBinding('style.bottom') bottom: string = '1rem';
 
-    @Input() index: number = 0;
-    @Input() name: string = '';
-    @Input() path: string = '';
+    @Input({ required: true }) index: number = 0;
+    @Input({ required: true }) name: string = '';
+    @Input({ required: true }) path: string = '';
 
     public progress: number = 0;
 
