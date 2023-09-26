@@ -1,11 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'ngx-helper-loading',
-    templateUrl: './ngx-helper-loading.component.html',
-    styleUrls: ['./ngx-helper-loading.component.scss'],
+    selector: 'ngx-helper-progress',
+    templateUrl: './ngx-helper-progress.component.html',
+    styleUrls: ['./ngx-helper-progress.component.scss'],
 })
-export class NgxHelperLoadingComponent implements OnInit, OnDestroy {
+export class NgxHelperProgressComponent implements OnInit, OnDestroy {
     @Input({ required: false }) color: 'primary' | 'accent' | 'warn' = 'accent';
     @Input({ required: false }) fixed: boolean = false;
 

@@ -17,12 +17,12 @@ import { NgxHelperDialogModule } from '@webilix/ngx-helper/dialog';
 import { NgxHelperHttpModule } from '@webilix/ngx-helper/http';
 import { NgxHelperImageModule } from '@webilix/ngx-helper/image';
 import { NgxHelperListModule } from '@webilix/ngx-helper/list';
-import { NgxHelperLoadingModule } from '@webilix/ngx-helper/loading';
 import { NgxHelperMenuModule } from '@webilix/ngx-helper/menu';
 import { NgxHelperPaginationModule } from '@webilix/ngx-helper/pagination';
 import { NgxHelperParamModule } from '@webilix/ngx-helper/param';
 import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
 import { NgxHelperPlateModule } from '@webilix/ngx-helper/plate';
+import { NgxHelperProgressModule } from 'ngx-helper/progress/public-api';
 import { NgxHelperToastModule } from '@webilix/ngx-helper/toast';
 import { NgxHelperValueModule } from '@webilix/ngx-helper/value';
 
@@ -64,12 +64,12 @@ import { ValuesComponent } from './values/values.component';
         NgxHelperHttpModule,
         NgxHelperImageModule,
         NgxHelperListModule,
-        NgxHelperLoadingModule,
         NgxHelperMenuModule,
         NgxHelperPaginationModule,
         NgxHelperParamModule,
         NgxHelperPipeModule,
         NgxHelperPlateModule,
+        NgxHelperProgressModule,
         NgxHelperToastModule,
         NgxHelperValueModule,
     ],
