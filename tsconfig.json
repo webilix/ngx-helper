@@ -11,7 +11,10 @@
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "sourceMap": true,
-        "paths": { "@webilix/ngx-helper": ["ngx-helper/src/public-api"] },
+        "paths": {
+            "@webilix/ngx-helper": ["ngx-helper/src/public-api"],
+            "@webilix/ngx-helper/menu": ["ngx-helper/menu/public-api"]
+        },
         "declaration": false,
         "downlevelIteration": true,
         "experimentalDecorators": true,

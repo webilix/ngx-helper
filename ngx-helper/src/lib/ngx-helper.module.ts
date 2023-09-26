@@ -15,6 +15,8 @@ import { MatSelectModule } from '@angular/material/select';
 
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 
+import { NgxHelperMenuModule } from '@webilix/ngx-helper/menu';
+
 import { INgxHelperStyle } from './interfaces';
 
 import {
@@ -34,7 +36,6 @@ import {
     NgxHelperGalleryComponent,
     NgxHelperListComponent,
     NgxHelperLoadingComponent,
-    NgxHelperMenuComponent,
     NgxHelperPaginationComponent,
     NgxHelperParamsComponent,
     NgxHelperParamsPlateComponent,
@@ -89,7 +90,6 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperGalleryComponent,
         NgxHelperListComponent,
         NgxHelperLoadingComponent,
-        NgxHelperMenuComponent,
         NgxHelperPaginationComponent,
         NgxHelperParamsComponent,
         NgxHelperParamsPlateComponent,
@@ -126,6 +126,8 @@ import { NgxHelperService } from './ngx-helper.service';
         MatMenuModule,
         MatProgressBarModule,
         MatSelectModule,
+
+        NgxHelperMenuModule,
     ],
     exports: [
         NgxHelperComponent,
@@ -135,7 +137,6 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperCalendarComponent,
         NgxHelperListComponent,
         NgxHelperLoadingComponent,
-        NgxHelperMenuComponent,
         NgxHelperPaginationComponent,
         NgxHelperParamsComponent,
         NgxHelperPlateComponent,

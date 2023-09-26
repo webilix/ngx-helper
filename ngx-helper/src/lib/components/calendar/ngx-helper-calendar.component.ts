@@ -4,8 +4,9 @@ import { Params, Router } from '@angular/router';
 import { JalaliDateTime, JalaliDateTimePeriod } from '@webilix/jalali-date-time';
 import { Helper } from '@webilix/helper-library';
 
+import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
+
 import { INgxHelperCalendarPeriod, INgxHelperCalendarValue, NgxHelperCalendar } from '../../interfaces';
-import { NgxHelperMenu } from '../../types';
 import { NgxHelperService } from '../../ngx-helper.service';
 
 @Component({

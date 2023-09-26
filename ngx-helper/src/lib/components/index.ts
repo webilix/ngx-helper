@@ -25,8 +25,6 @@ export * from './list/ngx-helper-list.component';
 
 export * from './loading/ngx-helper-loading.component';
 
-export * from './menu/ngx-helper-menu.component';
-
 export * from './pagination/ngx-helper-pagination.component';
 
 export * from './params/plate/ngx-helper-params-plate.component';

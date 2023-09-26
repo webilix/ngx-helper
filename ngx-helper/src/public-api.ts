@@ -13,7 +13,6 @@ export {
     NgxHelperCalendarComponent,
     NgxHelperListComponent,
     NgxHelperLoadingComponent,
-    NgxHelperMenuComponent,
     NgxHelperPaginationComponent,
     NgxHelperParamsComponent,
     NgxHelperPlateComponent,
@@ -52,7 +51,6 @@ export { NgxHelperConnectionService, NgxHelperLoadingService } from './lib/provi
 
 export {
     NgxHelperListMenu,
-    NgxHelperMenu,
     INgxHelperParamsOrder,
     INgxHelperParamsUpdate,
     INgxHelperParamsValue,

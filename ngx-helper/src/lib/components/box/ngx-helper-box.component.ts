@@ -12,7 +12,7 @@ import {
 
 import { Helper } from '@webilix/helper-library';
 
-import { NgxHelperMenu } from '../../types';
+import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 
 @Component({
     selector: 'ngx-helper-box',

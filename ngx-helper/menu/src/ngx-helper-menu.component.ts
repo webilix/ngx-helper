@@ -12,7 +12,7 @@ import {
 import { MatMenuTrigger, MenuPositionX, MenuPositionY } from '@angular/material/menu';
 import { Router } from '@angular/router';
 
-import { NgxHelperMenu } from '../../types';
+import { NgxHelperMenu } from './ngx-helper-menu.type';
 
 @Component({
     selector: 'ngx-helper-menu',
@@ -22,14 +22,16 @@ import { NgxHelperMenu } from '../../types';
 export class NgxHelperMenuComponent implements OnInit, OnDestroy, OnChanges {
     @ViewChild(MatMenuTrigger) matMenuTrigger?: MatMenuTrigger;
 
-    @Input() title?: string;
-    @Input() icon?: string;
-    @Input() color?: 'primary' | 'accent' | 'warn';
-    @Input() tigger?: Element;
-    @Input() border: number = 0;
-    @Input() xPosition: MenuPositionX = 'after';
-    @Input() yPosition: MenuPositionY = 'below';
-    @Input() menu: NgxHelperMenu[] = [];
+    @Input({ required: true }) menu!: NgxHelperMenu[];
+
+    @Input({ required: false }) title?: string;
+    @Input({ required: false }) icon?: string;
+    @Input({ required: false }) color?: 'primary' | 'accent' | 'warn';
+    @Input({ required: false }) tigger?: Element;
+    @Input({ required: false }) border: number = 0;
+    @Input({ required: false }) xPosition: MenuPositionX = 'after';
+    @Input({ required: false }) yPosition: MenuPositionY = 'below';
+
     @Output() menuChange: EventEmitter<NgxHelperMenu[]> = new EventEmitter<NgxHelperMenu[]>();
 
     private clickListener = () => this.matMenuTrigger?.openMenu();
