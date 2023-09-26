@@ -1,8 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
+import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
+
 import { INgxHelperParamSelect } from '../../../interfaces';
-import { NgxHelperService } from '../../../ngx-helper.service';
 
 @Component({
     host: { selector: 'ngx-helper-params-select' },
@@ -16,7 +17,7 @@ export class NgxHelperParamsSelectComponent {
 
     constructor(
         @Inject(MAT_BOTTOM_SHEET_DATA) private readonly data: { param: INgxHelperParamSelect; value: string },
-        private readonly ngxHelperService: NgxHelperService,
+        private readonly ngxHelperBottomSheetService: NgxHelperBottomSheetService,
     ) {}
 
     filter(query: string): void {
@@ -26,6 +27,6 @@ export class NgxHelperParamsSelectComponent {
     }
 
     select(id: string): void {
-        this.ngxHelperService.closeBottomSheet(id);
+        this.ngxHelperBottomSheetService.close(id);
     }
 }

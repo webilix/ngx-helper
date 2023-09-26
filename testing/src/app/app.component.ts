@@ -15,6 +15,7 @@ import {
     NgxHelperService,
     NGX_HELPER_LOADING_HEADER,
 } from '@webilix/ngx-helper';
+import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
 import { INgxHelperButtonGroup } from '@webilix/ngx-helper/button-group';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 
@@ -227,6 +228,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private readonly changeDetectorRef: ChangeDetectorRef,
         private readonly httpClient: HttpClient,
         private readonly ngxHelperService: NgxHelperService,
+        private readonly ngxHelperBottomSheetService: NgxHelperBottomSheetService,
         private readonly ngxHelperConnectionService: NgxHelperConnectionService,
         private readonly ngxHelperLoadingService: NgxHelperLoadingService,
     ) {}
@@ -388,7 +390,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     showButtomSheet(disableClose?: boolean, padding?: string): void {
-        this.ngxHelperService.openBottomSheet<boolean>(
+        this.ngxHelperBottomSheetService.open<boolean>(
             BottomSheetComponent,
             'نمایش BottomSheet',
             { data: { date: new Date() }, disableClose, padding },

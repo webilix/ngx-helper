@@ -13,6 +13,7 @@
         "sourceMap": true,
         "paths": {
             "@webilix/ngx-helper": ["ngx-helper/src/public-api"],
+            "@webilix/ngx-helper/bottom-sheet": ["ngx-helper/bottom-sheet/public-api"],
             "@webilix/ngx-helper/box": ["ngx-helper/box/public-api"],
             "@webilix/ngx-helper/button-group": ["ngx-helper/button-group/public-api"],
             "@webilix/ngx-helper/list": ["ngx-helper/list/public-api"],

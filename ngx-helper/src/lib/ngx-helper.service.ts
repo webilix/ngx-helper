@@ -8,7 +8,6 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 import { Helper } from '@webilix/helper-library';
 
 import {
-    NgxHelperBottomSheetComponent,
     NgxHelperCalendarDateComponent,
     NgxHelperCalendarMonthComponent,
     NgxHelperCalendarWeekComponent,
@@ -24,7 +23,6 @@ import {
     NgxHelperUploadComponent,
 } from './components';
 import {
-    INgxHelperBottomSheetConfig,
     INgxHelperCalendarConfig,
     INgxHelperCalendarPeriod,
     INgxHelperCoordinates,
@@ -59,47 +57,6 @@ export class NgxHelperService {
         ];
         console.error(errors.join('\n'));
     }
-
-    //#region BOTTOM SHEET
-    private _bottomSheetRef?: MatBottomSheetRef<any>;
-    private _bottomSheetConfig: MatBottomSheetConfig = {
-        autoFocus: false,
-        direction: 'rtl',
-        disableClose: true,
-        panelClass: 'ngx-helper-bottom-sheet-panel',
-    };
-
-    openBottomSheet<R>(component: ComponentType<any>, title: string): void;
-    openBottomSheet<R>(component: ComponentType<any>, title: string, callback: (result: R) => void): void;
-    openBottomSheet<R>(
-        component: ComponentType<any>,
-        title: string,
-        config: Partial<INgxHelperBottomSheetConfig>,
-    ): void;
-    openBottomSheet<R>(
-        component: ComponentType<any>,
-        title: string,
-        config: Partial<INgxHelperBottomSheetConfig>,
-        callback: (result: R) => void,
-    ): void;
-    openBottomSheet<R>(component: ComponentType<any>, title: string, arg1?: any, arg2?: any): void {
-        const callback: (result: R) => void = arg2 || (typeof arg1 == 'function' ? arg1 : () => {});
-        const config: Partial<INgxHelperBottomSheetConfig> = arg2 || (arg1 && typeof arg1 === 'object') ? arg1 : {};
-
-        this._bottomSheetRef = this.bottomSheet.open(NgxHelperBottomSheetComponent, {
-            ...this._bottomSheetConfig,
-            data: { title, component, config },
-        });
-        this._bottomSheetRef.afterDismissed().subscribe({ next: (result: R) => result && callback(result) });
-    }
-
-    closeBottomSheet<R>(result?: R): void {
-        if (!this._bottomSheetRef) return;
-
-        this._bottomSheetRef.dismiss(result);
-        this._bottomSheetRef = undefined;
-    }
-    //#endregion
 
     //#region DIALOG
     private _dialogRef?: MatDialogRef<any>;
@@ -151,6 +108,13 @@ export class NgxHelperService {
     //#endregion
 
     //#region CONFIRM
+    private _confirmConfig: MatBottomSheetConfig = {
+        autoFocus: false,
+        direction: 'rtl',
+        disableClose: true,
+        panelClass: 'ngx-helper-bottom-sheet-panel',
+    };
+
     confirm(confirm: NgxHelperConfirm, item: string, callback: (description?: string) => void): void;
     confirm(confirm: INgxHelperConfirm, item: string, callback: (description?: string) => void): void;
     confirm(
@@ -171,7 +135,7 @@ export class NgxHelperService {
 
         const info: INgxHelperConfirm = typeof confirm === 'string' ? NgxHelperConfirmInfo[confirm] : confirm;
         this.bottomSheet
-            .open(NgxHelperConfirmComponent, { ...this._bottomSheetConfig, data: { info, item, config: config || {} } })
+            .open(NgxHelperConfirmComponent, { ...this._confirmConfig, data: { info, item, config: config || {} } })
             .afterDismissed()
             .subscribe((result: INgxHelperConfirmResponse) => result && result.confirmed && callback(result.value));
     }

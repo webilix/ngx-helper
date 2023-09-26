@@ -1,8 +1,8 @@
-import { ComponentType } from '@angular/cdk/portal';
 import { Component, Inject, Injector } from '@angular/core';
+import { ComponentType } from '@angular/cdk/portal';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
-import { INgxHelperBottomSheetConfig } from '../../interfaces';
+import { INgxHelperBottomSheetConfig } from './ngx-helper-bottom-sheet.interface';
 
 @Component({
     host: { selector: 'ngx-helper-bottom-sheet' },

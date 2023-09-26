@@ -4,6 +4,7 @@ import { Params, Router } from '@angular/router';
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 import { Helper } from '@webilix/helper-library';
 
+import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 
 import {
@@ -47,7 +48,11 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
 
     private jalali = JalaliDateTime();
 
-    constructor(private readonly router: Router, private readonly ngxHelperService: NgxHelperService) {}
+    constructor(
+        private readonly router: Router,
+        private readonly ngxHelperService: NgxHelperService,
+        private readonly ngxHelperBottomSheetService: NgxHelperBottomSheetService,
+    ) {}
 
     ngOnInit(): void {
         if (this.params.length === 0) this.emitChanges();
@@ -368,7 +373,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
         const letter: string | undefined =
             param.letter && Helper.PLATE.letters.includes(param.letter) ? param.letter : undefined;
 
-        this.ngxHelperService.openBottomSheet<string>(
+        this.ngxHelperBottomSheetService.open<string>(
             NgxHelperParamsPlateComponent,
             param.title || 'پلاک',
             { data: { letter } },
@@ -404,7 +409,7 @@ export class NgxHelperParamsComponent implements OnInit, OnChanges {
 
     getSelect(param: INgxHelperParamSelect): void {
         const value: string = this.values[param.name];
-        this.ngxHelperService.openBottomSheet<string>(
+        this.ngxHelperBottomSheetService.open<string>(
             NgxHelperParamsSelectComponent,
             param.title,
             { data: { param, value } },

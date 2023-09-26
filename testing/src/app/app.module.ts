@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 
 import { NgxHelperModule } from '@webilix/ngx-helper';
+import { NgxHelperBottomSheetModule } from '@webilix/ngx-helper/bottom-sheet';
 import { NgxHelperBoxModule } from '@webilix/ngx-helper/box';
 import { NgxHelperButtonGroupModule } from '@webilix/ngx-helper/button-group';
 import { NgxHelperListModule } from '@webilix/ngx-helper/list';
@@ -43,6 +44,7 @@ import { ValuesComponent } from './values/values.component';
         MatButtonModule,
 
         NgxHelperModule.forRoot(),
+        NgxHelperBottomSheetModule,
         NgxHelperBoxModule,
         NgxHelperButtonGroupModule,
         NgxHelperListModule,

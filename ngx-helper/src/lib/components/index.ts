@@ -1,5 +1,3 @@
-export * from './bottom-sheet/ngx-helper-bottom-sheet.component';
-
 export * from './calendar/date/ngx-helper-calendar-date.component';
 export * from './calendar/month/ngx-helper-calendar-month.component';
 export * from './calendar/week/ngx-helper-calendar-week.component';

@@ -3,7 +3,7 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
 import { Helper } from '@webilix/helper-library';
 
-import { NgxHelperService } from '../../../ngx-helper.service';
+import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
 
 @Component({
     host: { selector: 'ngx-helper-params-plate' },
@@ -19,7 +19,7 @@ export class NgxHelperParamsPlateComponent {
 
     constructor(
         @Inject(MAT_BOTTOM_SHEET_DATA) private readonly data: { letter?: string },
-        private readonly ngxHelperService: NgxHelperService,
+        private readonly ngxHelperBottomSheetService: NgxHelperBottomSheetService,
     ) {}
 
     setPlate(left: string, letter: string, right: string, iran: string): void {
@@ -29,6 +29,6 @@ export class NgxHelperParamsPlateComponent {
 
     setValue(): void {
         if (!this.plate || !Helper.IS.plate(this.plate)) return;
-        this.ngxHelperService.closeBottomSheet(this.plate.join('-'));
+        this.ngxHelperBottomSheetService.close(this.plate.join('-'));
     }
 }

@@ -10,7 +10,6 @@ export { NGX_HELPER_LOADING_HEADER } from './lib/ngx-helper.values';
 export { NgxHelperCalendarComponent, NgxHelperParamsComponent, NgxHelperValuesComponent } from './lib/components';
 
 export {
-    INgxHelperBottomSheetConfig,
     INgxHelperCalendarConfig,
     INgxHelperCalendarPeriod,
     INgxHelperCalendarValue,
