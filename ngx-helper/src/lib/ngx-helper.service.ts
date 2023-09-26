@@ -1,8 +1,7 @@
-import { ComponentType } from '@angular/cdk/portal';
 import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { HttpClient, HttpStatusCode } from '@angular/common/http';
 
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { Helper } from '@webilix/helper-library';
 
@@ -13,7 +12,6 @@ import {
     NgxHelperCalendarYearComponent,
     NgxHelperCoordinatesGetComponent,
     NgxHelperCoordinatesShowComponent,
-    NgxHelperDialogComponent,
     NgxHelperDownloadComponent,
     NgxHelperGalleryComponent,
     NgxHelperPreviewComponent,
@@ -25,7 +23,6 @@ import {
     INgxHelperCalendarPeriod,
     INgxHelperCoordinates,
     INgxHelperCoordinatesConfig,
-    INgxHelperDialogConfig,
     INgxHelperToastConfig,
     INgxHelperUpload,
 } from './interfaces';
@@ -45,8 +42,6 @@ export class NgxHelperService {
         console.error(errors.join('\n'));
     }
 
-    //#region DIALOG
-    private _dialogRef?: MatDialogRef<any>;
     private _dialogConfig: MatDialogConfig = {
         autoFocus: false,
         width: 'calc(100vw - 4rem)',
@@ -55,6 +50,7 @@ export class NgxHelperService {
         direction: 'rtl',
         disableClose: true,
     };
+
     private _dialogFullConfig: MatDialogConfig = {
         autoFocus: false,
         width: '100vw',
@@ -65,34 +61,6 @@ export class NgxHelperService {
         hasBackdrop: false,
         panelClass: 'ngx-helper-full-dialog',
     };
-
-    openDialog<R>(component: ComponentType<any>, title: string): void;
-    openDialog<R>(component: ComponentType<any>, title: string, callback: (result: R) => void): void;
-    openDialog<R>(component: ComponentType<any>, title: string, config: Partial<INgxHelperDialogConfig>): void;
-    openDialog<R>(
-        component: ComponentType<any>,
-        title: string,
-        config: Partial<INgxHelperDialogConfig>,
-        callback: (result: R) => void,
-    ): void;
-    openDialog<R>(component: ComponentType<any>, title: string, arg1?: any, arg2?: any): void {
-        const callback: (result: R) => void = arg2 || (typeof arg1 == 'function' ? arg1 : () => {});
-        const config: Partial<INgxHelperDialogConfig> = arg2 || (arg1 && typeof arg1 === 'object') ? arg1 : {};
-
-        this._dialogRef = this.dialog.open(NgxHelperDialogComponent, {
-            ...this._dialogConfig,
-            data: { title, component, config },
-        });
-        this._dialogRef.afterClosed().subscribe({ next: (result: R) => result && callback(result) });
-    }
-
-    closeDialog<R>(result?: R): void {
-        if (!this._dialogRef) return;
-
-        this._dialogRef.close(result);
-        this._dialogRef = undefined;
-    }
-    //#endregion
 
     //#region IMAGE
     showPreview(image: string, description?: string, html: boolean = false): void {

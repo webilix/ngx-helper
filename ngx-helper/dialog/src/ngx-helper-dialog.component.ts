@@ -1,8 +1,8 @@
-import { ComponentType } from '@angular/cdk/portal';
 import { Component, Inject, Injector } from '@angular/core';
+import { ComponentType } from '@angular/cdk/portal';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { INgxHelperDialogConfig } from '../../interfaces';
+import { INgxHelperDialogConfig } from './ngx-helper-dialog.interface';
 
 @Component({
     host: { selector: 'ngx-helper-dialog' },

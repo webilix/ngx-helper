@@ -17,6 +17,7 @@ import {
 } from '@webilix/ngx-helper';
 import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
 import { NgxHelperConfirmService } from '@webilix/ngx-helper/confirm';
+import { NgxHelperDialogService } from '@webilix/ngx-helper/dialog';
 import { INgxHelperButtonGroup } from '@webilix/ngx-helper/button-group';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 
@@ -231,6 +232,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private readonly ngxHelperService: NgxHelperService,
         private readonly ngxHelperBottomSheetService: NgxHelperBottomSheetService,
         private readonly ngxHelperConfirmService: NgxHelperConfirmService,
+        private readonly ngxHelperDialogService: NgxHelperDialogService,
         private readonly ngxHelperConnectionService: NgxHelperConnectionService,
         private readonly ngxHelperLoadingService: NgxHelperLoadingService,
     ) {}
@@ -401,7 +403,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     showDialog(disableClose?: boolean, padding?: string): void {
-        this.ngxHelperService.openDialog<boolean>(
+        this.ngxHelperDialogService.open<boolean>(
             DialogComponent,
             'نمایش Dialog',
             { data: { date: new Date() }, disableClose, padding },

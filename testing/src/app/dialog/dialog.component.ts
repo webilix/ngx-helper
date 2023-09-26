@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { NgxHelperService } from '@webilix/ngx-helper';
+import { NgxHelperDialogService } from '@webilix/ngx-helper/dialog';
 
 @Component({
     host: { selector: 'dialog' },
@@ -11,10 +11,10 @@ import { NgxHelperService } from '@webilix/ngx-helper';
 export class DialogComponent {
     constructor(
         @Inject(MAT_DIALOG_DATA) public readonly data: any,
-        private readonly ngxHelperService: NgxHelperService,
+        private readonly ngxHelperDialogService: NgxHelperDialogService,
     ) {}
 
     close(result: boolean = false): void {
-        this.ngxHelperService.closeDialog(result);
+        this.ngxHelperDialogService.close(result);
     }
 }
