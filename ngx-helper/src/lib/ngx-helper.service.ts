@@ -2,7 +2,6 @@ import { ComponentType } from '@angular/cdk/portal';
 import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { HttpClient, HttpStatusCode } from '@angular/common/http';
 
-import { MatBottomSheet, MatBottomSheetConfig, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 
 import { Helper } from '@webilix/helper-library';
@@ -12,7 +11,6 @@ import {
     NgxHelperCalendarMonthComponent,
     NgxHelperCalendarWeekComponent,
     NgxHelperCalendarYearComponent,
-    NgxHelperConfirmComponent,
     NgxHelperCoordinatesGetComponent,
     NgxHelperCoordinatesShowComponent,
     NgxHelperDialogComponent,
@@ -31,24 +29,13 @@ import {
     INgxHelperToastConfig,
     INgxHelperUpload,
 } from './interfaces';
-import {
-    INgxHelperConfirm,
-    INgxHelperConfirmConfig,
-    INgxHelperConfirmResponse,
-    NgxHelperConfirm,
-    NgxHelperConfirmInfo,
-    NgxHelperToast,
-} from './types';
+import { NgxHelperToast } from './types';
 
 @Injectable()
 export class NgxHelperService {
     public viewContainerRef?: ViewContainerRef;
 
-    constructor(
-        private readonly httpClient: HttpClient,
-        private readonly bottomSheet: MatBottomSheet,
-        private readonly dialog: MatDialog,
-    ) {}
+    constructor(private readonly httpClient: HttpClient, private readonly dialog: MatDialog) {}
 
     private domError(): void {
         const errors: string[] = [
@@ -104,40 +91,6 @@ export class NgxHelperService {
 
         this._dialogRef.close(result);
         this._dialogRef = undefined;
-    }
-    //#endregion
-
-    //#region CONFIRM
-    private _confirmConfig: MatBottomSheetConfig = {
-        autoFocus: false,
-        direction: 'rtl',
-        disableClose: true,
-        panelClass: 'ngx-helper-bottom-sheet-panel',
-    };
-
-    confirm(confirm: NgxHelperConfirm, item: string, callback: (description?: string) => void): void;
-    confirm(confirm: INgxHelperConfirm, item: string, callback: (description?: string) => void): void;
-    confirm(
-        confirm: NgxHelperConfirm,
-        item: string,
-        config: Partial<INgxHelperConfirmConfig>,
-        callback: (description?: string) => void,
-    ): void;
-    confirm(
-        confirm: INgxHelperConfirm,
-        item: string,
-        config: Partial<INgxHelperConfirmConfig>,
-        callback: (description?: string) => void,
-    ): void;
-    confirm(confirm: NgxHelperConfirm | INgxHelperConfirm, item: string, arg1: any, arg2?: any): void {
-        const callback: (description?: string) => void = arg2 || arg1;
-        const config: Partial<INgxHelperConfirmConfig> = typeof arg2 === 'function' ? arg1 : {};
-
-        const info: INgxHelperConfirm = typeof confirm === 'string' ? NgxHelperConfirmInfo[confirm] : confirm;
-        this.bottomSheet
-            .open(NgxHelperConfirmComponent, { ...this._confirmConfig, data: { info, item, config: config || {} } })
-            .afterDismissed()
-            .subscribe((result: INgxHelperConfirmResponse) => result && result.confirmed && callback(result.value));
     }
     //#endregion
 

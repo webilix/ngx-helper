@@ -16,6 +16,7 @@ import {
     NGX_HELPER_LOADING_HEADER,
 } from '@webilix/ngx-helper';
 import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
+import { NgxHelperConfirmService } from '@webilix/ngx-helper/confirm';
 import { INgxHelperButtonGroup } from '@webilix/ngx-helper/button-group';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 
@@ -229,6 +230,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private readonly httpClient: HttpClient,
         private readonly ngxHelperService: NgxHelperService,
         private readonly ngxHelperBottomSheetService: NgxHelperBottomSheetService,
+        private readonly ngxHelperConfirmService: NgxHelperConfirmService,
         private readonly ngxHelperConnectionService: NgxHelperConnectionService,
         private readonly ngxHelperLoadingService: NgxHelperLoadingService,
     ) {}
@@ -445,11 +447,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
         type
             ? type === 'EMPTY'
-                ? this.ngxHelperService.confirm('ACTIVE', item, (description) => this.log(description))
-                : this.ngxHelperService.confirm(type, item, { title, message, description }, (description) =>
+                ? this.ngxHelperConfirmService.verify('ACTIVE', item, (description) => this.log(description))
+                : this.ngxHelperConfirmService.verify(type, item, { title, message, description }, (description) =>
                       this.log(description),
                   )
-            : this.ngxHelperService.confirm(
+            : this.ngxHelperConfirmService.verify(
                   { title: 'سفارشی', icon: 'tune', color: 'accent' },
                   item,
                   { title, message, description, question: 'آیا می‌خواهید سوال سفارشی نمایش داده شود؟' },

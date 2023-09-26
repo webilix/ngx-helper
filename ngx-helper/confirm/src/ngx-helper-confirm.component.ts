@@ -1,8 +1,9 @@
 import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+
 import { Helper } from '@webilix/helper-library';
 
-import { INgxHelperConfirm, INgxHelperConfirmConfig, INgxHelperConfirmResponse } from '../../types';
+import { INgxHelperConfirm, INgxHelperConfirmConfig, INgxHelperConfirmResponse } from './ngx-helper-confirm.interface';
 
 @Component({
     host: { selector: 'ngx-helper-confirm' },

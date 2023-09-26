@@ -16,6 +16,7 @@
             "@webilix/ngx-helper/bottom-sheet": ["ngx-helper/bottom-sheet/public-api"],
             "@webilix/ngx-helper/box": ["ngx-helper/box/public-api"],
             "@webilix/ngx-helper/button-group": ["ngx-helper/button-group/public-api"],
+            "@webilix/ngx-helper/confirm": ["ngx-helper/confirm/public-api"],
             "@webilix/ngx-helper/list": ["ngx-helper/list/public-api"],
             "@webilix/ngx-helper/loading": ["ngx-helper/loading/public-api"],
             "@webilix/ngx-helper/menu": ["ngx-helper/menu/public-api"],

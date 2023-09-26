@@ -10,6 +10,7 @@ import { NgxHelperModule } from '@webilix/ngx-helper';
 import { NgxHelperBottomSheetModule } from '@webilix/ngx-helper/bottom-sheet';
 import { NgxHelperBoxModule } from '@webilix/ngx-helper/box';
 import { NgxHelperButtonGroupModule } from '@webilix/ngx-helper/button-group';
+import { NgxHelperConfirmModule } from '@webilix/ngx-helper/confirm';
 import { NgxHelperListModule } from '@webilix/ngx-helper/list';
 import { NgxHelperLoadingModule } from '@webilix/ngx-helper/loading';
 import { NgxHelperMenuModule } from '@webilix/ngx-helper/menu';
@@ -47,6 +48,7 @@ import { ValuesComponent } from './values/values.component';
         NgxHelperBottomSheetModule,
         NgxHelperBoxModule,
         NgxHelperButtonGroupModule,
+        NgxHelperConfirmModule,
         NgxHelperListModule,
         NgxHelperLoadingModule,
         NgxHelperMenuModule,
