@@ -12,6 +12,7 @@ import { NgxHelperButtonGroupModule } from '@webilix/ngx-helper/button-group';
 import { NgxHelperListModule } from '@webilix/ngx-helper/list';
 import { NgxHelperLoadingModule } from '@webilix/ngx-helper/loading';
 import { NgxHelperMenuModule } from '@webilix/ngx-helper/menu';
+import { NgxHelperPaginationModule } from '@webilix/ngx-helper/pagination';
 import { NgxHelperPlateModule } from '@webilix/ngx-helper/plate';
 
 import { AppComponent } from './app.component';
@@ -47,6 +48,7 @@ import { ValuesComponent } from './values/values.component';
         NgxHelperListModule,
         NgxHelperLoadingModule,
         NgxHelperMenuModule,
+        NgxHelperPaginationModule,
         NgxHelperPlateModule,
     ],
     bootstrap: [AppComponent],

@@ -6,9 +6,10 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
     styleUrls: ['./ngx-helper-pagination.component.scss'],
 })
 export class NgxHelperPaginationComponent implements OnChanges {
-    @Input() current?: number;
-    @Input() total?: number;
-    @Input() margin: number = 1;
+    @Input({ required: true }) current?: number;
+    @Input({ required: true }) total?: number;
+    @Input({ required: true }) margin: number = 1;
+
     @Output() page: EventEmitter<number> = new EventEmitter<number>();
 
     public list: string[] = [];

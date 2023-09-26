@@ -18,6 +18,7 @@
             "@webilix/ngx-helper/list": ["ngx-helper/list/public-api"],
             "@webilix/ngx-helper/loading": ["ngx-helper/loading/public-api"],
             "@webilix/ngx-helper/menu": ["ngx-helper/menu/public-api"],
+            "@webilix/ngx-helper/pagination": ["ngx-helper/pagination/public-api"],
             "@webilix/ngx-helper/plate": ["ngx-helper/plate/public-api"]
         },
         "declaration": false,
