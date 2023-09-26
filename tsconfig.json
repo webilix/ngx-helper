@@ -20,6 +20,7 @@
             "@webilix/ngx-helper/confirm": ["ngx-helper/confirm/public-api"],
             "@webilix/ngx-helper/coordinates": ["ngx-helper/coordinates/public-api"],
             "@webilix/ngx-helper/dialog": ["ngx-helper/dialog/public-api"],
+            "@webilix/ngx-helper/image": ["ngx-helper/image/public-api"],
             "@webilix/ngx-helper/list": ["ngx-helper/list/public-api"],
             "@webilix/ngx-helper/loading": ["ngx-helper/loading/public-api"],
             "@webilix/ngx-helper/menu": ["ngx-helper/menu/public-api"],

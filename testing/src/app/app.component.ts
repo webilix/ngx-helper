@@ -15,11 +15,12 @@ import {
     NGX_HELPER_LOADING_HEADER,
 } from '@webilix/ngx-helper';
 import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
+import { INgxHelperButtonGroup } from '@webilix/ngx-helper/button-group';
 import { INgxHelperCalendarPeriod, NgxHelperCalendarService } from '@webilix/ngx-helper/calendar';
 import { NgxHelperConfirmService } from '@webilix/ngx-helper/confirm';
 import { NgxHelperCoordinatesService } from '@webilix/ngx-helper/coordinates';
 import { NgxHelperDialogService } from '@webilix/ngx-helper/dialog';
-import { INgxHelperButtonGroup } from '@webilix/ngx-helper/button-group';
+import { NgxHelperImageService } from '@webilix/ngx-helper/image';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
@@ -236,6 +237,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private readonly ngxHelperConfirmService: NgxHelperConfirmService,
         private readonly ngxHelperCoordinatesService: NgxHelperCoordinatesService,
         private readonly ngxHelperDialogService: NgxHelperDialogService,
+        private readonly ngxHelperImageService: NgxHelperImageService,
         private readonly ngxHelperConnectionService: NgxHelperConnectionService,
         private readonly ngxHelperLoadingService: NgxHelperLoadingService,
     ) {}
@@ -415,7 +417,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     showPreview(description: boolean, html: boolean = false): void {
-        this.ngxHelperService.showPreview(
+        this.ngxHelperImageService.preview(
             'https://angular.io/assets/images/logos/angular/logo-nav@2x.png',
             description
                 ? 'شیوه نمایش توضیحات مربوط به تصویر در هنگام استفاده از کامپوننت پیش‌نمایش تصویر' +
@@ -439,7 +441,7 @@ export class AppComponent implements OnInit, OnDestroy {
             },
         ];
 
-        this.ngxHelperService.showGallery(images, index, html);
+        this.ngxHelperImageService.gallery(images, index, html);
     }
 
     confirm(

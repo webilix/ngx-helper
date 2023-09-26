@@ -5,7 +5,6 @@ import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/
 import { NgxMaskDirective, provideEnvironmentNgxMask } from 'ngx-mask';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
@@ -14,7 +13,6 @@ import { JalaliDateTime } from '@webilix/jalali-date-time';
 
 import { NgxHelperBottomSheetModule } from '@webilix/ngx-helper/bottom-sheet';
 import { NgxHelperCalendarModule } from '@webilix/ngx-helper/calendar';
-import { NgxHelperLoadingModule } from '@webilix/ngx-helper/loading';
 import { NgxHelperMenuModule } from '@webilix/ngx-helper/menu';
 import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
 import { NgxHelperPlateModule } from '@webilix/ngx-helper/plate';
@@ -23,11 +21,9 @@ import { INgxHelperStyle } from './interfaces';
 
 import {
     NgxHelperDownloadComponent,
-    NgxHelperGalleryComponent,
     NgxHelperParamsComponent,
     NgxHelperParamsPlateComponent,
     NgxHelperParamsSelectComponent,
-    NgxHelperPreviewComponent,
     NgxHelperToastComponent,
     NgxHelperUploadComponent,
 } from './components';
@@ -46,11 +42,9 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperComponent,
 
         NgxHelperDownloadComponent,
-        NgxHelperGalleryComponent,
         NgxHelperParamsComponent,
         NgxHelperParamsPlateComponent,
         NgxHelperParamsSelectComponent,
-        NgxHelperPreviewComponent,
         NgxHelperToastComponent,
         NgxHelperUploadComponent,
     ],
@@ -61,14 +55,12 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxMaskDirective,
 
         MatButtonModule,
-        MatDialogModule,
         MatIconModule,
         MatProgressBarModule,
         MatSelectModule,
 
         NgxHelperBottomSheetModule,
         NgxHelperCalendarModule,
-        NgxHelperLoadingModule,
         NgxHelperMenuModule,
         NgxHelperPipeModule,
         NgxHelperPlateModule,

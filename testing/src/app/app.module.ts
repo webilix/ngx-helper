@@ -14,6 +14,7 @@ import { NgxHelperCalendarModule } from '@webilix/ngx-helper/calendar';
 import { NgxHelperConfirmModule } from '@webilix/ngx-helper/confirm';
 import { NgxHelperCoordinatesModule } from '@webilix/ngx-helper/coordinates';
 import { NgxHelperDialogModule } from '@webilix/ngx-helper/dialog';
+import { NgxHelperImageModule } from '@webilix/ngx-helper/image';
 import { NgxHelperListModule } from '@webilix/ngx-helper/list';
 import { NgxHelperLoadingModule } from '@webilix/ngx-helper/loading';
 import { NgxHelperMenuModule } from '@webilix/ngx-helper/menu';
@@ -57,6 +58,7 @@ import { ValuesComponent } from './values/values.component';
         NgxHelperConfirmModule,
         NgxHelperCoordinatesModule,
         NgxHelperDialogModule,
+        NgxHelperImageModule,
         NgxHelperListModule,
         NgxHelperLoadingModule,
         NgxHelperMenuModule,

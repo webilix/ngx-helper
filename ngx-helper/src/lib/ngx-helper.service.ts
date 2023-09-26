@@ -1,15 +1,7 @@
 import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { HttpClient, HttpStatusCode } from '@angular/common/http';
 
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-
-import {
-    NgxHelperDownloadComponent,
-    NgxHelperGalleryComponent,
-    NgxHelperPreviewComponent,
-    NgxHelperToastComponent,
-    NgxHelperUploadComponent,
-} from './components';
+import { NgxHelperDownloadComponent, NgxHelperToastComponent, NgxHelperUploadComponent } from './components';
 import { INgxHelperToastConfig, INgxHelperUpload } from './interfaces';
 import { NgxHelperToast } from './types';
 
@@ -17,7 +9,7 @@ import { NgxHelperToast } from './types';
 export class NgxHelperService {
     public viewContainerRef?: ViewContainerRef;
 
-    constructor(private readonly httpClient: HttpClient, private readonly dialog: MatDialog) {}
+    constructor(private readonly httpClient: HttpClient) {}
 
     private domError(): void {
         const errors: string[] = [
@@ -26,37 +18,6 @@ export class NgxHelperService {
         ];
         console.error(errors.join('\n'));
     }
-
-    private _dialogFullConfig: MatDialogConfig = {
-        autoFocus: false,
-        width: '100vw',
-        maxWidth: 'none',
-        height: '100vh',
-        maxHeight: 'none',
-        direction: 'rtl',
-        hasBackdrop: false,
-        panelClass: 'ngx-helper-full-dialog',
-    };
-
-    //#region IMAGE
-    showPreview(image: string, description?: string, html: boolean = false): void {
-        this.dialog.open(NgxHelperPreviewComponent, {
-            ...this._dialogFullConfig,
-            data: { image, description, html },
-        });
-    }
-
-    showGallery(
-        images: (string | { image: string; description?: string })[],
-        index?: number,
-        html: boolean = false,
-    ): void {
-        this.dialog.open(NgxHelperGalleryComponent, {
-            ...this._dialogFullConfig,
-            data: { index: index && images[index] ? index : 0, images, html },
-        });
-    }
-    //#endregion
 
     //#region TOAST
     private toastIndex: number = 0;
