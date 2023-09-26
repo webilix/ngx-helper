@@ -10,7 +10,6 @@ export { NGX_HELPER_LOADING_HEADER } from './lib/ngx-helper.values';
 export {
     NgxHelperButtonGroupComponent,
     NgxHelperCalendarComponent,
-    NgxHelperListComponent,
     NgxHelperLoadingComponent,
     NgxHelperPaginationComponent,
     NgxHelperParamsComponent,
@@ -49,7 +48,6 @@ export {
 export { NgxHelperConnectionService, NgxHelperLoadingService } from './lib/providers';
 
 export {
-    NgxHelperListMenu,
     INgxHelperParamsOrder,
     INgxHelperParamsUpdate,
     INgxHelperParamsValue,

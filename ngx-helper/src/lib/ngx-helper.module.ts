@@ -33,7 +33,6 @@ import {
     NgxHelperDialogComponent,
     NgxHelperDownloadComponent,
     NgxHelperGalleryComponent,
-    NgxHelperListComponent,
     NgxHelperLoadingComponent,
     NgxHelperPaginationComponent,
     NgxHelperParamsComponent,
@@ -86,7 +85,6 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperDialogComponent,
         NgxHelperDownloadComponent,
         NgxHelperGalleryComponent,
-        NgxHelperListComponent,
         NgxHelperLoadingComponent,
         NgxHelperPaginationComponent,
         NgxHelperParamsComponent,
@@ -132,7 +130,6 @@ import { NgxHelperService } from './ngx-helper.service';
 
         NgxHelperButtonGroupComponent,
         NgxHelperCalendarComponent,
-        NgxHelperListComponent,
         NgxHelperLoadingComponent,
         NgxHelperPaginationComponent,
         NgxHelperParamsComponent,

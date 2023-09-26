@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { NgxHelperModule } from '@webilix/ngx-helper';
 import { NgxHelperBoxModule } from '@webilix/ngx-helper/box';
+import { NgxHelperListModule } from '@webilix/ngx-helper/list';
 import { NgxHelperMenuModule } from '@webilix/ngx-helper/menu';
 
 import { AppComponent } from './app.component';
@@ -39,6 +40,7 @@ import { ValuesComponent } from './values/values.component';
 
         NgxHelperModule.forRoot(),
         NgxHelperBoxModule,
+        NgxHelperListModule,
         NgxHelperMenuModule,
     ],
     bootstrap: [AppComponent],

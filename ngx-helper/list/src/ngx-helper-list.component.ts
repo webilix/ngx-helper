@@ -4,7 +4,7 @@ import { Helper } from '@webilix/helper-library';
 
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 
-import { NgxHelperListMenu } from '../../types';
+import { NgxHelperListMenu } from './ngx-helper-list.type';
 
 @Component({
     selector: 'ngx-helper-list',
