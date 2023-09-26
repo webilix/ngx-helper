@@ -506,7 +506,7 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     print(type: 'URL' | 'BUFFER' | 'BLOB'): void {
-        const url: string = 'http://localhost:3000/download/sample.pdf';
+        const url: string = 'http://localhost:4200/assets/dummy.pdf';
         switch (type) {
             case 'URL':
                 this.ngxHelperHttpService.printPDF(url);

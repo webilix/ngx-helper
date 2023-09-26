@@ -26,11 +26,11 @@ export class NgxHelperHttpDownloadComponent implements AfterViewInit {
     @Input({ required: true }) path: string = '';
 
     public progress: number = 0;
+    public ngxHelperToastService!: NgxHelperToastService;
 
     constructor(
         @Inject('NGX_HELPER_LOADING_HEADER') private readonly loading: string,
         private readonly httpClient: HttpClient,
-        private readonly ngxHelperToastService: NgxHelperToastService,
     ) {}
 
     ngAfterViewInit(): void {

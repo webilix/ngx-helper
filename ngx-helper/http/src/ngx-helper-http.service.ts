@@ -37,6 +37,8 @@ export class NgxHelperHttpService {
         component.instance.name = name;
         component.instance.path = path;
 
+        component.instance.ngxHelperToastService = this.ngxHelperToastService;
+
         component.instance.close = () => {
             this.components = this.components.filter((c) => c.instance.index !== component.instance.index);
             this.updateComponentsBottom();
@@ -78,6 +80,8 @@ export class NgxHelperHttpService {
             maxSize: config.maxSize || '0B',
             mimes: config.mimes || [],
         };
+
+        component.instance.ngxHelperToastService = this.ngxHelperToastService;
 
         component.instance.close = (response: R, error: { status: HttpStatusCode; error: E }) => {
             this.components = this.components.filter((c) => c.instance.index !== component.instance.index);

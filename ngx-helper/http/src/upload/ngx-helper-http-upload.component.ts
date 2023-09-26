@@ -38,11 +38,9 @@ export class NgxHelperHttpUploadComponent<R, E> implements AfterViewInit {
     @Input({ required: true }) config: Partial<INgxHelperHttpUpload> = {};
 
     public progress: number = 0;
+    public ngxHelperToastService!: NgxHelperToastService;
 
-    constructor(
-        private readonly httpClient: HttpClient,
-        private readonly ngxHelperToastService: NgxHelperToastService,
-    ) {}
+    constructor(private readonly httpClient: HttpClient) {}
 
     ngAfterViewInit(): void {
         setTimeout(this.upload.bind(this), 500);
