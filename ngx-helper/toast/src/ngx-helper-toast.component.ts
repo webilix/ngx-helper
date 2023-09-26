@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 
-import { INgxHelperToastConfig } from '../../interfaces';
+import { INgxHelperToastConfig } from './ngx-helper-toast.interface';
 
 @Component({
     host: { selector: 'ngx-helper-toast' },

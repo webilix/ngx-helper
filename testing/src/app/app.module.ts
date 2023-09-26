@@ -22,6 +22,7 @@ import { NgxHelperPaginationModule } from '@webilix/ngx-helper/pagination';
 import { NgxHelperParamModule } from '@webilix/ngx-helper/param';
 import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
 import { NgxHelperPlateModule } from '@webilix/ngx-helper/plate';
+import { NgxHelperToastModule } from '@webilix/ngx-helper/toast';
 import { NgxHelperValueModule } from '@webilix/ngx-helper/value';
 
 import { AppComponent } from './app.component';
@@ -67,6 +68,7 @@ import { ValuesComponent } from './values/values.component';
         NgxHelperParamModule,
         NgxHelperPipeModule,
         NgxHelperPlateModule,
+        NgxHelperToastModule,
         NgxHelperValueModule,
     ],
     bootstrap: [AppComponent],

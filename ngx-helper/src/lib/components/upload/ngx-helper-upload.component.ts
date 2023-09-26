@@ -49,16 +49,16 @@ export class NgxHelperUploadComponent<R, E> implements AfterViewInit {
 
         const maxSize: number = Helper.STRING.toFileSize(this.config.maxSize || '0B');
         if (maxSize && this.file.size > maxSize) {
-            this.ngxHelperService.toast('ERROR', `حداکثر حجم فایل می‌تواند ${Helper.NUMBER.toFileSize(maxSize)} باشد.`);
+            // this.ngxHelperService.toast('ERROR', `حداکثر حجم فایل می‌تواند ${Helper.NUMBER.toFileSize(maxSize)} باشد.`);
             this.close(undefined, undefined);
             return;
         }
 
         if (this.config.mimes && this.config.mimes.length !== 0 && !this.config.mimes.includes(this.file.type)) {
-            this.ngxHelperService.toast('ERROR', [
-                'فرمت فایل انتخاب شده مجاز نیست.',
-                `فرمت‌های مجاز: ${this.config.mimes.join(', ')}`,
-            ]);
+            // this.ngxHelperService.toast('ERROR', [
+            //     'فرمت فایل انتخاب شده مجاز نیست.',
+            //     `فرمت‌های مجاز: ${this.config.mimes.join(', ')}`,
+            // ]);
             this.close(undefined, undefined);
             return;
         }

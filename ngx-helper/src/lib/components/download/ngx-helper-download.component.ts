@@ -67,7 +67,7 @@ export class NgxHelperDownloadComponent implements AfterViewInit {
     }
 
     error(): void {
-        this.ngxHelperService.toast('ERROR', `امکان دانلود فایل ${this.name} وجود ندارد.`);
+        // this.ngxHelperService.toast('ERROR', `امکان دانلود فایل ${this.name} وجود ندارد.`);
         this.close();
     }
 

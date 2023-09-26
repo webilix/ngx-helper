@@ -1,9 +1,8 @@
 import { ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
 import { HttpClient, HttpStatusCode } from '@angular/common/http';
 
-import { NgxHelperDownloadComponent, NgxHelperToastComponent, NgxHelperUploadComponent } from './components';
-import { INgxHelperToastConfig, INgxHelperUpload } from './interfaces';
-import { NgxHelperToast } from './types';
+import { NgxHelperDownloadComponent, NgxHelperUploadComponent } from './components';
+import { INgxHelperUpload } from './interfaces';
 
 @Injectable()
 export class NgxHelperService {
@@ -18,49 +17,6 @@ export class NgxHelperService {
         ];
         console.error(errors.join('\n'));
     }
-
-    //#region TOAST
-    private toastIndex: number = 0;
-    private toasts: ComponentRef<NgxHelperToastComponent>[] = [];
-
-    private updateToastsTop(): void {
-        let top: number = 0;
-        this.toasts.forEach((toast, index: number) => {
-            toast.instance.top = `calc(${index / 2}rem + calc(${top}px + 1rem))`;
-            top += +toast.instance.elementRef.nativeElement.offsetHeight;
-        });
-    }
-
-    toast(type: NgxHelperToast, message: string | string[], timeout?: number, callback?: () => void): void;
-    toast(config: INgxHelperToastConfig, message: string | string[], timeout?: number, callback?: () => void): void;
-    toast(arg1: any, message: string | string[], timeout?: number, callback?: () => void): void {
-        if (!this.viewContainerRef) return this.domError();
-
-        const configs: { [key in NgxHelperToast]: INgxHelperToastConfig } = {
-            ERROR: { icon: 'cancel', foreColor: '#fff', backColor: '#bd362f' },
-            INFO: { icon: 'warning_amber', foreColor: '#fff', backColor: '#2f96b4' },
-            SUCCESS: { icon: 'done_all', foreColor: '#fff', backColor: '#51a351' },
-            WARNING: { icon: 'info', foreColor: '#fff', backColor: '#f89406' },
-        };
-
-        const toast = this.viewContainerRef.createComponent(NgxHelperToastComponent);
-        toast.instance.index = ++this.toastIndex;
-        toast.instance.config = typeof arg1 === 'string' ? configs[arg1 as NgxHelperToast] : arg1;
-        toast.instance.message = Array.isArray(message) ? message : [message];
-        toast.instance.timeout = timeout === undefined || timeout < 0 ? 5 : timeout;
-
-        toast.instance.close = () => {
-            this.toasts = this.toasts.filter((t) => t.instance.index !== toast.instance.index);
-            this.updateToastsTop();
-            toast.destroy();
-
-            if (callback) callback();
-        };
-
-        this.toasts.push(toast);
-        this.updateToastsTop();
-    }
-    //#endregion
 
     //#region DOWNLOAD and UPLOAD
     private componentIndex: number = 0;
@@ -144,7 +100,7 @@ export class NgxHelperService {
                 this.httpClient.get(data, { responseType: 'arraybuffer' }).subscribe({
                     next: (response) => resolve(new Blob([response], { type: 'application/pdf' })),
                     error: () => {
-                        this.toast('ERROR', 'امکان دانلود فایل وجود ندارد.');
+                        // this.toast('ERROR', 'امکان دانلود فایل وجود ندارد.');
                         reject();
                     },
                 });

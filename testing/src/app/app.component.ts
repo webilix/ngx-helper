@@ -20,6 +20,7 @@ import { NgxHelperDialogService } from '@webilix/ngx-helper/dialog';
 import { NgxHelperImageService } from '@webilix/ngx-helper/image';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 import { INgxHelperParamOrder, INgxHelperParamUpdate, NgxHelperParam } from '@webilix/ngx-helper/param';
+import { NgxHelperToastService } from '@webilix/ngx-helper/toast';
 
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { BoxComponent } from './box/box.component';
@@ -238,6 +239,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private readonly ngxHelperImageService: NgxHelperImageService,
         private readonly ngxHelperConnectionService: NgxHelperConnectionService,
         private readonly ngxHelperLoadingService: NgxHelperLoadingService,
+        private readonly ngxHelperToastService: NgxHelperToastService,
     ) {}
 
     ngOnInit(): void {
@@ -329,11 +331,11 @@ export class AppComponent implements OnInit, OnDestroy {
     toast(type: 'ERROR' | 'INFO' | 'SUCCESS' | 'WARNING'): void {
         const index: number = type === 'ERROR' ? 0 : type === 'INFO' ? 1 : type === 'SUCCESS' ? 2 : 3;
         const message: string[] = Array(index + 1).fill('نمایش تست: شیوه نمایش ' + type);
-        this.ngxHelperService.toast(type, message, index * 4, () => this.log(`TOAST: ${type}`));
+        this.ngxHelperToastService.toast(type, message, index * 4, () => this.log(`TOAST: ${type}`));
     }
 
     customToast(): void {
-        this.ngxHelperService.toast(
+        this.ngxHelperToastService.toast(
             { icon: 'download', foreColor: '#ccc', backColor: '#246' },
             ['دانلود اطلاعات ثبت شده با موفقیت انجام شد.', 'این پیام با شیوه نمایش سفارشی نمایش داده می‌شود.'],
             25,

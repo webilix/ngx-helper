@@ -12,7 +12,7 @@ import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
 
 import { INgxHelperStyle } from './interfaces';
 
-import { NgxHelperDownloadComponent, NgxHelperToastComponent, NgxHelperUploadComponent } from './components';
+import { NgxHelperDownloadComponent, NgxHelperUploadComponent } from './components';
 
 import { NgxHelperPersianNumberDirective } from './directives';
 
@@ -28,7 +28,6 @@ import { NgxHelperService } from './ngx-helper.service';
         NgxHelperComponent,
 
         NgxHelperDownloadComponent,
-        NgxHelperToastComponent,
         NgxHelperUploadComponent,
     ],
     imports: [CommonModule, RouterModule, HttpClientModule, MatIconModule, MatProgressBarModule, NgxHelperPipeModule],
