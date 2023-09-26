@@ -17,6 +17,7 @@ import {
 } from '@webilix/ngx-helper';
 import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
 import { NgxHelperConfirmService } from '@webilix/ngx-helper/confirm';
+import { NgxHelperCoordinatesService } from '@webilix/ngx-helper/coordinates';
 import { NgxHelperDialogService } from '@webilix/ngx-helper/dialog';
 import { INgxHelperButtonGroup } from '@webilix/ngx-helper/button-group';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
@@ -232,6 +233,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private readonly ngxHelperService: NgxHelperService,
         private readonly ngxHelperBottomSheetService: NgxHelperBottomSheetService,
         private readonly ngxHelperConfirmService: NgxHelperConfirmService,
+        private readonly ngxHelperCoordinatesService: NgxHelperCoordinatesService,
         private readonly ngxHelperDialogService: NgxHelperDialogService,
         private readonly ngxHelperConnectionService: NgxHelperConnectionService,
         private readonly ngxHelperLoadingService: NgxHelperLoadingService,
@@ -463,15 +465,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
     getCoordinates(type: number): void {
         (type === 1
-            ? this.ngxHelperService.getCoordinates(undefined, { zoom: 5 })
+            ? this.ngxHelperCoordinatesService.get(undefined, { zoom: 5 })
             : type === 2
-            ? this.ngxHelperService.getCoordinates(undefined, { image: '/assets/pin.png', zoom: 5 })
+            ? this.ngxHelperCoordinatesService.get(undefined, { image: '/assets/pin.png', zoom: 5 })
             : type === 3
-            ? this.ngxHelperService.getCoordinates(undefined, {
+            ? this.ngxHelperCoordinatesService.get(undefined, {
                   image: '/assets/pin.png',
                   view: { latitude: 35.6997382, longitude: 51.3380603 },
               })
-            : this.ngxHelperService.getCoordinates(
+            : this.ngxHelperCoordinatesService.get(
                   { latitude: 35.6997382, longitude: 51.3380603 },
                   { image: '/assets/pin.png', view: { latitude: 0, longitude: 0 } },
               )
@@ -484,16 +486,16 @@ export class AppComponent implements OnInit, OnDestroy {
     showCoordinates(type: number): void {
         switch (type) {
             case 1:
-                this.ngxHelperService.showCoordinates(
+                this.ngxHelperCoordinatesService.show(
                     { latitude: 35.6997382, longitude: 51.3380603 },
                     { image: '/assets/pin.png' },
                 );
                 break;
             case 2:
-                this.ngxHelperService.showCoordinates({ latitude: 35.6997382, longitude: 51.3380603 });
+                this.ngxHelperCoordinatesService.show({ latitude: 35.6997382, longitude: 51.3380603 });
                 break;
             case 3:
-                this.ngxHelperService.showCoordinates(
+                this.ngxHelperCoordinatesService.show(
                     { latitude: 35.6997382, longitude: 51.3380603 },
                     { image: '/assets/pin.png', zoom: 17 },
                 );

@@ -14,8 +14,6 @@ export {
     INgxHelperCalendarPeriod,
     INgxHelperCalendarValue,
     NgxHelperCalendar,
-    INgxHelperCoordinates,
-    INgxHelperCoordinatesConfig,
     INgxHelperToastConfig,
     INgxHelperUpload,
 } from './lib/interfaces';

@@ -12,7 +12,7 @@ import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import interactionDoubleClickZoom from 'ol/interaction/DoubleClickZoom';
 
-import { INgxHelperCoordinates, INgxHelperCoordinatesConfig } from '../../../interfaces';
+import { INgxHelperCoordinates, INgxHelperCoordinatesConfig } from '../ngx-helper-coordinates.interface';
 
 @Component({
     host: { selector: 'ngx-helper-coordinates-get' },

@@ -10,7 +10,7 @@ import TileLayer from 'ol/layer/Tile';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 
-import { INgxHelperCoordinates, INgxHelperCoordinatesConfig } from '../../../interfaces';
+import { INgxHelperCoordinates, INgxHelperCoordinatesConfig } from '../ngx-helper-coordinates.interface';
 
 @Component({
     host: { selector: 'ngx-helper-coordinates-show' },

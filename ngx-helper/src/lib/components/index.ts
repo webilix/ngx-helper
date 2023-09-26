@@ -4,9 +4,6 @@ export * from './calendar/week/ngx-helper-calendar-week.component';
 export * from './calendar/year/ngx-helper-calendar-year.component';
 export * from './calendar/ngx-helper-calendar.component';
 
-export * from './coordinates/get/ngx-helper-coordinates-get.component';
-export * from './coordinates/show/ngx-helper-coordinates-show.component';
-
 export * from './download/ngx-helper-download.component';
 
 export * from './gallery/ngx-helper-gallery.component';
