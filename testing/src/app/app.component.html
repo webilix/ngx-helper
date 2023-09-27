@@ -85,6 +85,21 @@
 </div>
 
 <div class="buttons">
+    <button mat-flat-button type="button" color="warn" style="background-color: #bd362f" (click)="toastERROR()">
+        ERROR
+    </button>
+    <button mat-flat-button type="button" color="accent" style="background-color: #2f96b4" (click)="toastINFO()">
+        INFO
+    </button>
+    <button mat-flat-button type="button" color="primary" style="background-color: #51a351" (click)="toastSUCCESS()">
+        SUCCESS
+    </button>
+    <button mat-flat-button type="button" color="primary" style="background-color: #f89406" (click)="toastWARNING()">
+        WARNING
+    </button>
+</div>
+
+<div class="buttons">
     <button mat-flat-button type="button" color="primary" (click)="getDate(1)">DATE</button>
     <button mat-flat-button type="button" color="primary" (click)="getDate(2)">DATE</button>
     <button mat-flat-button type="button" color="primary" (click)="getDate(3)">DATE</button>

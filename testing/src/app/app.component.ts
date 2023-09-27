@@ -333,6 +333,22 @@ export class AppComponent implements OnInit, OnDestroy {
         this.ngxHelperToastService.toast(type, message, index * 4, () => this.log(`TOAST: ${type}`));
     }
 
+    toastERROR(): void {
+        this.ngxHelperToastService.error('ERROR');
+    }
+
+    toastINFO(): void {
+        this.ngxHelperToastService.info('INFO');
+    }
+
+    toastSUCCESS(): void {
+        this.ngxHelperToastService.success('SUCCESS');
+    }
+
+    toastWARNING(): void {
+        this.ngxHelperToastService.warning('WARNING');
+    }
+
     customToast(): void {
         this.ngxHelperToastService.toast(
             { icon: 'download', foreColor: '#ccc', backColor: '#246' },

@@ -28,10 +28,10 @@ export class NgxHelperToastService {
         if (!viewContainerRef) return;
 
         const configs: { [key in NgxHelperToast]: INgxHelperToastConfig } = {
-            ERROR: { icon: 'cancel', foreColor: '#fff', backColor: '#bd362f' },
             INFO: { icon: 'warning_amber', foreColor: '#fff', backColor: '#2f96b4' },
             SUCCESS: { icon: 'done_all', foreColor: '#fff', backColor: '#51a351' },
             WARNING: { icon: 'info', foreColor: '#fff', backColor: '#f89406' },
+            ERROR: { icon: 'cancel', foreColor: '#fff', backColor: '#bd362f' },
         };
 
         const toast = viewContainerRef.createComponent(NgxHelperToastComponent);
@@ -50,5 +50,21 @@ export class NgxHelperToastService {
 
         this.toasts.push(toast);
         this.updateToastsTop();
+    }
+
+    info(message: string | string[], timeout?: number, callback?: () => void): void {
+        this.toast('INFO', message, timeout, callback);
+    }
+
+    success(message: string | string[], timeout?: number, callback?: () => void): void {
+        this.toast('SUCCESS', message, timeout, callback);
+    }
+
+    warning(message: string | string[], timeout?: number, callback?: () => void): void {
+        this.toast('WARNING', message, timeout, callback);
+    }
+
+    error(message: string | string[], timeout?: number, callback?: () => void): void {
+        this.toast('ERROR', message, timeout, callback);
     }
 }

@@ -1,1 +1,1 @@
-export type NgxHelperToast = 'ERROR' | 'INFO' | 'SUCCESS' | 'WARNING';
+export type NgxHelperToast = 'INFO' | 'SUCCESS' | 'WARNING' | 'ERROR';
