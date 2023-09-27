@@ -5,7 +5,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
-import { NgxHelperProgressModule } from '@webilix/ngx-helper/progress';
+import { NgxHelperLoaderModule } from '@webilix/ngx-helper/loader';
 
 import { NgxHelperImageService } from './ngx-helper-image.service';
 import { NgxHelperImagePreviewComponent } from './preview/ngx-helper-image-preview.component';
@@ -13,7 +13,7 @@ import { NgxHelperImageGalleryComponent } from './gallery/ngx-helper-image-galle
 
 @NgModule({
     declarations: [NgxHelperImagePreviewComponent, NgxHelperImageGalleryComponent],
-    imports: [CommonModule, MatDialogModule, MatIconModule, NgxHelperPipeModule, NgxHelperProgressModule],
+    imports: [CommonModule, MatDialogModule, MatIconModule, NgxHelperPipeModule, NgxHelperLoaderModule],
     providers: [NgxHelperImageService],
 })
 export class NgxHelperImageModule {}

@@ -1,5 +1,5 @@
 <div class="ngx-helper-preview" mat-dialog-close>
-    <ngx-helper-progress *ngIf="loading"></ngx-helper-progress>
+    <ngx-helper-loader *ngIf="loading"></ngx-helper-loader>
     <ng-container *ngIf="!loading">
         <img
             [src]="image"

@@ -23,12 +23,12 @@
             "@webilix/ngx-helper/http": ["ngx-helper/http/public-api"],
             "@webilix/ngx-helper/image": ["ngx-helper/image/public-api"],
             "@webilix/ngx-helper/list": ["ngx-helper/list/public-api"],
+            "@webilix/ngx-helper/loader": ["ngx-helper/loader/public-api"],
             "@webilix/ngx-helper/menu": ["ngx-helper/menu/public-api"],
             "@webilix/ngx-helper/pagination": ["ngx-helper/pagination/public-api"],
             "@webilix/ngx-helper/param": ["ngx-helper/param/public-api"],
             "@webilix/ngx-helper/pipe": ["ngx-helper/pipe/public-api"],
             "@webilix/ngx-helper/plate": ["ngx-helper/plate/public-api"],
-            "@webilix/ngx-helper/progress": ["ngx-helper/progress/public-api"],
             "@webilix/ngx-helper/toast": ["ngx-helper/toast/public-api"],
             "@webilix/ngx-helper/value": ["ngx-helper/value/public-api"]
         },
