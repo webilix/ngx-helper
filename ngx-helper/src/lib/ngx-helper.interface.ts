@@ -15,3 +15,9 @@ export interface INgxHelperStyle {
 
     dialogWidth: string;
 }
+
+export interface INgxHelperConfig {
+    style?: Partial<INgxHelperStyle>;
+    timezone?: string;
+    toastXPosition?: 'LEFT' | 'CENTER' | 'RIGHT';
+}

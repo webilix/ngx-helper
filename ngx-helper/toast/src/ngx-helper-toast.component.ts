@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 import { INgxHelperToastConfig } from './ngx-helper-toast.interface';
@@ -17,8 +17,8 @@ export class NgxHelperToastComponent implements OnInit, OnDestroy {
     @HostListener('click') private onClick = () => this.close();
 
     @HostBinding('@host') private host: boolean = true;
-    @HostBinding('style.top') top: string = '1rem';
     @HostBinding('className') className: string = '';
+    @HostBinding('style.top') top: string = '1rem';
     @HostBinding('style.backgroundColor') backgroundColor: string = '';
 
     @Input({ required: true }) config?: INgxHelperToastConfig;
@@ -30,12 +30,17 @@ export class NgxHelperToastComponent implements OnInit, OnDestroy {
     public start: number = 0;
     public interval?: any;
 
-    constructor(public readonly elementRef: ElementRef) {}
+    constructor(
+        @Inject('NGX_HELPER_TOAST_XPOSITION') public readonly xPosition: 'LEFT' | 'CENTER' | 'RIGHT',
+        public readonly elementRef: ElementRef,
+    ) {}
 
     ngOnInit(): void {
         if (!this.config) return;
-        this.className = 'ngx-helper-toast';
         this.backgroundColor = this.config.backColor;
+
+        const xPosition: 'LEFT' | 'CENTER' | 'RIGHT' = this.xPosition || 'CENTER';
+        this.className = 'ngx-helper-toast-' + xPosition.toLowerCase();
 
         if (this.timeout === 0) return;
         this.start = new Date().getTime();

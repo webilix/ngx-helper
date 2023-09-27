@@ -3,7 +3,7 @@
 
     width: calc(100vw - 4rem);
     max-width: 300px;
-    transition: all 0.35s ease-out;
+    transition: top 0.35s ease-out;
     z-index: 5000;
     cursor: pointer;
 
@@ -12,8 +12,19 @@
 
     position: fixed;
     top: 1rem;
+}
+
+::ng-deep .ngx-helper-toast-center {
     left: 50%;
     transform: translate(-50%, 0);
+}
+
+::ng-deep .ngx-helper-toast-left {
+    left: 1rem;
+}
+
+::ng-deep .ngx-helper-toast-right {
+    right: 1rem;
 }
 
 content {

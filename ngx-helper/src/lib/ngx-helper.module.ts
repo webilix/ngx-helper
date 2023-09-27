@@ -7,7 +7,7 @@ import { JalaliDateTime } from '@webilix/jalali-date-time';
 import { NgxHelperDateInterceptor, NgxHelperLoadingInterceptor } from './interceptors';
 
 import { NgxHelperComponent } from './ngx-helper.component';
-import { INgxHelperStyle } from './ngx-helper.interface';
+import { INgxHelperConfig, INgxHelperStyle } from './ngx-helper.interface';
 import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
 
 @NgModule({
@@ -17,13 +17,8 @@ import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
     providers: [provideHttpClient(withInterceptors([NgxHelperLoadingInterceptor, NgxHelperDateInterceptor]))],
 })
 export class NgxHelperModule {
-    static forRoot(): ModuleWithProviders<NgxHelperModule>;
-    static forRoot(timezone: string): ModuleWithProviders<NgxHelperModule>;
-    static forRoot(style: Partial<INgxHelperStyle>): ModuleWithProviders<NgxHelperModule>;
-    static forRoot(timezone: string, style: Partial<INgxHelperStyle>): ModuleWithProviders<NgxHelperModule>;
-    static forRoot(arg1?: any, arg2?: any): ModuleWithProviders<NgxHelperModule> {
-        const style: Partial<INgxHelperStyle> =
-            arg1 && typeof arg1 !== 'string' ? arg1 : arg2 && typeof arg2 !== 'string' ? arg2 : {};
+    static forRoot(config?: INgxHelperConfig): ModuleWithProviders<NgxHelperModule> {
+        const style: Partial<INgxHelperStyle> = config?.style || {};
         const primaryColor: string = style.primaryColor || 'rgb(29, 91, 116)';
 
         const root: string =
@@ -68,15 +63,19 @@ export class NgxHelperModule {
         html.innerHTML = root;
         document.getElementsByTagName('head')[0].appendChild(html);
 
-        let timezone: string = typeof arg1 === 'string' ? arg1 : 'Asia/Tehran';
-        if (!JalaliDateTime().timezones().includes(timezone)) timezone = 'Asia/Tehran';
+        const timezone: string =
+            config?.timezone && JalaliDateTime().timezones().includes(config.timezone)
+                ? config.timezone
+                : 'Asia/Tehran';
+        const toastXPosition: 'LEFT' | 'CENTER' | 'RIGHT' = config?.toastXPosition || 'CENTER';
 
         return {
             ngModule: NgxHelperModule,
             providers: [
-                { provide: 'NGX_HELPER_TIMEZONE', useValue: timezone },
-                { provide: 'NGX_HELPER_PRIMARY_COLOR', useValue: primaryColor },
                 { provide: 'NGX_HELPER_LOADING_HEADER', useValue: NGX_HELPER_LOADING_HEADER },
+                { provide: 'NGX_HELPER_PRIMARY_COLOR', useValue: primaryColor },
+                { provide: 'NGX_HELPER_TIMEZONE', useValue: timezone },
+                { provide: 'NGX_HELPER_TOAST_XPOSITION', useValue: toastXPosition },
             ],
         };
     }
