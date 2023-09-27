@@ -1,6 +1,9 @@
 <mat-icon
+    [fontIcon]="'motion_photos_on'"
     [ngClass]="['ngx-helper-icon', 'ngx-helper-color-' + color]"
-    [ngStyle]="{ transform: 'rotate(' + rotate.toString() + 'deg)' }"
+    [ngStyle]="{
+        transform: 'rotate(' + rotate.toString() + 'deg)',
+        'font-size': 'calc(var(--ngxHelperIconSize) * ' + this.size,
+    }"
 >
-    rotate_right
 </mat-icon>
