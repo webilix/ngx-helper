@@ -23,7 +23,7 @@
         "@angular/router": "^16.2.7",
         "@webilix/helper-library": "^4.5.2",
         "@webilix/jalali-date-time": "^1.2.5",
-        "ngx-mask": "^16.3.6",
+        "ngx-mask": "^16.3.8",
         "ol": "^8.1.0",
         "rxjs": "~7.8.1",
         "tslib": "^2.6.2",
@@ -41,7 +41,7 @@
         "karma-jasmine": "~5.1.0",
         "karma-jasmine-html-reporter": "~2.1.0",
         "ng-packagr": "^16.2.3",
-        "rimraf": "^5.0.1",
+        "rimraf": "^5.0.5",
         "typescript": "~5.1.6"
     }
 }
