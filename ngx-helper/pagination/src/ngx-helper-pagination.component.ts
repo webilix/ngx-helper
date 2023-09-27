@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 
 @Component({
     selector: 'ngx-helper-pagination',
@@ -6,6 +6,8 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
     styleUrls: ['./ngx-helper-pagination.component.scss'],
 })
 export class NgxHelperPaginationComponent implements OnChanges {
+    @HostBinding('className') className: string = '';
+
     @Input({ required: true }) current?: number;
     @Input({ required: true }) total?: number;
     @Input({ required: false }) margin: number = 1;
@@ -16,8 +18,10 @@ export class NgxHelperPaginationComponent implements OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         this.list = [];
+        this.className = 'ngx-helper-hidden';
         if (!this.current || !this.total || this.total < 2) return;
 
+        this.className = '';
         const total: number = this.total;
         const current: number = this.current;
 

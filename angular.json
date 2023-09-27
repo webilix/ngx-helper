@@ -50,12 +50,7 @@
                             "node_modules/ol/ol.css"
                         ],
                         "scripts": [],
-                        "allowedCommonJsDependencies": [
-                            "@webilix/helper-library",
-                            "@webilix/jalali-date-time",
-                            "@webilix/validator-library",
-                            "rbush"
-                        ]
+                        "allowedCommonJsDependencies": ["@webilix/helper-library", "@webilix/jalali-date-time", "rbush"]
                     },
                     "configurations": {
                         "production": {

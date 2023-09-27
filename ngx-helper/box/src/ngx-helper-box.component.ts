@@ -4,6 +4,7 @@ import {
     ChangeDetectorRef,
     Component,
     ElementRef,
+    HostBinding,
     Input,
     OnChanges,
     SimpleChanges,
@@ -21,6 +22,8 @@ import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 })
 export class NgxHelperBoxComponent implements OnChanges, AfterViewInit {
     @ViewChild('contentView') private readonly contentView?: ElementRef;
+
+    @HostBinding('className') className: string = '';
 
     @Input({ required: true }) title!: string;
 
@@ -40,10 +43,12 @@ export class NgxHelperBoxComponent implements OnChanges, AfterViewInit {
 
     ngAfterViewInit(): void {
         this.show = true;
+        this.className = !this.title || !this.show ? 'ngx-helper-hidden' : '';
         if (!this.contentView || this.component) return;
 
         const contentView: HTMLDivElement = this.contentView.nativeElement;
         this.show = contentView.children.length !== 0;
+        this.className = !this.title || !this.show ? 'ngx-helper-hidden' : '';
         this.changeDetectorRef.detectChanges();
     }
 }

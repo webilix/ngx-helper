@@ -1,6 +1,7 @@
 import {
     Component,
     EventEmitter,
+    HostBinding,
     Input,
     OnChanges,
     OnDestroy,
@@ -21,6 +22,8 @@ import { NgxHelperMenu } from './ngx-helper-menu.type';
 })
 export class NgxHelperMenuComponent implements OnInit, OnDestroy, OnChanges {
     @ViewChild(MatMenuTrigger) matMenuTrigger?: MatMenuTrigger;
+
+    @HostBinding('className') className: string = '';
 
     @Input({ required: true }) menu!: NgxHelperMenu[];
 
@@ -47,6 +50,7 @@ export class NgxHelperMenuComponent implements OnInit, OnDestroy, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        this.className = 'ngx-helper-hidden';
         if (this.menu.length === 0) return;
 
         if (!this.icon && !this.title) this.icon = 'more_vert';
@@ -60,6 +64,10 @@ export class NgxHelperMenuComponent implements OnInit, OnDestroy, OnChanges {
         while (this.menu.length !== 0 && this.menu[this.menu.length - 1] === 'SEPERATOR')
             this.menu = this.menu.slice(0, this.menu.length - 1);
 
+        this.className =
+            this.menu.length === 0 || (this.menu.length === 1 && this.menu[0] === 'SEPERATOR')
+                ? 'ngx-helper-hidden'
+                : '';
         this.menuChange.emit(this.menu);
     }
 

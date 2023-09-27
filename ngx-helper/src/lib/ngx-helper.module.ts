@@ -58,7 +58,8 @@ export class NgxHelperModule {
             '}' +
             '.ngx-helper-color-primary {color: var(--ngxHelperPrimaryColor) !important}' +
             '.ngx-helper-color-accent {color: var(--ngxHelperAccentColor) !important}' +
-            '.ngx-helper-color-warn {color: var(--ngxHelperWarnColor) !important}';
+            '.ngx-helper-color-warn {color: var(--ngxHelperWarnColor) !important}' +
+            '.ngx-helper-hidden {display: none !important}';
         const html: HTMLStyleElement = document.createElement('style');
         html.innerHTML = root;
         document.getElementsByTagName('head')[0].appendChild(html);

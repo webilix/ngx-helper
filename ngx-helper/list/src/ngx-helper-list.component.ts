@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { Helper } from '@webilix/helper-library';
 
@@ -12,15 +12,18 @@ import { NgxHelperListMenu } from './ngx-helper-list.type';
     styleUrls: ['./ngx-helper-list.component.scss'],
 })
 export class NgxHelperListComponent<D> implements OnChanges {
+    @HostBinding('className') className: string = '';
+
     @Input({ required: true }) data!: D;
     @Input({ required: true }) id!: string;
-
     @Input({ required: false }) menu: NgxHelperListMenu<D>[] = [];
     @Input({ required: false }) deactive: boolean = false;
 
     public ngxMenu: NgxHelperMenu[] = [];
 
     ngOnChanges(changes: SimpleChanges): void {
+        this.className = !this.id || !this.data ? 'ngx-helper-hidden' : '';
+
         this.ngxMenu = this.menu
             .filter(
                 (menu: NgxHelperListMenu<D>) =>

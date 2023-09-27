@@ -32,7 +32,7 @@ import { NgxHelperParamPlateComponent } from './plate/ngx-helper-param-plate.com
     styleUrls: ['./ngx-helper-param.component.scss'],
 })
 export class NgxHelperParamComponent implements OnInit, OnChanges {
-    @HostBinding('style.display') private display: string = 'block';
+    @HostBinding('className') className: string = '';
 
     @Input({ required: false }) route: string[] = ['/'];
     @Input({ required: false }) page: number = 1;
@@ -69,7 +69,7 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
             else this.paramGroups[this.paramGroups.length - 1].push(param);
         });
         this.paramGroups = this.paramGroups.filter((group) => group.length !== 0);
-        this.display = this.paramGroups.length === 0 ? 'none' : 'block';
+        this.className = this.paramGroups.length === 0 ? 'ngx-helper-hidden' : '';
 
         if (changes['page']) {
             if (!changes['page'].firstChange) this.updateRoute();

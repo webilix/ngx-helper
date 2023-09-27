@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 import { Helper } from '@webilix/helper-library';
@@ -19,6 +19,8 @@ import { NgxHelperValuePipe } from './ngx-helper-value.pipe';
     ],
 })
 export class NgxHelperValueComponent implements OnChanges {
+    @HostBinding('className') className: string = '';
+
     @Input({ required: true }) values: INgxHelperValue[] = [];
     @Input({ required: false }) width: number = 100;
     @Input({ required: false }) border: boolean = true;
@@ -30,6 +32,8 @@ export class NgxHelperValueComponent implements OnChanges {
     constructor(private readonly ngxHelperValuePipe: NgxHelperValuePipe) {}
 
     ngOnChanges(changes: SimpleChanges): void {
+        this.className = this.values.length === 0 ? 'ngx-helper-hidden' : '';
+
         this.copy = Array(this.values.length).fill('');
         this.values.forEach((value: INgxHelperValue, index: number) => {
             if (typeof value.value === 'string') this.copy[index] = value.value;
