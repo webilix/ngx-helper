@@ -48,4 +48,34 @@ export class NgxHelperConfirmService {
             .afterDismissed()
             .subscribe((result: INgxHelperConfirmResponse) => result && result.confirmed && callback(result.value));
     }
+
+    active(item: string, callback: (description?: string) => void): void;
+    active(item: string, config: Partial<INgxHelperConfirmConfig>, callback: (description?: string) => void): void;
+    active(item: string, arg1: any, arg2?: any): void {
+        this.verify('ACTIVE', item, arg1, arg2);
+    }
+
+    archive(item: string, callback: (description?: string) => void): void;
+    archive(item: string, config: Partial<INgxHelperConfirmConfig>, callback: (description?: string) => void): void;
+    archive(item: string, arg1: any, arg2?: any): void {
+        this.verify('ARCHIVE', item, arg1, arg2);
+    }
+
+    block(item: string, callback: (description?: string) => void): void;
+    block(item: string, config: Partial<INgxHelperConfirmConfig>, callback: (description?: string) => void): void;
+    block(item: string, arg1: any, arg2?: any): void {
+        this.verify('BLOCK', item, arg1, arg2);
+    }
+
+    deactive(item: string, callback: (description?: string) => void): void;
+    deactive(item: string, config: Partial<INgxHelperConfirmConfig>, callback: (description?: string) => void): void;
+    deactive(item: string, arg1: any, arg2?: any): void {
+        this.verify('DEACTIVE', item, arg1, arg2);
+    }
+
+    delete(item: string, callback: (description?: string) => void): void;
+    delete(item: string, config: Partial<INgxHelperConfirmConfig>, callback: (description?: string) => void): void;
+    delete(item: string, arg1: any, arg2?: any): void {
+        this.verify('DELETE', item, arg1, arg2);
+    }
 }
