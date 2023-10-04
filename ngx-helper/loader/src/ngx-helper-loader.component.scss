@@ -1,3 +1,23 @@
 mat-icon {
     display: inline-block;
 }
+
+.ngx-helper-icon-1 {
+    font-size: var(--ngxHelperIconSize) !important;
+}
+
+.ngx-helper-icon-2 {
+    font-size: calc(var(--ngxHelperIconSize) * 2) !important;
+}
+
+.ngx-helper-icon-3 {
+    font-size: calc(var(--ngxHelperIconSize) * 3) !important;
+}
+
+.ngx-helper-icon-4 {
+    font-size: calc(var(--ngxHelperIconSize) * 4) !important;
+}
+
+.ngx-helper-icon-5 {
+    font-size: calc(var(--ngxHelperIconSize) * 5) !important;
+}
