@@ -1,4 +1,4 @@
-<div class="ngx-helper-tags" *ngIf="tags.length !== 0">
+<div class="ngx-helper-tags" *ngIf="tags.length !== 0" [ngStyle]="{ padding: padding || 0 }">
     <div
         [ngClass]="['tag', 'ngx-helper-color-' + (tag.color || 'primary')]"
         *ngFor="let tag of tags"

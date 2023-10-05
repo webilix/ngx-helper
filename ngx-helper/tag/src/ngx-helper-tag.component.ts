@@ -12,6 +12,7 @@ export class NgxHelperTagComponent implements OnChanges {
     @HostBinding('className') className: string = '';
 
     @Input({ required: true }) tags!: INgxHelperTag[];
+    @Input({ required: false }) padding?: string;
 
     constructor(private readonly router: Router) {}
 
