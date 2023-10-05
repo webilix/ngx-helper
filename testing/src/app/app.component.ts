@@ -17,6 +17,7 @@ import { NgxHelperImageService } from '@webilix/ngx-helper/image';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 import { INgxHelperParamOrder, INgxHelperParamUpdate, NgxHelperParam } from '@webilix/ngx-helper/param';
 import { NgxHelperToastService } from '@webilix/ngx-helper/toast';
+import { INgxHelperTag } from '@webilix/ngx-helper/tag';
 
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
 import { BoxComponent } from './box/box.component';
@@ -222,6 +223,22 @@ export class AppComponent implements OnInit, OnDestroy {
     private _onLoadingChanged?: Subscription;
 
     public coordinates?: IGeoCoordinates | false;
+
+    public tags: INgxHelperTag[] = [
+        { value: 'تگ' },
+        { icon: 'collections', value: 'تصاویر' },
+        { icon: 'add', value: 'دارای آیکون' },
+        { icon: 'schedule', value: { type: 'DATE', value: new Date() } },
+        { icon: 'schedule', value: { type: 'DATE', value: new Date(), format: 'H:I:S' }, color: 'warn' },
+        {
+            icon: 'phone_iphone',
+            value: { type: 'MOBILE', value: '09123456789', english: true },
+            description: 'توضیحات',
+            color: 'primary',
+        },
+        { icon: 'link', value: 'لینک', click: ['/view'] },
+        { icon: 'ads_click', value: 'کلیک', click: () => this.log('TAG CLICK') },
+    ];
 
     constructor(
         private readonly changeDetectorRef: ChangeDetectorRef,

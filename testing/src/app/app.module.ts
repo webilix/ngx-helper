@@ -24,6 +24,7 @@ import { NgxHelperParamModule } from '@webilix/ngx-helper/param';
 import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
 import { NgxHelperPlateModule } from '@webilix/ngx-helper/plate';
 import { NgxHelperToastModule } from '@webilix/ngx-helper/toast';
+import { NgxHelperTagModule } from '@webilix/ngx-helper/tag';
 import { NgxHelperValueModule } from '@webilix/ngx-helper/value';
 
 import { AppComponent } from './app.component';
@@ -71,6 +72,7 @@ import { ValuesComponent } from './values/values.component';
         NgxHelperPipeModule,
         NgxHelperPlateModule,
         NgxHelperToastModule,
+        NgxHelperTagModule,
         NgxHelperValueModule,
     ],
     bootstrap: [AppComponent],
