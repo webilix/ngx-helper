@@ -9,7 +9,6 @@ import { INgxHelperBottomSheetConfig } from './ngx-helper-bottom-sheet.interface
 export class NgxHelperBottomSheetService {
     private _bottomSheetRef?: MatBottomSheetRef<any>;
     private _bottomSheetConfig: MatBottomSheetConfig = {
-        autoFocus: false,
         direction: 'rtl',
         disableClose: true,
         panelClass: 'ngx-helper-bottom-sheet-panel',
@@ -32,6 +31,7 @@ export class NgxHelperBottomSheetService {
 
         this._bottomSheetRef = this.matBottomSheet.open(NgxHelperBottomSheetComponent, {
             ...this._bottomSheetConfig,
+            autoFocus: !!config?.autoFocus,
             data: { title, component, config },
         });
         this._bottomSheetRef.afterDismissed().subscribe({ next: (result: R) => result && callback(result) });

@@ -430,11 +430,11 @@ export class AppComponent implements OnInit, OnDestroy {
             );
     }
 
-    showButtomSheet(disableClose?: boolean, padding?: string): void {
+    showButtomSheet(disableClose?: boolean, padding?: string, autoFocus?: boolean): void {
         this.ngxHelperBottomSheetService.open<boolean>(
             BottomSheetComponent,
             'نمایش BottomSheet',
-            { data: { date: new Date() }, disableClose, padding },
+            { data: { date: new Date() }, disableClose, padding, autoFocus },
             (result) => this.log(result),
         );
     }
