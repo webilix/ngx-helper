@@ -9,7 +9,6 @@ import { INgxHelperDialogConfig } from './ngx-helper-dialog.interface';
 export class NgxHelperDialogService {
     private _dialogRef?: MatDialogRef<any>;
     private _dialogConfig: MatDialogConfig = {
-        autoFocus: false,
         width: 'calc(100vw - 4rem)',
         maxWidth: 'var(--ngxHelperDialogWidth)',
         maxHeight: '80vh',
@@ -34,6 +33,7 @@ export class NgxHelperDialogService {
 
         this._dialogRef = this.matDialog.open(NgxHelperDialogComponent, {
             ...this._dialogConfig,
+            autoFocus: !!config?.autoFocus,
             data: { title, component, config },
         });
         this._dialogRef.afterClosed().subscribe({ next: (result: R) => result && callback(result) });

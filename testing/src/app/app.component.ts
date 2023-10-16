@@ -439,11 +439,11 @@ export class AppComponent implements OnInit, OnDestroy {
         );
     }
 
-    showDialog(disableClose?: boolean, padding?: string): void {
+    showDialog(disableClose?: boolean, padding?: string, autoFocus?: boolean): void {
         this.ngxHelperDialogService.open<boolean>(
             DialogComponent,
             'نمایش Dialog',
-            { data: { date: new Date() }, disableClose, padding },
+            { data: { date: new Date() }, disableClose, padding, autoFocus },
             (result) => this.log(result),
         );
     }
