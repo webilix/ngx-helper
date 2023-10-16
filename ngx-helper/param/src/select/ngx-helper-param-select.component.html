@@ -1,4 +1,4 @@
-<input type="text" [ngClass]="{ en: !!param.english }" (input)="filter(searchInput.value)" #searchInput />
+<input type="text" [ngClass]="{ en: !!param.english }" (input)="filter(searchInput.value)" autofocus #searchInput />
 <div
     *ngIf="options.length !== 0"
     [ngClass]="{

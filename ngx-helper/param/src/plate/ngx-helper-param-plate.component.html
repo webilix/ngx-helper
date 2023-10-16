@@ -9,6 +9,7 @@
         (keyup)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
         (input)="(plateLeft.value || '').length === 2 ? (letter ? plateRight.focus() : plateLetter.focus()) : null"
         (keydown.enter)="setValue()"
+        autofocus
         #plateLeft
     />
     <mat-select

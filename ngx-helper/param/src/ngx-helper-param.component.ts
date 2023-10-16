@@ -380,7 +380,7 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
         this.ngxHelperBottomSheetService.open<string>(
             NgxHelperParamPlateComponent,
             param.title || 'پلاک',
-            { data: { letter } },
+            { data: { letter }, autoFocus: true },
             (value) => {
                 if (this.values[param.name] === value) return;
 
@@ -416,7 +416,7 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
         this.ngxHelperBottomSheetService.open<string>(
             NgxHelperParamSelectComponent,
             param.title,
-            { data: { param, value } },
+            { data: { param, value }, autoFocus: true },
             (value) => {
                 if (this.values[param.name] === value) return;
 
