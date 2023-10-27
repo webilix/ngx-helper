@@ -67,7 +67,7 @@ export class NgxHelperValuePipe implements PipeTransform {
         const from: Date = Helper.IS.date(value) ? (value as Date) : (value as { from: Date; to?: Date }).from;
         const to: Date = Helper.IS.date(value) ? new Date() : (value as { from: Date; to?: Date }).to || new Date();
 
-        return Helper.DATE.jalaliPeriod(from, to, timezone);
+        return timezone ? Helper.DATE.jalaliPeriod(from, to, timezone) : Helper.DATE.jalaliPeriod(from, to);
     }
 
     getPrice(price: number, en: boolean, short: boolean): [number, string] {
@@ -118,7 +118,9 @@ export class NgxHelperValuePipe implements PipeTransform {
                             if (html === '') return '';
                             break;
                         default:
-                            html = Helper.STRING.getBankCardView(value.value, value.join);
+                            html = value.join
+                                ? Helper.STRING.getBankCardView(value.value, value.join)
+                                : Helper.STRING.getBankCardView(value.value);
                             html = !!value.english ? html : Helper.STRING.changeNumbers(html, 'FA');
                             ltr = true;
                             break;
@@ -146,7 +148,9 @@ export class NgxHelperValuePipe implements PipeTransform {
                 case 'MOBILE':
                     if (!Helper.IS.STRING.mobile(value.value)) return '';
 
-                    html = Helper.STRING.getMobileView(value.value, value.join);
+                    html = value.join
+                        ? Helper.STRING.getMobileView(value.value, value.join)
+                        : Helper.STRING.getMobileView(value.value);
                     html = !!value.english ? html : Helper.STRING.changeNumbers(html, 'FA');
                     ltr = true;
                     break;

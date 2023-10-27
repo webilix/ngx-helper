@@ -10,6 +10,8 @@ export class NgxHelperPeriodPipe implements PipeTransform {
         const from: Date = Helper.IS.date(value) ? value : value.from;
         const to: Date = Helper.IS.date(value) ? new Date() : value.to || new Date();
 
-        return Helper.DATE.jalaliPeriod(from, to, config?.timezone);
+        return config?.timezone
+            ? Helper.DATE.jalaliPeriod(from, to, config.timezone)
+            : Helper.DATE.jalaliPeriod(from, to);
     }
 }
