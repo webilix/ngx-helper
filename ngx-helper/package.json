@@ -8,8 +8,8 @@
         "@angular/common": ">=16.2.11",
         "@angular/core": ">=16.2.11",
         "@angular/material": ">=16.2.10",
-        "@webilix/helper-library": ">=4.5.3",
-        "@webilix/jalali-date-time": ">=1.2.6",
+        "@webilix/helper-library": ">=4.15.1",
+        "@webilix/jalali-date-time": ">=1.2.27",
         "ngx-mask": ">=16.3.9",
         "ol": ">=8.1.0"
     },
