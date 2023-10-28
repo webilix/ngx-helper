@@ -34,6 +34,8 @@ import { ValuesComponent } from './values/values.component';
 export class AppComponent implements OnInit, OnDestroy {
     public log = console.log;
 
+    public progressValue: number = 10;
+
     public params1: NgxHelperParam[] = [
         { type: 'SEARCH', name: 'fa_query' },
         {

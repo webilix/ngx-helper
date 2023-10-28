@@ -1,0 +1,12 @@
+<div class="ngx-helper-progress" [ngStyle]="{ 'border-width': border + 'px' }" *ngIf="show">
+    <div
+        class="background"
+        [ngStyle]="{ width: value + '%', 'background-color': color || 'var(--ngxHelperBackgroundColor)' }"
+    ></div>
+    <div class="content" #contentView>
+        <ng-container *ngIf="component">
+            <ng-container *ngComponentOutlet="component"></ng-container>
+        </ng-container>
+        <ng-content></ng-content>
+    </div>
+</div>

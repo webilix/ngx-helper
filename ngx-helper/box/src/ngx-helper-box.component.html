@@ -6,7 +6,7 @@
     </div>
     <div class="component" [ngStyle]="{ padding: padding }" #contentView>
         <ng-container *ngIf="component">
-            <ng-container component *ngComponentOutlet="component"></ng-container>
+            <ng-container *ngComponentOutlet="component"></ng-container>
         </ng-container>
         <ng-content></ng-content>
     </div>

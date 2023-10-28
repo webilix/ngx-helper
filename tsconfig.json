@@ -29,6 +29,7 @@
             "@webilix/ngx-helper/param": ["ngx-helper/param/public-api"],
             "@webilix/ngx-helper/pipe": ["ngx-helper/pipe/public-api"],
             "@webilix/ngx-helper/plate": ["ngx-helper/plate/public-api"],
+            "@webilix/ngx-helper/progress": ["ngx-helper/progress/public-api"],
             "@webilix/ngx-helper/tag": ["ngx-helper/tag/public-api"],
             "@webilix/ngx-helper/toast": ["ngx-helper/toast/public-api"],
             "@webilix/ngx-helper/value": ["ngx-helper/value/public-api"]

@@ -7,6 +7,23 @@
     </div>
 </div>
 
+<div class="progress-box">
+    <ngx-helper-progress [progress]="progressValue" [border]="1">
+        <div class="progress">
+            <div class="value">25</div>
+            <div class="value">50</div>
+            <div class="value">75</div>
+            <div class="value">100</div>
+        </div>
+    </ngx-helper-progress>
+    <select (change)="progressValue = +progressValueSelect.value" #progressValueSelect>
+        <ng-container *ngFor="let value of [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]">
+            <option [value]="value" *ngIf="value !== progressValue">{{ value }}</option>
+            <option [value]="value" *ngIf="value === progressValue" selected>{{ value }}</option>
+        </ng-container>
+    </select>
+</div>
+
 <div class="params-page">
     <ngx-helper-param
         [params]="params3"
