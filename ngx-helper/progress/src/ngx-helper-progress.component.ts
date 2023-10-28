@@ -23,16 +23,20 @@ export class NgxHelperProgressComponent implements OnChanges, AfterViewInit {
     @Input({ required: true }) progress!: number | { value: number; total: number };
     @Input({ required: false }) component?: ComponentType<any>;
     @Input({ required: false }) border: number = 0;
+    @Input({ required: false }) align: 'LR' | 'RL' | 'TB' | 'BT' = 'LR';
     @Input({ required: false }) color?: string;
 
     public show: boolean = true;
-    public value: number = 0;
+    public percent: number = 0;
+    public direction: 'H' | 'V' = 'H';
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.value =
+        this.percent =
             typeof this.progress === 'number' ? this.progress : (this.progress.value / this.progress.total) * 100;
-        this.value = +Math.abs(this.value).toFixed(2);
-        if (this.value > 100) this.value = 100;
+        this.percent = +Math.abs(this.percent).toFixed(2);
+        if (this.percent > 100) this.percent = 100;
+
+        this.direction = this.align === 'LR' || this.align === 'RL' ? 'H' : 'V';
 
         this.ngAfterViewInit();
     }
