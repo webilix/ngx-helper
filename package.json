@@ -21,7 +21,7 @@
         "@angular/platform-browser": "^16.2.11",
         "@angular/platform-browser-dynamic": "^16.2.11",
         "@angular/router": "^16.2.11",
-        "@webilix/helper-library": "^4.15.1",
+        "@webilix/helper-library": "^4.15.2",
         "@webilix/jalali-date-time": "^1.2.27",
         "ngx-mask": "^16.3.9",
         "ol": "^8.1.0",
