@@ -1,4 +1,5 @@
-<div class="ngx-helper-tags" *ngIf="tags.length !== 0" [ngStyle]="{ padding: padding || 0 }">
+@if (tags.length !== 0) {
+<div class="ngx-helper-tags" [ngStyle]="{ padding: padding || 0 }">
     <div
         [ngClass]="['tag', 'ngx-helper-color-' + (tag.color || 'primary')]"
         *ngFor="let tag of tags"
@@ -7,6 +8,10 @@
     >
         <mat-icon [fontIcon]="tag.icon || 'local_offer'" class="ngx-helper-icon"></mat-icon>
         <div class="value" [innerHTML]="tag.value | ngxHelperValue"></div>
-        <div class="description" *ngIf="tag.description">{{ tag.description }}</div>
+        <!-- DESCRIPTION -->
+        @if (tag.description) {
+        <div class="description">{{ tag.description }}</div>
+        }
     </div>
 </div>
+}

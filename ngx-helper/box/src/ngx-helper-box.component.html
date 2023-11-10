@@ -1,13 +1,16 @@
-<div class="ngx-helper-box" *ngIf="title && show">
+@if (title && show) {
+<div class="ngx-helper-box">
     <div [ngClass]="{ title: true, 'title-menu': menu.length !== 0 }">
         <span>{{ title }}</span>
-        <mat-icon *ngIf="icon && menu.length === 0" class="ngx-helper-icon" [fontIcon]="icon"></mat-icon>
-        <ngx-helper-menu *ngIf="menu.length > 0" [menu]="menu" [icon]="icon"></ngx-helper-menu>
+        <!-- ICON -->
+        @if (icon && menu.length === 0) { <mat-icon class="ngx-helper-icon" [fontIcon]="icon"></mat-icon> }
+        <!-- MENU -->
+        @if (menu.length > 0) { <ngx-helper-menu [menu]="menu" [icon]="icon"></ngx-helper-menu> }
     </div>
     <div class="component" [ngStyle]="{ padding: padding }" #contentView>
-        <ng-container *ngIf="component">
-            <ng-container *ngComponentOutlet="component"></ng-container>
-        </ng-container>
+        <!-- COMPONENT -->
+        @if (component) { <ng-container *ngComponentOutlet="component"></ng-container> }
         <ng-content></ng-content>
     </div>
 </div>
+}

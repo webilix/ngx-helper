@@ -11,7 +11,9 @@
         ></div>
     </div>
 
-    <div class="copy" *ngIf="value.copy && copy[index]">
+    <!-- COPY -->
+    @if (value.copy && copy[index]) {
+    <div class="copy">
         <mat-icon
             class="ngx-helper-icon"
             [fontIcon]="'content_copy'"
@@ -25,4 +27,5 @@
             [@copy]="copyIndex === index ? 'show' : 'hide'"
         ></mat-icon>
     </div>
+    }
 </div>

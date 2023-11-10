@@ -1,8 +1,5 @@
-<div
-    *ngIf="show"
-    class="ngx-helper-plate"
-    [ngStyle]="{ border: border ? '1px solid var(--ngxHelperBorderColor)' : 'none' }"
->
+@if (show) {
+<div class="ngx-helper-plate" [ngStyle]="{ border: border ? '1px solid var(--ngxHelperBorderColor)' : 'none' }">
     <div class="ngx-helper-plate-left">{{ plate[0] }}</div>
     <div class="ngx-helper-plate-letter">{{ plate[1] === 'ا' ? 'الف' : plate[1] }}</div>
     <div class="ngx-helper-plate-right">{{ plate[2] }}</div>
@@ -11,3 +8,4 @@
         <div class="ngx-helper-plate-value">{{ plate[3] }}</div>
     </div>
 </div>
+}

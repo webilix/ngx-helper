@@ -1,4 +1,7 @@
-<div class="background" *ngIf="showMonth" (click)="showMonth = false"></div>
+<!-- BACKGROUND -->
+@if (showMonth) {
+<div class="background" (click)="showMonth = false"></div>
+}
 
 <section class="header">
     <div class="title">{{ title }}</div>
@@ -21,7 +24,9 @@
 
 <section class="names">
     <div class="name" *ngFor="let day of ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج']">{{ day }}</div>
-    <div class="month" *ngIf="showMonth">
+    <!-- MONTH -->
+    @if (showMonth) {
+    <div class="month">
         <div class="header">
             <mat-icon
                 [fontIcon]="'keyboard_double_arrow_right'"
@@ -45,6 +50,7 @@
             </div>
         </div>
     </div>
+    }
 </section>
 
 <section class="days" *ngFor="let week of calendar.weeks">

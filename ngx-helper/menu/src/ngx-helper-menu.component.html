@@ -1,5 +1,6 @@
+<!-- SINGLE BUTTON -->
+@if (menu.length === 1 && menu[0] !== 'SEPERATOR') {
 <button
-    *ngIf="menu.length === 1 && menu[0] !== 'SEPERATOR'"
     mat-button
     type="button"
     class="ngx-helper-menu"
@@ -11,8 +12,11 @@
         <mat-icon [fontIcon]="menu[0].icon || icon || 'more_vert'" class="ngx-helper-icon"></mat-icon>
     </div>
 </button>
+}
 
-<ng-container *ngIf="menu.length > 1">
+<!-- MULTIPLE BUTTONS -->
+@if (menu.length > 1) {
+<ng-container>
     <button
         mat-button
         type="button"
@@ -22,33 +26,36 @@
         [matMenuTriggerFor]="ngxHelperMenu"
     >
         <div class="label">
-            <mat-icon *ngIf="icon" [fontIcon]="icon" class="ngx-helper-icon"></mat-icon>
-            <div class="title" *ngIf="title">{{ title }}</div>
+            <!-- ICON -->
+            @if (icon) { <mat-icon [fontIcon]="icon" class="ngx-helper-icon"></mat-icon> }
+            <!-- TITLE -->
+            @if (title) {
+            <div class="title">{{ title }}</div>
+            }
         </div>
     </button>
     <mat-menu #ngxHelperMenu="matMenu" class="ngx-helper-menu-panel" [xPosition]="xPosition" [yPosition]="yPosition">
         <ng-container *ngFor="let m of menu; let i = index">
-            <div
-                class="ngx-helper-menu-seperator"
-                *ngIf="m === 'SEPERATOR' && (i === 0 || menu[i - 1] !== 'SEPERATOR')"
-            ></div>
-            <button
-                *ngIf="m !== 'SEPERATOR'"
-                mat-menu-item
-                type="button"
-                [disabled]="m.disableOn && m.disableOn()"
-                (click)="click(m.click)"
-            >
+            <!-- SEPERATOR -->
+            @if (m === 'SEPERATOR' && (i === 0 || menu[i - 1] !== 'SEPERATOR')) {
+            <div class="ngx-helper-menu-seperator"></div>
+            }
+
+            <!-- BUTTON -->
+            @if (m !== 'SEPERATOR') {
+            <button mat-menu-item type="button" [disabled]="m.disableOn && m.disableOn()" (click)="click(m.click)">
                 <div [ngClass]="['label' + (m.english ? '-en' : ''), 'ngx-helper-color-' + (m.color || 'primary')]">
-                    <mat-icon
-                        *ngIf="m.icon"
-                        [ngClass]="['ngx-helper-icon', 'ngx-helper-color-' + (m.color || 'primary')]"
-                    >
+                    <!-- ICON -->
+                    @if (m.icon) {
+                    <mat-icon [ngClass]="['ngx-helper-icon', 'ngx-helper-color-' + (m.color || 'primary')]">
                         {{ m.icon }}
                     </mat-icon>
+                    }
                     <div class="title">{{ m.title }}</div>
                 </div>
             </button>
+            }
         </ng-container>
     </mat-menu>
 </ng-container>
+}

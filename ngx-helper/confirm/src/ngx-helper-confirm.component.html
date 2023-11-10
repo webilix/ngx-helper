@@ -7,25 +7,35 @@
 </header>
 
 <content>
+    <!-- QUESTION -->
     <div class="question">
-        <ng-container *ngIf="config.question">{{ config.question }}</ng-container>
-        <ng-container *ngIf="!config.question">
-            آیا می‌خواهید {{ item }} انتخاب شده را {{ info.title }} کنید؟
-        </ng-container>
+        @if (config.question) {
+        <!-- CONFIG -->
+        {{ config.question }}
+        } @else {
+        <!-- DEFAULT -->
+        آیا می‌خواهید {{ item }} انتخاب شده را {{ info.title }} کنید؟ }
     </div>
-    <div class="message" *ngIf="config.message">{{ config.message }}</div>
-    <div class="data" *ngIf="config.title">
+    <!-- MESSAGE -->
+    @if (config.message) {
+    <div class="message">{{ config.message }}</div>
+    }
+    <!-- DATA -->
+    @if (config.title) {
+    <div class="data">
         <div class="data-type">{{ item }}:</div>
         <div class="data-title">{{ config.title }}</div>
     </div>
-
+    }
+    <!-- DESCRIPTION -->
+    @if (config.description) {
     <textarea
-        *ngIf="config.description"
         placeholder="توضیحات"
         [ngStyle]="{ 'border-color': error ? 'var(--ngxHelperWarnColor)' : 'var(--ngxHelperBorderColor)' }"
         (input)="error = config.description === 'REQUIRED' && !ngxHelperConfirmDescription.value.trim()"
         #ngxHelperConfirmDescription
     ></textarea>
+    }
 
     <div class="buttons">
         <button mat-flat-button type="button" class="submit" [color]="info.color || 'primary'" (click)="dismiss(true)">

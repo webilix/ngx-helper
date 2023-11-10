@@ -1,126 +1,136 @@
-<div class="ngx-helper-param-group" *ngIf="paramGroups.length !== 0">
+@if (paramGroups.length !== 0) {
+<div class="ngx-helper-param-group">
     <div class="ngx-helper-param" *ngFor="let params of paramGroups; let groupIndex = index">
         <ng-container *ngFor="let param of params; let paramIndex = index">
-            <ng-container *ngIf="param !== 'SEPERATOR'">
-                <!-- BOOLEAN -->
-                <div class="ngx-helper-boolean" *ngIf="param.type === 'BOOLEAN'">
+            @if (param !== 'SEPERATOR') { @switch (param.type) {
+            <!-- BOOLEAN -->
+            @case ('BOOLEAN') {
+            <div class="ngx-helper-boolean">
+                <mat-icon
+                    [ngClass]="{ 'ngx-helper-icon': true, selected: values[param.name] }"
+                    [fontIcon]="param.icon || 'star'"
+                    (click)="setBoolean(param)"
+                ></mat-icon>
+            </div>
+            }
+
+            <!-- MENU -->
+            @case ('MENU') {
+            <ngx-helper-menu
+                [menu]="menus[param.name]"
+                [title]="param.title"
+                [icon]="param.icon"
+                [border]="1"
+                class="ngx-helper-menu"
+            ></ngx-helper-menu>
+            }
+
+            <!-- OTHERS -->
+            @default {
+            <div class="ngx-helper-param">
+                @switch (param.type) {
+                <!-- COMMENT -->
+                @case ('COMMENT') {
+                <ng-container>
+                    <div class="title">{{ param.title }}</div>
+                    <div [ngClass]="{ value: true, en: !!param.english }">{{ param.value }}</div>
+                </ng-container>
+                }
+
+                <!-- DATE -->
+                @case ('DATE') {
+                <ng-container>
+                    <div class="title">{{ param.title || 'تاریخ' }}</div>
+                    <div class="value" (click)="setDate(param)">
+                        {{
+                            values[param.name] ? (values[param.name] | ngxHelperJalali : { format: 'd N Y' }) : '&nbsp;'
+                        }}
+                    </div>
                     <mat-icon
-                        [ngClass]="{ 'ngx-helper-icon': true, selected: values[param.name] }"
-                        [fontIcon]="param.icon || 'star'"
-                        (click)="setBoolean(param)"
+                        class="ngx-helper-icon"
+                        [fontIcon]="values[param.name] && !param.required ? 'close' : 'calendar_month'"
+                        (click)="values[param.name] && !param.required ? resetValue(param) : setDate(param)"
                     ></mat-icon>
+                </ng-container>
+                }
+
+                <!-- PLATE -->
+                @case ('PLATE') {
+                <div class="title">{{ param.title || 'پلاک' }}</div>
+                <div class="value value-plate" (click)="setPlate(param)">
+                    @if (values[param.name]) {
+                    <ngx-helper-plate [plate]="values[param.name].split('-')" [border]="false"></ngx-helper-plate> }
+                </div>
+                <mat-icon
+                    class="ngx-helper-icon"
+                    [fontIcon]="values[param.name] ? 'close' : 'calendar_month'"
+                    (click)="values[param.name] ? resetValue(param) : setPlate(param)"
+                ></mat-icon>
+                }
+
+                <!-- SEARCH -->
+                @case ('SEARCH') {
+                <div class="title">{{ param.title || 'جستجو' }}</div>
+                <input
+                    type="text"
+                    [value]="values[param.name] || ''"
+                    [ngClass]="{ en: !!param.english }"
+                    (change)="setSearch(param, searchInput.value)"
+                    #searchInput
+                />
+                <mat-icon [fontIcon]="'search'" class="ngx-helper-icon"></mat-icon>
+                }
+
+                <!-- SELECT -->
+                @case ('SELECT') {
+                <div class="title">{{ param.title || '' }}</div>
+                <div
+                    [ngClass]="{ value: true, 'value-en': !!param.english }"
+                    [ngStyle]="{ 'padding-left': !!param.english && !!param.required ? '35px' : '0.5rem' }"
+                    (click)="param.list || param.options.length > 14 ? getSelect(param) : null"
+                    #menuTrigger
+                >
+                    {{ getSelectTitle(param, values[param.name]) || '&nbsp;' }}
                 </div>
 
                 <!-- MENU -->
+                @if (!param.list && param.options.length <= 14) {
                 <ngx-helper-menu
-                    *ngIf="param.type === 'MENU'"
+                    [icon]="param.icon || 'keyboard_double_arrow_down'"
                     [menu]="menus[param.name]"
-                    [title]="param.title"
-                    [icon]="param.icon"
-                    [border]="1"
-                    class="ngx-helper-menu"
+                    [tigger]="menuTrigger"
+                    [xPosition]="'before'"
+                    [ngStyle]="{ position: values[param.name] ? 'absolute' : 'static' }"
                 ></ngx-helper-menu>
+                }
 
-                <div class="ngx-helper-param" *ngIf="param.type !== 'BOOLEAN' && param.type !== 'MENU'">
-                    <!-- COMMENT -->
-                    <ng-container *ngIf="param.type === 'COMMENT'">
-                        <div class="title">{{ param.title }}</div>
-                        <div [ngClass]="{ value: true, en: !!param.english }">{{ param.value }}</div>
-                    </ng-container>
-                    <!-- DATE -->
-                    <ng-container *ngIf="param.type === 'DATE'">
-                        <div class="title">{{ param.title || 'تاریخ' }}</div>
-                        <div class="value" (click)="setDate(param)">
-                            {{
-                                values[param.name]
-                                    ? (values[param.name] | ngxHelperJalali : { format: 'd N Y' })
-                                    : '&nbsp;'
-                            }}
-                        </div>
-                        <mat-icon
-                            class="ngx-helper-icon"
-                            [fontIcon]="values[param.name] && !param.required ? 'close' : 'calendar_month'"
-                            (click)="values[param.name] && !param.required ? resetValue(param) : setDate(param)"
-                        ></mat-icon>
-                    </ng-container>
-                    <!-- PLATE -->
-                    <ng-container *ngIf="param.type === 'PLATE'">
-                        <div class="title">{{ param.title || 'پلاک' }}</div>
-                        <div class="value value-plate" (click)="setPlate(param)">
-                            <ngx-helper-plate
-                                *ngIf="values[param.name]"
-                                [plate]="values[param.name].split('-')"
-                                [border]="false"
-                            ></ngx-helper-plate>
-                        </div>
-                        <mat-icon
-                            class="ngx-helper-icon"
-                            [fontIcon]="values[param.name] ? 'close' : 'calendar_month'"
-                            (click)="values[param.name] ? resetValue(param) : setPlate(param)"
-                        ></mat-icon>
-                    </ng-container>
-                    <!-- SEARCH -->
-                    <ng-container *ngIf="param.type === 'SEARCH'">
-                        <div class="title">{{ param.title || 'جستجو' }}</div>
-                        <input
-                            type="text"
-                            [value]="values[param.name] || ''"
-                            [ngClass]="{ en: !!param.english }"
-                            (change)="setSearch(param, searchInput.value)"
-                            #searchInput
-                        />
-                        <mat-icon [fontIcon]="'search'" class="ngx-helper-icon"></mat-icon>
-                    </ng-container>
-                    <!-- SELECT -->
-                    <ng-container *ngIf="param.type === 'SELECT'">
-                        <div class="title">{{ param.title || '' }}</div>
-                        <div
-                            [ngClass]="{ value: true, 'value-en': !!param.english }"
-                            [ngStyle]="{ 'padding-left': !!param.english && !!param.required ? '35px' : '0.5rem' }"
-                            (click)="param.list || param.options.length > 14 ? getSelect(param) : null"
-                            #menuTrigger
-                        >
-                            {{ getSelectTitle(param, values[param.name]) || '&nbsp;' }}
-                        </div>
-                        <ngx-helper-menu
-                            *ngIf="!param.list && param.options.length <= 14"
-                            [icon]="param.icon || 'keyboard_double_arrow_down'"
-                            [menu]="menus[param.name]"
-                            [tigger]="menuTrigger"
-                            [xPosition]="'before'"
-                            [ngStyle]="{ position: values[param.name] ? 'absolute' : 'static' }"
-                        ></ngx-helper-menu>
-                        <mat-icon
-                            *ngIf="param.list || param.options.length > 14 || (values[param.name] && !param.required)"
-                            class="ngx-helper-icon"
-                            [fontIcon]="
-                                values[param.name] && !param.required
-                                    ? 'close'
-                                    : param.icon || 'keyboard_double_arrow_down'
-                            "
-                            (click)="values[param.name] && !param.required ? resetValue(param) : getSelect(param)"
-                        ></mat-icon>
-                    </ng-container>
-                </div>
-            </ng-container>
+                <!-- ICON -->
+                @if (param.list || param.options.length > 14 || (values[param.name] && !param.required)) {
+                <mat-icon
+                    class="ngx-helper-icon"
+                    [fontIcon]="
+                        values[param.name] && !param.required ? 'close' : param.icon || 'keyboard_double_arrow_down'
+                    "
+                    (click)="values[param.name] && !param.required ? resetValue(param) : getSelect(param)"
+                ></mat-icon>
+                } } }
+            </div>
+            } } }
 
-            <div
-                class="ngx-helper-order"
-                *ngIf="
-                    groupIndex === paramGroups.length - 1 &&
-                    paramIndex === paramGroups[groupIndex].length - 1 &&
-                    order &&
-                    order.options.length !== 0
-                "
-            >
+            <!-- ORDER -->
+            @if ( groupIndex === paramGroups.length - 1 && paramIndex === paramGroups[groupIndex].length - 1 && order &&
+            order.options.length !== 0 ) {
+            <div class="ngx-helper-order">
                 <div class="title">{{ order.title || 'ترتیب' }}</div>
                 <div class="option" #orderMenuTrigger>{{ getOrderTitle() }}</div>
+                <!-- MENU -->
+                @if (orderMenu.length > 1) {
                 <ngx-helper-menu
-                    *ngIf="orderMenu.length > 1"
                     [menu]="orderMenu"
                     [xPosition]="'before'"
                     [tigger]="orderMenuTrigger"
                 ></ngx-helper-menu>
+                }
                 <mat-icon
                     class="ngx-helper-icon"
                     [fontIcon]="'filter_list'"
@@ -129,6 +139,8 @@
                 ></mat-icon>
                 <div class="background"></div>
             </div>
+            }
         </ng-container>
     </div>
 </div>
+}

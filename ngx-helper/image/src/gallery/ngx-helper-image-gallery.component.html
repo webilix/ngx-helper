@@ -1,6 +1,9 @@
-<div class="ngx-helper-gallery-background" *ngIf="loading">
+<!-- LOADING -->
+@if (loading) {
+<div class="ngx-helper-gallery-background">
     <ngx-helper-loader></ngx-helper-loader>
 </div>
+}
 
 <div class="ngx-helper-gallery-controls">
     <mat-icon class="ngx-helper-icon" mat-dialog-close>close</mat-icon>
@@ -10,7 +13,9 @@
     <mat-icon class="ngx-helper-icon" (click)="changeIndex(1)">arrow_forward_ios</mat-icon>
 </div>
 
-<div class="ngx-helper-gallery-preview" *ngIf="!loading" mat-dialog-close>
+<!-- PREVIEW -->
+@if (!loading) {
+<div class="ngx-helper-gallery-preview" mat-dialog-close>
     <img
         [src]="image"
         [@image]
@@ -19,7 +24,11 @@
             'margin-bottom': description ? '7rem' : 0
         }"
     />
-    <div *ngIf="description" class="description" [@description]>
+    <!-- DESCRIPTION -->
+    @if (description) {
+    <div class="description" [@description]>
         <div class="description-text" [innerHTML]="description | ngxHelperMultiLine : { html }"></div>
     </div>
+    }
 </div>
+}

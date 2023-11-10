@@ -1,8 +1,8 @@
-<ng-container *ngIf="file">
-    <content>
-        <mat-icon [fontIcon]="'file_upload'" class="download ngx-helper-icon"></mat-icon>
-        <div class="file">{{ file.name }}</div>
-        <div class="size">{{ file.size | ngxHelperFileSize }}</div>
-    </content>
-    <mat-progress-bar [value]="progress" [color]="'primary'" dir="ltr"></mat-progress-bar>
-</ng-container>
+@if (file) {
+<content>
+    <mat-icon [fontIcon]="'file_upload'" class="download ngx-helper-icon"></mat-icon>
+    <div class="file">{{ file.name }}</div>
+    <div class="size">{{ file.size | ngxHelperFileSize }}</div>
+</content>
+<mat-progress-bar [value]="progress" [color]="'primary'" dir="ltr"></mat-progress-bar>
+}

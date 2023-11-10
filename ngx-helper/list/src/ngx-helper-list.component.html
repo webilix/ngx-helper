@@ -1,5 +1,7 @@
-<div *ngIf="id && data" [ngClass]="{ 'ngx-helper-list': true, 'ngx-helper-list-deactive': deactive }">
-    <ngx-helper-menu *ngIf="ngxMenu.length !== 0" [menu]="ngxMenu" [border]="0"></ngx-helper-menu>
+@if (id && data) {
+<div [ngClass]="{ 'ngx-helper-list': true, 'ngx-helper-list-deactive': deactive }">
+    <!-- MENU -->
+    @if (ngxMenu.length !== 0) { <ngx-helper-menu [menu]="ngxMenu" [border]="0"></ngx-helper-menu> }
     <content>
         <div class="icon" #listIcon><ng-content select="[ngx-helper-list-icon]"></ng-content></div>
         <div class="info">
@@ -11,3 +13,4 @@
         </div>
     </content>
 </div>
+}

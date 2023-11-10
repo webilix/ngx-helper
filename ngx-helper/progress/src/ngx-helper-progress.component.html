@@ -1,4 +1,5 @@
-<div class="ngx-helper-progress" [ngStyle]="{ 'border-width': border + 'px' }" *ngIf="show">
+@if (show) {
+<div class="ngx-helper-progress" [ngStyle]="{ 'border-width': border + 'px' }">
     <div
         [ngClass]="['background', 'background-' + align]"
         [ngStyle]="{
@@ -8,9 +9,9 @@
         }"
     ></div>
     <div class="content" #contentView>
-        <ng-container *ngIf="component">
-            <ng-container *ngComponentOutlet="component"></ng-container>
-        </ng-container>
+        <!-- COMPONENT -->
+        @if (component) { <ng-container *ngComponentOutlet="component"></ng-container> }
         <ng-content></ng-content>
     </div>
 </div>
+}
