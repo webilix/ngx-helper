@@ -74,14 +74,14 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
-                        "production": { "browserTarget": "testing:build:production" },
-                        "development": { "browserTarget": "testing:build:development" }
+                        "production": { "buildTarget": "testing:build:production" },
+                        "development": { "buildTarget": "testing:build:development" }
                     },
                     "defaultConfiguration": "development"
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
-                    "options": { "browserTarget": "testing:build" }
+                    "options": { "buildTarget": "testing:build" }
                 },
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
