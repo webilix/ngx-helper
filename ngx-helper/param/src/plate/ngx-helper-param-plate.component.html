@@ -19,9 +19,9 @@
         #plateLetter
     >
         <mat-option [value]="null"></mat-option>
-        <mat-option *ngFor="let letter of letters" [value]="letter">
-            {{ letter === 'ا' ? 'الف' : letter }}
-        </mat-option>
+        <!-- LETTERS -->
+        @for (letter of letters; track $index) {
+        <mat-option [value]="letter"> {{ letter === 'ا' ? 'الف' : letter }} </mat-option> }
     </mat-select>
     <input
         type="text"

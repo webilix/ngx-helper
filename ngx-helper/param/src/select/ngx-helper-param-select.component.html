@@ -9,7 +9,10 @@
         'options-list-en': !!param.list && !!param.english
     }"
 >
-    <div class="option" *ngFor="let option of options" (click)="select(option.id)">{{ option.title }}</div>
+    <!-- OPTIONS -->
+    @for (option of options; track $index) {
+    <div class="option" (click)="select(option.id)">{{ option.title }}</div>
+    }
 </div>
 } @else {
 <mat-icon [fontIcon]="'search_off'" class="ngx-helper-icon"></mat-icon>

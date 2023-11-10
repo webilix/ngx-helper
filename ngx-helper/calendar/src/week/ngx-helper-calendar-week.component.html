@@ -23,7 +23,10 @@
 </section>
 
 <section class="names">
-    <div class="name" *ngFor="let day of ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج']">{{ day }}</div>
+    <!-- NAMES -->
+    @for (day of ['ش', 'ی', 'د', 'س', 'چ', 'پ', 'ج']; track $index) {
+    <div class="name">{{ day }}</div>
+    }
     <!-- MONTH -->
     @if (showMonth) {
     <div class="month">
@@ -40,22 +43,28 @@
                 (click)="years.value = (+years.value + 10).toString()"
             ></mat-icon>
         </div>
-        <div class="season" *ngFor="let season of seasons; let s = index">
-            <div
-                class="month-name"
-                *ngFor="let month of season; let m = index"
-                (click)="changeCalendar(+years.value, s * 3 + m + 1)"
-            >
+
+        <!-- SEASON -->
+        @for (season of seasons; track s; let s = $index ) {
+        <div class="season">
+            <!-- MONTH -->
+            @for (month of season; track m; let m = $index) {
+            <div class="month-name" (click)="changeCalendar(+years.value, s * 3 + m + 1)">
                 {{ month }}
             </div>
+            }
         </div>
+        }
     </div>
     }
 </section>
 
-<section class="days" *ngFor="let week of calendar.weeks" [ngClass]="{ current: week[0].date === current }">
+<!-- WEEK -->
+@for ( week of calendar.weeks; track $index) {
+<section class="days" [ngClass]="{ current: week[0].date === current }">
+    <!-- DAYS -->
+    @for (day of week; track $index) {
     <div
-        *ngFor="let day of week"
         [ngClass]="{
             day: true,
             today: day.date === today,
@@ -65,4 +74,6 @@
     >
         {{ day.day }}
     </div>
+    }
 </section>
+}

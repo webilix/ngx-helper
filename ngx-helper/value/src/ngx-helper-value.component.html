@@ -1,7 +1,6 @@
-<div
-    *ngFor="let value of values; let index = index"
-    [ngClass]="{ 'ngx-helper-value': true, 'ngx-helper-value-no-border': !border }"
->
+<!-- VALUES -->
+@for (value of values; track $index) {
+<div [ngClass]="{ 'ngx-helper-value': true, 'ngx-helper-value-no-border': !border }">
     <div class="data">
         <div class="title" [ngStyle]="{ width: width.toString() + 'px' }">{{ value.title }}:</div>
         <div
@@ -12,20 +11,21 @@
     </div>
 
     <!-- COPY -->
-    @if (value.copy && copy[index]) {
+    @if (value.copy && copy[$index]) {
     <div class="copy">
         <mat-icon
             class="ngx-helper-icon"
             [fontIcon]="'content_copy'"
-            [@copy]="copyIndex === index ? 'hide' : 'show'"
-            [cdkCopyToClipboard]="copy[index]"
-            (click)="setCopy(index)"
+            [@copy]="copyIndex === $index ? 'hide' : 'show'"
+            [cdkCopyToClipboard]="copy[$index]"
+            (click)="setCopy($index)"
         ></mat-icon>
         <mat-icon
             class="ngx-helper-icon copied"
             [fontIcon]="'done_all'"
-            [@copy]="copyIndex === index ? 'show' : 'hide'"
+            [@copy]="copyIndex === $index ? 'show' : 'hide'"
         ></mat-icon>
     </div>
     }
 </div>
+}

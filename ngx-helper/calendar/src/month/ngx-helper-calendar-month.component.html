@@ -12,7 +12,11 @@
     <mat-icon [fontIcon]="'keyboard_double_arrow_left'" (click)="changeYear(year + 10)"></mat-icon>
 </section>
 
-<section class="season" *ngFor="let season of seasons">
+<!-- SEASON -->
+@for (season of seasons; track $index) {
+<section class="season">
+    <!-- MONTH -->
+    @for (month of season; track $index) {
     <div
         [ngClass]="{
             month: true,
@@ -20,9 +24,10 @@
             current: month.month === current,
             disable: (minDate && month.month < minDate) || (maxDate && month.month > maxDate)
         }"
-        *ngFor="let month of season"
         (click)="setMonth(month.month)"
     >
         {{ month.title }}
     </div>
+    }
 </section>
+}

@@ -1,21 +1,22 @@
 @if (current && total && total > 1) {
 <div class="ngx-helper-pagination" [ngStyle]="{ 'margin-top': margin.toString() + 'rem' }">
-    <ng-container *ngFor="let p of list">
-        @if (p === '.') {
-        <!-- SPACE -->
-        <div class="space"></div>
-        } @else {
-        <!-- PAGE -->
-        <button
-            mat-stroked-button
-            type="button"
-            color="primary"
-            [disabled]="current.toString() === p"
-            (click)="page.emit(+p)"
-        >
-            {{ +p | number }}
-        </button>
-        }
-    </ng-container>
+    <!-- BUTTONS -->
+    @for (p of list; track $index) {
+    <!-- BUTTON -->
+    @if (p === '.') {
+    <!-- SPACE -->
+    <div class="space"></div>
+    } @else {
+    <!-- PAGE -->
+    <button
+        mat-stroked-button
+        type="button"
+        color="primary"
+        [disabled]="current.toString() === p"
+        (click)="page.emit(+p)"
+    >
+        {{ +p | number }}
+    </button>
+    } }
 </div>
 }

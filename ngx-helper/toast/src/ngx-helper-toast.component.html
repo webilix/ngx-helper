@@ -1,7 +1,10 @@
 @if (config) {
 <content>
     <ul [ngStyle]="{ color: config.foreColor }">
-        <li *ngFor="let m of message" [innerHTML]="m | ngxHelperMultiLine"></li>
+        <!-- MESSAGES -->
+        @for (m of message; track $index) {
+        <li [innerHTML]="m | ngxHelperMultiLine"></li>
+        }
     </ul>
     <mat-icon [fontIcon]="config.icon" class="ngx-helper-icon" [ngStyle]="{ color: config.foreColor }"></mat-icon>
 </content>

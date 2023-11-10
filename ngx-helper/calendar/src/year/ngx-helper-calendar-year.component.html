@@ -11,8 +11,9 @@
 </section>
 
 <section class="years">
+    <!-- YEARS -->
+    @for (year of years; track $index) {
     <div
-        *ngFor="let year of years"
         [ngClass]="{
             year: true,
             today: +today === year,
@@ -23,4 +24,5 @@
     >
         {{ year }}
     </div>
+    }
 </section>

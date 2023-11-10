@@ -1,8 +1,9 @@
 @if (tags.length !== 0) {
 <div class="ngx-helper-tags" [ngStyle]="{ padding: padding || 0 }">
+    <!-- TAGS -->
+    @for (tag of tags; track $index) {
     <div
         [ngClass]="['tag', 'ngx-helper-color-' + (tag.color || 'primary')]"
-        *ngFor="let tag of tags"
         [ngStyle]="{ cursor: tag.click ? 'pointer' : 'default' }"
         (click)="click(tag.click)"
     >
@@ -13,5 +14,6 @@
         <div class="description">{{ tag.description }}</div>
         }
     </div>
+    }
 </div>
 }

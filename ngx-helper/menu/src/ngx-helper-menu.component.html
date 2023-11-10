@@ -35,27 +35,26 @@
         </div>
     </button>
     <mat-menu #ngxHelperMenu="matMenu" class="ngx-helper-menu-panel" [xPosition]="xPosition" [yPosition]="yPosition">
-        <ng-container *ngFor="let m of menu; let i = index">
-            <!-- SEPERATOR -->
-            @if (m === 'SEPERATOR' && (i === 0 || menu[i - 1] !== 'SEPERATOR')) {
-            <div class="ngx-helper-menu-seperator"></div>
-            }
-
-            <!-- BUTTON -->
-            @if (m !== 'SEPERATOR') {
-            <button mat-menu-item type="button" [disabled]="m.disableOn && m.disableOn()" (click)="click(m.click)">
-                <div [ngClass]="['label' + (m.english ? '-en' : ''), 'ngx-helper-color-' + (m.color || 'primary')]">
-                    <!-- ICON -->
-                    @if (m.icon) {
-                    <mat-icon [ngClass]="['ngx-helper-icon', 'ngx-helper-color-' + (m.color || 'primary')]">
-                        {{ m.icon }}
-                    </mat-icon>
-                    }
-                    <div class="title">{{ m.title }}</div>
-                </div>
-            </button>
-            }
-        </ng-container>
+        <!-- MENU -->
+        @for (m of menu; track $index) {
+        <!-- SEPERATOR -->
+        @if (m === 'SEPERATOR' && ($index === 0 || menu[$index - 1] !== 'SEPERATOR')) {
+        <div class="ngx-helper-menu-seperator"></div>
+        }
+        <!-- BUTTON -->
+        @if (m !== 'SEPERATOR') {
+        <button mat-menu-item type="button" [disabled]="m.disableOn && m.disableOn()" (click)="click(m.click)">
+            <div [ngClass]="['label' + (m.english ? '-en' : ''), 'ngx-helper-color-' + (m.color || 'primary')]">
+                <!-- ICON -->
+                @if (m.icon) {
+                <mat-icon [ngClass]="['ngx-helper-icon', 'ngx-helper-color-' + (m.color || 'primary')]">
+                    {{ m.icon }}
+                </mat-icon>
+                }
+                <div class="title">{{ m.title }}</div>
+            </div>
+        </button>
+        } }
     </mat-menu>
 </ng-container>
 }
