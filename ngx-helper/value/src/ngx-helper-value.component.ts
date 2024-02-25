@@ -56,6 +56,9 @@ export class NgxHelperValueComponent implements OnChanges {
                     case 'DURATION':
                         this.copy[index] = this.ngxHelperValuePipe.getDuration(value.value.value, value.value.format);
                         break;
+                    case 'MONTH':
+                        this.copy[index] = this.ngxHelperValuePipe.getMonth(value.value.value);
+                        break;
                     case 'NUMBER':
                         this.copy[index] = value.value.value.toString();
                         break;

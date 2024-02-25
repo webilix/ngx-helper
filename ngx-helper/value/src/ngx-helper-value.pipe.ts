@@ -63,6 +63,18 @@ export class NgxHelperValuePipe implements PipeTransform {
         }
     }
 
+    getMonth(value: number): string {
+        if (isNaN(value) || value <= 0) return '';
+
+        const year: number = Math.floor(value / 12);
+        const month: number = value - year * 12;
+        return (
+            (year > 0 ? `${Helper.NUMBER.format(year, 'FA')} سال` : '') +
+            (year > 0 && month > 0 ? ' و ' : '') +
+            (month > 0 ? `${Helper.NUMBER.format(month)} ماه` : '')
+        );
+    }
+
     getPeriod(value: Date | { from: Date; to?: Date }, timezone?: string): string {
         const from: Date = Helper.IS.date(value) ? (value as Date) : (value as { from: Date; to?: Date }).from;
         const to: Date = Helper.IS.date(value) ? new Date() : (value as { from: Date; to?: Date }).to || new Date();
@@ -153,6 +165,10 @@ export class NgxHelperValuePipe implements PipeTransform {
                         : Helper.STRING.getMobileView(value.value);
                     html = !!value.english ? html : Helper.STRING.changeNumbers(html, 'FA');
                     ltr = true;
+                    break;
+
+                case 'MONTH':
+                    html = this.getMonth(value.value);
                     break;
 
                 case 'MULTILINE':

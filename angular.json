@@ -50,7 +50,12 @@
                             "node_modules/ol/ol.css"
                         ],
                         "scripts": [],
-                        "allowedCommonJsDependencies": ["@webilix/helper-library", "@webilix/jalali-date-time", "rbush"]
+                        "allowedCommonJsDependencies": [
+                            "@webilix/helper-library",
+                            "@webilix/jalali-date-time",
+                            "rbush",
+                            "color-name"
+                        ]
                     },
                     "configurations": {
                         "production": {

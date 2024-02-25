@@ -59,6 +59,16 @@
 </div>
 
 <div class="pipe">
+    <div class="title">ngxHelperMonth</div>
+    <div class="value">
+        {{ 11 | ngxHelperMonth }}<br />
+        {{ 12 | ngxHelperMonth }}<br />
+        {{ 13 | ngxHelperMonth }}<br />
+        {{ 100 | ngxHelperMonth }}<br />
+    </div>
+</div>
+
+<div class="pipe">
     <div class="title">ngxHelperMultiLine</div>
     <div class="value">
         <div class="en" [innerHTML]="html | ngxHelperMultiLine"></div>
@@ -208,6 +218,13 @@
         <div
             [innerHTML]="{ type: 'MOBILE', value: '09123456789', english: true, join: ' ' } | ngxHelperValue : true"
         ></div>
+        <br />
+
+        <div class="en" style="font-weight: 500; color: red">MONTH</div>
+        <div [innerHTML]="{ type: 'MONTH', value: 11 } | ngxHelperValue"></div>
+        <div [innerHTML]="{ type: 'MONTH', value: 12 } | ngxHelperValue"></div>
+        <div [innerHTML]="{ type: 'MONTH', value: 13 } | ngxHelperValue"></div>
+        <div [innerHTML]="{ type: 'MONTH', value: 100 } | ngxHelperValue"></div>
         <br />
 
         <div class="en" style="font-weight: 500; color: red">MULTILINE</div>

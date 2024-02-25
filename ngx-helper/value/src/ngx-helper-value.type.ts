@@ -10,6 +10,7 @@ export type NgxHelperValue =
       }
     | { type: 'ENGLISH'; value: string }
     | { type: 'MOBILE'; value: string; english?: true; join?: string }
+    | { type: 'MONTH'; value: number }
     | { type: 'MULTILINE'; value: string; english?: boolean; html?: boolean }
     | { type: 'NUMBER'; value: number; english?: boolean }
     | { type: 'PERIOD'; value: Date | { from: Date; to?: Date }; timezone?: string }

@@ -20,6 +20,7 @@ export class ValuesComponent {
         },
         { title: 'ایمیل', value: { type: 'ENGLISH', value: 'email@domain.com' }, copy: true },
         { title: 'موبایل', value: { type: 'MOBILE', value: '09122545391', english: true }, copy: true },
+        { title: 'ماه', value: { type: 'MONTH', value: 100 }, copy: true },
         {
             title: 'متن چند خطی فارسی',
             value: { type: 'MULTILINE', value: 'متن\nچند\nخطی\nفارسی' },
