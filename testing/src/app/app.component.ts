@@ -145,7 +145,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
     public params5: NgxHelperParam[] = [
         { type: 'COMMENT', title: 'فارسی', value: 'مقدار فارسی' },
-        { type: 'COMMENT', title: 'انگلیسی', value: 'English value', english: true },
+        { type: 'COMMENT', title: 'انگلیسی', value: 'English value', english: true, flex: 2 },
     ];
 
     public params6: NgxHelperParam[] = [

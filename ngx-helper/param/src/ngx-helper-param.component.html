@@ -2,7 +2,7 @@
 <div class="ngx-helper-param-group">
     <!-- GROUPS -->
     @for (params of paramGroups; track groupIndex; let groupIndex = $index) {
-    <div class="ngx-helper-param">
+    <div class="ngx-helper-param-item">
         <!-- PARAMS -->
         @for (param of params; track paramIndex; let paramIndex = $index) { @if (param !== 'SEPERATOR') { @switch
         (param.type) {
@@ -30,29 +30,25 @@
 
         <!-- OTHERS -->
         @default {
-        <div class="ngx-helper-param">
+        <div class="ngx-helper-param" [ngStyle]="{ flex: param.flex || 1 }">
             @switch (param.type) {
             <!-- COMMENT -->
             @case ('COMMENT') {
-            <ng-container>
-                <div class="title">{{ param.title }}</div>
-                <div [ngClass]="{ value: true, en: !!param.english }">{{ param.value }}</div>
-            </ng-container>
+            <div class="title">{{ param.title }}</div>
+            <div [ngClass]="{ value: true, en: !!param.english }">{{ param.value }}</div>
             }
 
             <!-- DATE -->
             @case ('DATE') {
-            <ng-container>
-                <div class="title">{{ param.title || 'تاریخ' }}</div>
-                <div class="value" (click)="setDate(param)">
-                    {{ values[param.name] ? (values[param.name] | ngxHelperJalali : { format: 'd N Y' }) : '&nbsp;' }}
-                </div>
-                <mat-icon
-                    class="ngx-helper-icon"
-                    [fontIcon]="values[param.name] && !param.required ? 'close' : 'calendar_month'"
-                    (click)="values[param.name] && !param.required ? resetValue(param) : setDate(param)"
-                ></mat-icon>
-            </ng-container>
+            <div class="title">{{ param.title || 'تاریخ' }}</div>
+            <div class="value" (click)="setDate(param)">
+                {{ values[param.name] ? (values[param.name] | ngxHelperJalali : { format: 'd N Y' }) : '&nbsp;' }}
+            </div>
+            <mat-icon
+                class="ngx-helper-icon"
+                [fontIcon]="values[param.name] && !param.required ? 'close' : 'calendar_month'"
+                (click)="values[param.name] && !param.required ? resetValue(param) : setDate(param)"
+            ></mat-icon>
             }
 
             <!-- PLATE -->
