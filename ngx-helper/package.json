@@ -5,13 +5,13 @@
     "author": "Ali Amirnezhad",
     "license": "MIT",
     "peerDependencies": {
-        "@angular/common": ">=17.2.1",
-        "@angular/core": ">=17.2.1",
-        "@angular/material": ">=17.2.0",
-        "@webilix/helper-library": ">=4.15.4",
+        "@angular/common": ">=17.2.3",
+        "@angular/core": ">=17.2.3",
+        "@angular/material": ">=17.2.1",
+        "@webilix/helper-library": ">=4.16.1",
         "@webilix/jalali-date-time": ">=2.0.2",
         "ngx-mask": ">=17.0.4",
-        "ol": ">=8.2.0"
+        "ol": ">=9.0.0"
     },
     "dependencies": {}
 }
