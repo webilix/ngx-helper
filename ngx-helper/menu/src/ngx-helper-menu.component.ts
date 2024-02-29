@@ -10,7 +10,7 @@ import {
     SimpleChanges,
     ViewChild,
 } from '@angular/core';
-import { MatMenuTrigger, MenuPositionX, MenuPositionY } from '@angular/material/menu';
+import { MatMenuTrigger, MenuCloseReason, MenuPositionX, MenuPositionY } from '@angular/material/menu';
 import { Router } from '@angular/router';
 
 import { NgxHelperMenu } from './ngx-helper-menu.type';
@@ -35,6 +35,7 @@ export class NgxHelperMenuComponent implements OnInit, OnDestroy, OnChanges {
     @Input({ required: false }) xPosition: MenuPositionX = 'after';
     @Input({ required: false }) yPosition: MenuPositionY = 'below';
 
+    @Output() menuClose: EventEmitter<MenuCloseReason> = new EventEmitter<MenuCloseReason>();
     @Output() menuChange: EventEmitter<NgxHelperMenu[]> = new EventEmitter<NgxHelperMenu[]>();
 
     private clickListener = () => this.matMenuTrigger?.openMenu();

@@ -34,7 +34,13 @@
             }
         </div>
     </button>
-    <mat-menu #ngxHelperMenu="matMenu" class="ngx-helper-menu-panel" [xPosition]="xPosition" [yPosition]="yPosition">
+    <mat-menu
+        #ngxHelperMenu="matMenu"
+        class="ngx-helper-menu-panel"
+        [xPosition]="xPosition"
+        [yPosition]="yPosition"
+        (close)="menuClose.emit($event)"
+    >
         <!-- MENU -->
         @for (m of menu; track $index) {
         <!-- SEPERATOR -->

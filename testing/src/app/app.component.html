@@ -225,7 +225,14 @@
     <ngx-helper-menu [menu]="menu" [icon]="'menu'"></ngx-helper-menu>
     <ngx-helper-menu [menu]="menu" [title]="'منو'" [border]="1"></ngx-helper-menu>
     <ngx-helper-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'accent'"></ngx-helper-menu>
-    <ngx-helper-menu [menu]="menu" [title]="'منو'" [icon]="'menu'" [color]="'warn'" [border]="1"></ngx-helper-menu>
+    <ngx-helper-menu
+        [menu]="menu"
+        [title]="'منو'"
+        [icon]="'menu'"
+        [color]="'warn'"
+        [border]="1"
+        (menuClose)="log($event)"
+    ></ngx-helper-menu>
 </div>
 
 <ngx-helper-box title="نمایش باکس" icon="home" [component]="boxComponent"></ngx-helper-box>
