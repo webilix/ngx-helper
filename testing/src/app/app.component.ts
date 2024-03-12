@@ -192,8 +192,17 @@ export class AppComponent implements OnInit, OnDestroy {
     public pipeComponent: ComponentType<PipeComponent> = PipeComponent;
     public valuesComponent: ComponentType<ValuesComponent> = ValuesComponent;
 
+    public emptyMenu: NgxHelperMenu[] = [
+        'SEPERATOR',
+        { title: 'عدم نمایش', click: [], hideOn: () => true },
+        'SEPERATOR',
+    ];
     public singleMenu: NgxHelperMenu[] = [
+        'SEPERATOR',
         { title: 'حذف', click: () => this.log('DELETE'), icon: 'delete', color: 'warn' },
+        'SEPERATOR',
+        { title: 'عدم نمایش', click: [], hideOn: () => true },
+        'SEPERATOR',
     ];
     public menu: NgxHelperMenu[] = [
         { title: 'عدم نمایش', click: [], hideOn: () => true },

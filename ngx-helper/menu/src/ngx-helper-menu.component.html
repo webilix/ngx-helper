@@ -10,6 +10,10 @@
 >
     <div [ngClass]="['label', 'ngx-helper-color-' + (menu[0].color || 'primary')]">
         <mat-icon [fontIcon]="menu[0].icon || icon || 'more_vert'" class="ngx-helper-icon"></mat-icon>
+        <!-- TITLE -->
+        @if (title) {
+        <div class="title">{{ title }}</div>
+        }
     </div>
 </button>
 }
