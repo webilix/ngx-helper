@@ -17,6 +17,8 @@ export class NgxHelperParamPlateComponent {
     public letter?: string = this.data.letter;
     public letters: string[] = Helper.PLATE.letters;
 
+    public inputTransformFn = (value: any): string => Helper.STRING.changeNumbers(value.toString(), 'EN');
+
     constructor(
         @Inject(MAT_BOTTOM_SHEET_DATA) private readonly data: { letter?: string },
         private readonly ngxHelperBottomSheetService: NgxHelperBottomSheetService,

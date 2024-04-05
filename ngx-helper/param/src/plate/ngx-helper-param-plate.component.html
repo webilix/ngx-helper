@@ -1,10 +1,10 @@
 <div class="plate">
     <input
         type="text"
-        [ngxHelperParamPersianNumber]="true"
         inputmode="numeric"
         calss="ngx-helper-en"
         [mask]="'00'"
+        [inputTransformFn]="inputTransformFn"
         (blur)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
         (keyup)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
         (input)="(plateLeft.value || '').length === 2 ? (letter ? plateRight.focus() : plateLetter.focus()) : null"
@@ -25,10 +25,10 @@
     </mat-select>
     <input
         type="text"
-        [ngxHelperParamPersianNumber]="true"
         inputmode="numeric"
         calss="ngx-helper-en"
         [mask]="'000'"
+        [inputTransformFn]="inputTransformFn"
         (blur)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
         (keyup)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
         (input)="(plateRight.value || '').length === 3 ? plateIran.focus() : null"
@@ -37,10 +37,10 @@
     />
     <input
         type="text"
-        [ngxHelperParamPersianNumber]="true"
         inputmode="numeric"
         calss="ngx-helper-en"
         [mask]="'00'"
+        [inputTransformFn]="inputTransformFn"
         (blur)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
         (keyup)="setPlate(plateLeft.value, plateLetter.value, plateRight.value, plateIran.value)"
         (keydown.enter)="setValue()"
