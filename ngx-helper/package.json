@@ -10,7 +10,7 @@
         "@angular/material": ">=17.3.3",
         "@webilix/helper-library": ">=4.16.3",
         "@webilix/jalali-date-time": ">=2.0.3",
-        "ngx-mask": ">=17.0.4",
+        "ngx-mask": ">=17.0.7",
         "ol": ">=9.1.0"
     },
     "dependencies": {}
