@@ -26,6 +26,10 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
+        .value {
+            flex: 1;
+        }
     }
 
     .copy {

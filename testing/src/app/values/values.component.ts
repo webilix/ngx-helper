@@ -10,6 +10,11 @@ import { INgxHelperValue } from '@webilix/ngx-helper/value';
 export class ValuesComponent {
     public values: INgxHelperValue[] = [
         { title: 'عبارت متنی فارسی', value: 'مقدار عبارت متنی فارسی', copy: true },
+        {
+            title: 'عبارت متنی فارسی ظولانی',
+            value: 'مقدار عبارت متنی فارسی طولانی که باید در چند خط نمایش داده شود. این عبارت به صورت چند خطی ثبت نشده است!',
+            copy: true,
+        },
         { title: 'عبارت متنی انگلیسی', value: 'english text', copy: true },
         { title: 'کارت بانکی', value: { type: 'BANK-CARD', value: '1234123412341238', english: true }, copy: true },
         { title: 'تاریخ', value: { type: 'DATE', value: new Date() }, copy: true },

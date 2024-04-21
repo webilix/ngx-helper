@@ -3,11 +3,7 @@
 <div [ngClass]="{ 'ngx-helper-value': true, 'ngx-helper-value-no-border': !border }">
     <div class="data">
         <div class="title" [ngStyle]="{ width: width.toString() + 'px' }">{{ value.title }}:</div>
-        <div
-            class="value"
-            [ngStyle]="{ flex: value.block ? 1 : 'none' }"
-            [innerHTML]="value.value | ngxHelperValue : true"
-        ></div>
+        <div class="value" [innerHTML]="value.value | ngxHelperValue : true"></div>
     </div>
 
     <!-- COPY -->
