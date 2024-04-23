@@ -12,6 +12,8 @@ import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import interactionDoubleClickZoom from 'ol/interaction/DoubleClickZoom';
 
+import { Helper } from '@webilix/helper-library';
+
 import { INgxHelperCoordinates, INgxHelperCoordinatesConfig } from '../ngx-helper-coordinates.interface';
 
 @Component({
@@ -23,7 +25,10 @@ export class NgxHelperCoordinatesGetComponent implements OnInit {
     public map!: Map;
     public coordinates?: INgxHelperCoordinates;
 
-    private coordinate: Coordinate = [];
+    public coordinate: Coordinate = [];
+    public error?: 'LATITUDE' | 'LONGITUDE';
+
+    public inputTransformFn = (value: any): string => Helper.STRING.changeNumbers(value.toString(), 'EN');
 
     constructor(
         @Inject('NGX_HELPER_PRIMARY_COLOR') private readonly primaryColor: string,
@@ -62,37 +67,68 @@ export class NgxHelperCoordinatesGetComponent implements OnInit {
     }
 
     addLayer(): void {
-        const point = new Point(this.coordinate);
-        const layer = new VectorLayer({
-            source: new VectorSource({ features: [new Feature(point)] }),
-            style: this.data.config.image
-                ? new Style({
-                      image: new Icon({
-                          src: this.data.config.image,
-                          width: 30,
-                          height: 30,
-                          color: this.data.config.color,
-                          displacement: [0, 15],
-                      }),
-                  })
-                : {
-                      'circle-fill-color': this.data.config.color || this.primaryColor,
-                      'circle-radius': 8,
-                      'circle-stroke-color': '#FFF',
-                      'circle-stroke-width': 1,
-                  },
-        });
-        this.map.addLayer(layer);
-    }
-
-    setCoordinates(event: MouseEvent): void {
-        event.preventDefault();
         this.map
             .getLayers()
             .getArray()
             .forEach((layer: BaseLayer) => {
                 if (layer instanceof VectorLayer) this.map.removeLayer(layer);
             });
+
+        if (this.coordinates) {
+            const point = new Point(this.coordinate);
+            const layer = new VectorLayer({
+                source: new VectorSource({ features: [new Feature(point)] }),
+                style: this.data.config.image
+                    ? new Style({
+                          image: new Icon({
+                              src: this.data.config.image,
+                              width: 30,
+                              height: 30,
+                              color: this.data.config.color,
+                              displacement: [0, 15],
+                          }),
+                      })
+                    : {
+                          'circle-fill-color': this.data.config.color || this.primaryColor,
+                          'circle-radius': 8,
+                          'circle-stroke-color': '#FFF',
+                          'circle-stroke-width': 1,
+                      },
+            });
+            this.map.addLayer(layer);
+        }
+    }
+
+    checkInputs(latitude: string, longitude: string): void {
+        this.coordinates = undefined;
+        this.addLayer();
+
+        this.error = undefined;
+
+        latitude = latitude.toString().trim();
+        if (latitude === '' || isNaN(+latitude) || +latitude < -180 || +latitude > 180) {
+            this.error = 'LATITUDE';
+            return;
+        }
+
+        longitude = longitude.toString().trim();
+        if (longitude === '' || isNaN(+longitude) || +longitude < -180 || +longitude > 180) {
+            this.error = 'LONGITUDE';
+            return;
+        }
+
+        if (this.coordinate[1] === +latitude && this.coordinate[0] === +longitude) return;
+
+        const center: Coordinate = [+longitude, +latitude];
+        this.map.getView().animate({ center, duration: 1000 });
+
+        this.coordinate = [+longitude, +latitude];
+        this.coordinates = { latitude: +latitude, longitude: +longitude };
+        this.addLayer();
+    }
+
+    setCoordinates(event: MouseEvent): void {
+        event.preventDefault();
 
         this.coordinate = this.map.getEventCoordinate(event).map((c: number) => +c.toFixed(7));
         this.coordinates = { latitude: this.coordinate[1], longitude: this.coordinate[0] };

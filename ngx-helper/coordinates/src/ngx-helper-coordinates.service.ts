@@ -32,10 +32,17 @@ export class NgxHelperCoordinatesService {
         };
     }
 
+    get(coordinates: INgxHelperCoordinates): Promise<INgxHelperCoordinates>;
+    get(config: Partial<INgxHelperCoordinatesConfig>): Promise<INgxHelperCoordinates>;
     get(
-        coordinates?: INgxHelperCoordinates,
-        config?: Partial<INgxHelperCoordinatesConfig>,
-    ): Promise<INgxHelperCoordinates> {
+        coordinates: INgxHelperCoordinates,
+        config: Partial<INgxHelperCoordinatesConfig>,
+    ): Promise<INgxHelperCoordinates>;
+    get(arg1?: any, arg2?: any): Promise<INgxHelperCoordinates> {
+        const coordinates: INgxHelperCoordinates | undefined = 'latitude' in arg1 ? arg1 : undefined;
+        const config: Partial<INgxHelperCoordinatesConfig> | undefined =
+            arg2 || (arg1 && !coordinates ? arg1 : undefined);
+
         return new Promise<INgxHelperCoordinates>((resolve, reject) => {
             this.matDialog
                 .open(NgxHelperCoordinatesGetComponent, {

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,7 +12,7 @@ import { NgxHelperCoordinatesService } from './ngx-helper-coordinates.service';
 
 @NgModule({
     declarations: [NgxHelperCoordinatesGetComponent, NgxHelperCoordinatesShowComponent],
-    imports: [CommonModule, MatDialogModule, MatIconModule],
-    providers: [NgxHelperCoordinatesService],
+    imports: [CommonModule, NgxMaskDirective, MatDialogModule, MatIconModule],
+    providers: [provideNgxMask(), NgxHelperCoordinatesService],
 })
 export class NgxHelperCoordinatesModule {}

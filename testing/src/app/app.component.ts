@@ -511,11 +511,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
     getCoordinates(type: number): void {
         (type === 1
-            ? this.ngxHelperCoordinatesService.get(undefined, { zoom: 5 })
+            ? this.ngxHelperCoordinatesService.get({ zoom: 5 })
             : type === 2
-            ? this.ngxHelperCoordinatesService.get(undefined, { image: '/assets/pin.png', zoom: 5 })
+            ? this.ngxHelperCoordinatesService.get({ image: '/assets/pin.png', zoom: 5 })
             : type === 3
-            ? this.ngxHelperCoordinatesService.get(undefined, {
+            ? this.ngxHelperCoordinatesService.get({
                   image: '/assets/pin.png',
                   view: { latitude: 35.6997382, longitude: 51.3380603 },
               })
