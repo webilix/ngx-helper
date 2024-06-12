@@ -35,11 +35,10 @@
             "prefix": "app",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
+                    "builder": "@angular-devkit/build-angular:application",
                     "options": {
-                        "outputPath": "dist/testing",
+                        "outputPath": { "base": "dist/testing" },
                         "index": "testing/src/index.html",
-                        "main": "testing/src/main.ts",
                         "polyfills": ["zone.js"],
                         "tsConfig": "testing/tsconfig.app.json",
                         "inlineStyleLanguage": "scss",
@@ -55,7 +54,8 @@
                             "@webilix/jalali-date-time",
                             "rbush",
                             "color-name"
-                        ]
+                        ],
+                        "browser": "testing/src/main.ts"
                     },
                     "configurations": {
                         "production": {
@@ -66,9 +66,7 @@
                             "outputHashing": "all"
                         },
                         "development": {
-                            "buildOptimizer": false,
                             "optimization": false,
-                            "vendorChunk": true,
                             "extractLicenses": false,
                             "sourceMap": true,
                             "namedChunks": true

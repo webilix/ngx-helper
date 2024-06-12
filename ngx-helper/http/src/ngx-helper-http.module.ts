@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -14,16 +14,7 @@ import { NgxHelperHttpUploadComponent } from './upload/ngx-helper-http-upload.co
 
 @NgModule({
     declarations: [NgxHelperHttpDownloadComponent, NgxHelperHttpUploadComponent],
-    imports: [
-        CommonModule,
-        HttpClientModule,
-
-        MatIconModule,
-        MatProgressBarModule,
-
-        NgxHelperPipeModule,
-        NgxHelperToastModule,
-    ],
-    providers: [NgxHelperHttpService],
+    imports: [CommonModule, MatIconModule, MatProgressBarModule, NgxHelperPipeModule, NgxHelperToastModule],
+    providers: [NgxHelperHttpService, provideHttpClient(withInterceptorsFromDi())],
 })
 export class NgxHelperHttpModule {}

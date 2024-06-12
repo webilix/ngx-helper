@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 
@@ -12,9 +12,12 @@ import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
 
 @NgModule({
     declarations: [NgxHelperComponent],
-    imports: [CommonModule, HttpClientModule],
     exports: [NgxHelperComponent],
-    providers: [provideHttpClient(withInterceptors([NgxHelperLoadingInterceptor, NgxHelperDateInterceptor]))],
+    imports: [CommonModule],
+    providers: [
+        provideHttpClient(withInterceptors([NgxHelperLoadingInterceptor, NgxHelperDateInterceptor])),
+        provideHttpClient(withInterceptorsFromDi()),
+    ],
 })
 export class NgxHelperModule {
     static forRoot(config?: INgxHelperConfig): ModuleWithProviders<NgxHelperModule> {
