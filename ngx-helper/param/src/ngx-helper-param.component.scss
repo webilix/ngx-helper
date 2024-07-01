@@ -120,7 +120,7 @@
             ngx-helper-menu,
             mat-icon {
                 cursor: pointer;
-                width: var(--height) !important;
+                width: 32px !important;
                 height: calc(var(--height) - 2px) !important;
                 border-radius: 4px 0 0 4px;
                 color: var(--ngxHelperPrimaryColor);
@@ -183,7 +183,7 @@
 
             mat-icon {
                 cursor: pointer;
-                width: var(--height) !important;
+                width: 32px !important;
                 height: calc(var(--height) - 2px) !important;
                 color: var(--ngxHelperPrimaryColor);
                 transition: all 0.35s ease-out;
@@ -199,7 +199,7 @@
                 bottom: 0;
                 left: 0;
 
-                width: var(--height) !important;
+                width: 32px !important;
                 height: calc(var(--height) - 2px) !important;
                 overflow: hidden;
                 z-index: 1;
@@ -210,7 +210,7 @@
                 top: 0;
                 left: 0;
 
-                width: var(--height) !important;
+                width: 32px !important;
                 height: calc(var(--height) - 2px) !important;
                 border-radius: 4px 0 0 4px;
                 color: var(--ngxHelperPrimaryColor);

@@ -1,4 +1,14 @@
-import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    HostBinding,
+    Inject,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+} from '@angular/core';
 import { Params, Router } from '@angular/router';
 
 import { JalaliDateTime, JalaliDateTimePeriod } from '@webilix/jalali-date-time';
@@ -15,12 +25,18 @@ import { NgxHelperCalendarService } from './ngx-helper-calendar.service';
     styleUrls: ['./ngx-helper-calendar.component.scss'],
 })
 export class NgxHelperCalendarComponent implements OnInit, OnChanges {
+    @HostBinding('style.--width') cssWidth = '';
+    @HostBinding('style.--height') cssHeight = '';
+
     @Input({ required: false }) types: NgxHelperCalendar[] = [];
 
     @Input({ required: false }) route: string[] = [];
     @Input({ required: false }) value?: Date;
     @Input({ required: false }) minDate?: Date;
     @Input({ required: false }) maxDate?: Date;
+
+    @Input({ required: false }) width?: number;
+    @Input({ required: false }) height: number = 42;
 
     @Output() changed: EventEmitter<INgxHelperCalendarValue> = new EventEmitter<INgxHelperCalendarValue>();
 
@@ -90,6 +106,9 @@ export class NgxHelperCalendarComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        this.cssWidth = this.width ? `${this.width}px` : '100%';
+        this.cssHeight = `${Math.max(32, this.height)}px`;
+
         if (this.minDate && this.maxDate && this.minDate.getTime() >= this.maxDate.getTime()) {
             const temp = this.minDate;
             this.minDate = this.maxDate;
