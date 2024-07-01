@@ -26,6 +26,8 @@ export interface INgxHelperParamOrder {
     type: 'ASC' | 'DESC';
     options: { id: string; title: string }[];
     default?: string;
+    flex?: number;
+    width?: number;
 }
 
 export interface INgxHelperParamValue {

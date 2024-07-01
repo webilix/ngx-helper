@@ -59,6 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
             { id: 'option-3', title: 'گزینه سوم' },
         ],
         default: 'option-2',
+        flex: 2,
     };
 
     public params2: NgxHelperParam[] = [
@@ -149,8 +150,8 @@ export class AppComponent implements OnInit, OnDestroy {
     ];
 
     public params6: NgxHelperParam[] = [
-        { name: 'plate-1', type: 'PLATE', value: ['12', 'ا', '345', '67'].join('-') },
-        { name: 'plate-2', type: 'PLATE', value: ['12', 'ا', '345', '67'] },
+        { name: 'plate-1', type: 'PLATE', value: ['12', 'ا', '345', '67'].join('-'), width: 90 },
+        { name: 'plate-2', type: 'PLATE', value: ['12', 'ا', '345', '67'], width: 100 },
         { name: 'plate-3', type: 'PLATE', letter: 'ع' },
     ];
 

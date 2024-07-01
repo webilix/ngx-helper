@@ -33,12 +33,16 @@ import { NgxHelperParamPlateComponent } from './plate/ngx-helper-param-plate.com
 })
 export class NgxHelperParamComponent implements OnInit, OnChanges {
     @HostBinding('className') className: string = '';
+    @HostBinding('style.--height') cssHeight = '';
 
     @Input({ required: false }) route: string[] = ['/'];
     @Input({ required: false }) page: number = 1;
     @Input({ required: false }) params: NgxHelperParam[] = [];
     @Input({ required: false }) update: INgxHelperParamUpdate = {};
     @Input({ required: false }) order?: INgxHelperParamOrder;
+
+    @Input({ required: false }) width?: number;
+    @Input({ required: false }) height: number = 32;
 
     @Output() changed: EventEmitter<INgxHelperParamValue> = new EventEmitter<INgxHelperParamValue>();
     @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
@@ -63,6 +67,8 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+        this.cssHeight = `${Math.max(32, this.height)}px`;
+
         this.paramGroups[0] = [];
         this.params.forEach((param: NgxHelperParam) => {
             if (param === 'SEPERATOR') this.paramGroups.push([]);

@@ -5,6 +5,7 @@ export interface INgxHelperParam {
     value?: string;
     required?: boolean;
     flex?: number;
+    width?: number;
 }
 
 export interface INgxHelperParamComment extends Omit<INgxHelperParam, 'name' | 'title' | 'value' | 'required'> {
@@ -14,7 +15,7 @@ export interface INgxHelperParamComment extends Omit<INgxHelperParam, 'name' | '
 }
 
 export interface INgxHelperParamBoolean
-    extends Omit<INgxHelperParam, 'title' | 'english' | 'value' | 'required' | 'flex'> {
+    extends Omit<INgxHelperParam, 'title' | 'english' | 'value' | 'required' | 'flex' | 'width'> {
     type: 'BOOLEAN';
     value?: boolean;
     icon?: string;
@@ -27,7 +28,8 @@ export interface INgxHelperParamDate extends Omit<INgxHelperParam, 'english' | '
     maxDate?: Date;
 }
 
-export interface INgxHelperParamMenu extends Omit<INgxHelperParam, 'title' | 'english' | 'required' | 'flex'> {
+export interface INgxHelperParamMenu
+    extends Omit<INgxHelperParam, 'title' | 'english' | 'required' | 'flex' | 'width'> {
     type: 'MENU';
     title?: string;
     icon?: string;

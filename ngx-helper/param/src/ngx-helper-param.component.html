@@ -30,7 +30,13 @@
 
         <!-- OTHERS -->
         @default {
-        <div class="ngx-helper-param" [ngStyle]="{ flex: param.flex || 1 }">
+        <div
+            class="ngx-helper-param"
+            [ngStyle]="{
+                width: param.width || width ? (param.width || width) + 'px' : 'auto',
+                flex: param.width || width ? 'none' : param.flex || 1
+            }"
+        >
             @switch (param.type) {
             <!-- COMMENT -->
             @case ('COMMENT') {
@@ -56,7 +62,12 @@
             <div class="title">{{ param.title || 'پلاک' }}</div>
             <div class="value value-plate" (click)="setPlate(param)">
                 @if (values[param.name]) {
-                <ngx-helper-plate [plate]="values[param.name].split('-')" [border]="false"></ngx-helper-plate> }
+                <ngx-helper-plate
+                    [plate]="values[param.name].split('-')"
+                    [border]="false"
+                    [height]="height - 2"
+                ></ngx-helper-plate>
+                }
             </div>
             <mat-icon
                 class="ngx-helper-icon"
@@ -117,7 +128,13 @@
         <!-- ORDER -->
         @if ( groupIndex === paramGroups.length - 1 && paramIndex === paramGroups[groupIndex].length - 1 && order &&
         order.options.length !== 0 ) {
-        <div class="ngx-helper-order">
+        <div
+            class="ngx-helper-order"
+            [ngStyle]="{
+                width: order.width || width ? (order.width || width) + 'px' : 'auto',
+                flex: order.width || width ? 'none' : order.flex || 1
+            }"
+        >
             <div class="title">{{ order.title || 'ترتیب' }}</div>
             <div class="option" #orderMenuTrigger>{{ getOrderTitle() }}</div>
             <!-- MENU -->

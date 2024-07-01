@@ -46,11 +46,11 @@
     <button mat-flat-button type="button" color="primary" (click)="changeParam()">CHANGE</button>
 </div>
 <ngx-helper-param [params]="params1" [order]="order" (changed)="log('PARAMS1', $event)"></ngx-helper-param>
-<ngx-helper-param [params]="params2" (changed)="log('PARAMS2', $event)"></ngx-helper-param>
-<ngx-helper-param [params]="params4" (changed)="log('PARAMS4', $event)"></ngx-helper-param>
-<ngx-helper-param [params]="params5" (changed)="log('PARAMS5', $event)"></ngx-helper-param>
-<ngx-helper-param [params]="params6" (changed)="log('PARAMS6', $event)"></ngx-helper-param>
-<ngx-helper-param [params]="params7" (changed)="log('PARAMS7', $event)"></ngx-helper-param>
+<ngx-helper-param [params]="params2" (changed)="log('PARAMS2', $event)" [height]="32" [width]="100"></ngx-helper-param>
+<ngx-helper-param [params]="params4" (changed)="log('PARAMS4', $event)" [height]="34" [width]="110"></ngx-helper-param>
+<ngx-helper-param [params]="params5" (changed)="log('PARAMS5', $event)" [height]="38"></ngx-helper-param>
+<ngx-helper-param [params]="params6" (changed)="log('PARAMS6', $event)" [height]="40" [width]="110"></ngx-helper-param>
+<ngx-helper-param [params]="params7" (changed)="log('PARAMS7', $event)" [height]="42" [width]="110"></ngx-helper-param>
 
 <ngx-helper-calendar
     [route]="['/']"

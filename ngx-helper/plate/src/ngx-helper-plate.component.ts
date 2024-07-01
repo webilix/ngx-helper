@@ -12,6 +12,7 @@ export class NgxHelperPlateComponent implements OnChanges {
 
     @Input({ required: true }) plate!: string[];
     @Input({ required: false }) border: boolean = true;
+    @Input({ required: false }) height?: number;
 
     public show: boolean = false;
 
