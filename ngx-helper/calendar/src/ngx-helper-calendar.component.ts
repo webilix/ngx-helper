@@ -36,7 +36,7 @@ export class NgxHelperCalendarComponent implements OnInit, OnChanges {
     @Input({ required: false }) maxDate?: Date;
 
     @Input({ required: false }) width?: number;
-    @Input({ required: false }) height: number = 42;
+    @Input({ required: false }) height: number = 32;
 
     @Output() changed: EventEmitter<INgxHelperCalendarValue> = new EventEmitter<INgxHelperCalendarValue>();
 
