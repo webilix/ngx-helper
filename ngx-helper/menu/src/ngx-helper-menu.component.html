@@ -28,6 +28,8 @@
         [color]="color"
         [ngStyle]="{ border: border.toString() + 'px solid var(--ngxHelperBorderColor)' }"
         [matMenuTriggerFor]="ngxHelperMenu"
+        (menuOpened)="menuOpened.emit()"
+        (menuClosed)="menuClosed.emit()"
     >
         <div class="label">
             <!-- ICON -->
@@ -38,13 +40,7 @@
             }
         </div>
     </button>
-    <mat-menu
-        #ngxHelperMenu="matMenu"
-        class="ngx-helper-menu-panel"
-        [xPosition]="xPosition"
-        [yPosition]="yPosition"
-        (close)="menuClose.emit($event)"
-    >
+    <mat-menu #ngxHelperMenu="matMenu" class="ngx-helper-menu-panel" [xPosition]="xPosition" [yPosition]="yPosition">
         <!-- MENU -->
         @for (m of menu; track $index) {
         <!-- SEPERATOR -->

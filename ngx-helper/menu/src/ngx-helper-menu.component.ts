@@ -35,8 +35,9 @@ export class NgxHelperMenuComponent implements OnInit, OnDestroy, OnChanges {
     @Input({ required: false }) xPosition: MenuPositionX = 'after';
     @Input({ required: false }) yPosition: MenuPositionY = 'below';
 
-    @Output() menuClose: EventEmitter<MenuCloseReason> = new EventEmitter<MenuCloseReason>();
-    @Output() menuChange: EventEmitter<NgxHelperMenu[]> = new EventEmitter<NgxHelperMenu[]>();
+    @Output() menuOpened: EventEmitter<void> = new EventEmitter<void>();
+    @Output() menuClosed: EventEmitter<void> = new EventEmitter<void>();
+    @Output() menuChanged: EventEmitter<NgxHelperMenu[]> = new EventEmitter<NgxHelperMenu[]>();
 
     private clickListener = () => this.matMenuTrigger?.openMenu();
 
@@ -69,7 +70,7 @@ export class NgxHelperMenuComponent implements OnInit, OnDestroy, OnChanges {
             this.menu.length === 0 || (this.menu.length === 1 && this.menu[0] === 'SEPERATOR')
                 ? 'ngx-helper-hidden'
                 : '';
-        this.menuChange.emit(this.menu);
+        this.menuChanged.emit(this.menu);
     }
 
     click(click: string[] | (() => void)): void {

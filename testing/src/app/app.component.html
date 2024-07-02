@@ -234,7 +234,9 @@
         [icon]="'menu'"
         [color]="'warn'"
         [border]="1"
-        (menuClose)="log($event)"
+        (menuOpened)="log('menuOpened')"
+        (menuClosed)="log('menuClosed')"
+        (menuChanged)="log('menuChanged')"
     ></ngx-helper-menu>
 </div>
 
