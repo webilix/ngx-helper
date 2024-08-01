@@ -20,6 +20,9 @@ import { NgxHelperCoordinatesGetComponent } from './coordinates/get/ngx-helper-c
 import { NgxHelperCoordinatesShowComponent } from './coordinates/show/ngx-helper-coordinates-show.component';
 import { NgxHelperCoordinatesService } from './coordinates/ngx-helper-coordinates.service';
 
+import { NgxHelperDialogComponent } from './dialog/ngx-helper-dialog.component';
+import { NgxHelperDialogService } from './dialog/ngx-helper-dialog.service';
+
 import { NgxHelperDateInterceptor, NgxHelperLoadingInterceptor } from './interceptors';
 
 import { NgxHelperComponent } from './ngx-helper.component';
@@ -36,6 +39,8 @@ import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
 
         NgxHelperCoordinatesGetComponent,
         NgxHelperCoordinatesShowComponent,
+
+        NgxHelperDialogComponent,
     ],
     exports: [NgxHelperComponent],
     imports: [CommonModule, NgxMaskDirective, MatBottomSheetModule, MatButtonModule, MatDialogModule, MatIconModule],
@@ -47,6 +52,7 @@ import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
         NgxHelperBottomSheetService,
         NgxHelperConfirmService,
         NgxHelperCoordinatesService,
+        NgxHelperDialogService,
     ],
 })
 export class NgxHelperModule {

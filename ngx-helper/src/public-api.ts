@@ -20,3 +20,7 @@ export { NgxHelperConfirmService } from './lib/confirm/ngx-helper-confirm.servic
 // COORDINATES
 export { INgxHelperCoordinates, INgxHelperCoordinatesConfig } from './lib/coordinates/ngx-helper-coordinates.interface';
 export { NgxHelperCoordinatesService } from './lib/coordinates/ngx-helper-coordinates.service';
+
+// DIALOG
+export { INgxHelperDialogConfig } from './lib/dialog/ngx-helper-dialog.interface';
+export { NgxHelperDialogService } from './lib/dialog/ngx-helper-dialog.service';

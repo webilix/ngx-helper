@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { NgxHelperDialogService } from '@webilix/ngx-helper/dialog';
+import { NgxHelperDialogService } from '@webilix/ngx-helper';
 
 @Component({
     host: { selector: 'dialog' },
