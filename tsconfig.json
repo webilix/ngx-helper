@@ -17,7 +17,6 @@
             "@webilix/ngx-helper/box": ["ngx-helper/box/public-api"],
             "@webilix/ngx-helper/button-group": ["ngx-helper/button-group/public-api"],
             "@webilix/ngx-helper/calendar": ["ngx-helper/calendar/public-api"],
-            "@webilix/ngx-helper/confirm": ["ngx-helper/confirm/public-api"],
             "@webilix/ngx-helper/coordinates": ["ngx-helper/coordinates/public-api"],
             "@webilix/ngx-helper/dialog": ["ngx-helper/dialog/public-api"],
             "@webilix/ngx-helper/http": ["ngx-helper/http/public-api"],

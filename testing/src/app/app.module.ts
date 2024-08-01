@@ -10,7 +10,6 @@ import { NgxHelperModule } from '@webilix/ngx-helper';
 import { NgxHelperBoxModule } from '@webilix/ngx-helper/box';
 import { NgxHelperButtonGroupModule } from '@webilix/ngx-helper/button-group';
 import { NgxHelperCalendarModule } from '@webilix/ngx-helper/calendar';
-import { NgxHelperConfirmModule } from '@webilix/ngx-helper/confirm';
 import { NgxHelperCoordinatesModule } from '@webilix/ngx-helper/coordinates';
 import { NgxHelperDialogModule } from '@webilix/ngx-helper/dialog';
 import { NgxHelperHttpModule } from '@webilix/ngx-helper/http';
@@ -58,7 +57,6 @@ import { ValuesComponent } from './values/values.component';
         NgxHelperBoxModule,
         NgxHelperButtonGroupModule,
         NgxHelperCalendarModule,
-        NgxHelperConfirmModule,
         NgxHelperCoordinatesModule,
         NgxHelperDialogModule,
         NgxHelperHttpModule,

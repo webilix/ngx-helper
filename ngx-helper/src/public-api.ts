@@ -13,3 +13,6 @@ export { NgxHelperConnectionService, NgxHelperContainerService, NgxHelperLoading
 // BOTTOM SHEET
 export { INgxHelperBottomSheetConfig } from './lib/bottom-sheet/ngx-helper-bottom-sheet.interface';
 export { NgxHelperBottomSheetService } from './lib/bottom-sheet/ngx-helper-bottom-sheet.service';
+
+// CONFIRM
+export { NgxHelperConfirmService } from './lib/confirm/ngx-helper-confirm.service';

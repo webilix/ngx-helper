@@ -10,10 +10,10 @@ import {
     NgxHelperLoadingService,
     NGX_HELPER_LOADING_HEADER,
     NgxHelperBottomSheetService,
+    NgxHelperConfirmService,
 } from '@webilix/ngx-helper';
 import { INgxHelperButtonGroup } from '@webilix/ngx-helper/button-group';
 import { INgxHelperCalendarPeriod, NgxHelperCalendarService } from '@webilix/ngx-helper/calendar';
-import { NgxHelperConfirmService } from '@webilix/ngx-helper/confirm';
 import { NgxHelperCoordinatesService } from '@webilix/ngx-helper/coordinates';
 import { NgxHelperDialogService } from '@webilix/ngx-helper/dialog';
 import { NgxHelperHttpService } from '@webilix/ngx-helper/http';
