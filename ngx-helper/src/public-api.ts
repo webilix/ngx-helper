@@ -27,3 +27,8 @@ export { NgxHelperDialogService } from './lib/dialog/ngx-helper-dialog.service';
 
 // IMAGE
 export { NgxHelperImageService } from './lib/image/ngx-helper-image.service';
+
+// TOAST
+export { INgxHelperToastConfig } from './lib/toast/ngx-helper-toast.interface';
+export { NgxHelperToastService } from './lib/toast/ngx-helper-toast.service';
+export { NgxHelperToast } from './lib/toast/ngx-helper-toast.type';

@@ -2,7 +2,7 @@ import { AfterViewInit, Component, HostBinding, Inject, Input } from '@angular/c
 import { animate, style, transition, trigger } from '@angular/animations';
 import { HttpClient, HttpEventType, HttpHeaders } from '@angular/common/http';
 
-import { NgxHelperToastService } from '@webilix/ngx-helper/toast';
+import { NgxHelperToastService } from '@webilix/ngx-helper';
 
 @Component({
     host: { selector: 'ngx-helper-http-download' },

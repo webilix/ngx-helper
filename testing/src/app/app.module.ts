@@ -19,7 +19,6 @@ import { NgxHelperParamModule } from '@webilix/ngx-helper/param';
 import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
 import { NgxHelperPlateModule } from '@webilix/ngx-helper/plate';
 import { NgxHelperProgressModule } from '@webilix/ngx-helper/progress';
-import { NgxHelperToastModule } from '@webilix/ngx-helper/toast';
 import { NgxHelperTagModule } from '@webilix/ngx-helper/tag';
 import { NgxHelperValueModule } from '@webilix/ngx-helper/value';
 
@@ -63,7 +62,6 @@ import { ValuesComponent } from './values/values.component';
         NgxHelperPipeModule,
         NgxHelperPlateModule,
         NgxHelperProgressModule,
-        NgxHelperToastModule,
         NgxHelperTagModule,
         NgxHelperValueModule,
     ],

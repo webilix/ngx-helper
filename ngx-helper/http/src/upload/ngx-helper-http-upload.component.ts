@@ -10,8 +10,7 @@ import {
 } from '@angular/common/http';
 
 import { Helper } from '@webilix/helper-library';
-
-import { NgxHelperToastService } from '@webilix/ngx-helper/toast';
+import { NgxHelperToastService } from '@webilix/ngx-helper';
 
 import { INgxHelperHttpUpload } from '../ngx-helper-http.interface';
 

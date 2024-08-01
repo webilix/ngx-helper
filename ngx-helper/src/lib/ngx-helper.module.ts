@@ -9,6 +9,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 import { JalaliDateTime } from '@webilix/jalali-date-time';
+import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
+import { NgxHelperLoaderModule } from '@webilix/ngx-helper/loader';
 
 import { NgxHelperBottomSheetComponent } from './bottom-sheet/ngx-helper-bottom-sheet.component';
 import { NgxHelperBottomSheetService } from './bottom-sheet/ngx-helper-bottom-sheet.service';
@@ -23,16 +25,18 @@ import { NgxHelperCoordinatesService } from './coordinates/ngx-helper-coordinate
 import { NgxHelperDialogComponent } from './dialog/ngx-helper-dialog.component';
 import { NgxHelperDialogService } from './dialog/ngx-helper-dialog.service';
 
+import { NgxHelperImagePreviewComponent } from './image/preview/ngx-helper-image-preview.component';
+import { NgxHelperImageGalleryComponent } from './image/gallery/ngx-helper-image-gallery.component';
+import { NgxHelperImageService } from './image/ngx-helper-image.service';
+
+import { NgxHelperToastComponent } from './toast/ngx-helper-toast.component';
+import { NgxHelperToastService } from './toast/ngx-helper-toast.service';
+
 import { NgxHelperDateInterceptor, NgxHelperLoadingInterceptor } from './interceptors';
 
 import { NgxHelperComponent } from './ngx-helper.component';
 import { INgxHelperConfig, INgxHelperStyle } from './ngx-helper.interface';
 import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
-import { NgxHelperImagePreviewComponent } from './image/preview/ngx-helper-image-preview.component';
-import { NgxHelperImageGalleryComponent } from './image/gallery/ngx-helper-image-gallery.component';
-import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
-import { NgxHelperLoaderModule } from '@webilix/ngx-helper/loader';
-import { NgxHelperImageService } from './image/ngx-helper-image.service';
 
 @NgModule({
     declarations: [
@@ -49,6 +53,8 @@ import { NgxHelperImageService } from './image/ngx-helper-image.service';
 
         NgxHelperImagePreviewComponent,
         NgxHelperImageGalleryComponent,
+
+        NgxHelperToastComponent,
     ],
     exports: [NgxHelperComponent],
     imports: [
@@ -73,6 +79,7 @@ import { NgxHelperImageService } from './image/ngx-helper-image.service';
         NgxHelperCoordinatesService,
         NgxHelperDialogService,
         NgxHelperImageService,
+        NgxHelperToastService,
     ],
 })
 export class NgxHelperModule {

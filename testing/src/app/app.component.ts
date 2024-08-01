@@ -14,13 +14,13 @@ import {
     NgxHelperCoordinatesService,
     NgxHelperDialogService,
     NgxHelperImageService,
+    NgxHelperToastService,
 } from '@webilix/ngx-helper';
 import { INgxHelperButtonGroup } from '@webilix/ngx-helper/button-group';
 import { INgxHelperCalendarPeriod, NgxHelperCalendarService } from '@webilix/ngx-helper/calendar';
 import { NgxHelperHttpService } from '@webilix/ngx-helper/http';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 import { INgxHelperParamOrder, INgxHelperParamUpdate, NgxHelperParam } from '@webilix/ngx-helper/param';
-import { NgxHelperToastService } from '@webilix/ngx-helper/toast';
 import { INgxHelperTag } from '@webilix/ngx-helper/tag';
 
 import { BottomSheetComponent } from './bottom-sheet/bottom-sheet.component';
