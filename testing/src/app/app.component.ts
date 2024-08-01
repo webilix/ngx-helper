@@ -5,8 +5,12 @@ import { Subscription } from 'rxjs';
 
 import { Helper, IGeoCoordinates } from '@webilix/helper-library';
 
-import { NgxHelperConnectionService, NgxHelperLoadingService, NGX_HELPER_LOADING_HEADER } from '@webilix/ngx-helper';
-import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
+import {
+    NgxHelperConnectionService,
+    NgxHelperLoadingService,
+    NGX_HELPER_LOADING_HEADER,
+    NgxHelperBottomSheetService,
+} from '@webilix/ngx-helper';
 import { INgxHelperButtonGroup } from '@webilix/ngx-helper/button-group';
 import { INgxHelperCalendarPeriod, NgxHelperCalendarService } from '@webilix/ngx-helper/calendar';
 import { NgxHelperConfirmService } from '@webilix/ngx-helper/confirm';

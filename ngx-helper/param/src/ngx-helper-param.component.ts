@@ -4,7 +4,7 @@ import { Params, Router } from '@angular/router';
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 import { Helper } from '@webilix/helper-library';
 
-import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
+import { NgxHelperBottomSheetService } from '@webilix/ngx-helper';
 import { INgxHelperCalendarConfig, NgxHelperCalendarService } from '@webilix/ngx-helper/calendar';
 import { NgxHelperMenu } from '@webilix/ngx-helper/menu';
 

@@ -2,7 +2,13 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatIconModule } from '@angular/material/icon';
+
 import { JalaliDateTime } from '@webilix/jalali-date-time';
+
+import { NgxHelperBottomSheetComponent } from './bottom-sheet/ngx-helper-bottom-sheet.component';
+import { NgxHelperBottomSheetService } from './bottom-sheet/ngx-helper-bottom-sheet.service';
 
 import { NgxHelperDateInterceptor, NgxHelperLoadingInterceptor } from './interceptors';
 
@@ -11,12 +17,14 @@ import { INgxHelperConfig, INgxHelperStyle } from './ngx-helper.interface';
 import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
 
 @NgModule({
-    declarations: [NgxHelperComponent],
+    declarations: [NgxHelperComponent, NgxHelperBottomSheetComponent],
     exports: [NgxHelperComponent],
-    imports: [CommonModule],
+    imports: [CommonModule, MatBottomSheetModule, MatIconModule],
     providers: [
         provideHttpClient(withInterceptors([NgxHelperLoadingInterceptor, NgxHelperDateInterceptor])),
         provideHttpClient(withInterceptorsFromDi()),
+
+        NgxHelperBottomSheetService,
     ],
 })
 export class NgxHelperModule {

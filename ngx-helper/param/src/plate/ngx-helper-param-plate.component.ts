@@ -3,7 +3,7 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
 import { Helper } from '@webilix/helper-library';
 
-import { NgxHelperBottomSheetService } from '@webilix/ngx-helper/bottom-sheet';
+import { NgxHelperBottomSheetService } from '@webilix/ngx-helper';
 
 @Component({
     host: { selector: 'ngx-helper-param-plate' },
