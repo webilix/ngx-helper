@@ -16,3 +16,7 @@ export { NgxHelperBottomSheetService } from './lib/bottom-sheet/ngx-helper-botto
 
 // CONFIRM
 export { NgxHelperConfirmService } from './lib/confirm/ngx-helper-confirm.service';
+
+// COORDINATES
+export { INgxHelperCoordinates, INgxHelperCoordinatesConfig } from './lib/coordinates/ngx-helper-coordinates.interface';
+export { NgxHelperCoordinatesService } from './lib/coordinates/ngx-helper-coordinates.service';

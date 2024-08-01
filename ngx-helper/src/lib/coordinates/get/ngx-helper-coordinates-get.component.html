@@ -1,0 +1,55 @@
+<div
+    id="ngx-helper-map"
+    class="ngx-helper-map"
+    (dblclick)="setCoordinates($event)"
+    (contextmenu)="setCoordinates($event)"
+></div>
+
+<footer>
+    <content>
+        <div class="ngx-helper-coordinates">
+            <div class="ngx-helper-coordinate">
+                <div class="ngx-helper-title">Latitude:</div>
+                <input
+                    type="text"
+                    maxlength="15"
+                    inputmode="numeric"
+                    [value]="this.coordinate[1]"
+                    class="ngx-helper-en"
+                    [class.error]="error === 'LATITUDE'"
+                    mask="separator.12"
+                    thousandSeparator=""
+                    decimalMarker="."
+                    [allowNegativeNumbers]="true"
+                    [inputTransformFn]="inputTransformFn"
+                    (keyup.enter)="checkInputs(latitudeInput.value, longitudeInput.value)"
+                    (blur)="checkInputs(latitudeInput.value, longitudeInput.value)"
+                    #latitudeInput
+                />
+            </div>
+            <div class="ngx-helper-coordinate">
+                <div class="ngx-helper-title">Longitude:</div>
+                <input
+                    type="text"
+                    maxlength="15"
+                    inputmode="numeric"
+                    [value]="this.coordinate[0]"
+                    class="ngx-helper-en"
+                    [class.error]="error === 'LONGITUDE'"
+                    mask="separator.12"
+                    thousandSeparator=""
+                    decimalMarker="."
+                    [allowNegativeNumbers]="true"
+                    [inputTransformFn]="inputTransformFn"
+                    (keyup.enter)="checkInputs(latitudeInput.value, longitudeInput.value)"
+                    (blur)="checkInputs(latitudeInput.value, longitudeInput.value)"
+                    #longitudeInput
+                />
+            </div>
+        </div>
+        <!-- SELECT -->
+        <div class="ngx-helper-seperator"></div>
+        @if (coordinates) { <mat-icon class="ngx-helper-icon" (click)="select()">done_all</mat-icon> }
+        <mat-icon class="ngx-helper-icon" mat-dialog-close>close</mat-icon>
+    </content>
+</footer>

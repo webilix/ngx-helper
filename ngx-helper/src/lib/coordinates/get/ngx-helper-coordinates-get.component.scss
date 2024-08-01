@@ -1,0 +1,82 @@
+:host {
+    display: grid;
+    grid-template-rows: 1fr 5rem;
+
+    height: 100vh;
+
+    .ngx-helper-map {
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+    }
+
+    footer {
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+        background-color: var(--ngxHelperBackgroundColor);
+
+        content {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+            width: var(--ngxHelperDialogWidth);
+            max-width: calc(100vw - 2rem);
+            margin: 0 auto;
+            column-gap: 1rem;
+
+            div.ngx-helper-coordinates {
+                display: flex;
+                flex-direction: column;
+                row-gap: 4px;
+
+                div.ngx-helper-coordinate {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+
+                    direction: ltr;
+                    text-align: left;
+                    font-family: var(--ngxHelperEnFont);
+                    color: var(--ngxHelperPrimaryColor);
+
+                    div.ngx-helper-title {
+                        width: 75px;
+                        font-size: calc(var(--ngxHelperFontSize) - 2px);
+                        font-weight: 500;
+                    }
+
+                    input {
+                        outline: none;
+                        width: 100px;
+                        padding: 0.25rem;
+                        border: 1px solid var(--ngxHelperBorderColor);
+                        font-family: var(--ngxHelperEnFont);
+                        font-size: calc(var(--ngxHelperFontSize) - 1px);
+                        line-height: calc(var(--ngxHelperFontSize) - 1px);
+                    }
+
+                    input.error {
+                        color: var(--ngxHelperWarnColor);
+                    }
+                }
+            }
+
+            div.ngx-helper-seperator {
+                flex: 1;
+            }
+
+            .ngx-helper-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 2rem !important;
+                height: 4rem !important;
+                font-size: 20px !important;
+                color: var(--ngxHelperPrimaryColor);
+                margin-left: 2rem !important;
+            }
+        }
+    }
+}

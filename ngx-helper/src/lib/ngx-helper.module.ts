@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 import { JalaliDateTime } from '@webilix/jalali-date-time';
@@ -14,6 +16,10 @@ import { NgxHelperBottomSheetService } from './bottom-sheet/ngx-helper-bottom-sh
 import { NgxHelperConfirmComponent } from './confirm/ngx-helper-confirm.component';
 import { NgxHelperConfirmService } from './confirm/ngx-helper-confirm.service';
 
+import { NgxHelperCoordinatesGetComponent } from './coordinates/get/ngx-helper-coordinates-get.component';
+import { NgxHelperCoordinatesShowComponent } from './coordinates/show/ngx-helper-coordinates-show.component';
+import { NgxHelperCoordinatesService } from './coordinates/ngx-helper-coordinates.service';
+
 import { NgxHelperDateInterceptor, NgxHelperLoadingInterceptor } from './interceptors';
 
 import { NgxHelperComponent } from './ngx-helper.component';
@@ -21,15 +27,26 @@ import { INgxHelperConfig, INgxHelperStyle } from './ngx-helper.interface';
 import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
 
 @NgModule({
-    declarations: [NgxHelperComponent, NgxHelperBottomSheetComponent, NgxHelperConfirmComponent],
+    declarations: [
+        NgxHelperComponent,
+
+        NgxHelperBottomSheetComponent,
+
+        NgxHelperConfirmComponent,
+
+        NgxHelperCoordinatesGetComponent,
+        NgxHelperCoordinatesShowComponent,
+    ],
     exports: [NgxHelperComponent],
-    imports: [CommonModule, MatBottomSheetModule, MatButtonModule, MatIconModule],
+    imports: [CommonModule, NgxMaskDirective, MatBottomSheetModule, MatButtonModule, MatDialogModule, MatIconModule],
     providers: [
         provideHttpClient(withInterceptors([NgxHelperLoadingInterceptor, NgxHelperDateInterceptor])),
         provideHttpClient(withInterceptorsFromDi()),
+        provideNgxMask(),
 
         NgxHelperBottomSheetService,
         NgxHelperConfirmService,
+        NgxHelperCoordinatesService,
     ],
 })
 export class NgxHelperModule {
