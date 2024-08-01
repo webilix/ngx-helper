@@ -25,6 +25,10 @@ export { NgxHelperCoordinatesService } from './lib/coordinates/ngx-helper-coordi
 export { INgxHelperDialogConfig } from './lib/dialog/ngx-helper-dialog.interface';
 export { NgxHelperDialogService } from './lib/dialog/ngx-helper-dialog.service';
 
+// HTTP
+export { INgxHelperHttpUpload } from './lib/http/ngx-helper-http.interface';
+export { NgxHelperHttpService } from './lib/http/ngx-helper-http.service';
+
 // IMAGE
 export { NgxHelperImageService } from './lib/image/ngx-helper-image.service';
 

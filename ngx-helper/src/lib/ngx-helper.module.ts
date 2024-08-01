@@ -7,6 +7,7 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { JalaliDateTime } from '@webilix/jalali-date-time';
 import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
@@ -24,6 +25,10 @@ import { NgxHelperCoordinatesService } from './coordinates/ngx-helper-coordinate
 
 import { NgxHelperDialogComponent } from './dialog/ngx-helper-dialog.component';
 import { NgxHelperDialogService } from './dialog/ngx-helper-dialog.service';
+
+import { NgxHelperHttpDownloadComponent } from './http/download/ngx-helper-http-download.component';
+import { NgxHelperHttpUploadComponent } from './http/upload/ngx-helper-http-upload.component';
+import { NgxHelperHttpService } from './http/ngx-helper-http.service';
 
 import { NgxHelperImagePreviewComponent } from './image/preview/ngx-helper-image-preview.component';
 import { NgxHelperImageGalleryComponent } from './image/gallery/ngx-helper-image-gallery.component';
@@ -51,6 +56,9 @@ import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
 
         NgxHelperDialogComponent,
 
+        NgxHelperHttpDownloadComponent,
+        NgxHelperHttpUploadComponent,
+
         NgxHelperImagePreviewComponent,
         NgxHelperImageGalleryComponent,
 
@@ -65,6 +73,7 @@ import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
         MatButtonModule,
         MatDialogModule,
         MatIconModule,
+        MatProgressBarModule,
 
         NgxHelperPipeModule,
         NgxHelperLoaderModule,
@@ -78,6 +87,7 @@ import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
         NgxHelperConfirmService,
         NgxHelperCoordinatesService,
         NgxHelperDialogService,
+        NgxHelperHttpService,
         NgxHelperImageService,
         NgxHelperToastService,
     ],
