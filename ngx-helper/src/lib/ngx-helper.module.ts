@@ -13,28 +13,25 @@ import { JalaliDateTime } from '@webilix/jalali-date-time';
 import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
 import { NgxHelperLoaderModule } from '@webilix/ngx-helper/loader';
 
-import { NgxHelperBottomSheetComponent } from './components/bottom-sheet/ngx-helper-bottom-sheet.component';
-import { NgxHelperBottomSheetService } from './components/bottom-sheet/ngx-helper-bottom-sheet.service';
+import {
+    NgxHelperBottomSheetComponent,
+    NgxHelperConfirmComponent,
+    NgxHelperCoordinatesGetComponent,
+    NgxHelperCoordinatesShowComponent,
+    NgxHelperDialogComponent,
+    NgxHelperHttpDownloadComponent,
+    NgxHelperHttpUploadComponent,
+    NgxHelperImagePreviewComponent,
+    NgxHelperImageGalleryComponent,
+    NgxHelperToastComponent,
+} from './components';
 
-import { NgxHelperConfirmComponent } from './components/confirm/ngx-helper-confirm.component';
-import { NgxHelperConfirmService } from './components/confirm/ngx-helper-confirm.service';
-
-import { NgxHelperCoordinatesGetComponent } from './components/coordinates/get/ngx-helper-coordinates-get.component';
-import { NgxHelperCoordinatesShowComponent } from './components/coordinates/show/ngx-helper-coordinates-show.component';
+import { NgxHelperBottomSheetService } from './components/bottom-sheet';
+import { NgxHelperConfirmService } from './components/confirm';
 import { NgxHelperCoordinatesService } from './components/coordinates/ngx-helper-coordinates.service';
-
-import { NgxHelperDialogComponent } from './components/dialog/ngx-helper-dialog.component';
 import { NgxHelperDialogService } from './components/dialog/ngx-helper-dialog.service';
-
-import { NgxHelperHttpDownloadComponent } from './components/http/download/ngx-helper-http-download.component';
-import { NgxHelperHttpUploadComponent } from './components/http/upload/ngx-helper-http-upload.component';
 import { NgxHelperHttpService } from './components/http/ngx-helper-http.service';
-
-import { NgxHelperImagePreviewComponent } from './components/image/preview/ngx-helper-image-preview.component';
-import { NgxHelperImageGalleryComponent } from './components/image/gallery/ngx-helper-image-gallery.component';
 import { NgxHelperImageService } from './components/image/ngx-helper-image.service';
-
-import { NgxHelperToastComponent } from './components/toast/ngx-helper-toast.component';
 import { NgxHelperToastService } from './components/toast/ngx-helper-toast.service';
 
 import { NgxHelperDateInterceptor, NgxHelperLoadingInterceptor } from './interceptors';
