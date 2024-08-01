@@ -1,8 +1,8 @@
 import { ComponentRef, Injectable } from '@angular/core';
 import { HttpClient, HttpStatusCode } from '@angular/common/http';
 
-import { NgxHelperContainerService } from '../providers';
-import { NgxHelperToastService } from '../toast/ngx-helper-toast.service';
+import { NgxHelperContainerService } from '../../providers';
+import { NgxHelperToastService } from '../toast';
 
 import { NgxHelperHttpDownloadComponent } from './download/ngx-helper-http-download.component';
 import { NgxHelperHttpUploadComponent } from './upload/ngx-helper-http-upload.component';

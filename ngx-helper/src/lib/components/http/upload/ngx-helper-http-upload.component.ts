@@ -11,7 +11,8 @@ import {
 
 import { Helper } from '@webilix/helper-library';
 
-import { NgxHelperToastService } from '../../toast/ngx-helper-toast.service';
+import { NgxHelperToastService } from '../../toast';
+
 import { INgxHelperHttpUpload } from '../ngx-helper-http.interface';
 
 @Component({

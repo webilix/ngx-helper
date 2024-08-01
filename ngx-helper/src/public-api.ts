@@ -11,28 +11,32 @@ export { NGX_HELPER_LOADING_HEADER } from './lib/ngx-helper.values';
 export { NgxHelperConnectionService, NgxHelperContainerService, NgxHelperLoadingService } from './lib/providers';
 
 // BOTTOM SHEET
-export { INgxHelperBottomSheetConfig } from './lib/bottom-sheet/ngx-helper-bottom-sheet.interface';
-export { NgxHelperBottomSheetService } from './lib/bottom-sheet/ngx-helper-bottom-sheet.service';
+export { INgxHelperBottomSheetConfig, NgxHelperBottomSheetService } from './lib/components/bottom-sheet';
 
 // CONFIRM
-export { NgxHelperConfirmService } from './lib/confirm/ngx-helper-confirm.service';
+export {
+    INgxHelperConfirm,
+    INgxHelperConfirmConfig,
+    INgxHelperConfirmResponse,
+    NgxHelperConfirm,
+    NgxHelperConfirmService,
+} from './lib/components/confirm';
 
 // COORDINATES
-export { INgxHelperCoordinates, INgxHelperCoordinatesConfig } from './lib/coordinates/ngx-helper-coordinates.interface';
-export { NgxHelperCoordinatesService } from './lib/coordinates/ngx-helper-coordinates.service';
+export {
+    INgxHelperCoordinates,
+    INgxHelperCoordinatesConfig,
+    NgxHelperCoordinatesService,
+} from './lib/components/coordinates';
 
 // DIALOG
-export { INgxHelperDialogConfig } from './lib/dialog/ngx-helper-dialog.interface';
-export { NgxHelperDialogService } from './lib/dialog/ngx-helper-dialog.service';
+export { INgxHelperDialogConfig, NgxHelperDialogService } from './lib/components/dialog';
 
 // HTTP
-export { INgxHelperHttpUpload } from './lib/http/ngx-helper-http.interface';
-export { NgxHelperHttpService } from './lib/http/ngx-helper-http.service';
+export { INgxHelperHttpUpload, NgxHelperHttpService } from './lib/components/http';
 
 // IMAGE
-export { NgxHelperImageService } from './lib/image/ngx-helper-image.service';
+export { NgxHelperImageService } from './lib/components/image';
 
 // TOAST
-export { INgxHelperToastConfig } from './lib/toast/ngx-helper-toast.interface';
-export { NgxHelperToastService } from './lib/toast/ngx-helper-toast.service';
-export { NgxHelperToast } from './lib/toast/ngx-helper-toast.type';
+export { INgxHelperToastConfig, NgxHelperToast, NgxHelperToastService } from './lib/components/toast';

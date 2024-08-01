@@ -1,6 +1,6 @@
 import { ComponentRef, Injectable } from '@angular/core';
 
-import { NgxHelperContainerService } from '../providers';
+import { NgxHelperContainerService } from '../../providers';
 
 import { NgxHelperToastComponent } from './ngx-helper-toast.component';
 import { INgxHelperToastConfig } from './ngx-helper-toast.interface';
