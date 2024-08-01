@@ -28,6 +28,11 @@ import { NgxHelperDateInterceptor, NgxHelperLoadingInterceptor } from './interce
 import { NgxHelperComponent } from './ngx-helper.component';
 import { INgxHelperConfig, INgxHelperStyle } from './ngx-helper.interface';
 import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
+import { NgxHelperImagePreviewComponent } from './image/preview/ngx-helper-image-preview.component';
+import { NgxHelperImageGalleryComponent } from './image/gallery/ngx-helper-image-gallery.component';
+import { NgxHelperPipeModule } from '@webilix/ngx-helper/pipe';
+import { NgxHelperLoaderModule } from '@webilix/ngx-helper/loader';
+import { NgxHelperImageService } from './image/ngx-helper-image.service';
 
 @NgModule({
     declarations: [
@@ -41,9 +46,23 @@ import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
         NgxHelperCoordinatesShowComponent,
 
         NgxHelperDialogComponent,
+
+        NgxHelperImagePreviewComponent,
+        NgxHelperImageGalleryComponent,
     ],
     exports: [NgxHelperComponent],
-    imports: [CommonModule, NgxMaskDirective, MatBottomSheetModule, MatButtonModule, MatDialogModule, MatIconModule],
+    imports: [
+        CommonModule,
+        NgxMaskDirective,
+
+        MatBottomSheetModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatIconModule,
+
+        NgxHelperPipeModule,
+        NgxHelperLoaderModule,
+    ],
     providers: [
         provideHttpClient(withInterceptors([NgxHelperLoadingInterceptor, NgxHelperDateInterceptor])),
         provideHttpClient(withInterceptorsFromDi()),
@@ -53,6 +72,7 @@ import { NGX_HELPER_LOADING_HEADER } from './ngx-helper.values';
         NgxHelperConfirmService,
         NgxHelperCoordinatesService,
         NgxHelperDialogService,
+        NgxHelperImageService,
     ],
 })
 export class NgxHelperModule {

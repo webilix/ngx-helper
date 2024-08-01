@@ -24,3 +24,6 @@ export { NgxHelperCoordinatesService } from './lib/coordinates/ngx-helper-coordi
 // DIALOG
 export { INgxHelperDialogConfig } from './lib/dialog/ngx-helper-dialog.interface';
 export { NgxHelperDialogService } from './lib/dialog/ngx-helper-dialog.service';
+
+// IMAGE
+export { NgxHelperImageService } from './lib/image/ngx-helper-image.service';

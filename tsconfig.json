@@ -18,7 +18,6 @@
             "@webilix/ngx-helper/button-group": ["ngx-helper/button-group/public-api"],
             "@webilix/ngx-helper/calendar": ["ngx-helper/calendar/public-api"],
             "@webilix/ngx-helper/http": ["ngx-helper/http/public-api"],
-            "@webilix/ngx-helper/image": ["ngx-helper/image/public-api"],
             "@webilix/ngx-helper/list": ["ngx-helper/list/public-api"],
             "@webilix/ngx-helper/loader": ["ngx-helper/loader/public-api"],
             "@webilix/ngx-helper/menu": ["ngx-helper/menu/public-api"],
