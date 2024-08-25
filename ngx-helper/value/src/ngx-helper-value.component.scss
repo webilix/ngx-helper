@@ -3,56 +3,67 @@
 }
 
 .ngx-helper-value {
-    display: flex;
-    align-items: flex-start;
-    column-gap: 1rem;
-
     border-bottom: 1px solid var(--ngxHelperBorderColor);
 
-    .data {
-        flex: 1;
-        padding: 0.75rem 1rem;
-
+    .value-box {
         display: flex;
         align-items: flex-start;
         column-gap: 1rem;
 
-        .title {
-            font-weight: 600;
-            font-family: var(--ngxHelperFaFont);
-            font-size: calc(var(--ngxHelperFontSize) - 1px);
+        .data {
+            flex: 1;
+            padding: 0.75rem 1rem;
 
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            display: flex;
+            align-items: flex-start;
+            column-gap: 1rem;
+
+            .title {
+                font-weight: 600;
+                font-family: var(--ngxHelperFaFont);
+                font-size: calc(var(--ngxHelperFontSize) - 1px);
+
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .value {
+                flex: 1;
+            }
         }
 
-        .value {
-            flex: 1;
+        .copy {
+            position: relative;
+            padding-top: 0.65rem;
+            padding-left: 0.65rem;
+            overflow: hidden;
+
+            mat-icon {
+                cursor: pointer;
+                position: relative;
+                color: var(--ngxHelperPrimaryColor);
+                font-size: calc(var(--ngxHelperIconSize) - 2px);
+                z-index: 2;
+            }
+
+            mat-icon.copied {
+                cursor: default;
+                position: absolute;
+                top: 0.65rem;
+                right: 0;
+                z-index: 1;
+            }
         }
     }
 
-    .copy {
+    .value-description {
         position: relative;
-        padding-top: 0.65rem;
-        padding-left: 0.65rem;
-        overflow: hidden;
+        top: -5px;
 
-        mat-icon {
-            cursor: pointer;
-            position: relative;
-            color: var(--ngxHelperPrimaryColor);
-            font-size: calc(var(--ngxHelperIconSize) - 2px);
-            z-index: 2;
-        }
-
-        mat-icon.copied {
-            cursor: default;
-            position: absolute;
-            top: 0.65rem;
-            right: 0;
-            z-index: 1;
-        }
+        text-align: justify;
+        padding: 0 1rem 0.25rem 1rem;
+        font-size: calc(var(--ngxHelperFontSize) - 2px);
     }
 }
 
