@@ -1,5 +1,5 @@
 <!-- SINGLE BUTTON -->
-@if (menu.length === 1 && menu[0] !== 'SEPERATOR') {
+@if (menu.length === 1 && menu[0] !== 'DIVIDER') {
 <button
     mat-button
     type="button"
@@ -43,12 +43,12 @@
     <mat-menu #ngxHelperMenu="matMenu" class="ngx-helper-menu-panel" [xPosition]="xPosition" [yPosition]="yPosition">
         <!-- MENU -->
         @for (m of menu; track $index) {
-        <!-- SEPERATOR -->
-        @if (m === 'SEPERATOR' && ($index === 0 || menu[$index - 1] !== 'SEPERATOR')) {
-        <div class="ngx-helper-menu-seperator"></div>
+        <!-- DIVIDER -->
+        @if (m === 'DIVIDER' && ($index === 0 || menu[$index - 1] !== 'DIVIDER')) {
+        <div class="ngx-helper-menu-divider"></div>
         }
         <!-- BUTTON -->
-        @if (m !== 'SEPERATOR') {
+        @if (m !== 'DIVIDER') {
         <button mat-menu-item type="button" [disabled]="m.disableOn && m.disableOn()" (click)="click(m.click)">
             <div [ngClass]="['label' + (m.english ? '-en' : ''), 'ngx-helper-color-' + (m.color || 'primary')]">
                 <!-- ICON -->

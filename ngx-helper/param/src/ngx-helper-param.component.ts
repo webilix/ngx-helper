@@ -71,7 +71,7 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
 
         this.paramGroups[0] = [];
         this.params.forEach((param: NgxHelperParam) => {
-            if (param === 'SEPERATOR') this.paramGroups.push([]);
+            if (param === 'DIVIDER') this.paramGroups.push([]);
             else this.paramGroups[this.paramGroups.length - 1].push(param);
         });
         this.paramGroups = this.paramGroups.filter((group) => group.length !== 0);
@@ -89,7 +89,7 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
         if (changes['update'] && !changes['update'].firstChange) {
             const values: { [key: string]: any } = {};
             this.params.forEach((param: NgxHelperParam) => {
-                if (param === 'SEPERATOR' || param.type === 'COMMENT') return;
+                if (param === 'DIVIDER' || param.type === 'COMMENT') return;
 
                 const value: any = changes['update'].currentValue[param.name];
                 if (value === undefined || this.values[param.name] === value) return;
@@ -135,7 +135,7 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
             this.values = {};
             const params: Params = this.getQueryParams();
             this.params.forEach((param: NgxHelperParam) => {
-                if (param === 'SEPERATOR' || param.type === 'COMMENT') return;
+                if (param === 'DIVIDER' || param.type === 'COMMENT') return;
 
                 this.values[param.name] = null;
 
@@ -179,7 +179,7 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
             this.menus = {};
 
             this.params.forEach((param: NgxHelperParam) => {
-                if (param === 'SEPERATOR' || param.type !== 'MENU') return;
+                if (param === 'DIVIDER' || param.type !== 'MENU') return;
 
                 this.menus[param.name] = param.options.map((option) => ({
                     title: option.title,
@@ -188,7 +188,7 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
                     color: option.color,
                     disableOn: () => this.values[param.name] === option.value,
                 }));
-                this.menus[param.name].push('SEPERATOR');
+                this.menus[param.name].push('DIVIDER');
                 this.menus[param.name].push({
                     title: 'همه موارد',
                     click: () => this.setMenu(param, null),
@@ -198,10 +198,10 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
             });
 
             this.params.forEach((param: NgxHelperParam) => {
-                if (param === 'SEPERATOR' || param.type !== 'SELECT' || param.list || param.options.length > 14) return;
+                if (param === 'DIVIDER' || param.type !== 'SELECT' || param.list || param.options.length > 14) return;
 
                 this.menus[param.name] = param.options.map((o) => {
-                    if (o === 'DIVIDER') return 'SEPERATOR';
+                    if (o === 'DIVIDER') return 'DIVIDER';
 
                     return {
                         title: o.title,
@@ -250,7 +250,7 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
         };
 
         this.params.forEach((param: NgxHelperParam) => {
-            if (param === 'SEPERATOR') return;
+            if (param === 'DIVIDER') return;
 
             switch (param.type) {
                 case 'BOOLEAN':
@@ -301,7 +301,7 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
         queryParams['page'] = this.page > 1 ? this.page.toString() : undefined;
 
         this.params.forEach((param: NgxHelperParam) => {
-            if (param === 'SEPERATOR' || param.type === 'COMMENT') return;
+            if (param === 'DIVIDER' || param.type === 'COMMENT') return;
 
             const value: any = this.values[param.name];
             if (Helper.IS.empty(value)) {
@@ -344,7 +344,7 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
     }
 
     resetValue(param: NgxHelperParam): void {
-        if (param === 'SEPERATOR' || param.type === 'COMMENT' || this.values[param.name] === null) return;
+        if (param === 'DIVIDER' || param.type === 'COMMENT' || this.values[param.name] === null) return;
 
         this.setPage(1);
         this.values[param.name] = null;

@@ -27,10 +27,10 @@ export class NgxHelperListComponent<D> implements OnChanges {
         this.ngxMenu = this.menu
             .filter(
                 (menu: NgxHelperListMenu<D>) =>
-                    menu === 'SEPERATOR' || !this.data || !menu.hideOn || !menu.hideOn(this.data),
+                    menu === 'DIVIDER' || !this.data || !menu.hideOn || !menu.hideOn(this.data),
             )
             .map((menu: NgxHelperListMenu<D>) => {
-                if (menu === 'SEPERATOR') return 'SEPERATOR';
+                if (menu === 'DIVIDER') return 'DIVIDER';
 
                 return {
                     title: menu.title,
@@ -41,8 +41,8 @@ export class NgxHelperListComponent<D> implements OnChanges {
                 };
             });
 
-        while (this.ngxMenu.length !== 0 && this.ngxMenu[0] === 'SEPERATOR') this.ngxMenu = this.ngxMenu.slice(1);
-        while (this.ngxMenu.length !== 0 && this.ngxMenu[this.ngxMenu.length - 1] === 'SEPERATOR')
+        while (this.ngxMenu.length !== 0 && this.ngxMenu[0] === 'DIVIDER') this.ngxMenu = this.ngxMenu.slice(1);
+        while (this.ngxMenu.length !== 0 && this.ngxMenu[this.ngxMenu.length - 1] === 'DIVIDER')
             this.ngxMenu = this.ngxMenu.slice(0, this.ngxMenu.length - 1);
     }
 

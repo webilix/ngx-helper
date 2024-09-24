@@ -4,7 +4,7 @@
     @for (params of paramGroups; track groupIndex; let groupIndex = $index) {
     <div class="ngx-helper-param-item">
         <!-- PARAMS -->
-        @for (param of params; track paramIndex; let paramIndex = $index) { @if (param !== 'SEPERATOR') { @switch
+        @for (param of params; track paramIndex; let paramIndex = $index) { @if (param !== 'DIVIDER') { @switch
         (param.type) {
         <!-- BOOLEAN -->
         @case ('BOOLEAN') {

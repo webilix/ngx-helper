@@ -46,14 +46,14 @@ export class ListComponent {
     ];
 
     public empty: NgxHelperListMenu<IList>[] = [
-        'SEPERATOR',
+        'DIVIDER',
         {
             icon: 'check_box',
             click: ['/active', ':ID'],
             title: 'فعال کردن',
             hideOn: () => true,
         },
-        'SEPERATOR',
+        'DIVIDER',
     ];
 
     public menu: NgxHelperListMenu<IList>[] = [
@@ -71,7 +71,7 @@ export class ListComponent {
             color: 'accent',
             hideOn: (data) => !!data.deactive,
         },
-        'SEPERATOR',
+        'DIVIDER',
         { icon: 'edit', click: (id: string) => this.log('UPDATE', id), title: 'ویرایش' },
         { icon: '', click: [], title: 'عدم نمایش', hideOn: () => true },
         {

@@ -104,8 +104,8 @@ export class AppComponent implements OnInit, OnDestroy {
     public params3Update: INgxHelperParamUpdate = {};
 
     public params4: NgxHelperParam[] = [
-        'SEPERATOR',
-        'SEPERATOR',
+        'DIVIDER',
+        'DIVIDER',
         {
             type: 'MENU',
             name: 'value_menu',
@@ -119,9 +119,9 @@ export class AppComponent implements OnInit, OnDestroy {
         },
         { type: 'BOOLEAN', name: 'value_boolean', value: true },
         { type: 'SEARCH', name: 'value_query', value: 'متن جستجو' },
-        'SEPERATOR',
-        'SEPERATOR',
-        'SEPERATOR',
+        'DIVIDER',
+        'DIVIDER',
+        'DIVIDER',
         {
             type: 'SELECT',
             name: 'value_select',
@@ -146,8 +146,8 @@ export class AppComponent implements OnInit, OnDestroy {
             required: true,
         },
         { type: 'DATE', name: 'value_date', value: new Date(), required: true, maxDate: new Date() },
-        'SEPERATOR',
-        'SEPERATOR',
+        'DIVIDER',
+        'DIVIDER',
     ];
 
     public params5: NgxHelperParam[] = [
@@ -199,33 +199,29 @@ export class AppComponent implements OnInit, OnDestroy {
     public pipeComponent: ComponentType<PipeComponent> = PipeComponent;
     public valuesComponent: ComponentType<ValuesComponent> = ValuesComponent;
 
-    public emptyMenu: NgxHelperMenu[] = [
-        'SEPERATOR',
-        { title: 'عدم نمایش', click: [], hideOn: () => true },
-        'SEPERATOR',
-    ];
+    public emptyMenu: NgxHelperMenu[] = ['DIVIDER', { title: 'عدم نمایش', click: [], hideOn: () => true }, 'DIVIDER'];
     public singleMenu: NgxHelperMenu[] = [
-        'SEPERATOR',
+        'DIVIDER',
         { title: 'حذف', click: () => this.log('DELETE'), icon: 'delete', color: 'warn' },
-        'SEPERATOR',
+        'DIVIDER',
         { title: 'عدم نمایش', click: [], hideOn: () => true },
-        'SEPERATOR',
+        'DIVIDER',
     ];
     public menu: NgxHelperMenu[] = [
         { title: 'عدم نمایش', click: [], hideOn: () => true },
-        'SEPERATOR',
-        'SEPERATOR',
+        'DIVIDER',
+        'DIVIDER',
         { title: 'مشاهده', click: ['/view'] },
-        'SEPERATOR',
-        'SEPERATOR',
-        'SEPERATOR',
-        'SEPERATOR',
+        'DIVIDER',
+        'DIVIDER',
+        'DIVIDER',
+        'DIVIDER',
         { title: 'تنظیمات', click: () => this.log('setting'), icon: 'settings', color: 'accent' },
         { title: 'عدم نمایش', click: [], hideOn: () => true },
         { title: 'ویرایش', click: () => this.log('edit'), icon: 'edit' },
         { title: 'حذف', click: () => this.log('delete'), icon: 'delete', color: 'warn' },
-        'SEPERATOR',
-        'SEPERATOR',
+        'DIVIDER',
+        'DIVIDER',
     ];
 
     public previousDate: Date = new Date(new Date().getTime() - 60 * 24 * 3600 * 1000);
@@ -288,7 +284,7 @@ export class AppComponent implements OnInit, OnDestroy {
                         { id: 'option-4', title: 'گزینه چهارم' },
                     ],
                 },
-                'SEPERATOR',
+                'DIVIDER',
                 { type: 'DATE', name: 'fa_date' },
                 { type: 'DATE', name: 'fa_date_2', title: 'تاریخ دوم' },
             ];

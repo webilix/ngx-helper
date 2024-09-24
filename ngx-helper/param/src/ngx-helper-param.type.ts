@@ -9,8 +9,8 @@ import {
 } from './ngx-helper-param.interface';
 
 export type NgxHelperParam =
-    // SEPERATOR (NEW LINE)
-    | 'SEPERATOR'
+    // DIVIDER (NEW LINE)
+    | 'DIVIDER'
     // VIEW
     | INgxHelperParamComment
     // INPUTS

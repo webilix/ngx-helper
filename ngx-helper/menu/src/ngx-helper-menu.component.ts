@@ -59,17 +59,15 @@ export class NgxHelperMenuComponent implements OnInit, OnDestroy, OnChanges {
         if (!this.color) this.color = 'primary';
 
         this.menu = [...this.menu].filter(
-            (menu: NgxHelperMenu) => menu === 'SEPERATOR' || !menu.hideOn || !menu.hideOn(),
+            (menu: NgxHelperMenu) => menu === 'DIVIDER' || !menu.hideOn || !menu.hideOn(),
         );
 
-        while (this.menu.length !== 0 && this.menu[0] === 'SEPERATOR') this.menu = this.menu.slice(1);
-        while (this.menu.length !== 0 && this.menu[this.menu.length - 1] === 'SEPERATOR')
+        while (this.menu.length !== 0 && this.menu[0] === 'DIVIDER') this.menu = this.menu.slice(1);
+        while (this.menu.length !== 0 && this.menu[this.menu.length - 1] === 'DIVIDER')
             this.menu = this.menu.slice(0, this.menu.length - 1);
 
         this.className =
-            this.menu.length === 0 || (this.menu.length === 1 && this.menu[0] === 'SEPERATOR')
-                ? 'ngx-helper-hidden'
-                : '';
+            this.menu.length === 0 || (this.menu.length === 1 && this.menu[0] === 'DIVIDER') ? 'ngx-helper-hidden' : '';
         this.menuChanged.emit(this.menu);
     }
 
