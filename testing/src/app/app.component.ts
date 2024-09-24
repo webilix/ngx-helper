@@ -130,6 +130,8 @@ export class AppComponent implements OnInit, OnDestroy {
                 { id: 'option-1', title: 'گزینه اول' },
                 { id: 'option-2', title: 'گزینه دوم' },
                 { id: 'option-3', title: 'گزینه سوم' },
+                'DIVIDER',
+                { id: 'option-4', title: 'گزینه آخر' },
             ],
             value: 'option-2',
             required: true,

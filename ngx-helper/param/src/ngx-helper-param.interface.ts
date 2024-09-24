@@ -51,5 +51,5 @@ export interface INgxHelperParamSelect extends Omit<INgxHelperParam, 'title'> {
     title: string;
     icon?: string;
     list?: boolean;
-    options: { id: string; title: string }[];
+    options: ({ id: string; title: string } | 'DIVIDER')[];
 }

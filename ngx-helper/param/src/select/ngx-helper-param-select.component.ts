@@ -12,7 +12,7 @@ import { INgxHelperParamSelect } from '../ngx-helper-param.interface';
 })
 export class NgxHelperParamSelectComponent {
     public param: INgxHelperParamSelect = this.data.param;
-    public options: { id: string; title: string }[] = this.data.param.options;
+    public options: { id: string; title: string }[] = this.data.param.options.filter((o) => o !== 'DIVIDER');
     public value: string = this.data.value;
 
     constructor(
@@ -22,8 +22,10 @@ export class NgxHelperParamSelectComponent {
 
     filter(query: string): void {
         this.options = !query
-            ? this.data.param.options
-            : this.data.param.options.filter((o) => o.title.toLowerCase().includes(query.toLocaleLowerCase()));
+            ? this.data.param.options.filter((o) => o !== 'DIVIDER')
+            : this.data.param.options
+                  .filter((o) => o !== 'DIVIDER')
+                  .filter((o) => o.title.toLowerCase().includes(query.toLocaleLowerCase()));
     }
 
     select(id: string): void {

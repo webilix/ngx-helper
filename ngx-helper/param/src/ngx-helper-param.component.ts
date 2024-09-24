@@ -115,7 +115,8 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
                         if (Helper.IS.string(value)) values[param.name] = value;
                         break;
                     case 'SELECT':
-                        if (param.options.find((o) => o.id === value)) values[param.name] = value;
+                        if (param.options.filter((o) => o !== 'DIVIDER').find((o) => o.id === value))
+                            values[param.name] = value;
                         break;
                 }
             });
@@ -166,7 +167,11 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
                         this.values[param.name] = Helper.IS.string(value) ? value : null;
                         break;
                     case 'SELECT':
-                        this.values[param.name] = param.options.find((o) => o.id === value) ? value : null;
+                        this.values[param.name] = param.options
+                            .filter((o) => o !== 'DIVIDER')
+                            .find((o) => o.id === value)
+                            ? value
+                            : null;
                         break;
                 }
             });
@@ -195,11 +200,15 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
             this.params.forEach((param: NgxHelperParam) => {
                 if (param === 'SEPERATOR' || param.type !== 'SELECT' || param.list || param.options.length > 14) return;
 
-                this.menus[param.name] = param.options.map((o) => ({
-                    title: o.title,
-                    english: !!param.english,
-                    click: () => this.setSelect(param, o.id),
-                }));
+                this.menus[param.name] = param.options.map((o) => {
+                    if (o === 'DIVIDER') return 'SEPERATOR';
+
+                    return {
+                        title: o.title,
+                        english: !!param.english,
+                        click: () => this.setSelect(param, o.id),
+                    };
+                });
             });
         }
 
@@ -406,14 +415,16 @@ export class NgxHelperParamComponent implements OnInit, OnChanges {
     }
 
     getSelectTitle(param: INgxHelperParamSelect, value: string): string {
-        return param.options.find((o) => o.id === value)?.title || '';
+        return param.options.filter((o) => o !== 'DIVIDER').find((o) => o.id === value)?.title || '';
     }
 
     setSelect(param: INgxHelperParamSelect, value: string | null): void {
         if (this.values[param.name] === value) return;
 
         this.setPage(1);
-        this.values[param.name] = param.options.find((o) => o.id === value) ? value : null;
+        this.values[param.name] = param.options.filter((o) => o !== 'DIVIDER').find((o) => o.id === value)
+            ? value
+            : null;
         this.updateRoute();
     }
 
