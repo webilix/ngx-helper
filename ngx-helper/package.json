@@ -5,9 +5,9 @@
     "author": "Ali Amirnezhad",
     "license": "MIT",
     "peerDependencies": {
-        "@angular/common": ">=18.2.0",
-        "@angular/core": ">=18.2.0",
-        "@angular/material": ">=18.2.0",
+        "@angular/common": ">=18.2.5",
+        "@angular/core": ">=18.2.5",
+        "@angular/material": ">=18.2.5",
         "@webilix/helper-library": ">=4.16.4",
         "@webilix/jalali-date-time": ">=2.0.4",
         "ngx-mask": ">=18.0.0",
