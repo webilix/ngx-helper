@@ -51,6 +51,7 @@ export class ValuesComponent {
             copy: true,
         },
         { title: 'قیمت', value: { type: 'PRICE', value: 12300000, currency: 'تومان' }, copy: true },
+        { title: 'حجم', value: { type: 'VOLUME', value: 12300000 }, copy: true },
         { title: 'وزن', value: { type: 'WEIGHT', value: 12300000 }, copy: true },
     ];
 }

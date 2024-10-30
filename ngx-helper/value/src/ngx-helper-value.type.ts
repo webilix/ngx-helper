@@ -15,4 +15,5 @@ export type NgxHelperValue =
     | { type: 'NUMBER'; value: number; english?: boolean }
     | { type: 'PERIOD'; value: Date | { from: Date; to?: Date }; timezone?: string }
     | { type: 'PRICE'; value: number; currency?: string; english?: boolean; short?: boolean }
+    | { type: 'VOLUME'; value: number; english?: boolean; short?: boolean }
     | { type: 'WEIGHT'; value: number; english?: boolean; short?: boolean };

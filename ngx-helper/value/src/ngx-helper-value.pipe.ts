@@ -95,6 +95,15 @@ export class NgxHelperValuePipe implements PipeTransform {
         return [+price.toFixed(2), short ? (en ? 'B' : 'د') : en ? 'Billion' : 'میلیارد'];
     }
 
+    getVolume(volume: number, en: boolean, short: boolean): [number, string] {
+        if (volume === 0) return [+volume.toFixed(2), ''];
+
+        if (volume < 1000) return [+volume.toFixed(2), short ? (en ? 'ML' : 'م') : en ? 'Milliliter' : 'میلی لیتر'];
+
+        volume /= 1000;
+        return [+volume.toFixed(2), short ? (en ? 'L' : 'ل') : en ? 'Liter' : 'لیتر'];
+    }
+
     getWeight(weight: number, en: boolean, short: boolean): [number, string] {
         if (weight === 0) return [+weight.toFixed(2), ''];
 
@@ -198,6 +207,19 @@ export class NgxHelperValuePipe implements PipeTransform {
                         `<span class="value${priceExtra}">${html}</span>` +
                         (price[1] ? ` <span class="unit">${price[1]}</span>` : '') +
                         (value.currency ? ` <span class="currency">${value.currency}</span>` : '');
+                    english = !!value.english;
+                    ltr = false;
+                    break;
+
+                case 'VOLUME':
+                    const volume: [number, string] = this.getVolume(value.value, !!value.english, !!value.short);
+                    const volumeExtra: string = !value.english ? '' : ' ngx-helper-en';
+
+                    html = Helper.NUMBER.format(volume[0], value.english ? 'EN' : 'FA');
+                    html = html.replace(/,/g, value.english ? ',' : '،');
+                    html =
+                        `<span class="value${volumeExtra}">${html}</span>` +
+                        (volume[1] ? ` <span class="unit">${volume[1]}</span>` : '');
                     english = !!value.english;
                     ltr = false;
                     break;

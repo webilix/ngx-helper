@@ -10,6 +10,7 @@ import { NgxHelperMultiLinePipe } from './ngx-helper-multi-line.pipe';
 import { NgxHelperPeriodPipe } from './ngx-helper-period.pipe';
 import { NgxHelperPricePipe } from './ngx-helper-price.pipe';
 import { NgxHelperSafePipe } from './ngx-helper-safe.pipe';
+import { NgxHelperVolumePipe } from './ngx-helper-volume.pipe';
 import { NgxHelperWeightPipe } from './ngx-helper-weight.pipe';
 
 @NgModule({
@@ -24,6 +25,7 @@ import { NgxHelperWeightPipe } from './ngx-helper-weight.pipe';
         NgxHelperPeriodPipe,
         NgxHelperPricePipe,
         NgxHelperSafePipe,
+        NgxHelperVolumePipe,
         NgxHelperWeightPipe,
     ],
     exports: [
@@ -37,6 +39,7 @@ import { NgxHelperWeightPipe } from './ngx-helper-weight.pipe';
         NgxHelperPeriodPipe,
         NgxHelperPricePipe,
         NgxHelperSafePipe,
+        NgxHelperVolumePipe,
         NgxHelperWeightPipe,
     ],
 })

@@ -12,6 +12,7 @@ export * from './src/ngx-helper-multi-line.pipe';
 export * from './src/ngx-helper-period.pipe';
 export * from './src/ngx-helper-price.pipe';
 export * from './src/ngx-helper-safe.pipe';
+export * from './src/ngx-helper-volume.pipe';
 export * from './src/ngx-helper-weight.pipe';
 
 export * from './src/ngx-helper-pipe.module';

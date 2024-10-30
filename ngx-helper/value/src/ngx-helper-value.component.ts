@@ -73,6 +73,13 @@ export class NgxHelperValueComponent implements OnChanges {
                             .join(' ');
                         if (value.value.currency) this.copy[index] += ` ${value.value.currency}`;
                         break;
+                    case 'VOLUME':
+                        const volumeEN: boolean = !!value.value.english;
+                        this.copy[index] = this.ngxHelperValuePipe
+                            .getVolume(value.value.value, volumeEN, !!value.value.short)
+                            .map((v) => (typeof v === 'string' ? v : Helper.NUMBER.format(v, volumeEN ? 'EN' : 'FA')))
+                            .join(' ');
+                        break;
                     case 'WEIGHT':
                         const weightEN: boolean = !!value.value.english;
                         this.copy[index] = this.ngxHelperValuePipe
